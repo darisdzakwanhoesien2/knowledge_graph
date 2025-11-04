@@ -1,0 +1,220 @@
+[
+  {
+    "entity": "Pinhole Camera Model",
+    "type": "Concept",
+    "domain": "Machine Vision",
+    "definition": "A simplified geometric model of image formation in which light rays pass through a single small aperture and project an inverted image onto an image plane.",
+    "description": "Used as the mathematical basis for camera calibration and projection matrix derivation in both single-view and multi-view geometry.",
+    "properties": {
+      "Goal": "Model how 3D points project onto a 2D image plane.",
+      "Applications": ["Camera calibration", "3D reconstruction", "Stereo imaging"],
+      "Methods": ["Homogeneous coordinate projection", "Matrix-based projection equations"],
+      "Examples": ["Exam 2014 - Projection geometry", "Exam 2016 - Stereo setup"]
+    },
+    "relations": [
+      {"type": "extends", "target": "Camera extrinsics"},
+      {"type": "used_in", "target": "Triangulation"},
+      {"type": "foundation_for", "target": "Epipolar constraint"},
+      {"type": "contrasts_with", "target": "Perspective-3-point (P3P) problem"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Radial Distortion",
+    "type": "Concept",
+    "domain": "Machine Vision",
+    "definition": "A lens distortion where straight lines appear curved due to nonlinear magnification that varies with distance from the image center.",
+    "description": "Commonly corrected during camera calibration using polynomial or division models to improve geometric accuracy.",
+    "properties": {
+      "Goal": "Model and correct optical distortion effects in imaging systems.",
+      "Applications": ["Camera calibration", "3D measurement", "Photogrammetry"],
+      "Methods": ["Polynomial distortion model", "Inverse distortion mapping"],
+      "Examples": ["Exam 2014 - Lens modeling", "Exam 2018 - Definition question"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Pinhole Camera Model"},
+      {"type": "corrected_by", "target": "Camera calibration"},
+      {"type": "influences", "target": "Triangulation accuracy"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "HSV Color Space",
+    "type": "Concept",
+    "domain": "Machine Vision",
+    "definition": "A color representation model that describes colors in terms of hue, saturation, and value, which better aligns with human color perception.",
+    "description": "HSV is commonly used in segmentation and tracking tasks because hue can be more stable under illumination variations.",
+    "properties": {
+      "Goal": "Represent and manipulate color information in perceptually meaningful terms.",
+      "Applications": ["Color-based segmentation", "Object tracking", "Skin detection"],
+      "Methods": ["RGB-to-HSV conversion", "Thresholding by hue and saturation"],
+      "Examples": ["Exam 2015 - Definition", "Exam 2019 - Basic term question"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Image segmentation"},
+      {"type": "contrasts_with", "target": "RGB color space"},
+      {"type": "supports", "target": "Texture analysis"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Depth of Field",
+    "type": "Concept",
+    "domain": "Machine Vision",
+    "definition": "The range of distances within a scene that appear acceptably sharp in an image.",
+    "description": "Controlled by aperture size, focal length, and sensor distance; important in focus estimation and 3D reconstruction.",
+    "properties": {
+      "Goal": "Quantify and control image sharpness across depth layers.",
+      "Applications": ["Focus measurement", "Autofocus systems", "3D reconstruction"],
+      "Methods": ["Optical modeling", "Focus metric computation"],
+      "Examples": ["Exam 2020 - Definition question"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Aperture problem"},
+      {"type": "affects", "target": "Structure-from-Motion"},
+      {"type": "used_in", "target": "Depth estimation"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Epipolar Constraint",
+    "type": "Concept",
+    "domain": "Machine Vision",
+    "definition": "A geometric relationship stating that a point in one image must lie on a specific line (the epipolar line) in the other image when both views observe the same 3D point.",
+    "description": "Derived from camera projection matrices and the essential matrix; simplifies stereo correspondence search.",
+    "properties": {
+      "Goal": "Reduce 2D stereo correspondence search to 1D along epipolar lines.",
+      "Applications": ["Stereo vision", "Structure-from-Motion", "Camera calibration"],
+      "Methods": ["Essential matrix computation", "Epipolar geometry modeling"],
+      "Examples": ["Exam 2018 - Theoretical question", "Exam 2020 - Stereo derivation"]
+    },
+    "relations": [
+      {"type": "extends", "target": "Pinhole Camera Model"},
+      {"type": "used_in", "target": "Triangulation"},
+      {"type": "foundation_for", "target": "Stereo matching"},
+      {"type": "requires", "target": "Projection matrices"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Aperture Problem",
+    "type": "Concept",
+    "domain": "Machine Vision",
+    "definition": "An ambiguity in local motion estimation where only the component of motion perpendicular to an image gradient can be measured.",
+    "description": "Occurs in optical flow estimation; resolved using spatial or temporal coherence constraints.",
+    "properties": {
+      "Goal": "Explain the fundamental ambiguity in local motion detection.",
+      "Applications": ["Optical flow", "Edge tracking", "Motion estimation"],
+      "Methods": ["Gradient constraint equation", "Lucas–Kanade method", "Global smoothness enforcement"],
+      "Examples": ["Exam 2015 - Definition", "Exam 2019 - Optical flow task"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Optical flow"},
+      {"type": "addressed_by", "target": "Lucas–Kanade method"},
+      {"type": "contrasts_with", "target": "Depth of Field"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Metamers",
+    "type": "Concept",
+    "domain": "Machine Vision",
+    "definition": "Different spectral distributions that produce the same color perception under specific lighting conditions.",
+    "description": "Important in color science and sensor calibration, explaining why cameras and human vision may differ in color interpretation.",
+    "properties": {
+      "Goal": "Understand perceptual equivalence in color representation.",
+      "Applications": ["Color calibration", "Illumination modeling", "Spectral imaging"],
+      "Methods": ["Spectral measurement", "Color matching functions"],
+      "Examples": ["Exam 2017 - Definition", "Exam 2019 - Conceptual question"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "HSV Color Space"},
+      {"type": "contrasts_with", "target": "Chromatic aberration"},
+      {"type": "used_in", "target": "Color constancy models"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Chromatic Aberration",
+    "type": "Concept",
+    "domain": "Machine Vision",
+    "definition": "An optical phenomenon where different wavelengths of light focus at different distances, causing color fringes in images.",
+    "description": "Corrected via lens design or software post-processing to ensure color alignment in multi-channel imaging.",
+    "properties": {
+      "Goal": "Reduce color blurring caused by wavelength-dependent refraction.",
+      "Applications": ["Lens design", "Image restoration", "Color correction"],
+      "Methods": ["Spectral lens calibration", "Image deconvolution"],
+      "Examples": ["Exam 2018 - Definition question"]
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Metamers"},
+      {"type": "influences", "target": "Color calibration"},
+      {"type": "affects", "target": "Image quality assessment"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Camera Extrinsics",
+    "type": "Concept",
+    "domain": "Machine Vision",
+    "definition": "Parameters that describe the position and orientation of a camera in a world coordinate system.",
+    "description": "Extrinsics link the camera reference frame to world coordinates, essential for triangulation and multi-view alignment.",
+    "properties": {
+      "Goal": "Map coordinates between camera and world spaces.",
+      "Applications": ["Stereo calibration", "SLAM", "3D reconstruction"],
+      "Methods": ["Rotation-translation matrix estimation", "PnP algorithms"],
+      "Examples": ["Exam 2014 - Camera calibration task"]
+    },
+    "relations": [
+      {"type": "extends", "target": "Pinhole Camera Model"},
+      {"type": "used_in", "target": "Triangulation"},
+      {"type": "required_for", "target": "Structure-from-Motion"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  }
+]

@@ -1,0 +1,179 @@
+[
+  {
+    "entity": "Computer Vision",
+    "type": "Field of Study",
+    "domain": "Introduction",
+    "definition": "An interdisciplinary field that deals with how computers can be made to gain high-level understanding from digital images or videos.",
+    "description": "From an engineering perspective, Computer Vision seeks to automate tasks that the human visual system can perform, often requiring the conversion of digital images into higher representations.",
+    "properties": {
+      "Goal": [
+        "Automate tasks that the human visual system can do",
+        "Converting digital images to higher level representations",
+        "Automatic understanding of images and video"
+      ],
+      "Applications": [
+        "Image Recognition",
+        "Optical Character Recognition (OCR)",
+        "Content-based retrieval",
+        "Health care (e.g., disease detection)",
+        "Autonomous vehicles"
+      ],
+      "Methods": [],
+      "Examples": []
+    },
+    "relations": [
+      {
+        "type": "is closely related to",
+        "target": "Artificial Intelligence"
+      },
+      {
+        "type": "is more application oriented than",
+        "target": "Machine Vision"
+      }
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "01-intro-00.pdf",
+      "created_at": "2023-10-27",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Image Recognition",
+    "type": "Task/Capability",
+    "domain": "Recognition & Learning",
+    "definition": "The ability of software to identify objects, places, people, writing, and actions in images.",
+    "description": "A core goal of image understanding, which involves making decisions based on visual data and constructing scene descriptions.",
+    "properties": {
+      "Goal": "Allow a machine to recognize objects, people, scenes, and activities (perception and interpretation).",
+      "Applications": [
+        "Classification + Localization",
+        "Object Detection (e.g., YOLO)",
+        "Semantic Segmentation",
+        "Instance Segmentation"
+      ],
+      "Methods": [
+        "Machine Learning (ML)",
+        "Deep Learning (DNNs)"
+      ],
+      "Examples": [
+        "Recognizing a traffic sign",
+        "Diagnosing disease in health care"
+      ]
+    },
+    "relations": [
+      {
+        "type": "is a component of",
+        "target": "Image Understanding"
+      }
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "01-intro-00.pdf",
+      "created_at": "2023-10-27",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Deep Neural Networks (DNNs)",
+    "type": "Technique/Algorithm",
+    "domain": "Machine Learning",
+    "definition": "Popular machine learning techniques, including Convolutional Neural Networks (CNNs), which are often used for image recognition.",
+    "description": "DNNs have enabled significant progress in image recognition, particularly when utilized with large datasets such as ImageNet.",
+    "properties": {
+      "Goal": "Combine both representation (feature extraction) and classification steps in an end-to-end approach, learning features directly from the data.",
+      "Applications": [
+        "Image Recognition"
+      ],
+      "Methods": [
+        "Convolutional Neural Networks (CNNs)"
+      ],
+      "Examples": [
+        "ImageNet Challenge winning systems"
+      ]
+    },
+    "relations": [
+      {
+        "type": "is a type of",
+        "target": "Machine Learning"
+      },
+      {
+        "type": "requires reliance on",
+        "target": "Large Datasets (e.g., ImageNet)"
+      }
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "01-intro-00.pdf",
+      "created_at": "2023-10-27",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Thresholding",
+    "type": "Image Processing Operation",
+    "domain": "Segmentation",
+    "definition": "The operation of separating an image into regions by applying a threshold value, typically resulting in a binary image.",
+    "description": "Thresholding is the simplest method for segmenting gray-scale images. The main issue lies in correctly choosing the threshold value.",
+    "properties": {
+      "Goal": "Segmentation and obtaining binary images.",
+      "Applications": [
+        "Object boundary finding (in support of edge detection)",
+        "Separating dark and light pixels in bimodal histograms"
+      ],
+      "Methods": [
+        "Histogram analysis (detecting peaks and valleys)",
+        "Otsu's method (minimizing within-group variance)"
+      ],
+      "Examples": []
+    },
+    "relations": [
+      {
+        "type": "is a fundamental step in",
+        "target": "Binary Image Analysis Pipeline"
+      }
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "04-binary-00.pdf",
+      "created_at": "2023-10-27",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Structure from Motion (SfM)",
+    "type": "Geometric Recovery Technique",
+    "domain": "Geometry & 3D Reconstruction",
+    "definition": "The problem of estimating $m$ camera matrices ($\\mathbf{M}_i$) and $n$ 3D points ($\\mathbf{P}_j$) given $m$ images of $n$ fixed points and their correspondences.",
+    "description": "SfM relies on minimizing the reprojection error between observed and predicted image points through nonlinear least-squares optimization (Bundle Adjustment).",
+    "properties": {
+      "Goal": [
+        "Estimate camera poses and 3D scene structure from 2D image sequences."
+      ],
+      "Applications": [
+        "3D surface reconstruction"
+      ],
+      "Methods": [
+        "Bundle Adjustment",
+        "Nonlinear least-squares minimization"
+      ],
+      "Examples": []
+    },
+    "relations": [
+      {
+        "type": "is constrained by",
+        "target": "Scale Ambiguity"
+      },
+      {
+        "type": "feeds into",
+        "target": "Surface Reconstruction"
+      }
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "11-3D_reconstruction-00.pdf",
+      "created_at": "2023-10-27",
+      "version": "1.0"
+    }
+  }
+]
