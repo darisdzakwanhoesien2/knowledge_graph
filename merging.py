@@ -60,7 +60,42 @@ def merge_graph(json_list):
     return graph
 
 
-# --- STEP 3: Save unified graph ---
+# --- STEP 3.5: Normalize and Merge Duplicate Nodes ---
+def normalize_nodes(graph):
+    normalized_map = {}
+    renamed_count = 0
+
+    # Build normalized mapping (case-insensitive + trim)
+    for node_name in list(graph["nodes"].keys()):
+        normalized = node_name.strip().lower()
+        if normalized in normalized_map:
+            existing_name = normalized_map[normalized]
+            existing_node = graph["nodes"][existing_name]
+            new_node = graph["nodes"][node_name]
+
+            # Merge properties
+            existing_node["properties"].update(new_node.get("properties", {}))
+            if not existing_node.get("domain") and new_node.get("domain"):
+                existing_node["domain"] = new_node["domain"]
+
+            # Repoint edges
+            for edge in graph["edges"]:
+                if edge["source"] == node_name:
+                    edge["source"] = existing_name
+                if edge["target"] == node_name:
+                    edge["target"] = existing_name
+
+            # Remove duplicate node
+            del graph["nodes"][node_name]
+            renamed_count += 1
+        else:
+            normalized_map[normalized] = node_name
+
+    print(f"🧩 Normalized {renamed_count} duplicate nodes (case/spacing).")
+    return graph
+
+
+# --- STEP 4: Save unified graph ---
 def save_graph(graph, path):
     graph["metadata"] = {
         "last_built": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -80,6 +115,9 @@ if __name__ == "__main__":
 
     print("🔗 Merging into unified graph...")
     merged_graph = merge_graph(json_list)
+
+    print("🧠 Normalizing and fixing duplicates...")
+    merged_graph = normalize_nodes(merged_graph)
 
     print("💾 Saving result...")
     save_graph(merged_graph, OUTPUT_FILE)

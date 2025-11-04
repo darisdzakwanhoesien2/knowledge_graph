@@ -77,23 +77,20 @@
       "definition": "The process of partitioning a digital image into multiple segments (sets of pixels) to simplify and/or change the representation of an image into something that is more meaningful and easier to analyze.",
       "description": "Image segmentation is typically used to locate objects and boundaries (lines, curves, etc.) in images. More precisely, image segmentation is the process of assigning a label to every pixel in an image such that pixels with the same label share certain characteristics.",
       "properties": {
-        "Goal": "Simplify and/or change the representation of an image into something more meaningful.",
+        "Goal": "Divide an image into coherent regions for further analysis.",
         "Applications": [
-          "Object recognition",
+          "Object detection",
           "Medical imaging",
-          "Autonomous driving",
-          "Image editing"
+          "Scene understanding"
         ],
         "Methods": [
           "Thresholding",
-          "Clustering (e.g., K-Means)",
-          "Region-based methods",
-          "Edge-based methods",
-          "Deep Learning (e.g., U-Net)"
+          "Region growing",
+          "Graph-based segmentation"
         ],
         "Examples": [
-          "Separating foreground from background",
-          "Identifying different organs in a medical scan"
+          "Exam 2019 - Principle",
+          "Exam 2020 - Segmentation method"
         ]
       },
       "metadata": {
@@ -122,35 +119,6 @@
         ],
         "Examples": [
           "Exam 2018 - Segmentation question"
-        ]
-      },
-      "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Image Segmentation": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "The process of partitioning an image into semantically meaningful regions based on intensity, color, or texture.",
-      "description": "Segmentation forms the foundation for object detection, recognition, and measurement by assigning pixels to distinct labels.",
-      "properties": {
-        "Goal": "Divide an image into coherent regions for further analysis.",
-        "Applications": [
-          "Object detection",
-          "Medical imaging",
-          "Scene understanding"
-        ],
-        "Methods": [
-          "Thresholding",
-          "Region growing",
-          "Graph-based segmentation"
-        ],
-        "Examples": [
-          "Exam 2019 - Principle",
-          "Exam 2020 - Segmentation method"
         ]
       },
       "metadata": {
@@ -1087,22 +1055,22 @@
       "target": "Motion estimation"
     },
     {
-      "source": "Image Segmentation",
+      "source": "Image segmentation",
       "type": "foundation_for",
       "target": "Background Subtraction"
     },
     {
-      "source": "Image Segmentation",
+      "source": "Image segmentation",
       "type": "used_with",
       "target": "HSV Color Space"
     },
     {
-      "source": "Image Segmentation",
+      "source": "Image segmentation",
       "type": "supported_by",
       "target": "Otsu’s Thresholding Method"
     },
     {
-      "source": "Image Segmentation",
+      "source": "Image segmentation",
       "type": "used_in",
       "target": "Texture classification"
     },
@@ -1578,8 +1546,8 @@
     }
   ],
   "metadata": {
-    "last_built": "2025-11-04 11:04:57",
-    "node_count": 38,
+    "last_built": "2025-11-04 11:11:54",
+    "node_count": 37,
     "edge_count": 114
   }
 }
