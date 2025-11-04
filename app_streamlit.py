@@ -144,6 +144,6 @@ with st.sidebar.expander("Merge Duplicate or Similar Nodes", expanded=False):
             merged_graph, merged = merge_nodes(data, node_to_merge, node_target)
             if merged:
                 save_graph(merged_graph)
-                st.experimental_rerun()
+                st.rerun()
         else:
             st.warning("Please select two *different* nodes to merge.")

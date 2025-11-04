@@ -161,21 +161,17 @@
       "definition": "A technique that recovers 3D structure and camera motion from multiple overlapping 2D images.",
       "description": "Combines feature matching, triangulation, and bundle adjustment to produce dense reconstructions and camera pose estimates.",
       "properties": {
-        "Goal": "Estimate 3D geometry and motion from image sequences.",
+        "Goal": [
+          "Estimate camera poses and 3D scene structure from 2D image sequences."
+        ],
         "Applications": [
-          "3D reconstruction",
-          "AR/VR",
-          "Robot localization"
+          "3D surface reconstruction"
         ],
         "Methods": [
-          "Feature matching",
-          "Bundle adjustment",
-          "Triangulation"
+          "Bundle Adjustment",
+          "Nonlinear least-squares minimization"
         ],
-        "Examples": [
-          "Exam 2019 - Method explanation",
-          "Exam 2020 - Stereo extension"
-        ]
+        "Examples": []
       },
       "metadata": {
         "created_by": "Daris",
@@ -650,31 +646,6 @@
       "metadata": {
         "created_by": "Daris",
         "source": "04-binary-00.pdf",
-        "created_at": "2023-10-27",
-        "version": "1.0"
-      }
-    },
-    "Structure from Motion (SfM)": {
-      "type": "Geometric Recovery Technique",
-      "domain": "Geometry & 3D Reconstruction",
-      "definition": "The problem of estimating $m$ camera matrices ($\\mathbf{M}_i$) and $n$ 3D points ($\\mathbf{P}_j$) given $m$ images of $n$ fixed points and their correspondences.",
-      "description": "SfM relies on minimizing the reprojection error between observed and predicted image points through nonlinear least-squares optimization (Bundle Adjustment).",
-      "properties": {
-        "Goal": [
-          "Estimate camera poses and 3D scene structure from 2D image sequences."
-        ],
-        "Applications": [
-          "3D surface reconstruction"
-        ],
-        "Methods": [
-          "Bundle Adjustment",
-          "Nonlinear least-squares minimization"
-        ],
-        "Examples": []
-      },
-      "metadata": {
-        "created_by": "Daris",
-        "source": "11-3D_reconstruction-00.pdf",
         "created_at": "2023-10-27",
         "version": "1.0"
       }
@@ -1370,12 +1341,12 @@
       "target": "Binary Image Analysis Pipeline"
     },
     {
-      "source": "Structure from Motion (SfM)",
+      "source": "Structure-from-Motion (SfM)",
       "type": "is constrained by",
       "target": "Scale Ambiguity"
     },
     {
-      "source": "Structure from Motion (SfM)",
+      "source": "Structure-from-Motion (SfM)",
       "type": "feeds into",
       "target": "Surface Reconstruction"
     },
