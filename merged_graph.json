@@ -58,6 +58,19 @@
         "version": "1.0"
       }
     },
+    "Visual words": {
+      "type": "Concept",
+      "domain": "Feature Representation",
+      "definition": "A cluster center in the feature space, representing a common visual pattern or feature, used to build Bag-of-Words representations.",
+      "description": "",
+      "properties": {},
+      "metadata": {
+        "created_by": "Daris",
+        "source": "02-features-00.pdf",
+        "created_at": "2023-10-27",
+        "version": "1.0"
+      }
+    },
     "Image segmentation": {
       "type": "Task/Capability",
       "domain": "Segmentation",
@@ -1565,8 +1578,8 @@
     }
   ],
   "metadata": {
-    "last_built": "2025-11-04 10:30:31",
-    "node_count": 37,
+    "last_built": "2025-11-04 11:04:57",
+    "node_count": 38,
     "edge_count": 114
   }
 }
