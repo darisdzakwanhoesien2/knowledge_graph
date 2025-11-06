@@ -1,0 +1,230 @@
+[
+  {
+    "entity": "Data Ethics",
+    "type": "Principle",
+    "domain": "Data Science",
+    "definition": "A set of moral guidelines and practices governing responsible collection, analysis, and use of data, ensuring respect for privacy, transparency, and fairness.",
+    "description": "Data ethics involves acting responsibly with the data entrusted to you. It acknowledges that data often represent people, and therefore, misuse can harm individuals or groups. Ethical data mining requires accountability, honesty, and consideration of the potential consequences of analysis outcomes.",
+    "properties": {
+      "Motives": ["Ensure positive social impact", "Avoid manipulation", "Promote fairness"],
+      "Methods": ["Transparency", "Accountability", "Consent"],
+      "Consequences": ["Respect privacy", "Prevent harm", "Foster trust"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Information Privacy"},
+      {"type": "governed_by", "target": "Data Protection Laws"},
+      {"type": "component_of", "target": "Ethical Data Mining"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_2_slides.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Ethical Data Mining",
+    "type": "Process",
+    "domain": "Data Science",
+    "definition": "The practice of conducting data mining in a way that is fair, transparent, and respects privacy and consent.",
+    "description": "Ethical data mining balances the potential benefits of insights gained from data with the responsibility to protect subjects from harm. It considers ownership, consent, data sensitivity, and the possible implications of findings.",
+    "properties": {
+      "Key Principles": ["Honesty", "Transparency", "Responsibility", "Non-maleficence"],
+      "Challenges": ["Unintended harm", "Biased data", "Lack of consent"]
+    },
+    "relations": [
+      {"type": "requires", "target": "Informed Consent"},
+      {"type": "related_to", "target": "Privacy Preservation"},
+      {"type": "regulated_by", "target": "GDPR"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_2_slides.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Informed Consent",
+    "type": "Principle",
+    "domain": "Research Ethics",
+    "definition": "The process of obtaining voluntary, informed permission from individuals whose data will be collected or used.",
+    "description": "Informed consent ensures individuals understand what data is collected, how it will be used, and have the freedom to withdraw at any time. It is fundamental in research involving personal or sensitive data.",
+    "properties": {
+      "Requirements": [
+        "Clear explanation of purpose",
+        "Freedom to deny or withdraw",
+        "Comprehensible to the participant"
+      ],
+      "Constraints": ["Use only for stated purpose", "Respect withdrawal", "Maintain anonymity"]
+    },
+    "relations": [
+      {"type": "required_by", "target": "Ethical Data Mining"},
+      {"type": "related_to", "target": "Privacy Preservation"},
+      {"type": "regulated_by", "target": "GDPR"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_2_slides.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "General Data Protection Regulation (GDPR)",
+    "type": "Law",
+    "domain": "European Data Protection",
+    "definition": "A European Union regulation that governs data protection and privacy for individuals within the EU and EEA.",
+    "description": "GDPR defines the lawful basis for data processing, grants rights to data subjects, and imposes obligations on data controllers and processors. It aims to give individuals control over their personal data and harmonize regulations across the EU.",
+    "properties": {
+      "Principles": ["Lawfulness", "Fairness", "Transparency", "Data minimisation", "Accountability"],
+      "Rights": ["Access", "Erasure", "Portability", "Restriction"],
+      "Sanctions": ["Fines for breaches", "Data protection impact assessments"]
+    },
+    "relations": [
+      {"type": "governs", "target": "Personal Data"},
+      {"type": "related_to", "target": "Data Ethics"},
+      {"type": "enforces", "target": "Informed Consent"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_2_slides.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Information Security",
+    "type": "Concept",
+    "domain": "Data Management",
+    "definition": "The practice of protecting information from unauthorized access, modification, or destruction to ensure confidentiality, integrity, and availability.",
+    "description": "Information security ensures that data remains accurate, private, and accessible only to authorized users. The CIA triad—Confidentiality, Integrity, Availability—summarizes its key principles.",
+    "properties": {
+      "Core Principles": ["Confidentiality", "Integrity", "Availability"],
+      "Threats": ["Hardware failure", "Malware", "Human error", "Unauthorized access"],
+      "Practices": ["Encryption", "Backups", "Access control", "Authentication"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Information Privacy"},
+      {"type": "supports", "target": "Ethical Data Mining"},
+      {"type": "includes", "target": "Confidentiality"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_2_slides.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Information Privacy",
+    "type": "Concept",
+    "domain": "Data Protection",
+    "definition": "The right and ability of individuals to control the collection, use, and dissemination of information about themselves.",
+    "description": "Information privacy goes beyond the absence of surveillance—it concerns individuals’ control over personal information traces in digital society. Data mining poses unique challenges to privacy preservation.",
+    "properties": {
+      "Threats": ["Data theft", "Unethical use", "Government surveillance", "Lack of awareness"],
+      "Protective Measures": ["Anonymisation", "Pseudonymisation", "Access control"]
+    },
+    "relations": [
+      {"type": "protected_by", "target": "Information Security"},
+      {"type": "threatened_by", "target": "Data Mining"},
+      {"type": "regulated_by", "target": "GDPR"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_2_slides.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Anonymisation",
+    "type": "Technique",
+    "domain": "Data Privacy",
+    "definition": "The process of removing personally identifiable information from data to prevent the identification of individuals.",
+    "description": "Anonymisation ensures that personal data cannot be traced back to individuals, even when combined with external data. It is critical in ethical data mining and required for many research use cases.",
+    "properties": {
+      "Methods": ["Suppression", "Generalisation", "K-anonymity", "Randomization"],
+      "Challenges": ["Re-identification risk", "Data utility loss"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Privacy Preservation"},
+      {"type": "required_by", "target": "Ethical Data Mining"},
+      {"type": "related_to", "target": "Pseudonymisation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_2_slides.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Open Data",
+    "type": "Concept",
+    "domain": "Data Management",
+    "definition": "Data that anyone can freely access, use, modify, and share for any purpose, subject at most to minimal conditions such as attribution.",
+    "description": "Open data promotes transparency, innovation, and collaboration. It must be findable, accessible, interoperable, and reusable according to the FAIR principles.",
+    "properties": {
+      "Principles": ["Findable", "Accessible", "Interoperable", "Reusable"],
+      "Licenses": ["CC0", "CC BY", "ODbL"],
+      "Challenges": ["Loss of control", "Licensing complexity", "Data misuse"]
+    },
+    "relations": [
+      {"type": "supports", "target": "Scientific Research"},
+      {"type": "regulated_by", "target": "Open Knowledge Foundation"},
+      {"type": "guided_by", "target": "FAIR Principles"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_2_slides.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "FAIR Principles",
+    "type": "Framework",
+    "domain": "Open Science",
+    "definition": "A set of guidelines to make data Findable, Accessible, Interoperable, and Reusable.",
+    "description": "The FAIR principles ensure data can be easily located, accessed, integrated, and reused by others, supporting open science and reproducibility.",
+    "properties": {
+      "Components": ["Findable", "Accessible", "Interoperable", "Reusable"],
+      "Benefits": ["Transparency", "Data sharing", "Reproducibility"]
+    },
+    "relations": [
+      {"type": "applies_to", "target": "Open Data"},
+      {"type": "promoted_by", "target": "GO FAIR Initiative"},
+      {"type": "used_in", "target": "Research Data Management"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_2_slides.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Data Management",
+    "type": "Process",
+    "domain": "Data Science",
+    "definition": "The set of practices that ensure data is properly stored, maintained, and accessible for processing and analysis.",
+    "description": "Data management encompasses persistent storage, security, metadata curation, and accessibility. Proper management ensures reliability and longevity of data for research and applications.",
+    "properties": {
+      "Aspects": ["Storage", "Curation", "Security", "Metadata"],
+      "Tools": ["Relational Databases", "NoSQL Systems"]
+    },
+    "relations": [
+      {"type": "includes", "target": "Database Management"},
+      {"type": "related_to", "target": "Open Data"},
+      {"type": "supports", "target": "Data Mining"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_2_slides.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  }
+]

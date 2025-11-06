@@ -1,2216 +1,766 @@
 {
   "nodes": {
-    "Convolutional Neural Network (CNN)": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "A deep learning architecture composed of convolutional, pooling, and fully connected layers that automatically learn hierarchical visual features.",
-      "description": "CNNs dominate modern computer vision tasks by learning spatial hierarchies of features directly from raw image data without handcrafted descriptors.",
+    "Data Mining": {
+      "type": "Process",
+      "domain": "Data Science",
+      "definition": "The process of finding previously unknown and potentially interesting patterns and relationships in large databases through statistical and algorithmic methods.",
+      "description": "Data mining automates the extraction of knowledge from data and involves descriptive, predictive, and explanatory modeling. It simplifies and automates the statistical process from data sources to model application, supporting manual and automated methods.",
       "properties": {
-        "Goal": "Automatically learn discriminative visual representations.",
+        "Goal": "Discover patterns, relationships, and insights from large datasets.",
         "Applications": [
-          "Image classification",
-          "Object detection",
-          "Semantic segmentation"
+          "Customer segmentation",
+          "Fraud detection",
+          "Recommendation systems"
         ],
         "Methods": [
-          "Backpropagation",
-          "Convolutional filtering",
-          "Pooling operations"
+          "Classification",
+          "Clustering",
+          "Regression",
+          "Association analysis"
         ],
-        "Examples": [
-          "Exam 2018 - Modern methods",
-          "Exam 2019 - High-level discussion"
+        "Challenges": [
+          "Data quality",
+          "Scalability",
+          "Interpretability"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
+        "created_by": "system",
+        "source": "towards_data_mining_lecture_1_2024.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     },
-    "Bag-of-Words (BoW) Representation": {
-      "type": "Representation",
-      "domain": "Feature Representation",
-      "definition": "An image representation that models visual content as a histogram of discrete visual words learned from feature descriptors.",
-      "description": "BoW models are popular for image classification and retrieval due to their simplicity and effectiveness, despite losing spatial information.",
+    "Knowledge Discovery in Databases": {
+      "type": "Process",
+      "domain": "Data Science",
+      "definition": "The overall process of discovering useful knowledge from data, including data selection, cleaning, transformation, mining, and interpretation.",
+      "description": "KDD integrates data mining as a core step and emphasizes interpretation, prior knowledge, and iterative improvement. It transforms raw data into actionable knowledge through systematic analysis.",
       "properties": {
-        "Goal": "Represent images as collections of visual words for classification or retrieval.",
+        "Steps": [
+          "Data selection",
+          "Data cleaning",
+          "Data transformation",
+          "Data mining",
+          "Pattern evaluation",
+          "Knowledge representation"
+        ],
         "Applications": [
-          "Image classification",
-          "Content-based image retrieval",
-          "Object recognition"
-        ],
-        "Methods": [
-          "Feature extraction (e.g., SIFT, SURF)",
-          "Visual vocabulary creation (e.g., K-Means)",
-          "Histogram generation"
-        ],
-        "Examples": [
-          "Image search engines",
-          "Category recognition"
+          "Scientific discovery",
+          "Business intelligence",
+          "Engineering analytics"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "02-features-00.pdf",
-        "created_at": "2023-10-27",
+        "created_by": "system",
+        "source": "towards_data_mining_lecture_1_2024.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     },
-    "Visual words": {
-      "type": "Concept",
-      "domain": "Feature Representation",
-      "definition": "A cluster center in the feature space, representing a common visual pattern or feature, used to build Bag-of-Words representations.",
-      "description": "",
-      "properties": {},
-      "metadata": {
-        "created_by": "Daris",
-        "source": "02-features-00.pdf",
-        "created_at": "2023-10-27",
-        "version": "1.0"
-      }
-    },
-    "Image segmentation": {
-      "type": "Task/Capability",
-      "domain": "Segmentation",
-      "definition": "The process of partitioning a digital image into multiple segments (sets of pixels) to simplify and/or change the representation of an image into something that is more meaningful and easier to analyze.",
-      "description": "Image segmentation is typically used to locate objects and boundaries (lines, curves, etc.) in images. More precisely, image segmentation is the process of assigning a label to every pixel in an image such that pixels with the same label share certain characteristics.",
+    "Data Pre-processing": {
+      "type": "Process",
+      "domain": "Data Science",
+      "definition": "The step of preparing raw data for mining by cleaning, transforming, integrating, and reducing it to improve quality and usability.",
+      "description": "Data pre-processing deals with incomplete, noisy, or inconsistent data, improving accuracy and ensuring that models are built correctly. It converts raw data into suitable forms for mining and analysis.",
       "properties": {
-        "Goal": "Divide an image into coherent regions for further analysis.",
-        "Applications": [
-          "Object detection",
-          "Medical imaging",
-          "Scene understanding"
+        "Tasks": [
+          "Data cleaning",
+          "Data integration",
+          "Data transformation",
+          "Data reduction",
+          "Data discretization"
         ],
-        "Methods": [
-          "Thresholding",
-          "Region growing",
-          "Graph-based segmentation"
+        "Benefits": [
+          "Improved data quality",
+          "Reduced noise",
+          "Higher model accuracy"
         ],
-        "Examples": [
-          "Exam 2019 - Principle",
-          "Exam 2020 - Segmentation method"
+        "Problems addressed": [
+          "Missing values",
+          "Outliers",
+          "Inconsistencies",
+          "Bias"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "04-binary-00.pdf",
-        "created_at": "2023-10-27",
+        "created_by": "system",
+        "source": "towards_data_mining_lecture_1_2024.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     },
-    "Background Subtraction": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "A motion-based segmentation approach that isolates moving foreground objects by comparing each frame to a background model.",
-      "description": "Widely used in video surveillance, motion analysis, and dynamic scene understanding.",
+    "Data Quality": {
+      "type": "Concept",
+      "domain": "Data Management",
+      "definition": "A measure of the condition of data based on factors such as accuracy, completeness, reliability, and relevance.",
+      "description": "High-quality data ensures valid and actionable analysis. Characteristics include accuracy, precision, completeness, timeliness, consistency, and reliability.",
       "properties": {
-        "Goal": "Separate moving objects from a static or slowly changing background.",
-        "Applications": [
-          "Surveillance",
-          "Traffic monitoring",
-          "Gesture recognition"
+        "Characteristics": [
+          "Accuracy and precision",
+          "Completeness",
+          "Availability and accessibility",
+          "Timeliness and relevance",
+          "Granularity",
+          "Reliability and consistency"
         ],
-        "Methods": [
-          "Frame differencing",
-          "Gaussian mixture models",
-          "Otsu thresholding"
-        ],
-        "Examples": [
-          "Exam 2018 - Segmentation question"
+        "Risks": [
+          "Inaccurate models",
+          "Faulty decision-making",
+          "Unreliable analytics"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
+        "created_by": "system",
+        "source": "towards_data_mining_lecture_1_2024.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     },
-    "Lucas–Kanade Optical Flow": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "A differential method for optical flow estimation assuming constant motion within a local neighborhood.",
-      "description": "Solves the aperture problem by enforcing spatial smoothness; widely used for motion tracking and video stabilization.",
+    "Data Cleaning": {
+      "type": "Task",
+      "domain": "Data Science",
+      "definition": "The process of detecting and correcting inaccurate or corrupt data to improve data quality.",
+      "description": "Data cleaning involves handling missing values, removing noise, identifying outliers, and correcting inconsistencies using statistical or algorithmic methods.",
       "properties": {
-        "Goal": "Estimate pixel displacement between consecutive frames.",
-        "Applications": [
-          "Motion tracking",
-          "Stabilization",
-          "3D reconstruction"
-        ],
         "Methods": [
-          "Gradient constraint equation",
-          "Least-squares solution over a window"
+          "Imputation",
+          "Binning",
+          "Clustering-based outlier removal",
+          "Regression smoothing"
         ],
-        "Examples": [
-          "Exam 2019 - Optical flow task"
+        "Goals": [
+          "Ensure data accuracy",
+          "Reduce noise",
+          "Improve model performance"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
+        "created_by": "system",
+        "source": "towards_data_mining_lecture_1_2024.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     },
-    "Structure-from-Motion (SfM)": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "A technique that recovers 3D structure and camera motion from multiple overlapping 2D images.",
-      "description": "Combines feature matching, triangulation, and bundle adjustment to produce dense reconstructions and camera pose estimates.",
+    "Big Data": {
+      "type": "Concept",
+      "domain": "Data Science",
+      "definition": "Extremely large data sets that can be analyzed computationally to reveal patterns, trends, and associations, especially relating to human behavior and interactions.",
+      "description": "Big Data is characterized by the 5Vs: Volume, Velocity, Variety, Veracity, and Value. It requires specialized tools and techniques for storage, processing, and analysis.",
       "properties": {
-        "Goal": "Estimate 3D geometry and motion from image sequences.",
-        "Applications": [
-          "3D reconstruction",
-          "AR/VR",
-          "Robot localization"
+        "Characteristics": [
+          "Volume",
+          "Velocity",
+          "Variety",
+          "Veracity",
+          "Value"
         ],
-        "Methods": [
-          "Feature matching",
-          "Bundle adjustment",
-          "Triangulation"
-        ],
-        "Examples": [
-          "Exam 2019 - Method explanation",
-          "Exam 2020 - Stereo extension"
+        "Challenges": [
+          "Scalability",
+          "Quality assurance",
+          "Privacy"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
+        "created_by": "system",
+        "source": "towards_data_mining_lecture_1_2024.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     },
-    "Texture Analysis": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "The process of quantifying image surface characteristics using spatial variations in intensity or color.",
-      "description": "Includes statistical, structural, and filter-based approaches to characterize surface patterns or material properties.",
+    "Data Literacy": {
+      "type": "Skill",
+      "domain": "Education",
+      "definition": "The ability to read, understand, create, and communicate data as information.",
+      "description": "Data literacy enables individuals and organizations to use data effectively, supporting evidence-based decision making and fostering a data-driven culture.",
       "properties": {
-        "Goal": "Extract numerical features that describe texture patterns.",
-        "Applications": [
-          "Texture classification",
-          "Surface inspection",
-          "Remote sensing"
+        "Components": [
+          "Reading and interpreting data",
+          "Communicating insights",
+          "Applying statistical reasoning",
+          "Understanding data ethics"
         ],
-        "Methods": [
-          "Co-occurrence matrices",
-          "Filter banks",
-          "LBP histograms"
-        ],
-        "Examples": [
-          "Exam 2015 - Seashell texture",
-          "Exam 2018 - Filter bank task"
+        "Relevance": [
+          "Data science",
+          "Business analytics",
+          "Policy making"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
+        "created_by": "system",
+        "source": "towards_data_mining_lecture_1_2024.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     },
-    "Filter Bank Methods": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "A texture analysis technique using a set of filters (e.g., Gabor, Laws, or wavelets) to capture multi-scale, multi-orientation texture information.",
-      "description": "Used to extract texture features robust to illumination and rotation changes, often preceding classification or retrieval.",
+    "Data Transformation": {
+      "type": "Task",
+      "domain": "Data Science",
+      "definition": "The process of converting data into a suitable format for analysis or mining.",
+      "description": "Transformation includes normalization, aggregation, generalization, and feature extraction, making the data compatible with mining algorithms.",
       "properties": {
-        "Goal": "Describe texture using responses to multiple spatial-frequency filters.",
-        "Applications": [
-          "Texture classification",
-          "Defect detection",
-          "Material identification"
+        "Techniques": [
+          "Normalization",
+          "Standardization",
+          "Feature extraction",
+          "Aggregation"
         ],
-        "Methods": [
-          "Gabor filters",
-          "Laws masks",
-          "Energy feature computation"
-        ],
-        "Examples": [
-          "Exam 2016 - Texture task",
-          "Exam 2019 - Conceptual question"
+        "Goals": [
+          "Ensure consistency",
+          "Enhance interpretability",
+          "Prepare for modeling"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
+        "created_by": "system",
+        "source": "towards_data_mining_lecture_1_2024.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     },
-    "Edge Detection": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "A fundamental operation that detects local discontinuities in intensity to outline object boundaries.",
-      "description": "Typical operators like Sobel, Prewitt, or Canny emphasize intensity gradients to delineate shapes for segmentation and recognition.",
+    "Data Reduction": {
+      "type": "Task",
+      "domain": "Data Science",
+      "definition": "The process of reducing the volume of data while maintaining its analytical value.",
+      "description": "Data reduction techniques simplify data without losing critical information, enabling efficient analysis and storage.",
       "properties": {
-        "Goal": "Identify object boundaries via intensity gradients.",
-        "Applications": [
-          "Shape analysis",
-          "Hough Transform",
-          "Segmentation preprocessing"
-        ],
         "Methods": [
-          "Gradient computation",
-          "Thresholding",
-          "Non-maximum suppression"
+          "Sampling",
+          "Aggregation",
+          "Principal Component Analysis",
+          "Clustering"
         ],
-        "Examples": [
-          "Exam 2015 - Preprocessing",
-          "Exam 2018 - Edge-based Hough task"
+        "Purpose": [
+          "Reduce computational cost",
+          "Improve scalability"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
+        "created_by": "system",
+        "source": "towards_data_mining_lecture_1_2024.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     },
-    "Graph-Based Segmentation": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "An image segmentation method that models the image as a graph, where pixels or regions are nodes and edge weights represent similarity.",
-      "description": "Cuts or merges in the graph minimize a global cost function, yielding coherent region boundaries.",
+    "Data Ethics": {
+      "type": "Principle",
+      "domain": "Data Science",
+      "definition": "A set of moral guidelines and practices governing responsible collection, analysis, and use of data, ensuring respect for privacy, transparency, and fairness.",
+      "description": "Data ethics involves acting responsibly with the data entrusted to you. It acknowledges that data often represent people, and therefore, misuse can harm individuals or groups. Ethical data mining requires accountability, honesty, and consideration of the potential consequences of analysis outcomes.",
       "properties": {
-        "Goal": "Group pixels by minimizing inter-region dissimilarity.",
-        "Applications": [
-          "Object segmentation",
-          "Superpixel generation",
-          "Video segmentation"
+        "Motives": [
+          "Ensure positive social impact",
+          "Avoid manipulation",
+          "Promote fairness"
         ],
         "Methods": [
-          "Normalized cuts",
-          "Minimum spanning tree",
-          "Spectral clustering"
+          "Transparency",
+          "Accountability",
+          "Consent"
         ],
-        "Examples": [
-          "Exam 2018 - Segmentation discussion"
+        "Consequences": [
+          "Respect privacy",
+          "Prevent harm",
+          "Foster trust"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
+        "created_by": "system",
+        "source": "towards_data_mining_lecture_2_slides.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     },
-    "Pinhole Camera Model": {
-      "type": "Concept",
-      "domain": "Machine Vision",
-      "definition": "A simplified geometric model of image formation in which light rays pass through a single small aperture and project an inverted image onto an image plane.",
-      "description": "Used as the mathematical basis for camera calibration and projection matrix derivation in both single-view and multi-view geometry.",
+    "Ethical Data Mining": {
+      "type": "Process",
+      "domain": "Data Science",
+      "definition": "The practice of conducting data mining in a way that is fair, transparent, and respects privacy and consent.",
+      "description": "Ethical data mining balances the potential benefits of insights gained from data with the responsibility to protect subjects from harm. It considers ownership, consent, data sensitivity, and the possible implications of findings.",
       "properties": {
-        "Goal": "Model how 3D points project onto a 2D image plane.",
-        "Applications": [
-          "Camera calibration",
-          "3D reconstruction",
-          "Stereo imaging"
+        "Key Principles": [
+          "Honesty",
+          "Transparency",
+          "Responsibility",
+          "Non-maleficence"
         ],
-        "Methods": [
-          "Homogeneous coordinate projection",
-          "Matrix-based projection equations"
-        ],
-        "Examples": [
-          "Exam 2014 - Projection geometry",
-          "Exam 2016 - Stereo setup"
+        "Challenges": [
+          "Unintended harm",
+          "Biased data",
+          "Lack of consent"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
+        "created_by": "system",
+        "source": "towards_data_mining_lecture_2_slides.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     },
-    "Radial Distortion": {
-      "type": "Concept",
-      "domain": "Machine Vision",
-      "definition": "A lens distortion where straight lines appear curved due to nonlinear magnification that varies with distance from the image center.",
-      "description": "Commonly corrected during camera calibration using polynomial or division models to improve geometric accuracy.",
+    "Informed Consent": {
+      "type": "Principle",
+      "domain": "Research Ethics",
+      "definition": "The process of obtaining voluntary, informed permission from individuals whose data will be collected or used.",
+      "description": "Informed consent ensures individuals understand what data is collected, how it will be used, and have the freedom to withdraw at any time. It is fundamental in research involving personal or sensitive data.",
       "properties": {
-        "Goal": "Model and correct optical distortion effects in imaging systems.",
-        "Applications": [
-          "Camera calibration",
-          "3D measurement",
-          "Photogrammetry"
+        "Requirements": [
+          "Clear explanation of purpose",
+          "Freedom to deny or withdraw",
+          "Comprehensible to the participant"
         ],
-        "Methods": [
-          "Polynomial distortion model",
-          "Inverse distortion mapping"
-        ],
-        "Examples": [
-          "Exam 2014 - Lens modeling",
-          "Exam 2018 - Definition question"
+        "Constraints": [
+          "Use only for stated purpose",
+          "Respect withdrawal",
+          "Maintain anonymity"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
+        "created_by": "system",
+        "source": "towards_data_mining_lecture_2_slides.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     },
-    "HSV Color Space": {
-      "type": "Concept",
-      "domain": "Machine Vision",
-      "definition": "A color representation model that describes colors in terms of hue, saturation, and value, which better aligns with human color perception.",
-      "description": "HSV is commonly used in segmentation and tracking tasks because hue can be more stable under illumination variations.",
+    "General Data Protection Regulation (GDPR)": {
+      "type": "Law",
+      "domain": "European Data Protection",
+      "definition": "A European Union regulation that governs data protection and privacy for individuals within the EU and EEA.",
+      "description": "GDPR defines the lawful basis for data processing, grants rights to data subjects, and imposes obligations on data controllers and processors. It aims to give individuals control over their personal data and harmonize regulations across the EU.",
       "properties": {
-        "Goal": "Represent and manipulate color information in perceptually meaningful terms.",
-        "Applications": [
-          "Color-based segmentation",
-          "Object tracking",
-          "Skin detection"
+        "Principles": [
+          "Lawfulness",
+          "Fairness",
+          "Transparency",
+          "Data minimisation",
+          "Accountability"
         ],
-        "Methods": [
-          "RGB-to-HSV conversion",
-          "Thresholding by hue and saturation"
+        "Rights": [
+          "Access",
+          "Erasure",
+          "Portability",
+          "Restriction"
         ],
-        "Examples": [
-          "Exam 2015 - Definition",
-          "Exam 2019 - Basic term question"
+        "Sanctions": [
+          "Fines for breaches",
+          "Data protection impact assessments"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
+        "created_by": "system",
+        "source": "towards_data_mining_lecture_2_slides.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     },
-    "Depth of Field": {
+    "Information Security": {
       "type": "Concept",
-      "domain": "Machine Vision",
-      "definition": "The range of distances within a scene that appear acceptably sharp in an image.",
-      "description": "Controlled by aperture size, focal length, and sensor distance; important in focus estimation and 3D reconstruction.",
+      "domain": "Data Management",
+      "definition": "The practice of protecting information from unauthorized access, modification, or destruction to ensure confidentiality, integrity, and availability.",
+      "description": "Information security ensures that data remains accurate, private, and accessible only to authorized users. The CIA triad—Confidentiality, Integrity, Availability—summarizes its key principles.",
       "properties": {
-        "Goal": "Quantify and control image sharpness across depth layers.",
-        "Applications": [
-          "Focus measurement",
-          "Autofocus systems",
-          "3D reconstruction"
+        "Core Principles": [
+          "Confidentiality",
+          "Integrity",
+          "Availability"
         ],
-        "Methods": [
-          "Optical modeling",
-          "Focus metric computation"
+        "Threats": [
+          "Hardware failure",
+          "Malware",
+          "Human error",
+          "Unauthorized access"
         ],
-        "Examples": [
-          "Exam 2020 - Definition question"
+        "Practices": [
+          "Encryption",
+          "Backups",
+          "Access control",
+          "Authentication"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
+        "created_by": "system",
+        "source": "towards_data_mining_lecture_2_slides.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     },
-    "Epipolar Constraint": {
+    "Information Privacy": {
       "type": "Concept",
-      "domain": "Machine Vision",
-      "definition": "A geometric relationship stating that a point in one image must lie on a specific line (the epipolar line) in the other image when both views observe the same 3D point.",
-      "description": "Derived from camera projection matrices and the essential matrix; simplifies stereo correspondence search.",
+      "domain": "Data Protection",
+      "definition": "The right and ability of individuals to control the collection, use, and dissemination of information about themselves.",
+      "description": "Information privacy goes beyond the absence of surveillance—it concerns individuals’ control over personal information traces in digital society. Data mining poses unique challenges to privacy preservation.",
       "properties": {
-        "Goal": "Reduce 2D stereo correspondence search to 1D along epipolar lines.",
-        "Applications": [
-          "Stereo vision",
-          "Structure-from-Motion",
-          "Camera calibration"
+        "Threats": [
+          "Data theft",
+          "Unethical use",
+          "Government surveillance",
+          "Lack of awareness"
         ],
-        "Methods": [
-          "Essential matrix computation",
-          "Epipolar geometry modeling"
-        ],
-        "Examples": [
-          "Exam 2018 - Theoretical question",
-          "Exam 2020 - Stereo derivation"
+        "Protective Measures": [
+          "Anonymisation",
+          "Pseudonymisation",
+          "Access control"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
+        "created_by": "system",
+        "source": "towards_data_mining_lecture_2_slides.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     },
-    "Aperture Problem": {
-      "type": "Concept",
-      "domain": "Machine Vision",
-      "definition": "An ambiguity in local motion estimation where only the component of motion perpendicular to an image gradient can be measured.",
-      "description": "Occurs in optical flow estimation; resolved using spatial or temporal coherence constraints.",
+    "Anonymisation": {
+      "type": "Technique",
+      "domain": "Data Privacy",
+      "definition": "The process of removing personally identifiable information from data to prevent the identification of individuals.",
+      "description": "Anonymisation ensures that personal data cannot be traced back to individuals, even when combined with external data. It is critical in ethical data mining and required for many research use cases.",
       "properties": {
-        "Goal": "Explain the fundamental ambiguity in local motion detection.",
-        "Applications": [
-          "Optical flow",
-          "Edge tracking",
-          "Motion estimation"
-        ],
         "Methods": [
-          "Gradient constraint equation",
-          "Lucas–Kanade method",
-          "Global smoothness enforcement"
+          "Suppression",
+          "Generalisation",
+          "K-anonymity",
+          "Randomization"
         ],
-        "Examples": [
-          "Exam 2015 - Definition",
-          "Exam 2019 - Optical flow task"
+        "Challenges": [
+          "Re-identification risk",
+          "Data utility loss"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
+        "created_by": "system",
+        "source": "towards_data_mining_lecture_2_slides.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     },
-    "Metamers": {
+    "Open Data": {
       "type": "Concept",
-      "domain": "Machine Vision",
-      "definition": "Different spectral distributions that produce the same color perception under specific lighting conditions.",
-      "description": "Important in color science and sensor calibration, explaining why cameras and human vision may differ in color interpretation.",
+      "domain": "Data Management",
+      "definition": "Data that anyone can freely access, use, modify, and share for any purpose, subject at most to minimal conditions such as attribution.",
+      "description": "Open data promotes transparency, innovation, and collaboration. It must be findable, accessible, interoperable, and reusable according to the FAIR principles.",
       "properties": {
-        "Goal": "Understand perceptual equivalence in color representation.",
-        "Applications": [
-          "Color calibration",
-          "Illumination modeling",
-          "Spectral imaging"
+        "Principles": [
+          "Findable",
+          "Accessible",
+          "Interoperable",
+          "Reusable"
         ],
-        "Methods": [
-          "Spectral measurement",
-          "Color matching functions"
+        "Licenses": [
+          "CC0",
+          "CC BY",
+          "ODbL"
         ],
-        "Examples": [
-          "Exam 2017 - Definition",
-          "Exam 2019 - Conceptual question"
+        "Challenges": [
+          "Loss of control",
+          "Licensing complexity",
+          "Data misuse"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
+        "created_by": "system",
+        "source": "towards_data_mining_lecture_2_slides.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     },
-    "Chromatic Aberration": {
-      "type": "Concept",
-      "domain": "Machine Vision",
-      "definition": "An optical phenomenon where different wavelengths of light focus at different distances, causing color fringes in images.",
-      "description": "Corrected via lens design or software post-processing to ensure color alignment in multi-channel imaging.",
+    "FAIR Principles": {
+      "type": "Framework",
+      "domain": "Open Science",
+      "definition": "A set of guidelines to make data Findable, Accessible, Interoperable, and Reusable.",
+      "description": "The FAIR principles ensure data can be easily located, accessed, integrated, and reused by others, supporting open science and reproducibility.",
       "properties": {
-        "Goal": "Reduce color blurring caused by wavelength-dependent refraction.",
-        "Applications": [
-          "Lens design",
-          "Image restoration",
-          "Color correction"
+        "Components": [
+          "Findable",
+          "Accessible",
+          "Interoperable",
+          "Reusable"
         ],
-        "Methods": [
-          "Spectral lens calibration",
-          "Image deconvolution"
-        ],
-        "Examples": [
-          "Exam 2018 - Definition question"
+        "Benefits": [
+          "Transparency",
+          "Data sharing",
+          "Reproducibility"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
+        "created_by": "system",
+        "source": "towards_data_mining_lecture_2_slides.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     },
-    "Camera Extrinsics": {
-      "type": "Concept",
-      "domain": "Machine Vision",
-      "definition": "Parameters that describe the position and orientation of a camera in a world coordinate system.",
-      "description": "Extrinsics link the camera reference frame to world coordinates, essential for triangulation and multi-view alignment.",
+    "Data Management": {
+      "type": "Process",
+      "domain": "Data Science",
+      "definition": "The set of practices that ensure data is properly stored, maintained, and accessible for processing and analysis.",
+      "description": "Data management encompasses persistent storage, security, metadata curation, and accessibility. Proper management ensures reliability and longevity of data for research and applications.",
       "properties": {
-        "Goal": "Map coordinates between camera and world spaces.",
-        "Applications": [
-          "Stereo calibration",
-          "SLAM",
-          "3D reconstruction"
+        "Aspects": [
+          "Storage",
+          "Curation",
+          "Security",
+          "Metadata"
         ],
-        "Methods": [
-          "Rotation-translation matrix estimation",
-          "PnP algorithms"
-        ],
-        "Examples": [
-          "Exam 2014 - Camera calibration task"
+        "Tools": [
+          "Relational Databases",
+          "NoSQL Systems"
         ]
       },
       "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Computer Vision": {
-      "type": "Field of Study",
-      "domain": "Introduction",
-      "definition": "An interdisciplinary field that deals with how computers can be made to gain high-level understanding from digital images or videos.",
-      "description": "From an engineering perspective, Computer Vision seeks to automate tasks that the human visual system can perform, often requiring the conversion of digital images into higher representations.",
-      "properties": {
-        "Goal": [
-          "Automate tasks that the human visual system can do",
-          "Converting digital images to higher level representations",
-          "Automatic understanding of images and video"
-        ],
-        "Applications": [
-          "Image Recognition",
-          "Optical Character Recognition (OCR)",
-          "Content-based retrieval",
-          "Health care (e.g., disease detection)",
-          "Autonomous vehicles"
-        ],
-        "Methods": [],
-        "Examples": []
-      },
-      "metadata": {
-        "created_by": "Daris",
-        "source": "01-intro-00.pdf",
-        "created_at": "2023-10-27",
-        "version": "1.0"
-      }
-    },
-    "Image Recognition": {
-      "type": "Task/Capability",
-      "domain": "Recognition & Learning",
-      "definition": "The ability of software to identify objects, places, people, writing, and actions in images.",
-      "description": "A core goal of image understanding, which involves making decisions based on visual data and constructing scene descriptions.",
-      "properties": {
-        "Goal": "Allow a machine to recognize objects, people, scenes, and activities (perception and interpretation).",
-        "Applications": [
-          "Classification + Localization",
-          "Object Detection (e.g., YOLO)",
-          "Semantic Segmentation",
-          "Instance Segmentation"
-        ],
-        "Methods": [
-          "Machine Learning (ML)",
-          "Deep Learning (DNNs)"
-        ],
-        "Examples": [
-          "Recognizing a traffic sign",
-          "Diagnosing disease in health care"
-        ]
-      },
-      "metadata": {
-        "created_by": "Daris",
-        "source": "01-intro-00.pdf",
-        "created_at": "2023-10-27",
-        "version": "1.0"
-      }
-    },
-    "Deep Neural Networks (DNNs)": {
-      "type": "Technique/Algorithm",
-      "domain": "Machine Learning",
-      "definition": "Popular machine learning techniques, including Convolutional Neural Networks (CNNs), which are often used for image recognition.",
-      "description": "DNNs have enabled significant progress in image recognition, particularly when utilized with large datasets such as ImageNet.",
-      "properties": {
-        "Goal": "Combine both representation (feature extraction) and classification steps in an end-to-end approach, learning features directly from the data.",
-        "Applications": [
-          "Image Recognition"
-        ],
-        "Methods": [
-          "Convolutional Neural Networks (CNNs)"
-        ],
-        "Examples": [
-          "ImageNet Challenge winning systems"
-        ]
-      },
-      "metadata": {
-        "created_by": "Daris",
-        "source": "01-intro-00.pdf",
-        "created_at": "2023-10-27",
-        "version": "1.0"
-      }
-    },
-    "Thresholding": {
-      "type": "Image Processing Operation",
-      "domain": "Segmentation",
-      "definition": "The operation of separating an image into regions by applying a threshold value, typically resulting in a binary image.",
-      "description": "Thresholding is the simplest method for segmenting gray-scale images. The main issue lies in correctly choosing the threshold value.",
-      "properties": {
-        "Goal": "Segmentation and obtaining binary images.",
-        "Applications": [
-          "Object boundary finding (in support of edge detection)",
-          "Separating dark and light pixels in bimodal histograms"
-        ],
-        "Methods": [
-          "Histogram analysis (detecting peaks and valleys)",
-          "Otsu's method (minimizing within-group variance)"
-        ],
-        "Examples": []
-      },
-      "metadata": {
-        "created_by": "Daris",
-        "source": "04-binary-00.pdf",
-        "created_at": "2023-10-27",
-        "version": "1.0"
-      }
-    },
-    "Structure from Motion (SfM)": {
-      "type": "Geometric Recovery Technique",
-      "domain": "Geometry & 3D Reconstruction",
-      "definition": "The problem of estimating $m$ camera matrices ($\\mathbf{M}_i$) and $n$ 3D points ($\\mathbf{P}_j$) given $m$ images of $n$ fixed points and their correspondences.",
-      "description": "SfM relies on minimizing the reprojection error between observed and predicted image points through nonlinear least-squares optimization (Bundle Adjustment).",
-      "properties": {
-        "Goal": [
-          "Estimate camera poses and 3D scene structure from 2D image sequences."
-        ],
-        "Applications": [
-          "3D surface reconstruction"
-        ],
-        "Methods": [
-          "Bundle Adjustment",
-          "Nonlinear least-squares minimization"
-        ],
-        "Examples": []
-      },
-      "metadata": {
-        "created_by": "Daris",
-        "source": "11-3D_reconstruction-00.pdf",
-        "created_at": "2023-10-27",
-        "version": "1.0"
-      }
-    },
-    "SIFT": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "A feature detection and description algorithm that identifies keypoints and computes descriptors invariant to scale, rotation, and partial illumination changes.",
-      "description": "SIFT builds a scale-space using Difference-of-Gaussians, detects local extrema, and forms gradient-based descriptors robust to geometric and photometric transformations.",
-      "properties": {
-        "Goal": "Detect stable image features for matching across scales and rotations.",
-        "Applications": [
-          "Image matching",
-          "Object recognition",
-          "3D reconstruction"
-        ],
-        "Methods": [
-          "Difference-of-Gaussians",
-          "Gradient histogram descriptors",
-          "Keypoint matching"
-        ],
-        "Examples": [
-          "Exam 2015 - Definition",
-          "Exam 2018 - Descriptor explanation"
-        ]
-      },
-      "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Harris Corner Detector": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "A feature detector that identifies corners by measuring local intensity variations using the autocorrelation matrix.",
-      "description": "The Harris detector finds points with significant intensity change in orthogonal directions, forming the basis of many tracking and matching algorithms.",
-      "properties": {
-        "Goal": "Detect stable corner-like features in images.",
-        "Applications": [
-          "Feature tracking",
-          "Image registration",
-          "Object recognition"
-        ],
-        "Methods": [
-          "Autocorrelation matrix",
-          "Corner response function",
-          "Non-maximum suppression"
-        ],
-        "Examples": [
-          "Exam 2015 - Principle question",
-          "Exam 2018 - Method explanation"
-        ]
-      },
-      "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Hough Transform": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "A feature extraction technique used to detect parametric shapes such as lines, circles, or ellipses in images.",
-      "description": "The transform maps image edge points into a parameter space where shapes correspond to peaks, enabling robust detection despite noise or occlusion.",
-      "properties": {
-        "Goal": "Detect geometric primitives via voting in parameter space.",
-        "Applications": [
-          "Line detection",
-          "Circle detection",
-          "Shape analysis"
-        ],
-        "Methods": [
-          "Parameter-space accumulation",
-          "Threshold-based peak detection"
-        ],
-        "Examples": [
-          "Exam 2015 - Principle question",
-          "Exam 2018 - Example usage"
-        ]
-      },
-      "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Random Sample Consensus (RANSAC)": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "An iterative algorithm to estimate model parameters from data containing outliers by repeatedly sampling minimal subsets and testing consensus.",
-      "description": "RANSAC is robust to outliers and commonly used in fitting geometric models such as lines, planes, or homographies.",
-      "properties": {
-        "Goal": "Estimate parameters robustly in the presence of noise and outliers.",
-        "Applications": [
-          "Line fitting",
-          "Homography estimation",
-          "Triangulation refinement"
-        ],
-        "Methods": [
-          "Iterative sampling",
-          "Consensus evaluation",
-          "Model re-estimation"
-        ],
-        "Examples": [
-          "Exam 2015 - Theory",
-          "Exam 2018 - Usage example"
-        ]
-      },
-      "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Local Binary Patterns (LBP)": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "A texture descriptor that encodes the local spatial pattern of pixel intensities into binary codes based on neighbor comparisons.",
-      "description": "LBP provides a rotation- and grayscale-invariant way to represent texture; it’s lightweight and robust, making it popular for real-time classification.",
-      "properties": {
-        "Goal": "Represent texture structures in a compact and invariant form.",
-        "Applications": [
-          "Texture classification",
-          "Face recognition",
-          "Material analysis"
-        ],
-        "Methods": [
-          "Neighborhood thresholding",
-          "Histogram of binary codes",
-          "Rotation-invariant encoding"
-        ],
-        "Examples": [
-          "Exam 2017 - Texture task",
-          "Exam 2020 - Texture classification"
-        ]
-      },
-      "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "K-Means Clustering": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "An unsupervised learning algorithm that partitions data into K clusters by minimizing within-cluster variance.",
-      "description": "Used to group similar pixels, features, or image patches, serving as a basis for segmentation and visual vocabulary creation.",
-      "properties": {
-        "Goal": "Group data points into clusters based on feature similarity.",
-        "Applications": [
-          "Image segmentation",
-          "Bag-of-Words clustering",
-          "Color quantization"
-        ],
-        "Methods": [
-          "Iterative centroid update",
-          "Euclidean distance minimization"
-        ],
-        "Examples": [
-          "Exam 2016 - Principle",
-          "Exam 2019 - Usage explanation"
-        ]
-      },
-      "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Otsu’s Thresholding Method": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "An automatic global thresholding technique that separates foreground and background by minimizing intra-class intensity variance.",
-      "description": "Commonly used in image preprocessing for binarization tasks, providing an optimal threshold without supervision.",
-      "properties": {
-        "Goal": "Automatically determine an optimal threshold to separate regions.",
-        "Applications": [
-          "Image segmentation",
-          "Preprocessing for OCR",
-          "Object extraction"
-        ],
-        "Methods": [
-          "Histogram-based variance minimization"
-        ],
-        "Examples": [
-          "Exam 2018 - Principle",
-          "Exam 2019 - Usage question"
-        ]
-      },
-      "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Harris–Laplace Detector": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "A multi-scale feature detector combining corner detection (Harris) with scale selection (Laplacian) to identify stable features across resolutions.",
-      "description": "Enhances standard corner detectors by integrating scale information for improved invariance.",
-      "properties": {
-        "Goal": "Detect scale-invariant interest points.",
-        "Applications": [
-          "Feature matching",
-          "Object tracking",
-          "Scale-space analysis"
-        ],
-        "Methods": [
-          "Corner response computation",
-          "Laplacian-of-Gaussian scale selection"
-        ],
-        "Examples": [
-          "Exam 2016 - Extended question"
-        ]
-      },
-      "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Photometric Stereo": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "A technique for estimating surface normals by observing an object under multiple known lighting directions.",
-      "description": "Allows reconstruction of fine surface details by exploiting reflectance differences under controlled illumination.",
-      "properties": {
-        "Goal": "Recover detailed surface orientation from shading cues.",
-        "Applications": [
-          "Shape-from-shading",
-          "Industrial inspection",
-          "Material analysis"
-        ],
-        "Methods": [
-          "Lambertian reflectance model",
-          "Linear intensity equations"
-        ],
-        "Examples": [
-          "Exam 2017 - Principle question",
-          "Exam 2018 - Example"
-        ]
-      },
-      "metadata": {
-        "created_by": "Daris",
-        "source": "Machine Vision exams (2014–2020)",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Feature descriptor": {
-      "type": "Concept",
-      "domain": "Feature Extraction",
-      "definition": "A representation of an image patch or interest point that captures its essential characteristics, designed to be robust to variations in illumination, viewpoint, and scale.",
-      "description": "",
-      "properties": {},
-      "metadata": {
-        "created_by": "Daris",
-        "source": "02-features-00.pdf",
-        "created_at": "2023-10-27",
-        "version": "1.0"
-      }
-    },
-    "Bag-of-Words": {
-      "type": "Concept",
-      "domain": "Feature Representation",
-      "definition": "A sparse vector representation of an image (or document) based on the frequency of visual words (or terms) from a predefined vocabulary.",
-      "description": "",
-      "properties": {},
-      "metadata": {
-        "created_by": "Daris",
-        "source": "02-features-00.pdf",
-        "created_at": "2023-10-27",
-        "version": "1.0"
-      }
-    },
-    "Maximally Stable Extremal Regions (MSER)": {
-      "type": "Method",
-      "domain": "Machine Vision",
-      "definition": "A method for detecting regions in an image that are stable across a wide range of thresholds, often used for text detection and object recognition.",
-      "description": "",
-      "properties": {},
-      "metadata": {
-        "created_by": "Daris",
-        "source": "02-features-00.pdf",
-        "created_at": "2023-10-27",
-        "version": "1.0"
-      }
-    },
-    "Spatial pyramid matching": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
         "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Object detection": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Optical flow": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Motion estimation": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Texture classification": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Stereo matching": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Structure-from-Motion": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Triangulation": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "RANSAC": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Texture Classification": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Color features": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Mahalanobis distance": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Euclidean distance": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Segmentation": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Optical Flow": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Confusion matrix": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Camera extrinsics": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Epipolar constraint": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Perspective-3-point (P3P) problem": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Camera calibration": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Triangulation accuracy": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "RGB color space": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Texture analysis": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Aperture problem": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Depth estimation": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Projection matrices": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Lucas–Kanade method": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Chromatic aberration": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Color constancy models": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Color calibration": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Image quality assessment": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Artificial Intelligence": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Machine Vision": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Image Understanding": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Machine Learning": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Large Datasets (e.g., ImageNet)": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Binary Image Analysis Pipeline": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Scale Ambiguity": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Surface Reconstruction": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "K-means clustering": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Precision-Recall": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Shape recognition": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Edge detection": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Least squares estimation": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Affine transformation estimation": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Filter bank methods": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Seashell classification": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Unsupervised learning": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Background subtraction": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Surface reconstruction": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
-        "version": "1.0"
-      }
-    },
-    "Diffuse reflection": {
-      "type": "Concept",
-      "domain": "N/A",
-      "definition": "N/A",
-      "description": "N/A",
-      "properties": {},
-      "metadata": {
-        "created_by": "system",
-        "source": "auto-generated",
-        "created_at": "2025-11-04",
+        "source": "towards_data_mining_lecture_2_slides.pdf",
+        "created_at": "2025-11-06",
         "version": "1.0"
       }
     }
   },
   "edges": [
     {
-      "source": "Convolutional Neural Network (CNN)",
-      "type": "extends",
-      "target": "Feature descriptor"
+      "source": "Data Mining",
+      "type": "part_of",
+      "target": "Knowledge Discovery in Databases"
     },
     {
-      "source": "Convolutional Neural Network (CNN)",
-      "type": "related_to",
-      "target": "Bag-of-Words"
-    },
-    {
-      "source": "Convolutional Neural Network (CNN)",
-      "type": "used_in",
-      "target": "Image segmentation"
-    },
-    {
-      "source": "Convolutional Neural Network (CNN)",
-      "type": "contrasts_with",
-      "target": "SIFT"
-    },
-    {
-      "source": "Bag-of-Words (BoW) Representation",
-      "type": "relies_on",
-      "target": "Feature descriptor"
-    },
-    {
-      "source": "Bag-of-Words (BoW) Representation",
-      "type": "uses",
-      "target": "K-Means Clustering"
-    },
-    {
-      "source": "Bag-of-Words (BoW) Representation",
-      "type": "related_to",
-      "target": "Visual words"
-    },
-    {
-      "source": "Bag-of-Words (BoW) Representation",
-      "type": "contrasts_with",
-      "target": "Spatial pyramid matching"
-    },
-    {
-      "source": "Image segmentation",
-      "type": "is_a_goal_of",
-      "target": "Computer Vision"
-    },
-    {
-      "source": "Image segmentation",
-      "type": "uses",
-      "target": "Thresholding"
-    },
-    {
-      "source": "Image segmentation",
-      "type": "uses",
-      "target": "K-Means Clustering"
-    },
-    {
-      "source": "Image segmentation",
-      "type": "related_to",
-      "target": "Object detection"
-    },
-    {
-      "source": "Background Subtraction",
-      "type": "extends",
-      "target": "Image segmentation"
-    },
-    {
-      "source": "Background Subtraction",
-      "type": "uses",
-      "target": "Otsu’s Thresholding Method"
-    },
-    {
-      "source": "Background Subtraction",
-      "type": "supports",
-      "target": "Optical flow"
-    },
-    {
-      "source": "Background Subtraction",
-      "type": "related_to",
-      "target": "Motion estimation"
-    },
-    {
-      "source": "Image segmentation",
-      "type": "foundation_for",
-      "target": "Background Subtraction"
-    },
-    {
-      "source": "Image segmentation",
-      "type": "used_with",
-      "target": "HSV Color Space"
-    },
-    {
-      "source": "Image segmentation",
-      "type": "supported_by",
-      "target": "Otsu’s Thresholding Method"
-    },
-    {
-      "source": "Image segmentation",
-      "type": "used_in",
-      "target": "Texture classification"
-    },
-    {
-      "source": "Lucas–Kanade Optical Flow",
-      "type": "extends",
-      "target": "Optical flow"
-    },
-    {
-      "source": "Lucas–Kanade Optical Flow",
-      "type": "addresses",
-      "target": "Aperture Problem"
-    },
-    {
-      "source": "Lucas–Kanade Optical Flow",
-      "type": "used_in",
-      "target": "Stereo matching"
-    },
-    {
-      "source": "Lucas–Kanade Optical Flow",
-      "type": "supports",
-      "target": "Structure-from-Motion"
-    },
-    {
-      "source": "Structure-from-Motion (SfM)",
-      "type": "extends",
-      "target": "Triangulation"
-    },
-    {
-      "source": "Structure-from-Motion (SfM)",
+      "source": "Data Mining",
       "type": "requires",
-      "target": "Camera Extrinsics"
+      "target": "Data Pre-processing"
     },
     {
-      "source": "Structure-from-Motion (SfM)",
+      "source": "Data Mining",
       "type": "related_to",
-      "target": "Epipolar Constraint"
-    },
-    {
-      "source": "Structure-from-Motion (SfM)",
-      "type": "used_with",
-      "target": "RANSAC"
-    },
-    {
-      "source": "Texture Analysis",
-      "type": "foundation_for",
-      "target": "Local Binary Patterns (LBP)"
-    },
-    {
-      "source": "Texture Analysis",
-      "type": "related_to",
-      "target": "Texture Classification"
-    },
-    {
-      "source": "Texture Analysis",
-      "type": "used_with",
-      "target": "Color features"
-    },
-    {
-      "source": "Texture Analysis",
-      "type": "evaluated_by",
-      "target": "Mahalanobis distance"
-    },
-    {
-      "source": "Filter Bank Methods",
-      "type": "contrasts_with",
-      "target": "Local Binary Patterns (LBP)"
-    },
-    {
-      "source": "Filter Bank Methods",
-      "type": "supports",
-      "target": "Texture Classification"
-    },
-    {
-      "source": "Filter Bank Methods",
-      "type": "evaluated_by",
-      "target": "Euclidean distance"
-    },
-    {
-      "source": "Filter Bank Methods",
-      "type": "used_with",
-      "target": "K-Means Clustering"
-    },
-    {
-      "source": "Edge Detection",
-      "type": "foundation_for",
-      "target": "Hough Transform"
-    },
-    {
-      "source": "Edge Detection",
-      "type": "used_with",
-      "target": "RANSAC"
-    },
-    {
-      "source": "Edge Detection",
-      "type": "supports",
-      "target": "Segmentation"
-    },
-    {
-      "source": "Edge Detection",
-      "type": "related_to",
-      "target": "Optical Flow"
-    },
-    {
-      "source": "Graph-Based Segmentation",
-      "type": "extends",
-      "target": "Image segmentation"
-    },
-    {
-      "source": "Graph-Based Segmentation",
-      "type": "related_to",
-      "target": "K-Means Clustering"
-    },
-    {
-      "source": "Graph-Based Segmentation",
-      "type": "supports",
-      "target": "Object detection"
-    },
-    {
-      "source": "Graph-Based Segmentation",
-      "type": "evaluated_by",
-      "target": "Confusion matrix"
-    },
-    {
-      "source": "Pinhole Camera Model",
-      "type": "extends",
-      "target": "Camera extrinsics"
-    },
-    {
-      "source": "Pinhole Camera Model",
-      "type": "used_in",
-      "target": "Triangulation"
-    },
-    {
-      "source": "Pinhole Camera Model",
-      "type": "foundation_for",
-      "target": "Epipolar constraint"
-    },
-    {
-      "source": "Pinhole Camera Model",
-      "type": "contrasts_with",
-      "target": "Perspective-3-point (P3P) problem"
-    },
-    {
-      "source": "Radial Distortion",
-      "type": "related_to",
-      "target": "Pinhole Camera Model"
-    },
-    {
-      "source": "Radial Distortion",
-      "type": "corrected_by",
-      "target": "Camera calibration"
-    },
-    {
-      "source": "Radial Distortion",
-      "type": "influences",
-      "target": "Triangulation accuracy"
-    },
-    {
-      "source": "HSV Color Space",
-      "type": "used_in",
-      "target": "Image segmentation"
-    },
-    {
-      "source": "HSV Color Space",
-      "type": "contrasts_with",
-      "target": "RGB color space"
-    },
-    {
-      "source": "HSV Color Space",
-      "type": "supports",
-      "target": "Texture analysis"
-    },
-    {
-      "source": "Depth of Field",
-      "type": "related_to",
-      "target": "Aperture problem"
-    },
-    {
-      "source": "Depth of Field",
-      "type": "affects",
-      "target": "Structure-from-Motion"
-    },
-    {
-      "source": "Depth of Field",
-      "type": "used_in",
-      "target": "Depth estimation"
-    },
-    {
-      "source": "Epipolar Constraint",
-      "type": "extends",
-      "target": "Pinhole Camera Model"
-    },
-    {
-      "source": "Epipolar Constraint",
-      "type": "used_in",
-      "target": "Triangulation"
-    },
-    {
-      "source": "Epipolar Constraint",
-      "type": "foundation_for",
-      "target": "Stereo matching"
-    },
-    {
-      "source": "Epipolar Constraint",
-      "type": "requires",
-      "target": "Projection matrices"
-    },
-    {
-      "source": "Aperture Problem",
-      "type": "related_to",
-      "target": "Optical flow"
-    },
-    {
-      "source": "Aperture Problem",
-      "type": "addressed_by",
-      "target": "Lucas–Kanade method"
-    },
-    {
-      "source": "Aperture Problem",
-      "type": "contrasts_with",
-      "target": "Depth of Field"
-    },
-    {
-      "source": "Metamers",
-      "type": "related_to",
-      "target": "HSV Color Space"
-    },
-    {
-      "source": "Metamers",
-      "type": "contrasts_with",
-      "target": "Chromatic aberration"
-    },
-    {
-      "source": "Metamers",
-      "type": "used_in",
-      "target": "Color constancy models"
-    },
-    {
-      "source": "Chromatic Aberration",
-      "type": "contrasts_with",
-      "target": "Metamers"
-    },
-    {
-      "source": "Chromatic Aberration",
-      "type": "influences",
-      "target": "Color calibration"
-    },
-    {
-      "source": "Chromatic Aberration",
-      "type": "affects",
-      "target": "Image quality assessment"
-    },
-    {
-      "source": "Camera Extrinsics",
-      "type": "extends",
-      "target": "Pinhole Camera Model"
-    },
-    {
-      "source": "Camera Extrinsics",
-      "type": "used_in",
-      "target": "Triangulation"
-    },
-    {
-      "source": "Camera Extrinsics",
-      "type": "required_for",
-      "target": "Structure-from-Motion"
-    },
-    {
-      "source": "Computer Vision",
-      "type": "is closely related to",
-      "target": "Artificial Intelligence"
-    },
-    {
-      "source": "Computer Vision",
-      "type": "is more application oriented than",
-      "target": "Machine Vision"
-    },
-    {
-      "source": "Image Recognition",
-      "type": "is a component of",
-      "target": "Image Understanding"
-    },
-    {
-      "source": "Deep Neural Networks (DNNs)",
-      "type": "is a type of",
       "target": "Machine Learning"
     },
     {
-      "source": "Deep Neural Networks (DNNs)",
-      "type": "requires reliance on",
-      "target": "Large Datasets (e.g., ImageNet)"
+      "source": "Knowledge Discovery in Databases",
+      "type": "includes",
+      "target": "Data Mining"
     },
     {
-      "source": "Thresholding",
-      "type": "is a fundamental step in",
-      "target": "Binary Image Analysis Pipeline"
+      "source": "Knowledge Discovery in Databases",
+      "type": "depends_on",
+      "target": "Data Pre-processing"
     },
     {
-      "source": "Structure from Motion (SfM)",
-      "type": "is constrained by",
-      "target": "Scale Ambiguity"
+      "source": "Data Pre-processing",
+      "type": "enables",
+      "target": "Data Mining"
     },
     {
-      "source": "Structure from Motion (SfM)",
-      "type": "feeds into",
-      "target": "Surface Reconstruction"
-    },
-    {
-      "source": "SIFT",
-      "type": "extends",
-      "target": "Feature descriptor"
-    },
-    {
-      "source": "SIFT",
-      "type": "used_in",
-      "target": "Bag-of-Words"
-    },
-    {
-      "source": "SIFT",
-      "type": "related_to",
-      "target": "Harris Corner Detector"
-    },
-    {
-      "source": "SIFT",
-      "type": "supports",
-      "target": "Structure-from-Motion"
-    },
-    {
-      "source": "Harris Corner Detector",
-      "type": "foundation_for",
-      "target": "SIFT"
-    },
-    {
-      "source": "Harris Corner Detector",
-      "type": "used_in",
-      "target": "Optical flow"
-    },
-    {
-      "source": "Harris Corner Detector",
-      "type": "related_to",
-      "target": "K-means clustering"
-    },
-    {
-      "source": "Harris Corner Detector",
-      "type": "evaluated_by",
-      "target": "Precision-Recall"
-    },
-    {
-      "source": "Hough Transform",
-      "type": "used_in",
-      "target": "Image segmentation"
-    },
-    {
-      "source": "Hough Transform",
-      "type": "contrasts_with",
-      "target": "RANSAC"
-    },
-    {
-      "source": "Hough Transform",
-      "type": "supports",
-      "target": "Shape recognition"
-    },
-    {
-      "source": "Hough Transform",
+      "source": "Data Pre-processing",
       "type": "requires",
-      "target": "Edge detection"
+      "target": "Raw Data"
     },
     {
-      "source": "Random Sample Consensus (RANSAC)",
+      "source": "Data Quality",
+      "type": "affects",
+      "target": "Data Mining"
+    },
+    {
+      "source": "Data Quality",
+      "type": "improved_by",
+      "target": "Data Pre-processing"
+    },
+    {
+      "source": "Data Cleaning",
+      "type": "part_of",
+      "target": "Data Pre-processing"
+    },
+    {
+      "source": "Data Cleaning",
+      "type": "enables",
+      "target": "Data Mining"
+    },
+    {
+      "source": "Big Data",
+      "type": "context_for",
+      "target": "Data Mining"
+    },
+    {
+      "source": "Big Data",
       "type": "related_to",
-      "target": "Least squares estimation"
+      "target": "Machine Learning"
     },
     {
-      "source": "Random Sample Consensus (RANSAC)",
-      "type": "used_in",
-      "target": "Triangulation"
+      "source": "Data Literacy",
+      "type": "required_for",
+      "target": "Data Mining"
     },
     {
-      "source": "Random Sample Consensus (RANSAC)",
-      "type": "contrasts_with",
-      "target": "Hough Transform"
+      "source": "Data Literacy",
+      "type": "enhances",
+      "target": "Decision Making"
     },
     {
-      "source": "Random Sample Consensus (RANSAC)",
-      "type": "foundation_for",
-      "target": "Affine transformation estimation"
+      "source": "Data Transformation",
+      "type": "part_of",
+      "target": "Data Pre-processing"
     },
     {
-      "source": "Local Binary Patterns (LBP)",
-      "type": "extends",
-      "target": "Texture analysis"
+      "source": "Data Transformation",
+      "type": "used_by",
+      "target": "Machine Learning Models"
     },
     {
-      "source": "Local Binary Patterns (LBP)",
-      "type": "used_with",
-      "target": "Euclidean distance"
+      "source": "Data Reduction",
+      "type": "part_of",
+      "target": "Data Pre-processing"
     },
     {
-      "source": "Local Binary Patterns (LBP)",
-      "type": "compared_to",
-      "target": "Filter bank methods"
-    },
-    {
-      "source": "Local Binary Patterns (LBP)",
+      "source": "Data Reduction",
       "type": "supports",
-      "target": "Seashell classification"
+      "target": "Data Mining"
     },
     {
-      "source": "K-Means Clustering",
-      "type": "used_in",
-      "target": "Image segmentation"
-    },
-    {
-      "source": "K-Means Clustering",
-      "type": "foundation_for",
-      "target": "Bag-of-Words"
-    },
-    {
-      "source": "K-Means Clustering",
+      "source": "Data Ethics",
       "type": "related_to",
-      "target": "Unsupervised learning"
+      "target": "Information Privacy"
     },
     {
-      "source": "K-Means Clustering",
-      "type": "evaluated_by",
-      "target": "Confusion matrix"
+      "source": "Data Ethics",
+      "type": "governed_by",
+      "target": "Data Protection Laws"
     },
     {
-      "source": "Otsu’s Thresholding Method",
-      "type": "used_in",
-      "target": "Background subtraction"
+      "source": "Data Ethics",
+      "type": "component_of",
+      "target": "Ethical Data Mining"
     },
     {
-      "source": "Otsu’s Thresholding Method",
-      "type": "contrasts_with",
-      "target": "K-Means Clustering"
+      "source": "Ethical Data Mining",
+      "type": "requires",
+      "target": "Informed Consent"
     },
     {
-      "source": "Otsu’s Thresholding Method",
-      "type": "supports",
-      "target": "Image segmentation"
-    },
-    {
-      "source": "Harris–Laplace Detector",
-      "type": "extends",
-      "target": "Harris Corner Detector"
-    },
-    {
-      "source": "Harris–Laplace Detector",
+      "source": "Ethical Data Mining",
       "type": "related_to",
-      "target": "SIFT"
+      "target": "Privacy Preservation"
     },
     {
-      "source": "Harris–Laplace Detector",
-      "type": "supports",
-      "target": "Structure-from-Motion"
+      "source": "Ethical Data Mining",
+      "type": "regulated_by",
+      "target": "GDPR"
     },
     {
-      "source": "Photometric Stereo",
-      "type": "used_in",
-      "target": "Surface reconstruction"
+      "source": "Informed Consent",
+      "type": "required_by",
+      "target": "Ethical Data Mining"
     },
     {
-      "source": "Photometric Stereo",
+      "source": "Informed Consent",
       "type": "related_to",
-      "target": "Diffuse reflection"
+      "target": "Privacy Preservation"
     },
     {
-      "source": "Photometric Stereo",
+      "source": "Informed Consent",
+      "type": "regulated_by",
+      "target": "GDPR"
+    },
+    {
+      "source": "General Data Protection Regulation (GDPR)",
+      "type": "governs",
+      "target": "Personal Data"
+    },
+    {
+      "source": "General Data Protection Regulation (GDPR)",
+      "type": "related_to",
+      "target": "Data Ethics"
+    },
+    {
+      "source": "General Data Protection Regulation (GDPR)",
+      "type": "enforces",
+      "target": "Informed Consent"
+    },
+    {
+      "source": "Information Security",
+      "type": "related_to",
+      "target": "Information Privacy"
+    },
+    {
+      "source": "Information Security",
       "type": "supports",
-      "target": "Structure-from-Motion"
+      "target": "Ethical Data Mining"
+    },
+    {
+      "source": "Information Security",
+      "type": "includes",
+      "target": "Confidentiality"
+    },
+    {
+      "source": "Information Privacy",
+      "type": "protected_by",
+      "target": "Information Security"
+    },
+    {
+      "source": "Information Privacy",
+      "type": "threatened_by",
+      "target": "Data Mining"
+    },
+    {
+      "source": "Information Privacy",
+      "type": "regulated_by",
+      "target": "GDPR"
+    },
+    {
+      "source": "Anonymisation",
+      "type": "used_in",
+      "target": "Privacy Preservation"
+    },
+    {
+      "source": "Anonymisation",
+      "type": "required_by",
+      "target": "Ethical Data Mining"
+    },
+    {
+      "source": "Anonymisation",
+      "type": "related_to",
+      "target": "Pseudonymisation"
+    },
+    {
+      "source": "Open Data",
+      "type": "supports",
+      "target": "Scientific Research"
+    },
+    {
+      "source": "Open Data",
+      "type": "regulated_by",
+      "target": "Open Knowledge Foundation"
+    },
+    {
+      "source": "Open Data",
+      "type": "guided_by",
+      "target": "FAIR Principles"
+    },
+    {
+      "source": "FAIR Principles",
+      "type": "applies_to",
+      "target": "Open Data"
+    },
+    {
+      "source": "FAIR Principles",
+      "type": "promoted_by",
+      "target": "GO FAIR Initiative"
+    },
+    {
+      "source": "FAIR Principles",
+      "type": "used_in",
+      "target": "Research Data Management"
+    },
+    {
+      "source": "Data Management",
+      "type": "includes",
+      "target": "Database Management"
+    },
+    {
+      "source": "Data Management",
+      "type": "related_to",
+      "target": "Open Data"
+    },
+    {
+      "source": "Data Management",
+      "type": "supports",
+      "target": "Data Mining"
     }
   ],
   "metadata": {
-    "last_built": "2025-11-04 12:08:57",
-    "node_count": 88,
-    "edge_count": 114
+    "last_built": "2025-11-06 15:14:14",
+    "node_count": 19,
+    "edge_count": 49
   }
 }

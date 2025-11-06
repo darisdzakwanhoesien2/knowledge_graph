@@ -1,0 +1,219 @@
+[
+  {
+    "entity": "Data Mining",
+    "type": "Process",
+    "domain": "Data Science",
+    "definition": "The process of finding previously unknown and potentially interesting patterns and relationships in large databases through statistical and algorithmic methods.",
+    "description": "Data mining automates the extraction of knowledge from data and involves descriptive, predictive, and explanatory modeling. It simplifies and automates the statistical process from data sources to model application, supporting manual and automated methods.",
+    "properties": {
+      "Goal": "Discover patterns, relationships, and insights from large datasets.",
+      "Applications": ["Customer segmentation", "Fraud detection", "Recommendation systems"],
+      "Methods": ["Classification", "Clustering", "Regression", "Association analysis"],
+      "Challenges": ["Data quality", "Scalability", "Interpretability"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Knowledge Discovery in Databases"},
+      {"type": "requires", "target": "Data Pre-processing"},
+      {"type": "related_to", "target": "Machine Learning"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_1_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Knowledge Discovery in Databases",
+    "type": "Process",
+    "domain": "Data Science",
+    "definition": "The overall process of discovering useful knowledge from data, including data selection, cleaning, transformation, mining, and interpretation.",
+    "description": "KDD integrates data mining as a core step and emphasizes interpretation, prior knowledge, and iterative improvement. It transforms raw data into actionable knowledge through systematic analysis.",
+    "properties": {
+      "Steps": [
+        "Data selection",
+        "Data cleaning",
+        "Data transformation",
+        "Data mining",
+        "Pattern evaluation",
+        "Knowledge representation"
+      ],
+      "Applications": ["Scientific discovery", "Business intelligence", "Engineering analytics"]
+    },
+    "relations": [
+      {"type": "includes", "target": "Data Mining"},
+      {"type": "depends_on", "target": "Data Pre-processing"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_1_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Data Pre-processing",
+    "type": "Process",
+    "domain": "Data Science",
+    "definition": "The step of preparing raw data for mining by cleaning, transforming, integrating, and reducing it to improve quality and usability.",
+    "description": "Data pre-processing deals with incomplete, noisy, or inconsistent data, improving accuracy and ensuring that models are built correctly. It converts raw data into suitable forms for mining and analysis.",
+    "properties": {
+      "Tasks": ["Data cleaning", "Data integration", "Data transformation", "Data reduction", "Data discretization"],
+      "Benefits": ["Improved data quality", "Reduced noise", "Higher model accuracy"],
+      "Problems addressed": ["Missing values", "Outliers", "Inconsistencies", "Bias"]
+    },
+    "relations": [
+      {"type": "enables", "target": "Data Mining"},
+      {"type": "requires", "target": "Raw Data"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_1_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Data Quality",
+    "type": "Concept",
+    "domain": "Data Management",
+    "definition": "A measure of the condition of data based on factors such as accuracy, completeness, reliability, and relevance.",
+    "description": "High-quality data ensures valid and actionable analysis. Characteristics include accuracy, precision, completeness, timeliness, consistency, and reliability.",
+    "properties": {
+      "Characteristics": [
+        "Accuracy and precision",
+        "Completeness",
+        "Availability and accessibility",
+        "Timeliness and relevance",
+        "Granularity",
+        "Reliability and consistency"
+      ],
+      "Risks": ["Inaccurate models", "Faulty decision-making", "Unreliable analytics"]
+    },
+    "relations": [
+      {"type": "affects", "target": "Data Mining"},
+      {"type": "improved_by", "target": "Data Pre-processing"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_1_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Data Cleaning",
+    "type": "Task",
+    "domain": "Data Science",
+    "definition": "The process of detecting and correcting inaccurate or corrupt data to improve data quality.",
+    "description": "Data cleaning involves handling missing values, removing noise, identifying outliers, and correcting inconsistencies using statistical or algorithmic methods.",
+    "properties": {
+      "Methods": [
+        "Imputation",
+        "Binning",
+        "Clustering-based outlier removal",
+        "Regression smoothing"
+      ],
+      "Goals": ["Ensure data accuracy", "Reduce noise", "Improve model performance"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Data Pre-processing"},
+      {"type": "enables", "target": "Data Mining"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_1_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Big Data",
+    "type": "Concept",
+    "domain": "Data Science",
+    "definition": "Extremely large data sets that can be analyzed computationally to reveal patterns, trends, and associations, especially relating to human behavior and interactions.",
+    "description": "Big Data is characterized by the 5Vs: Volume, Velocity, Variety, Veracity, and Value. It requires specialized tools and techniques for storage, processing, and analysis.",
+    "properties": {
+      "Characteristics": ["Volume", "Velocity", "Variety", "Veracity", "Value"],
+      "Challenges": ["Scalability", "Quality assurance", "Privacy"]
+    },
+    "relations": [
+      {"type": "context_for", "target": "Data Mining"},
+      {"type": "related_to", "target": "Machine Learning"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_1_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Data Literacy",
+    "type": "Skill",
+    "domain": "Education",
+    "definition": "The ability to read, understand, create, and communicate data as information.",
+    "description": "Data literacy enables individuals and organizations to use data effectively, supporting evidence-based decision making and fostering a data-driven culture.",
+    "properties": {
+      "Components": [
+        "Reading and interpreting data",
+        "Communicating insights",
+        "Applying statistical reasoning",
+        "Understanding data ethics"
+      ],
+      "Relevance": ["Data science", "Business analytics", "Policy making"]
+    },
+    "relations": [
+      {"type": "required_for", "target": "Data Mining"},
+      {"type": "enhances", "target": "Decision Making"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_1_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Data Transformation",
+    "type": "Task",
+    "domain": "Data Science",
+    "definition": "The process of converting data into a suitable format for analysis or mining.",
+    "description": "Transformation includes normalization, aggregation, generalization, and feature extraction, making the data compatible with mining algorithms.",
+    "properties": {
+      "Techniques": ["Normalization", "Standardization", "Feature extraction", "Aggregation"],
+      "Goals": ["Ensure consistency", "Enhance interpretability", "Prepare for modeling"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Data Pre-processing"},
+      {"type": "used_by", "target": "Machine Learning Models"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_1_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Data Reduction",
+    "type": "Task",
+    "domain": "Data Science",
+    "definition": "The process of reducing the volume of data while maintaining its analytical value.",
+    "description": "Data reduction techniques simplify data without losing critical information, enabling efficient analysis and storage.",
+    "properties": {
+      "Methods": ["Sampling", "Aggregation", "Principal Component Analysis", "Clustering"],
+      "Purpose": ["Reduce computational cost", "Improve scalability"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Data Pre-processing"},
+      {"type": "supports", "target": "Data Mining"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_1_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  }
+]
