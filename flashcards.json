@@ -1,0 +1,150 @@
+[
+  {
+    "front": "🧩 Convolutional Neural Network (CNN)\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A deep learning architecture composed of convolutional, pooling, and fully connected layers that automatically learn hierarchical visual features.\n\n**Description:** CNNs dominate modern computer vision tasks by learning spatial hierarchies of features directly from raw image data without handcrafted descriptors.\n\n**Goal:** Automatically learn discriminative visual representations.\n**Applications:** Image classification, Object detection, Semantic segmentation\n**Methods:** Backpropagation, Convolutional filtering, Pooling operations\n**Examples:** Exam 2018 - Modern methods, Exam 2019 - High-level discussion"
+  },
+  {
+    "front": "🧩 Bag-of-Words (BoW) Representation\n📘 Domain: Feature Representation",
+    "back": "**Definition:** An image representation that models visual content as a histogram of discrete visual words learned from feature descriptors.\n\n**Description:** BoW models are popular for image classification and retrieval due to their simplicity and effectiveness, despite losing spatial information.\n\n**Goal:** Represent images as collections of visual words for classification or retrieval.\n**Applications:** Image classification, Content-based image retrieval, Object recognition\n**Methods:** Feature extraction (e.g., SIFT, SURF), Visual vocabulary creation (e.g., K-Means), Histogram generation\n**Examples:** Image search engines, Category recognition"
+  },
+  {
+    "front": "🧩 Visual words\n📘 Domain: Feature Representation",
+    "back": "**Definition:** A cluster center in the feature space, representing a common visual pattern or feature, used to build Bag-of-Words representations.\n\n**Description:** \n\n"
+  },
+  {
+    "front": "🧩 Image segmentation\n📘 Domain: Segmentation",
+    "back": "**Definition:** The process of partitioning a digital image into multiple segments (sets of pixels) to simplify and/or change the representation of an image into something that is more meaningful and easier to analyze.\n\n**Description:** Image segmentation is typically used to locate objects and boundaries (lines, curves, etc.) in images. More precisely, image segmentation is the process of assigning a label to every pixel in an image such that pixels with the same label share certain characteristics.\n\n**Goal:** Divide an image into coherent regions for further analysis.\n**Applications:** Object detection, Medical imaging, Scene understanding\n**Methods:** Thresholding, Region growing, Graph-based segmentation\n**Examples:** Exam 2019 - Principle, Exam 2020 - Segmentation method"
+  },
+  {
+    "front": "🧩 Background Subtraction\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A motion-based segmentation approach that isolates moving foreground objects by comparing each frame to a background model.\n\n**Description:** Widely used in video surveillance, motion analysis, and dynamic scene understanding.\n\n**Goal:** Separate moving objects from a static or slowly changing background.\n**Applications:** Surveillance, Traffic monitoring, Gesture recognition\n**Methods:** Frame differencing, Gaussian mixture models, Otsu thresholding\n**Examples:** Exam 2018 - Segmentation question"
+  },
+  {
+    "front": "🧩 Lucas–Kanade Optical Flow\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A differential method for optical flow estimation assuming constant motion within a local neighborhood.\n\n**Description:** Solves the aperture problem by enforcing spatial smoothness; widely used for motion tracking and video stabilization.\n\n**Goal:** Estimate pixel displacement between consecutive frames.\n**Applications:** Motion tracking, Stabilization, 3D reconstruction\n**Methods:** Gradient constraint equation, Least-squares solution over a window\n**Examples:** Exam 2019 - Optical flow task"
+  },
+  {
+    "front": "🧩 Structure-from-Motion (SfM)\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A technique that recovers 3D structure and camera motion from multiple overlapping 2D images.\n\n**Description:** Combines feature matching, triangulation, and bundle adjustment to produce dense reconstructions and camera pose estimates.\n\n**Goal:** Estimate 3D geometry and motion from image sequences.\n**Applications:** 3D reconstruction, AR/VR, Robot localization\n**Methods:** Feature matching, Bundle adjustment, Triangulation\n**Examples:** Exam 2019 - Method explanation, Exam 2020 - Stereo extension"
+  },
+  {
+    "front": "🧩 Texture Analysis\n📘 Domain: Machine Vision",
+    "back": "**Definition:** The process of quantifying image surface characteristics using spatial variations in intensity or color.\n\n**Description:** Includes statistical, structural, and filter-based approaches to characterize surface patterns or material properties.\n\n**Goal:** Extract numerical features that describe texture patterns.\n**Applications:** Texture classification, Surface inspection, Remote sensing\n**Methods:** Co-occurrence matrices, Filter banks, LBP histograms\n**Examples:** Exam 2015 - Seashell texture, Exam 2018 - Filter bank task"
+  },
+  {
+    "front": "🧩 Filter Bank Methods\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A texture analysis technique using a set of filters (e.g., Gabor, Laws, or wavelets) to capture multi-scale, multi-orientation texture information.\n\n**Description:** Used to extract texture features robust to illumination and rotation changes, often preceding classification or retrieval.\n\n**Goal:** Describe texture using responses to multiple spatial-frequency filters.\n**Applications:** Texture classification, Defect detection, Material identification\n**Methods:** Gabor filters, Laws masks, Energy feature computation\n**Examples:** Exam 2016 - Texture task, Exam 2019 - Conceptual question"
+  },
+  {
+    "front": "🧩 Edge Detection\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A fundamental operation that detects local discontinuities in intensity to outline object boundaries.\n\n**Description:** Typical operators like Sobel, Prewitt, or Canny emphasize intensity gradients to delineate shapes for segmentation and recognition.\n\n**Goal:** Identify object boundaries via intensity gradients.\n**Applications:** Shape analysis, Hough Transform, Segmentation preprocessing\n**Methods:** Gradient computation, Thresholding, Non-maximum suppression\n**Examples:** Exam 2015 - Preprocessing, Exam 2018 - Edge-based Hough task"
+  },
+  {
+    "front": "🧩 Graph-Based Segmentation\n📘 Domain: Machine Vision",
+    "back": "**Definition:** An image segmentation method that models the image as a graph, where pixels or regions are nodes and edge weights represent similarity.\n\n**Description:** Cuts or merges in the graph minimize a global cost function, yielding coherent region boundaries.\n\n**Goal:** Group pixels by minimizing inter-region dissimilarity.\n**Applications:** Object segmentation, Superpixel generation, Video segmentation\n**Methods:** Normalized cuts, Minimum spanning tree, Spectral clustering\n**Examples:** Exam 2018 - Segmentation discussion"
+  },
+  {
+    "front": "🧩 Pinhole Camera Model\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A simplified geometric model of image formation in which light rays pass through a single small aperture and project an inverted image onto an image plane.\n\n**Description:** Used as the mathematical basis for camera calibration and projection matrix derivation in both single-view and multi-view geometry.\n\n**Goal:** Model how 3D points project onto a 2D image plane.\n**Applications:** Camera calibration, 3D reconstruction, Stereo imaging\n**Methods:** Homogeneous coordinate projection, Matrix-based projection equations\n**Examples:** Exam 2014 - Projection geometry, Exam 2016 - Stereo setup"
+  },
+  {
+    "front": "🧩 Radial Distortion\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A lens distortion where straight lines appear curved due to nonlinear magnification that varies with distance from the image center.\n\n**Description:** Commonly corrected during camera calibration using polynomial or division models to improve geometric accuracy.\n\n**Goal:** Model and correct optical distortion effects in imaging systems.\n**Applications:** Camera calibration, 3D measurement, Photogrammetry\n**Methods:** Polynomial distortion model, Inverse distortion mapping\n**Examples:** Exam 2014 - Lens modeling, Exam 2018 - Definition question"
+  },
+  {
+    "front": "🧩 HSV Color Space\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A color representation model that describes colors in terms of hue, saturation, and value, which better aligns with human color perception.\n\n**Description:** HSV is commonly used in segmentation and tracking tasks because hue can be more stable under illumination variations.\n\n**Goal:** Represent and manipulate color information in perceptually meaningful terms.\n**Applications:** Color-based segmentation, Object tracking, Skin detection\n**Methods:** RGB-to-HSV conversion, Thresholding by hue and saturation\n**Examples:** Exam 2015 - Definition, Exam 2019 - Basic term question"
+  },
+  {
+    "front": "🧩 Depth of Field\n📘 Domain: Machine Vision",
+    "back": "**Definition:** The range of distances within a scene that appear acceptably sharp in an image.\n\n**Description:** Controlled by aperture size, focal length, and sensor distance; important in focus estimation and 3D reconstruction.\n\n**Goal:** Quantify and control image sharpness across depth layers.\n**Applications:** Focus measurement, Autofocus systems, 3D reconstruction\n**Methods:** Optical modeling, Focus metric computation\n**Examples:** Exam 2020 - Definition question"
+  },
+  {
+    "front": "🧩 Epipolar Constraint\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A geometric relationship stating that a point in one image must lie on a specific line (the epipolar line) in the other image when both views observe the same 3D point.\n\n**Description:** Derived from camera projection matrices and the essential matrix; simplifies stereo correspondence search.\n\n**Goal:** Reduce 2D stereo correspondence search to 1D along epipolar lines.\n**Applications:** Stereo vision, Structure-from-Motion, Camera calibration\n**Methods:** Essential matrix computation, Epipolar geometry modeling\n**Examples:** Exam 2018 - Theoretical question, Exam 2020 - Stereo derivation"
+  },
+  {
+    "front": "🧩 Aperture Problem\n📘 Domain: Machine Vision",
+    "back": "**Definition:** An ambiguity in local motion estimation where only the component of motion perpendicular to an image gradient can be measured.\n\n**Description:** Occurs in optical flow estimation; resolved using spatial or temporal coherence constraints.\n\n**Goal:** Explain the fundamental ambiguity in local motion detection.\n**Applications:** Optical flow, Edge tracking, Motion estimation\n**Methods:** Gradient constraint equation, Lucas–Kanade method, Global smoothness enforcement\n**Examples:** Exam 2015 - Definition, Exam 2019 - Optical flow task"
+  },
+  {
+    "front": "🧩 Metamers\n📘 Domain: Machine Vision",
+    "back": "**Definition:** Different spectral distributions that produce the same color perception under specific lighting conditions.\n\n**Description:** Important in color science and sensor calibration, explaining why cameras and human vision may differ in color interpretation.\n\n**Goal:** Understand perceptual equivalence in color representation.\n**Applications:** Color calibration, Illumination modeling, Spectral imaging\n**Methods:** Spectral measurement, Color matching functions\n**Examples:** Exam 2017 - Definition, Exam 2019 - Conceptual question"
+  },
+  {
+    "front": "🧩 Chromatic Aberration\n📘 Domain: Machine Vision",
+    "back": "**Definition:** An optical phenomenon where different wavelengths of light focus at different distances, causing color fringes in images.\n\n**Description:** Corrected via lens design or software post-processing to ensure color alignment in multi-channel imaging.\n\n**Goal:** Reduce color blurring caused by wavelength-dependent refraction.\n**Applications:** Lens design, Image restoration, Color correction\n**Methods:** Spectral lens calibration, Image deconvolution\n**Examples:** Exam 2018 - Definition question"
+  },
+  {
+    "front": "🧩 Camera Extrinsics\n📘 Domain: Machine Vision",
+    "back": "**Definition:** Parameters that describe the position and orientation of a camera in a world coordinate system.\n\n**Description:** Extrinsics link the camera reference frame to world coordinates, essential for triangulation and multi-view alignment.\n\n**Goal:** Map coordinates between camera and world spaces.\n**Applications:** Stereo calibration, SLAM, 3D reconstruction\n**Methods:** Rotation-translation matrix estimation, PnP algorithms\n**Examples:** Exam 2014 - Camera calibration task"
+  },
+  {
+    "front": "🧩 Computer Vision\n📘 Domain: Introduction",
+    "back": "**Definition:** An interdisciplinary field that deals with how computers can be made to gain high-level understanding from digital images or videos.\n\n**Description:** From an engineering perspective, Computer Vision seeks to automate tasks that the human visual system can perform, often requiring the conversion of digital images into higher representations.\n\n**Goal:** Automate tasks that the human visual system can do, Converting digital images to higher level representations, Automatic understanding of images and video\n**Applications:** Image Recognition, Optical Character Recognition (OCR), Content-based retrieval, Health care (e.g., disease detection), Autonomous vehicles\n**Methods:** \n**Examples:** "
+  },
+  {
+    "front": "🧩 Image Recognition\n📘 Domain: Recognition & Learning",
+    "back": "**Definition:** The ability of software to identify objects, places, people, writing, and actions in images.\n\n**Description:** A core goal of image understanding, which involves making decisions based on visual data and constructing scene descriptions.\n\n**Goal:** Allow a machine to recognize objects, people, scenes, and activities (perception and interpretation).\n**Applications:** Classification + Localization, Object Detection (e.g., YOLO), Semantic Segmentation, Instance Segmentation\n**Methods:** Machine Learning (ML), Deep Learning (DNNs)\n**Examples:** Recognizing a traffic sign, Diagnosing disease in health care"
+  },
+  {
+    "front": "🧩 Deep Neural Networks (DNNs)\n📘 Domain: Machine Learning",
+    "back": "**Definition:** Popular machine learning techniques, including Convolutional Neural Networks (CNNs), which are often used for image recognition.\n\n**Description:** DNNs have enabled significant progress in image recognition, particularly when utilized with large datasets such as ImageNet.\n\n**Goal:** Combine both representation (feature extraction) and classification steps in an end-to-end approach, learning features directly from the data.\n**Applications:** Image Recognition\n**Methods:** Convolutional Neural Networks (CNNs)\n**Examples:** ImageNet Challenge winning systems"
+  },
+  {
+    "front": "🧩 Thresholding\n📘 Domain: Segmentation",
+    "back": "**Definition:** The operation of separating an image into regions by applying a threshold value, typically resulting in a binary image.\n\n**Description:** Thresholding is the simplest method for segmenting gray-scale images. The main issue lies in correctly choosing the threshold value.\n\n**Goal:** Segmentation and obtaining binary images.\n**Applications:** Object boundary finding (in support of edge detection), Separating dark and light pixels in bimodal histograms\n**Methods:** Histogram analysis (detecting peaks and valleys), Otsu's method (minimizing within-group variance)\n**Examples:** "
+  },
+  {
+    "front": "🧩 Structure from Motion (SfM)\n📘 Domain: Geometry & 3D Reconstruction",
+    "back": "**Definition:** The problem of estimating $m$ camera matrices ($\\mathbf{M}_i$) and $n$ 3D points ($\\mathbf{P}_j$) given $m$ images of $n$ fixed points and their correspondences.\n\n**Description:** SfM relies on minimizing the reprojection error between observed and predicted image points through nonlinear least-squares optimization (Bundle Adjustment).\n\n**Goal:** Estimate camera poses and 3D scene structure from 2D image sequences.\n**Applications:** 3D surface reconstruction\n**Methods:** Bundle Adjustment, Nonlinear least-squares minimization\n**Examples:** "
+  },
+  {
+    "front": "🧩 SIFT\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A feature detection and description algorithm that identifies keypoints and computes descriptors invariant to scale, rotation, and partial illumination changes.\n\n**Description:** SIFT builds a scale-space using Difference-of-Gaussians, detects local extrema, and forms gradient-based descriptors robust to geometric and photometric transformations.\n\n**Goal:** Detect stable image features for matching across scales and rotations.\n**Applications:** Image matching, Object recognition, 3D reconstruction\n**Methods:** Difference-of-Gaussians, Gradient histogram descriptors, Keypoint matching\n**Examples:** Exam 2015 - Definition, Exam 2018 - Descriptor explanation"
+  },
+  {
+    "front": "🧩 Harris Corner Detector\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A feature detector that identifies corners by measuring local intensity variations using the autocorrelation matrix.\n\n**Description:** The Harris detector finds points with significant intensity change in orthogonal directions, forming the basis of many tracking and matching algorithms.\n\n**Goal:** Detect stable corner-like features in images.\n**Applications:** Feature tracking, Image registration, Object recognition\n**Methods:** Autocorrelation matrix, Corner response function, Non-maximum suppression\n**Examples:** Exam 2015 - Principle question, Exam 2018 - Method explanation"
+  },
+  {
+    "front": "🧩 Hough Transform\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A feature extraction technique used to detect parametric shapes such as lines, circles, or ellipses in images.\n\n**Description:** The transform maps image edge points into a parameter space where shapes correspond to peaks, enabling robust detection despite noise or occlusion.\n\n**Goal:** Detect geometric primitives via voting in parameter space.\n**Applications:** Line detection, Circle detection, Shape analysis\n**Methods:** Parameter-space accumulation, Threshold-based peak detection\n**Examples:** Exam 2015 - Principle question, Exam 2018 - Example usage"
+  },
+  {
+    "front": "🧩 Random Sample Consensus (RANSAC)\n📘 Domain: Machine Vision",
+    "back": "**Definition:** An iterative algorithm to estimate model parameters from data containing outliers by repeatedly sampling minimal subsets and testing consensus.\n\n**Description:** RANSAC is robust to outliers and commonly used in fitting geometric models such as lines, planes, or homographies.\n\n**Goal:** Estimate parameters robustly in the presence of noise and outliers.\n**Applications:** Line fitting, Homography estimation, Triangulation refinement\n**Methods:** Iterative sampling, Consensus evaluation, Model re-estimation\n**Examples:** Exam 2015 - Theory, Exam 2018 - Usage example"
+  },
+  {
+    "front": "🧩 Local Binary Patterns (LBP)\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A texture descriptor that encodes the local spatial pattern of pixel intensities into binary codes based on neighbor comparisons.\n\n**Description:** LBP provides a rotation- and grayscale-invariant way to represent texture; it’s lightweight and robust, making it popular for real-time classification.\n\n**Goal:** Represent texture structures in a compact and invariant form.\n**Applications:** Texture classification, Face recognition, Material analysis\n**Methods:** Neighborhood thresholding, Histogram of binary codes, Rotation-invariant encoding\n**Examples:** Exam 2017 - Texture task, Exam 2020 - Texture classification"
+  },
+  {
+    "front": "🧩 K-Means Clustering\n📘 Domain: Machine Vision",
+    "back": "**Definition:** An unsupervised learning algorithm that partitions data into K clusters by minimizing within-cluster variance.\n\n**Description:** Used to group similar pixels, features, or image patches, serving as a basis for segmentation and visual vocabulary creation.\n\n**Goal:** Group data points into clusters based on feature similarity.\n**Applications:** Image segmentation, Bag-of-Words clustering, Color quantization\n**Methods:** Iterative centroid update, Euclidean distance minimization\n**Examples:** Exam 2016 - Principle, Exam 2019 - Usage explanation"
+  },
+  {
+    "front": "🧩 Otsu’s Thresholding Method\n📘 Domain: Machine Vision",
+    "back": "**Definition:** An automatic global thresholding technique that separates foreground and background by minimizing intra-class intensity variance.\n\n**Description:** Commonly used in image preprocessing for binarization tasks, providing an optimal threshold without supervision.\n\n**Goal:** Automatically determine an optimal threshold to separate regions.\n**Applications:** Image segmentation, Preprocessing for OCR, Object extraction\n**Methods:** Histogram-based variance minimization\n**Examples:** Exam 2018 - Principle, Exam 2019 - Usage question"
+  },
+  {
+    "front": "🧩 Harris–Laplace Detector\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A multi-scale feature detector combining corner detection (Harris) with scale selection (Laplacian) to identify stable features across resolutions.\n\n**Description:** Enhances standard corner detectors by integrating scale information for improved invariance.\n\n**Goal:** Detect scale-invariant interest points.\n**Applications:** Feature matching, Object tracking, Scale-space analysis\n**Methods:** Corner response computation, Laplacian-of-Gaussian scale selection\n**Examples:** Exam 2016 - Extended question"
+  },
+  {
+    "front": "🧩 Photometric Stereo\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A technique for estimating surface normals by observing an object under multiple known lighting directions.\n\n**Description:** Allows reconstruction of fine surface details by exploiting reflectance differences under controlled illumination.\n\n**Goal:** Recover detailed surface orientation from shading cues.\n**Applications:** Shape-from-shading, Industrial inspection, Material analysis\n**Methods:** Lambertian reflectance model, Linear intensity equations\n**Examples:** Exam 2017 - Principle question, Exam 2018 - Example"
+  },
+  {
+    "front": "🧩 Feature descriptor\n📘 Domain: Feature Extraction",
+    "back": "**Definition:** A representation of an image patch or interest point that captures its essential characteristics, designed to be robust to variations in illumination, viewpoint, and scale.\n\n**Description:** \n\n"
+  },
+  {
+    "front": "🧩 Bag-of-Words\n📘 Domain: Feature Representation",
+    "back": "**Definition:** A sparse vector representation of an image (or document) based on the frequency of visual words (or terms) from a predefined vocabulary.\n\n**Description:** \n\n"
+  },
+  {
+    "front": "🧩 Maximally Stable Extremal Regions (MSER)\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A method for detecting regions in an image that are stable across a wide range of thresholds, often used for text detection and object recognition.\n\n**Description:** \n\n"
+  }
+]

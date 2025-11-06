@@ -5,6 +5,7 @@ from pyvis.network import Network
 from pathlib import Path
 import tempfile
 from datetime import datetime
+import random
 
 # --- CONFIG ---
 GRAPH_FILE = "merged_graph.json"
@@ -147,3 +148,32 @@ with st.sidebar.expander("Merge Duplicate or Similar Nodes", expanded=False):
                 st.rerun()
         else:
             st.warning("Please select two *different* nodes to merge.")
+
+st.sidebar.markdown("---")
+st.sidebar.subheader("🃏 Flashcard Review")
+
+with st.sidebar.expander("Start Flashcard Session", expanded=False):
+    # Load flashcards
+    flashcards_file = Path("flashcards.json")
+    if not flashcards_file.exists():
+        st.warning("Flashcards not generated yet. Run generate_flashcards.py first.")
+    else:
+        with open(flashcards_file, "r", encoding="utf-8") as f:
+            flashcards = json.load(f)
+
+        # Optional domain filter
+        domain_filter = st.selectbox(
+            "Filter by domain (optional):",
+            ["All"] + sorted({card["front"].split("📘 Domain: ")[-1] for card in flashcards})
+        )
+
+        if domain_filter != "All":
+            flashcards = [c for c in flashcards if domain_filter in c["front"]]
+
+        if not flashcards:
+            st.info("No flashcards found for the selected domain.")
+        else:
+            card = random.choice(flashcards)
+            st.markdown(f"### {card['front']}")
+            if st.button("🔁 Show Answer"):
+                st.markdown(card["back"])

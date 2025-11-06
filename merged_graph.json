@@ -161,17 +161,21 @@
       "definition": "A technique that recovers 3D structure and camera motion from multiple overlapping 2D images.",
       "description": "Combines feature matching, triangulation, and bundle adjustment to produce dense reconstructions and camera pose estimates.",
       "properties": {
-        "Goal": [
-          "Estimate camera poses and 3D scene structure from 2D image sequences."
-        ],
+        "Goal": "Estimate 3D geometry and motion from image sequences.",
         "Applications": [
-          "3D surface reconstruction"
+          "3D reconstruction",
+          "AR/VR",
+          "Robot localization"
         ],
         "Methods": [
-          "Bundle Adjustment",
-          "Nonlinear least-squares minimization"
+          "Feature matching",
+          "Bundle adjustment",
+          "Triangulation"
         ],
-        "Examples": []
+        "Examples": [
+          "Exam 2019 - Method explanation",
+          "Exam 2020 - Stereo extension"
+        ]
       },
       "metadata": {
         "created_by": "Daris",
@@ -650,6 +654,31 @@
         "version": "1.0"
       }
     },
+    "Structure from Motion (SfM)": {
+      "type": "Geometric Recovery Technique",
+      "domain": "Geometry & 3D Reconstruction",
+      "definition": "The problem of estimating $m$ camera matrices ($\\mathbf{M}_i$) and $n$ 3D points ($\\mathbf{P}_j$) given $m$ images of $n$ fixed points and their correspondences.",
+      "description": "SfM relies on minimizing the reprojection error between observed and predicted image points through nonlinear least-squares optimization (Bundle Adjustment).",
+      "properties": {
+        "Goal": [
+          "Estimate camera poses and 3D scene structure from 2D image sequences."
+        ],
+        "Applications": [
+          "3D surface reconstruction"
+        ],
+        "Methods": [
+          "Bundle Adjustment",
+          "Nonlinear least-squares minimization"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "Daris",
+        "source": "11-3D_reconstruction-00.pdf",
+        "created_at": "2023-10-27",
+        "version": "1.0"
+      }
+    },
     "SIFT": {
       "type": "Method",
       "domain": "Machine Vision",
@@ -940,6 +969,669 @@
         "created_by": "Daris",
         "source": "02-features-00.pdf",
         "created_at": "2023-10-27",
+        "version": "1.0"
+      }
+    },
+    "Spatial pyramid matching": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Object detection": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Optical flow": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Motion estimation": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Texture classification": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Stereo matching": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Structure-from-Motion": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Triangulation": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "RANSAC": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Texture Classification": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Color features": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Mahalanobis distance": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Euclidean distance": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Segmentation": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Optical Flow": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Confusion matrix": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Camera extrinsics": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Epipolar constraint": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Perspective-3-point (P3P) problem": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Camera calibration": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Triangulation accuracy": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "RGB color space": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Texture analysis": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Aperture problem": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Depth estimation": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Projection matrices": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Lucas–Kanade method": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Chromatic aberration": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Color constancy models": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Color calibration": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Image quality assessment": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Artificial Intelligence": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Machine Vision": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Image Understanding": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Machine Learning": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Large Datasets (e.g., ImageNet)": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Binary Image Analysis Pipeline": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Scale Ambiguity": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Surface Reconstruction": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "K-means clustering": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Precision-Recall": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Shape recognition": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Edge detection": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Least squares estimation": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Affine transformation estimation": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Filter bank methods": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Seashell classification": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Unsupervised learning": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Background subtraction": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Surface reconstruction": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
+        "version": "1.0"
+      }
+    },
+    "Diffuse reflection": {
+      "type": "Concept",
+      "domain": "N/A",
+      "definition": "N/A",
+      "description": "N/A",
+      "properties": {},
+      "metadata": {
+        "created_by": "system",
+        "source": "auto-generated",
+        "created_at": "2025-11-04",
         "version": "1.0"
       }
     }
@@ -1341,12 +2033,12 @@
       "target": "Binary Image Analysis Pipeline"
     },
     {
-      "source": "Structure-from-Motion (SfM)",
+      "source": "Structure from Motion (SfM)",
       "type": "is constrained by",
       "target": "Scale Ambiguity"
     },
     {
-      "source": "Structure-from-Motion (SfM)",
+      "source": "Structure from Motion (SfM)",
       "type": "feeds into",
       "target": "Surface Reconstruction"
     },
@@ -1517,8 +2209,8 @@
     }
   ],
   "metadata": {
-    "last_built": "2025-11-04 11:11:54",
-    "node_count": 37,
+    "last_built": "2025-11-04 12:08:57",
+    "node_count": 88,
     "edge_count": 114
   }
 }
