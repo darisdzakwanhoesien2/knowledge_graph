@@ -1,0 +1,203 @@
+[
+  {
+    "entity": "Texture",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "Texture refers to the spatial arrangement and variation of intensity or color values in an image region, representing surface patterns independent of overall color or brightness.",
+    "description": "It provides critical information about material properties and structural repetition. Texture analysis enables segmentation, classification, and synthesis in natural and artificial scenes.",
+    "properties": {
+      "Goal": "Capture local spatial patterns and repetitions in image intensity or color.",
+      "Applications": ["Material classification", "Image segmentation", "Defect detection", "Content-based retrieval"],
+      "Methods": ["Statistical methods", "Filter banks", "Structural analysis"],
+      "Examples": ["Grass", "Sand", "Brick wall", "Checkerboard", "Striped fabric"]
+    },
+    "relations": [
+      {"type": "complements", "target": "Color"},
+      {"type": "used_in", "target": "Texture Segmentation"},
+      {"type": "analyzed_by", "target": "Texture Descriptors"},
+      {"type": "differs_from", "target": "Shape"},
+      {"type": "related_to", "target": "Surface Material"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "05-texture-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Texture Segmentation",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Texture segmentation is the process of partitioning an image into regions with homogeneous texture properties, separating areas of different surface patterns.",
+    "description": "It extends intensity-based segmentation by incorporating local spatial statistics or frequency content to distinguish textured regions.",
+    "properties": {
+      "Goal": "Group pixels into regions sharing similar textural appearance.",
+      "Applications": ["Medical imaging", "Remote sensing", "Fabric inspection", "Scene understanding"],
+      "Methods": ["Supervised classification", "Unsupervised clustering", "Filter response analysis"],
+      "Examples": ["Separating grass from sky", "Isolating wood grain from metal"]
+    },
+    "relations": [
+      {"type": "extends", "target": "Segmentation"},
+      {"type": "uses", "target": "Texture Descriptors"},
+      {"type": "precedes", "target": "Object Recognition"},
+      {"type": "part_of", "target": "Mid-level Vision"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "05-texture-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Texture Descriptors",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Texture descriptors are quantitative features extracted from image patches to characterize local texture properties in a compact, discriminative form.",
+    "description": "They transform raw pixel neighborhoods into feature vectors suitable for classification, clustering, or similarity comparison.",
+    "properties": {
+      "Goal": "Encode texture appearance into robust, comparable feature representations.",
+      "Applications": ["Texture classification", "Retrieval", "Synthesis", "Anomaly detection"],
+      "Methods": ["Gray-level co-occurrence matrix", "Local Binary Patterns", "Gabor filters", "Histogram of gradients"],
+      "Examples": ["GLCM contrast", "LBP codes", "Filter bank energy"]
+    },
+    "relations": [
+      {"type": "input_to", "target": "Texture Segmentation"},
+      {"type": "output_of", "target": "Feature Extraction"},
+      {"type": "enables", "target": "Texture Classification"},
+      {"type": "includes", "target": "Local Binary Patterns"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "05-texture-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Local Binary Patterns",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Local Binary Patterns (LBP) is a texture descriptor that labels each pixel by thresholding its neighborhood and encoding the result as a binary pattern, forming a rotation-invariant texture spectrum.",
+    "description": "It is computationally efficient and robust to monotonic illumination changes, widely used for face recognition and texture classification.",
+    "properties": {
+      "Goal": "Describe local texture via binary comparisons with center pixel.",
+      "Applications": ["Face recognition", "Biomedical texture analysis", "Industrial surface inspection"],
+      "Methods": ["Circular neighborhood sampling", "Binary encoding", "Histogram aggregation"],
+      "Examples": ["LBP(8,1) code", "Uniform LBP", "Rotation-invariant LBP"]
+    },
+    "relations": [
+      {"type": "is_a", "target": "Texture Descriptors"},
+      {"type": "robust_to", "target": "Illumination Changes"},
+      {"type": "used_in", "target": "Texture Classification"},
+      {"type": "extended_by", "target": "Multi-scale LBP"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "05-texture-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Statistical Texture Analysis",
+    "type": "Framework",
+    "domain": "Computer Vision",
+    "definition": "Statistical texture analysis models texture as the spatial distribution of gray-level values, using statistical measures to characterize local intensity variations.",
+    "description": "It assumes texture arises from repeated patterns or random processes and uses first- or second-order statistics to describe regions.",
+    "properties": {
+      "Goal": "Quantify texture via intensity distribution and spatial relationships.",
+      "Applications": ["Remote sensing", "Medical diagnostics", "Quality control"],
+      "Methods": ["Co-occurrence matrices", "Run-length encoding", "Autocorrelation"],
+      "Examples": ["GLCM energy", "Contrast", "Entropy"]
+    },
+    "relations": [
+      {"type": "includes", "target": "Gray-Level Co-occurrence Matrix"},
+      {"type": "contrasts_with", "target": "Structural Texture Analysis"},
+      {"type": "foundation_for", "target": "Texture Classification"},
+      {"type": "used_in", "target": "Texture Segmentation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "05-texture-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Gray-Level Co-occurrence Matrix",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "The Gray-Level Co-occurrence Matrix (GLCM) is a second-order statistical method that counts the frequency of intensity pairs at a given spatial offset in an image.",
+    "description": "It captures spatial relationships between pixel values and derives texture features like contrast, correlation, energy, and homogeneity.",
+    "properties": {
+      "Goal": "Model joint probability of intensity pairs at specific displacements.",
+      "Applications": ["Texture classification", "Medical image analysis", "Satellite imagery"],
+      "Methods": ["Matrix construction", "Feature extraction (contrast, entropy, etc.)"],
+      "Examples": ["GLCM at (1,0) for horizontal texture", "Haralick features"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Statistical Texture Analysis"},
+      {"type": "input_to", "target": "Haralick Features"},
+      {"type": "analyzes", "target": "Spatial Dependency"},
+      {"type": "used_in", "target": "Texture Descriptors"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "05-texture-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Filter Bank Methods",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Filter bank methods apply a set of linear filters (e.g., Gabor, wavelet) tuned to different frequencies and orientations to decompose texture into frequency-scale components.",
+    "description": "They model texture in the frequency domain, capturing multi-scale and multi-orientation patterns inspired by human visual cortex.",
+    "properties": {
+      "Goal": "Represent texture via responses to tuned frequency filters.",
+      "Applications": ["Texture synthesis", "Segmentation", "Biometric recognition"],
+      "Methods": ["Gabor filtering", "Wavelet transform", "Steerable pyramids"],
+      "Examples": ["Gabor energy at 45°", "Multi-resolution analysis"]
+    },
+    "relations": [
+      {"type": "is_a", "target": "Texture Descriptors"},
+      {"type": "inspired_by", "target": "Human Visual Cortex"},
+      {"type": "used_in", "target": "Texture Segmentation"},
+      {"type": "includes", "target": "Gabor Filters"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "05-texture-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Structural Texture Analysis",
+    "type": "Framework",
+    "domain": "Computer Vision",
+    "definition": "Structural texture analysis assumes texture is composed of repeated primitive elements (textons) arranged according to placement rules.",
+    "description": "It focuses on identifying basic texture elements and their spatial organization, suitable for regular, man-made patterns.",
+    "properties": {
+      "Goal": "Decompose texture into primitives and syntactic rules.",
+      "Applications": ["Fabric design", "Pattern recognition", "Synthetic texture generation"],
+      "Methods": ["Morphological operations", "Grammar-based modeling", "Texton mapping"],
+      "Examples": ["Brick wall = rectangle + grid", "Checkerboard = square + alternation"]
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Statistical Texture Analysis"},
+      {"type": "uses", "target": "Textons"},
+      {"type": "applies_to", "target": "Regular Textures"},
+      {"type": "foundation_for", "target": "Texture Synthesis"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "05-texture-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  }
+]

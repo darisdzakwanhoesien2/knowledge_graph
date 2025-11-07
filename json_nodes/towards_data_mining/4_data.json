@@ -1,0 +1,241 @@
+[
+  {
+    "entity": "Data Merging",
+    "type": "Process",
+    "domain": "Data Science",
+    "definition": "The process of combining data from multiple sources, sensors, or studies into a single unified dataset for analysis.",
+    "description": "Data merging integrates data collected from different sources to improve completeness and richness. It requires alignment of formats, timestamps, sampling rates, and units to ensure compatibility. Poorly merged data can lead to inconsistent or misleading conclusions.",
+    "properties": {
+      "Motivation": [
+        "Combine complementary data from multiple sensors or datasets",
+        "Enhance context and completeness of analysis",
+        "Support multi-modal data understanding"
+      ],
+      "Challenges": [
+        "Different formats (CSV, TXT, JSON)",
+        "Different timestamps or units",
+        "Sensor calibration differences",
+        "Incompatible sampling frequencies"
+      ],
+      "Requirements": ["Synchronized timestamps", "Uniform sampling rate", "Compatible data structure"]
+    },
+    "relations": [
+      {"type": "requires", "target": "Sampling Synchronization"},
+      {"type": "affected_by", "target": "Sensor Calibration"},
+      {"type": "supports", "target": "Data Integration"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_4_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Sampling Synchronization",
+    "type": "Task",
+    "domain": "Signal Processing",
+    "definition": "The process of aligning data collected at different sampling frequencies to a common rate to allow joint analysis.",
+    "description": "When data are collected from sensors with different sampling rates, synchronization ensures time alignment by either downsampling or oversampling. This process balances information preservation and computational efficiency.",
+    "properties": {
+      "Methods": ["Downsampling", "Oversampling"],
+      "Problems": ["Data loss during downsampling", "Increased processing cost during oversampling"],
+      "Examples": ["Combining 50Hz and 100Hz signals using a common rate of 50Hz or 100Hz"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Data Merging"},
+      {"type": "requires", "target": "Sampling Rate Adjustment"},
+      {"type": "related_to", "target": "Temporal Alignment"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_4_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Downsampling",
+    "type": "Method",
+    "domain": "Signal Processing",
+    "definition": "Reducing the sampling rate of signals to a lower frequency to match other data sources or to decrease data volume.",
+    "description": "Downsampling is typically done using the greatest common divisor (GCD) of sampling rates. It reduces data volume and computation cost but may lead to information loss.",
+    "properties": {
+      "Technique": ["Use GCD of sampling rates", "Select every nth sample"],
+      "Benefits": ["Simplified synchronization", "Reduced processing load"],
+      "Drawbacks": ["Information loss", "Potential aliasing"]
+    },
+    "relations": [
+      {"type": "complementary_to", "target": "Oversampling"},
+      {"type": "used_in", "target": "Sampling Synchronization"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_4_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Oversampling",
+    "type": "Method",
+    "domain": "Signal Processing",
+    "definition": "Increasing the sampling rate of a dataset to match a higher-frequency source, typically by interpolation or replication.",
+    "description": "Oversampling is performed using the least common multiple (LCM) of sampling rates. It allows finer temporal alignment across datasets but increases data volume and processing requirements.",
+    "properties": {
+      "Technique": ["Interpolate missing samples", "Use LCM of sampling rates"],
+      "Benefits": ["Improved time alignment", "Preserved signal fidelity"],
+      "Drawbacks": ["Increased computation time", "Possible overfitting or redundancy"]
+    },
+    "relations": [
+      {"type": "complementary_to", "target": "Downsampling"},
+      {"type": "used_in", "target": "Sampling Synchronization"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_4_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Sampling Methods",
+    "type": "Concept",
+    "domain": "Data Science",
+    "definition": "Techniques for selecting a subset of data points from a larger dataset to make statistical analysis feasible.",
+    "description": "Sampling allows researchers to handle large datasets efficiently or generate artificial data when limited samples are available. Sampling can be with or without replacement, or balanced across classes.",
+    "properties": {
+      "Main Types": ["SRSWR", "SRSWOR", "Balanced Sampling"],
+      "Use Cases": ["Too much data", "Imbalanced datasets", "Computational constraints"]
+    },
+    "relations": [
+      {"type": "includes", "target": "SRSWR"},
+      {"type": "includes", "target": "SRSWOR"},
+      {"type": "includes", "target": "Balanced Sampling"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_4_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Simple Random Sampling Without Replacement (SRSWOR)",
+    "type": "Method",
+    "domain": "Statistics",
+    "definition": "A sampling technique where each element of the dataset has an equal chance of being selected, and once selected, it is not replaced.",
+    "description": "SRSWOR ensures unique samples by preventing duplicate selections. It is suitable when data volume is high, and balanced representation is needed without redundancy.",
+    "properties": {
+      "Formula": "Probability of selection = 1/N",
+      "Benefits": ["No duplicates", "Representative sample"],
+      "Drawbacks": ["Limited sample diversity if dataset is small"]
+    },
+    "relations": [
+      {"type": "subtype_of", "target": "Sampling Methods"},
+      {"type": "alternative_to", "target": "SRSWR"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_4_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Simple Random Sampling With Replacement (SRSWR)",
+    "type": "Method",
+    "domain": "Statistics",
+    "definition": "A sampling technique where each element can be selected more than once, as it is replaced back into the dataset after being drawn.",
+    "description": "SRSWR allows multiple instances of the same data point. It is often used in bootstrapping and data augmentation where variability is desired despite small datasets.",
+    "properties": {
+      "Formula": "Each element has equal probability in every draw.",
+      "Benefits": ["Allows bootstrapping", "Useful for small datasets"],
+      "Drawbacks": ["Potential bias if duplicates dominate"]
+    },
+    "relations": [
+      {"type": "subtype_of", "target": "Sampling Methods"},
+      {"type": "alternative_to", "target": "SRSWOR"},
+      {"type": "used_in", "target": "Artificial Data Generation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_4_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Balanced Sampling",
+    "type": "Method",
+    "domain": "Machine Learning",
+    "definition": "A sampling approach designed to achieve a predefined class distribution within a dataset, typically used to mitigate imbalance.",
+    "description": "Balanced sampling ensures that each class is proportionally represented in the training set. It can be implemented using random sampling or synthetic techniques.",
+    "properties": {
+      "Applications": ["Imbalanced classification", "Fair evaluation", "Data balancing"],
+      "Techniques": ["Stratified sampling", "SMOTE", "Resampling"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Imbalanced Data Handling"},
+      {"type": "requires", "target": "Sampling Methods"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_4_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Synthetic Minority Oversampling Technique (SMOTE)",
+    "type": "Algorithm",
+    "domain": "Machine Learning",
+    "definition": "A synthetic data generation method that creates new samples for minority classes by interpolating between existing samples and their nearest neighbors.",
+    "description": "SMOTE addresses data imbalance by generating synthetic instances instead of duplicating existing ones. It improves classifier performance in minority classes without distorting feature space distributions.",
+    "properties": {
+      "Process": [
+        "Find k nearest neighbors",
+        "Compute vector between sample and neighbor",
+        "Multiply by random factor",
+        "Add to sample to form synthetic data"
+      ],
+      "Benefits": ["Improves class balance", "Avoids overfitting on minority classes"],
+      "Challenges": ["Possible noise introduction", "Boundary overlapping"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Imbalanced Data Handling"},
+      {"type": "related_to", "target": "Balanced Sampling"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_4_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Performance Metrics",
+    "type": "Concept",
+    "domain": "Model Evaluation",
+    "definition": "Quantitative measures used to evaluate the predictive performance and quality of machine learning models.",
+    "description": "Performance metrics assess how well a model predicts or classifies data. In imbalanced datasets, traditional accuracy can be misleading; thus, alternative metrics such as F1-score, recall, and balanced accuracy are preferred.",
+    "properties": {
+      "Common Metrics": ["Accuracy", "Precision", "Recall", "F1-score", "Cohen’s Kappa", "Balanced Accuracy"],
+      "Problem": "Accuracy paradox—high accuracy may not indicate true model quality when class imbalance exists."
+    },
+    "relations": [
+      {"type": "includes", "target": "Accuracy"},
+      {"type": "includes", "target": "Precision"},
+      {"type": "includes", "target": "Recall"},
+      {"type": "includes", "target": "F1-score"},
+      {"type": "includes", "target": "Cohen’s Kappa"},
+      {"type": "includes", "target": "Balanced Accuracy"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_4_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  }
+]

@@ -1,0 +1,291 @@
+[
+  {
+    "entity": "Convolutional Neural Network (CNN)",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "A deep learning architecture composed of convolutional, pooling, and fully connected layers that automatically learn hierarchical visual features.",
+    "description": "CNNs dominate modern computer vision tasks by learning spatial hierarchies of features directly from raw image data without handcrafted descriptors.",
+    "properties": {
+      "Goal": "Automatically learn discriminative visual representations.",
+      "Applications": ["Image classification", "Object detection", "Semantic segmentation"],
+      "Methods": ["Backpropagation", "Convolutional filtering", "Pooling operations"],
+      "Examples": ["Exam 2018 - Modern methods", "Exam 2019 - High-level discussion"]
+    },
+    "relations": [
+      {"type": "extends", "target": "Feature descriptor"},
+      {"type": "related_to", "target": "Bag-of-Words"},
+      {"type": "used_in", "target": "Image segmentation"},
+      {"type": "contrasts_with", "target": "SIFT"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Bag-of-Words (BoW) Representation",
+    "type": "Representation",
+    "domain": "Feature Representation",
+    "definition": "An image representation that models visual content as a histogram of discrete visual words learned from feature descriptors.",
+    "description": "BoW models are popular for image classification and retrieval due to their simplicity and effectiveness, despite losing spatial information.",
+    "properties": {
+      "Goal": "Represent images as collections of visual words for classification or retrieval.",
+      "Applications": ["Image classification", "Content-based image retrieval", "Object recognition"],
+      "Methods": ["Feature extraction (e.g., SIFT, SURF)", "Visual vocabulary creation (e.g., K-Means)", "Histogram generation"],
+      "Examples": ["Image search engines", "Category recognition"]
+    },
+    "relations": [
+      {"type": "relies_on", "target": "Feature descriptor"},
+      {"type": "uses", "target": "K-Means Clustering"},
+      {"type": "related_to", "target": "Visual words"},
+      {"type": "contrasts_with", "target": "Spatial pyramid matching"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "02-features-00.pdf",
+      "created_at": "2023-10-27",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Visual words",
+    "type": "Concept",
+    "domain": "Feature Representation",
+    "definition": "A cluster center in the feature space, representing a common visual pattern or feature, used to build Bag-of-Words representations.",
+    "properties": {},
+    "relations": [],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "02-features-00.pdf",
+      "created_at": "2023-10-27",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Image segmentation",
+    "type": "Task/Capability",
+    "domain": "Segmentation",
+    "definition": "The process of partitioning a digital image into multiple segments (sets of pixels) to simplify and/or change the representation of an image into something that is more meaningful and easier to analyze.",
+    "description": "Image segmentation is typically used to locate objects and boundaries (lines, curves, etc.) in images. More precisely, image segmentation is the process of assigning a label to every pixel in an image such that pixels with the same label share certain characteristics.",
+    "properties": {
+      "Goal": "Simplify and/or change the representation of an image into something more meaningful.",
+      "Applications": ["Object recognition", "Medical imaging", "Autonomous driving", "Image editing"],
+      "Methods": ["Thresholding", "Clustering (e.g., K-Means)", "Region-based methods", "Edge-based methods", "Deep Learning (e.g., U-Net)"],
+      "Examples": ["Separating foreground from background", "Identifying different organs in a medical scan"]
+    },
+    "relations": [
+      {"type": "is_a_goal_of", "target": "Computer Vision"},
+      {"type": "uses", "target": "Thresholding"},
+      {"type": "uses", "target": "K-Means Clustering"},
+      {"type": "related_to", "target": "Object detection"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "04-binary-00.pdf",
+      "created_at": "2023-10-27",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Background Subtraction",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "A motion-based segmentation approach that isolates moving foreground objects by comparing each frame to a background model.",
+    "description": "Widely used in video surveillance, motion analysis, and dynamic scene understanding.",
+    "properties": {
+      "Goal": "Separate moving objects from a static or slowly changing background.",
+      "Applications": ["Surveillance", "Traffic monitoring", "Gesture recognition"],
+      "Methods": ["Frame differencing", "Gaussian mixture models", "Otsu thresholding"],
+      "Examples": ["Exam 2018 - Segmentation question"]
+    },
+    "relations": [
+      {"type": "extends", "target": "Image segmentation"},
+      {"type": "uses", "target": "Otsu’s Thresholding Method"},
+      {"type": "supports", "target": "Optical flow"},
+      {"type": "related_to", "target": "Motion estimation"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Image Segmentation",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "The process of partitioning an image into semantically meaningful regions based on intensity, color, or texture.",
+    "description": "Segmentation forms the foundation for object detection, recognition, and measurement by assigning pixels to distinct labels.",
+    "properties": {
+      "Goal": "Divide an image into coherent regions for further analysis.",
+      "Applications": ["Object detection", "Medical imaging", "Scene understanding"],
+      "Methods": ["Thresholding", "Region growing", "Graph-based segmentation"],
+      "Examples": ["Exam 2019 - Principle", "Exam 2020 - Segmentation method"]
+    },
+    "relations": [
+      {"type": "foundation_for", "target": "Background Subtraction"},
+      {"type": "used_with", "target": "HSV Color Space"},
+      {"type": "supported_by", "target": "Otsu’s Thresholding Method"},
+      {"type": "used_in", "target": "Texture classification"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Lucas–Kanade Optical Flow",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "A differential method for optical flow estimation assuming constant motion within a local neighborhood.",
+    "description": "Solves the aperture problem by enforcing spatial smoothness; widely used for motion tracking and video stabilization.",
+    "properties": {
+      "Goal": "Estimate pixel displacement between consecutive frames.",
+      "Applications": ["Motion tracking", "Stabilization", "3D reconstruction"],
+      "Methods": ["Gradient constraint equation", "Least-squares solution over a window"],
+      "Examples": ["Exam 2019 - Optical flow task"]
+    },
+    "relations": [
+      {"type": "extends", "target": "Optical flow"},
+      {"type": "addresses", "target": "Aperture Problem"},
+      {"type": "used_in", "target": "Stereo matching"},
+      {"type": "supports", "target": "Structure-from-Motion"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Structure-from-Motion (SfM)",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "A technique that recovers 3D structure and camera motion from multiple overlapping 2D images.",
+    "description": "Combines feature matching, triangulation, and bundle adjustment to produce dense reconstructions and camera pose estimates.",
+    "properties": {
+      "Goal": "Estimate 3D geometry and motion from image sequences.",
+      "Applications": ["3D reconstruction", "AR/VR", "Robot localization"],
+      "Methods": ["Feature matching", "Bundle adjustment", "Triangulation"],
+      "Examples": ["Exam 2019 - Method explanation", "Exam 2020 - Stereo extension"]
+    },
+    "relations": [
+      {"type": "extends", "target": "Triangulation"},
+      {"type": "requires", "target": "Camera Extrinsics"},
+      {"type": "related_to", "target": "Epipolar Constraint"},
+      {"type": "used_with", "target": "RANSAC"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Texture Analysis",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "The process of quantifying image surface characteristics using spatial variations in intensity or color.",
+    "description": "Includes statistical, structural, and filter-based approaches to characterize surface patterns or material properties.",
+    "properties": {
+      "Goal": "Extract numerical features that describe texture patterns.",
+      "Applications": ["Texture classification", "Surface inspection", "Remote sensing"],
+      "Methods": ["Co-occurrence matrices", "Filter banks", "LBP histograms"],
+      "Examples": ["Exam 2015 - Seashell texture", "Exam 2018 - Filter bank task"]
+    },
+    "relations": [
+      {"type": "foundation_for", "target": "Local Binary Patterns (LBP)"},
+      {"type": "related_to", "target": "Texture Classification"},
+      {"type": "used_with", "target": "Color features"},
+      {"type": "evaluated_by", "target": "Mahalanobis distance"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Filter Bank Methods",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "A texture analysis technique using a set of filters (e.g., Gabor, Laws, or wavelets) to capture multi-scale, multi-orientation texture information.",
+    "description": "Used to extract texture features robust to illumination and rotation changes, often preceding classification or retrieval.",
+    "properties": {
+      "Goal": "Describe texture using responses to multiple spatial-frequency filters.",
+      "Applications": ["Texture classification", "Defect detection", "Material identification"],
+      "Methods": ["Gabor filters", "Laws masks", "Energy feature computation"],
+      "Examples": ["Exam 2016 - Texture task", "Exam 2019 - Conceptual question"]
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Local Binary Patterns (LBP)"},
+      {"type": "supports", "target": "Texture Classification"},
+      {"type": "evaluated_by", "target": "Euclidean distance"},
+      {"type": "used_with", "target": "K-Means Clustering"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Edge Detection",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "A fundamental operation that detects local discontinuities in intensity to outline object boundaries.",
+    "description": "Typical operators like Sobel, Prewitt, or Canny emphasize intensity gradients to delineate shapes for segmentation and recognition.",
+    "properties": {
+      "Goal": "Identify object boundaries via intensity gradients.",
+      "Applications": ["Shape analysis", "Hough Transform", "Segmentation preprocessing"],
+      "Methods": ["Gradient computation", "Thresholding", "Non-maximum suppression"],
+      "Examples": ["Exam 2015 - Preprocessing", "Exam 2018 - Edge-based Hough task"]
+    },
+    "relations": [
+      {"type": "foundation_for", "target": "Hough Transform"},
+      {"type": "used_with", "target": "RANSAC"},
+      {"type": "supports", "target": "Segmentation"},
+      {"type": "related_to", "target": "Optical Flow"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Graph-Based Segmentation",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "An image segmentation method that models the image as a graph, where pixels or regions are nodes and edge weights represent similarity.",
+    "description": "Cuts or merges in the graph minimize a global cost function, yielding coherent region boundaries.",
+    "properties": {
+      "Goal": "Group pixels by minimizing inter-region dissimilarity.",
+      "Applications": ["Object segmentation", "Superpixel generation", "Video segmentation"],
+      "Methods": ["Normalized cuts", "Minimum spanning tree", "Spectral clustering"],
+      "Examples": ["Exam 2018 - Segmentation discussion"]
+    },
+    "relations": [
+      {"type": "extends", "target": "Image segmentation"},
+      {"type": "related_to", "target": "K-Means Clustering"},
+      {"type": "supports", "target": "Object detection"},
+      {"type": "evaluated_by", "target": "Confusion matrix"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  }
+]

@@ -1,0 +1,277 @@
+[
+  {
+    "entity": "Specular Reflection",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "Specular reflection is the mirror-like reflection of light from a surface in which light from a single incoming direction is reflected into a single outgoing direction, following the law of reflection.",
+    "description": "It produces highlights and sharp reflections, characteristic of smooth, shiny surfaces. In computer vision, specular highlights are often modeled separately from diffuse reflection to improve surface reconstruction and material estimation.",
+    "properties": {
+      "Goal": "Model mirror-like light behavior on smooth surfaces.",
+      "Applications": ["Shape from shading", "Material classification", "Highlight removal"],
+      "Methods": ["Law of reflection: angle of incidence = angle of reflection"],
+      "Examples": ["Shiny metal surfaces", "Water reflections", "Glass"]
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Diffuse Reflection"},
+      {"type": "part_of", "target": "Bidirectional Reflectance Distribution Function"},
+      {"type": "used_in", "target": "Phong Reflection Model"},
+      {"type": "related_to", "target": "Fresnel Equations"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "03-color-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Diffuse Reflection",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "Diffuse reflection occurs when light striking a rough surface is scattered in many directions, with equal radiance in all directions (Lambertian reflection).",
+    "description": "It is responsible for the matte appearance of non-shiny surfaces. In vision, it is used to estimate surface orientation and albedo under known lighting.",
+    "properties": {
+      "Goal": "Model light scattering from rough, matte surfaces.",
+      "Applications": ["Photometric stereo", "Albedo estimation", "Shape recovery"],
+      "Methods": ["Lambert's cosine law: intensity ∝ cos(θ)"],
+      "Examples": ["Paper", "Cloth", "Painted walls"]
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Specular Reflection"},
+      {"type": "part_of", "target": "Bidirectional Reflectance Distribution Function"},
+      {"type": "modeled_by", "target": "Lambertian Reflectance"},
+      {"type": "used_in", "target": "Shape from Shading"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "03-color-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Light",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "Light is electromagnetic radiation within the visible spectrum (approximately 380–700 nm) that can be perceived by the human visual system.",
+    "description": "In computer vision, light is modeled as energy propagating through space, interacting with matter via reflection, transmission, and absorption. Its spectral composition determines perceived color.",
+    "properties": {
+      "Goal": "Enable visual perception and image formation.",
+      "Applications": ["Illumination modeling", "Color analysis", "Radiometry"],
+      "Methods": ["Spectral power distribution", "Wavelength-based analysis"],
+      "Examples": ["Sunlight", "LED illumination", "Laser light"]
+    },
+    "relations": [
+      {"type": "measured_in", "target": "Wavelength"},
+      {"type": "interacts_via", "target": "Reflection"},
+      {"type": "interacts_via", "target": "Transmission"},
+      {"type": "interacts_via", "target": "Absorption"},
+      {"type": "perceived_as", "target": "Color"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "03-color-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Visible Spectrum",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "The visible spectrum is the portion of the electromagnetic spectrum with wavelengths between approximately 380 and 700 nanometers, detectable by the human eye.",
+    "description": "Different wavelengths within this range are perceived as different colors, from violet (short) to red (long). It forms the basis for trichromatic color vision in humans and most imaging sensors.",
+    "properties": {
+      "Goal": "Define the range of light responsible for color vision.",
+      "Applications": ["Color imaging", "Spectral analysis", "Display technology"],
+      "Methods": ["Spectrophotometry", "Prism dispersion"],
+      "Examples": ["380 nm → violet", "550 nm → green", "700 nm → red"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Electromagnetic Spectrum"},
+      {"type": "perceived_by", "target": "Human Visual System"},
+      {"type": "captured_by", "target": "RGB Sensor"},
+      {"type": "basis_for", "target": "Color"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "03-color-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Illuminating Source",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "An illuminating source is any object or phenomenon that emits electromagnetic radiation, contributing directly to scene illumination.",
+    "description": "The perceived color depends on the spectral power distribution of the emitted light. Multiple sources combine additively. Examples include natural (sun) and artificial (bulbs) light.",
+    "properties": {
+      "Goal": "Provide primary light energy to a scene.",
+      "Applications": ["Color constancy", "White balancing", "Relighting"],
+      "Methods": ["Additive color mixing", "Spectral emission modeling"],
+      "Examples": ["Sun", "Incandescent bulb", "Fluorescent light", "Monitor screen"]
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Reflecting Source"},
+      {"type": "follows", "target": "Additive Rule"},
+      {"type": "emits", "target": "Light"},
+      {"type": "affects", "target": "Scene Illumination"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "03-color-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Reflecting Source",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "A reflecting source is a surface that reflects incident light from illuminating sources, contributing to the light reaching the observer or camera.",
+    "description": "Its color depends on which wavelengths are absorbed and which are reflected (subtractive mixing). Pigments and dyes are common examples.",
+    "properties": {
+      "Goal": "Modulate incident light to produce colored appearance.",
+      "Applications": ["Color segmentation", "Material recognition", "Reflectance estimation"],
+      "Methods": ["Subtractive color mixing", "Spectral reflectance curves"],
+      "Examples": ["Red paint", "Green leaf", "Blue fabric"]
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Illuminating Source"},
+      {"type": "follows", "target": "Subtractive Rule"},
+      {"type": "reflects", "target": "Light"},
+      {"type": "depends_on", "target": "Surface Material"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "03-color-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Additive Rule",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "The additive rule states that the total spectrum observed from multiple illuminating sources is the sum of their individual spectral power distributions.",
+    "description": "This linear superposition applies to light sources emitting directly into the scene. It is fundamental to color mixing in displays and multi-light illumination models.",
+    "properties": {
+      "Goal": "Predict combined effect of multiple light emitters.",
+      "Applications": ["Stage lighting", "Display calibration", "Multi-spectral imaging"],
+      "Methods": ["Spectral summation: E_total(λ) = Σ E_i(λ)"],
+      "Examples": ["Mixing red + green light → yellow"]
+    },
+    "relations": [
+      {"type": "applies_to", "target": "Illuminating Source"},
+      {"type": "basis_for", "target": "RGB Color Model"},
+      {"type": "contrasts_with", "target": "Subtractive Rule"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "03-color-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Subtractive Rule",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "The subtractive rule describes how the perceived color of mixed reflecting sources depends on the remaining wavelengths after selective absorption by each material.",
+    "description": "Used in printing and pigments, it models how filters or dyes remove parts of the spectrum. The result is the intersection of reflected wavelengths.",
+    "properties": {
+      "Goal": "Model color formation via selective light absorption.",
+      "Applications": ["Color printing (CMYK)", "Paint mixing", "Filter design"],
+      "Methods": ["Multiplicative reflectance: R_total(λ) = Π R_i(λ)"],
+      "Examples": ["Yellow + magenta filter → red transmission"]
+    },
+    "relations": [
+      {"type": "applies_to", "target": "Reflecting Source"},
+      {"type": "basis_for", "target": "CMYK Color Model"},
+      {"type": "contrasts_with", "target": "Additive Rule"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "03-color-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Reflection",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "Reflection is the process by which light bounces off a surface, changing direction without being absorbed or transmitted.",
+    "description": "It can be specular (mirror-like) or diffuse (scattered), depending on surface roughness. Essential for image formation in most vision systems.",
+    "properties": {
+      "Goal": "Redirect incident light toward observer or sensor.",
+      "Applications": ["Shape reconstruction", "BRDF estimation", "Photometric analysis"],
+      "Methods": ["Law of reflection", "Fresnel equations"],
+      "Examples": ["Mirror", "Polished metal", "Matte paper"]
+    },
+    "relations": [
+      {"type": "includes", "target": "Specular Reflection"},
+      {"type": "includes", "target": "Diffuse Reflection"},
+      {"type": "contrasts_with", "target": "Transmission"},
+      {"type": "contrasts_with", "target": "Absorption"},
+      {"type": "governed_by", "target": "Surface Properties"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "03-color-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Transmission",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "Transmission is the passage of light through a material without significant scattering or absorption, typically in transparent or translucent media.",
+    "description": "It allows light to propagate through objects like glass or water, often with refraction. Important in underwater imaging and optical systems.",
+    "properties": {
+      "Goal": "Allow light to pass through matter.",
+      "Applications": ["Lens modeling", "Underwater vision", "Medical imaging"],
+      "Methods": ["Beer-Lambert law", "Refraction (Snell's law)"],
+      "Examples": ["Clear glass", "Water", "Air"]
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Reflection"},
+      {"type": "contrasts_with", "target": "Absorption"},
+      {"type": "causes", "target": "Refraction"},
+      {"type": "modeled_in", "target": "Optical Model"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "03-color-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Absorption",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "Absorption is the process by which the energy of light is converted into another form (usually heat) when interacting with matter.",
+    "description": "It selectively removes certain wavelengths, determining the color of reflecting objects. Critical for understanding material appearance and spectral selectivity.",
+    "properties": {
+      "Goal": "Convert light energy into internal energy.",
+      "Applications": ["Spectral imaging", "Color filtering", "Thermal imaging"],
+      "Methods": ["Absorption coefficient", "Beer-Lambert law"],
+      "Examples": ["Black surface absorbing all light", "Red filter absorbing blue/green"]
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Reflection"},
+      {"type": "contrasts_with", "target": "Transmission"},
+      {"type": "determines", "target": "Perceived Color"},
+      {"type": "modeled_by", "target": "Spectral Absorption Curve"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "03-color-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  }
+]

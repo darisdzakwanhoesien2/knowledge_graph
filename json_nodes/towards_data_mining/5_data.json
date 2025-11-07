@@ -1,0 +1,265 @@
+[
+  {
+    "entity": "Missing Data",
+    "type": "Concept",
+    "domain": "Data Science",
+    "definition": "Data values that are absent or undefined in a dataset due to various reasons such as measurement errors, data integration issues, or survey non-response.",
+    "description": "Missing data are common in real-world datasets and can lead to biased estimates, invalid conclusions, and limited generalizability if not properly handled. Understanding the mechanism of missingness is critical for choosing the right imputation or estimation method.",
+    "properties": {
+      "Causes": [
+        "Equipment malfunction or sensor errors",
+        "Manual data entry mistakes",
+        "Out-of-range measurements",
+        "Survey non-response",
+        "Combining datasets with incompatible schemas"
+      ],
+      "Consequences": [
+        "Biased results",
+        "Reduced statistical power",
+        "Invalid modeling outcomes"
+      ]
+    },
+    "relations": [
+      {"type": "has_subtype", "target": "Missing Completely at Random"},
+      {"type": "has_subtype", "target": "Missing at Random"},
+      {"type": "has_subtype", "target": "Missing Not at Random"},
+      {"type": "handled_by", "target": "Imputation"},
+      {"type": "handled_by", "target": "Deletion"},
+      {"type": "handled_by", "target": "Maximum Likelihood Estimation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_5_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Missing Completely at Random (MCAR)",
+    "type": "Mechanism",
+    "domain": "Statistics",
+    "definition": "A missingness mechanism where the probability that data are missing is independent of both observed and unobserved data.",
+    "description": "In MCAR, missing values occur purely by chance and are unrelated to any variables in the dataset. Analyses on MCAR data remain unbiased, although statistical power decreases due to data loss.",
+    "properties": {
+      "Example": "Random equipment failure or random sampling exclusion.",
+      "Implication": "Deleting missing data under MCAR does not bias results but reduces dataset size."
+    },
+    "relations": [
+      {"type": "subtype_of", "target": "Missing Data"},
+      {"type": "related_to", "target": "Complete-Case Analysis"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_5_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Missing at Random (MAR)",
+    "type": "Mechanism",
+    "domain": "Statistics",
+    "definition": "A missingness mechanism where the probability that data are missing depends on observed data but not on the missing data itself.",
+    "description": "In MAR, the reason for missingness can be explained by other known variables in the dataset, such as a particular sensor brand failing more often. Many modern imputation and maximum likelihood methods assume MAR.",
+    "properties": {
+      "Example": "A certain device model frequently fails to record measurements.",
+      "Implication": "Bias can be reduced if the imputation model includes the variables related to the missingness mechanism."
+    },
+    "relations": [
+      {"type": "subtype_of", "target": "Missing Data"},
+      {"type": "used_in", "target": "Multiple Imputation"},
+      {"type": "used_in", "target": "Maximum Likelihood Estimation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_5_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Missing Not at Random (MNAR)",
+    "type": "Mechanism",
+    "domain": "Statistics",
+    "definition": "A missingness mechanism where the probability of missing data depends on the missing value itself or on unobserved factors.",
+    "description": "MNAR occurs when the reason for missingness is related to the actual missing values, such as patients with severe illness skipping health surveys. MNAR models are complex and often difficult to fit correctly.",
+    "properties": {
+      "Example": "A sensor fails more often at high temperature readings.",
+      "Implication": "Analyses assuming MAR may be biased when data are MNAR."
+    },
+    "relations": [
+      {"type": "subtype_of", "target": "Missing Data"},
+      {"type": "requires", "target": "Specialized Statistical Modeling"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_5_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Deletion",
+    "type": "Method",
+    "domain": "Data Pre-processing",
+    "definition": "A method for handling missing data by removing incomplete records or variables from analysis.",
+    "description": "Deletion is the simplest way to deal with missing data but often reduces dataset size and statistical power. It can lead to bias if missingness is not completely random.",
+    "properties": {
+      "Variants": ["Listwise Deletion", "Pairwise Deletion"],
+      "Pros": ["Easy to implement", "No imputation needed"],
+      "Cons": ["Loss of data", "Possible bias under MAR or MNAR"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Data Cleaning"},
+      {"type": "alternative_to", "target": "Imputation"},
+      {"type": "influences", "target": "Bias"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_5_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Imputation",
+    "type": "Process",
+    "domain": "Data Science",
+    "definition": "The process of replacing missing data with substituted values based on statistical or machine learning methods.",
+    "description": "Imputation creates complete datasets by estimating missing values from observed data. It helps maintain sample size and reduce bias, provided the missingness mechanism is appropriately modeled.",
+    "properties": {
+      "Types": [
+        "Mean Imputation",
+        "Regression Imputation",
+        "Stochastic Regression Imputation",
+        "Hot Deck Imputation",
+        "Cold Deck Imputation",
+        "Multiple Imputation",
+        "Machine Learning-Based Imputation"
+      ],
+      "Advantages": ["Preserves data volume", "Can reduce bias"],
+      "Limitations": ["Can distort variability", "Dependent on assumptions"]
+    },
+    "relations": [
+      {"type": "applied_to", "target": "Missing Data"},
+      {"type": "implemented_by", "target": "Regression Imputation"},
+      {"type": "implemented_by", "target": "Multiple Imputation"},
+      {"type": "implemented_by", "target": "Mean Imputation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_5_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Mean Imputation",
+    "type": "Method",
+    "domain": "Statistics",
+    "definition": "A simple imputation method where missing numerical values are replaced by the mean of the observed values.",
+    "description": "Mean imputation is widely used but can reduce variance, distort correlations, and bias relationships between variables. It is only valid under MCAR assumptions.",
+    "properties": {
+      "Benefits": ["Easy to implement", "Restores dataset completeness"],
+      "Drawbacks": ["Underestimates variability", "Biases covariance and regression coefficients"]
+    },
+    "relations": [
+      {"type": "subtype_of", "target": "Imputation"},
+      {"type": "related_to", "target": "Regression Imputation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_5_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Regression Imputation",
+    "type": "Method",
+    "domain": "Statistics",
+    "definition": "An imputation technique that predicts missing values using regression models based on other observed variables.",
+    "description": "Regression imputation can preserve relationships between variables but reduces variance in the dataset. It assumes that missingness can be modeled using observed predictors.",
+    "properties": {
+      "Assumptions": ["Data is MAR", "Predictor variables are complete"],
+      "Challenges": ["May produce perfect fits", "Biased estimates if model misspecified"]
+    },
+    "relations": [
+      {"type": "subtype_of", "target": "Imputation"},
+      {"type": "improved_by", "target": "Stochastic Regression Imputation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_5_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Stochastic Regression Imputation",
+    "type": "Method",
+    "domain": "Statistics",
+    "definition": "An extension of regression imputation that adds random noise to restore natural variability to the imputed values.",
+    "description": "This method adds random residuals to regression predictions, maintaining relationships between variables while accounting for uncertainty. It avoids perfectly predicted values and better reflects true data variability.",
+    "properties": {
+      "Benefits": ["Restores variance", "Preserves relationships between variables"],
+      "Limitations": ["Still underestimates uncertainty", "Possible impossible values"]
+    },
+    "relations": [
+      {"type": "extends", "target": "Regression Imputation"},
+      {"type": "related_to", "target": "Multiple Imputation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_5_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Multiple Imputation",
+    "type": "Method",
+    "domain": "Statistics",
+    "definition": "A comprehensive imputation framework that replaces missing data with multiple plausible values, generating several complete datasets that are analyzed and combined.",
+    "description": "Multiple imputation captures the uncertainty inherent in missing data by creating multiple imputed datasets, analyzing them separately, and pooling results. It provides unbiased parameter estimates and valid standard errors under MAR assumptions.",
+    "properties": {
+      "Phases": ["Imputation phase", "Analysis phase", "Pooling phase"],
+      "Advantages": ["Preserves variance", "Handles uncertainty", "Suitable for classification"],
+      "Metrics": ["Within-imputation variance (U)", "Between-imputation variance (B)", "Total variance (T)"]
+    },
+    "relations": [
+      {"type": "subtype_of", "target": "Imputation"},
+      {"type": "requires", "target": "MAR Assumption"},
+      {"type": "related_to", "target": "Maximum Likelihood Estimation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_5_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Maximum Likelihood Estimation (MLE)",
+    "type": "Method",
+    "domain": "Statistics",
+    "definition": "A statistical estimation technique that finds parameter values maximizing the likelihood of observed data, including cases with missing values.",
+    "description": "MLE utilizes all available data to estimate model parameters without directly imputing missing values. It works by optimizing a log-likelihood function based on the observed data. Expectation-Maximization (EM) is a common iterative algorithm for this purpose.",
+    "properties": {
+      "Steps": ["Define likelihood function", "Compute log-likelihood", "Optimize via EM or Newton-Raphson"],
+      "Benefits": ["Uses all available data", "Produces unbiased estimates under MAR"],
+      "Limitations": ["Underestimates standard errors", "Requires numerical data"]
+    },
+    "relations": [
+      {"type": "implemented_by", "target": "Expectation-Maximization Algorithm"},
+      {"type": "alternative_to", "target": "Multiple Imputation"},
+      {"type": "applied_to", "target": "Missing Data"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_5_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  }
+]

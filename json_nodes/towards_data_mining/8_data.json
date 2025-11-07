@@ -1,0 +1,214 @@
+[
+  {
+    "entity": "Model Generalization",
+    "type": "Concept",
+    "domain": "Machine Learning",
+    "definition": "The ability of a model to perform well on new, unseen data rather than merely on the data used for training.",
+    "description": "Model generalization measures how effectively a model captures the underlying data distribution and applies learned patterns to new observations. High generalization indicates robustness and low overfitting. Poor generalization often results from excessive model complexity or insufficient training data.",
+    "properties": {
+      "Importance": [
+        "Ensures model performance on real-world data",
+        "Prevents overfitting to training data",
+        "Improves reliability and interpretability"
+      ],
+      "Indicators": ["Low gap between training and testing error", "Stable performance across datasets"]
+    },
+    "relations": [
+      {"type": "affected_by", "target": "Sample Size"},
+      {"type": "affected_by", "target": "Model Complexity"},
+      {"type": "ensured_by", "target": "Cross-Validation"},
+      {"type": "related_to", "target": "Overfitting"},
+      {"type": "related_to", "target": "Underfitting"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_8_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Descriptive Modeling",
+    "type": "Model Type",
+    "domain": "Data Mining",
+    "definition": "A modeling approach focused on summarizing or representing data structure in a compact form without making predictions.",
+    "description": "Descriptive models aim to find inherent patterns or relationships in data, such as grouping or correlations, rather than making future predictions. Common techniques include clustering, association rule mining, and dimensionality reduction.",
+    "properties": {
+      "Goal": "Describe structure and relationships within data",
+      "Examples": ["Cluster Analysis", "Association Rules", "Principal Component Analysis (PCA)"]
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Predictive Modeling"},
+      {"type": "contrasts_with", "target": "Explanatory Modeling"},
+      {"type": "used_in", "target": "Exploratory Data Analysis"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_8_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Explanatory Modeling",
+    "type": "Model Type",
+    "domain": "Statistics",
+    "definition": "A modeling approach used to test causal hypotheses by analyzing relationships between variables.",
+    "description": "Explanatory models are designed to confirm theoretical relationships, such as cause-and-effect, and are commonly applied in medical, social, and behavioral sciences. They focus on inference rather than prediction.",
+    "properties": {
+      "Examples": ["Linear Regression", "Logistic Regression", "Structural Equation Modeling"],
+      "Goals": ["Understand relationships", "Test scientific hypotheses"],
+      "Approach": "Retrospective and confirmatory"
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Predictive Modeling"},
+      {"type": "related_to", "target": "Statistical Inference"},
+      {"type": "requires", "target": "Causal Hypothesis"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_8_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Predictive Modeling",
+    "type": "Model Type",
+    "domain": "Machine Learning",
+    "definition": "A modeling approach that uses historical data to predict future or unseen observations.",
+    "description": "Predictive models estimate output variables (Y) based on input variables (X). They are data-driven, focusing on accuracy and generalization rather than inference. Examples include decision trees, neural networks, and support vector machines.",
+    "properties": {
+      "Goal": "Predict outcomes for new data",
+      "Characteristics": ["Exploratory", "Prospective", "Accuracy-driven"],
+      "Examples": ["Random Forest", "SVM", "Neural Network Classifier"]
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Explanatory Modeling"},
+      {"type": "related_to", "target": "Model Generalization"},
+      {"type": "evaluated_by", "target": "Cross-Validation"},
+      {"type": "related_to", "target": "Overfitting"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_8_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Overfitting",
+    "type": "Phenomenon",
+    "domain": "Machine Learning",
+    "definition": "A modeling error that occurs when a model learns noise or random fluctuations in the training data instead of the underlying pattern.",
+    "description": "Overfitting leads to low training error but high testing error. It occurs when models are overly complex relative to the amount of available data, reducing generalization performance.",
+    "properties": {
+      "Symptoms": ["Low training error, high test error", "Unstable predictions on new data"],
+      "Causes": ["Small dataset", "Excessive model complexity", "Insufficient regularization"]
+    },
+    "relations": [
+      {"type": "opposite_of", "target": "Underfitting"},
+      {"type": "reduced_by", "target": "Cross-Validation"},
+      {"type": "reduced_by", "target": "Regularization"},
+      {"type": "related_to", "target": "Model Generalization"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_8_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Underfitting",
+    "type": "Phenomenon",
+    "domain": "Machine Learning",
+    "definition": "A modeling condition where the model is too simple to capture the underlying structure of the data, resulting in poor performance on both training and test data.",
+    "description": "Underfitting occurs when a model fails to learn the essential relationships between input and output variables. It usually happens when the model lacks sufficient complexity or training iterations.",
+    "properties": {
+      "Symptoms": ["High bias", "Low variance", "Poor performance on all datasets"],
+      "Causes": ["Too simple model", "Inadequate training", "High regularization"]
+    },
+    "relations": [
+      {"type": "opposite_of", "target": "Overfitting"},
+      {"type": "related_to", "target": "Model Bias"},
+      {"type": "affects", "target": "Model Generalization"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_8_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Sample Size",
+    "type": "Parameter",
+    "domain": "Statistical Modeling",
+    "definition": "The number of observations or data points used to train and evaluate a model.",
+    "description": "Sample size affects both the bias and variance of a model. Small datasets may cause overfitting, while large ones improve generalizability but increase computational costs. Predictive models generally require larger samples than explanatory models.",
+    "properties": {
+      "Effects": [
+        "Small sample size → overfitting and poor generalization",
+        "Large sample size → reduced variance and improved precision",
+        "Beyond certain size → diminishing returns"
+      ],
+      "Guidelines": ["Larger data for prediction", "Smaller for inference"]
+    },
+    "relations": [
+      {"type": "affects", "target": "Model Generalization"},
+      {"type": "affects", "target": "Statistical Power"},
+      {"type": "used_in", "target": "Training and Testing"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_8_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Cross-Validation",
+    "type": "Method",
+    "domain": "Model Evaluation",
+    "definition": "A resampling technique used to assess the performance and generalization of a model by partitioning the dataset into subsets.",
+    "description": "Cross-validation divides the data into multiple folds, training the model on some while testing on others. It provides a more reliable estimate of model performance than a single train-test split, especially with small datasets.",
+    "properties": {
+      "Variants": ["k-fold cross-validation", "Leave-one-out validation"],
+      "Benefits": ["Reduces variance of performance estimates", "Detects overfitting", "Efficient use of data"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Model Evaluation"},
+      {"type": "reduces", "target": "Overfitting"},
+      {"type": "requires", "target": "Data Partitioning"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_8_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Model Selection",
+    "type": "Process",
+    "domain": "Machine Learning",
+    "definition": "The process of choosing the best-performing model or configuration among multiple candidates based on validation metrics.",
+    "description": "Model selection involves comparing model performance, complexity, and interpretability to find the optimal balance between bias and variance. Simpler models are often more generalizable and interpretable.",
+    "properties": {
+      "Criteria": ["Low validation error", "High interpretability", "Minimal overfitting"],
+      "Factors": ["Model type", "Hyperparameters", "Feature selection"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Model Generalization"},
+      {"type": "related_to", "target": "Bias-Variance Tradeoff"},
+      {"type": "requires", "target": "Validation Set"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_8_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  }
+]

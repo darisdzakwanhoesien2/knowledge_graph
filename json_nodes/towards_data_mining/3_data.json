@@ -1,0 +1,225 @@
+[
+  {
+    "entity": "Data Collection",
+    "type": "Process",
+    "domain": "Data Science",
+    "definition": "The process of systematically gathering and measuring information from a variety of sources to answer research questions, test hypotheses, and evaluate outcomes.",
+    "description": "Effective data collection requires careful planning, proper methodology, and awareness of ethical and technical constraints. Poorly designed collection can result in bias, errors, or data loss. Documentation and reproducibility are crucial for trustworthiness.",
+    "properties": {
+      "Steps": [
+        "Define problem, goals, and objectives",
+        "Plan methodology and instruments",
+        "Conduct pilot collection",
+        "Perform final collection",
+        "Report and analyze problems"
+      ],
+      "Considerations": ["Repeatability", "Accuracy", "Stability", "Reproducibility"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Knowledge Discovery in Databases"},
+      {"type": "requires", "target": "Data Planning"},
+      {"type": "related_to", "target": "Data Quality"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_3_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Data Planning",
+    "type": "Task",
+    "domain": "Data Science",
+    "definition": "The preparatory phase of data collection that involves defining the purpose, method, timing, and logistics of gathering data.",
+    "description": "Proper planning ensures that the data collected answers the research question, avoids unnecessary costs, and minimizes errors. It includes defining data types, intervals, devices, and storage procedures.",
+    "properties": {
+      "Elements": [
+        "Problem definition",
+        "Method selection",
+        "Sample size determination",
+        "Measurement intervals",
+        "Documentation strategy"
+      ],
+      "Best Practices": ["Iterate procedures", "Pilot small samples", "Keep methods simple"]
+    },
+    "relations": [
+      {"type": "enables", "target": "Data Collection"},
+      {"type": "supports", "target": "Experimental Design"},
+      {"type": "improves", "target": "Data Quality"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_3_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Sampling",
+    "type": "Method",
+    "domain": "Statistics",
+    "definition": "The process of selecting a subset of individuals or observations from a population to estimate characteristics of the whole population.",
+    "description": "Proper sampling ensures statistical significance and reduces bias. It requires defining population size, margin of error, confidence interval, and expected dropout rate.",
+    "properties": {
+      "Parameters": [
+        "Population size",
+        "Confidence interval (Z-score)",
+        "Margin of error",
+        "Standard deviation (σ)"
+      ],
+      "Challenges": ["Dropout rate", "Selection bias", "Underrepresentation"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Data Collection"},
+      {"type": "related_to", "target": "Statistical Significance"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_3_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Stationary Data",
+    "type": "Data Type",
+    "domain": "Signal Processing",
+    "definition": "Data whose statistical properties such as mean and variance do not change over time.",
+    "description": "Stationary elements remain stable during observation and are easier to model. Examples include controlled mechanical systems and constant environmental measurements.",
+    "properties": {
+      "Examples": ["Temperature-controlled experiments", "Static sensors"],
+      "Characteristics": ["Constant mean", "Constant variance", "Time-invariant"]
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Non-Stationary Data"},
+      {"type": "used_in", "target": "Time Series Analysis"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_3_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Non-Stationary Data",
+    "type": "Data Type",
+    "domain": "Signal Processing",
+    "definition": "Data whose statistical properties such as mean, variance, or correlations change over time.",
+    "description": "Non-stationary data comes from systems or subjects that evolve, such as humans, biological processes, or changing environments. Proper modeling requires segmentation and adaptive methods.",
+    "properties": {
+      "Sources": ["Human behavior", "Environmental change", "Mechanical wear", "Seasonal variation"],
+      "Techniques": ["Windowing", "Adaptive filtering", "Time normalization"]
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Stationary Data"},
+      {"type": "used_in", "target": "Human-Centered Data Collection"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_3_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Human Data Collection",
+    "type": "Process",
+    "domain": "Human-Centered Data Science",
+    "definition": "The collection of data involving human participants, requiring special ethical, methodological, and technical considerations.",
+    "description": "Humans are non-stationary, complex systems that change over time. Data collection involving humans requires respect for autonomy, informed consent, privacy protection, and avoidance of harm. It also involves practical challenges like device failure, signal blocking, or behavioral variability.",
+    "properties": {
+      "Challenges": [
+        "Device malfunction",
+        "Human variability",
+        "Consent management",
+        "Sensor connectivity",
+        "Instruction adherence"
+      ],
+      "Ethical Requirements": ["Respect for persons", "Beneficence", "Justice", "Confidentiality"]
+    },
+    "relations": [
+      {"type": "requires", "target": "Informed Consent"},
+      {"type": "related_to", "target": "Ethical Data Mining"},
+      {"type": "example_of", "target": "Non-Stationary Data"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_3_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Bias",
+    "type": "Concept",
+    "domain": "Research Methodology",
+    "definition": "A systematic deviation or error in data collection, analysis, or interpretation that leads to incorrect conclusions.",
+    "description": "Bias may arise from researchers, respondents, or sampling design. Recognizing and mitigating bias ensures fairness, accuracy, and generalizability of findings.",
+    "properties": {
+      "Types": ["Researcher bias", "Respondent bias", "Human data bias"],
+      "Examples": [
+        "Selective reporting",
+        "Overrepresentation of certain groups",
+        "Unit conversion errors (e.g., Mars Climate Orbiter case)"
+      ]
+    },
+    "relations": [
+      {"type": "mitigated_by", "target": "Randomized Controlled Trial"},
+      {"type": "caused_by", "target": "Poor Experimental Design"},
+      {"type": "related_to", "target": "Data Quality"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_3_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Randomized Controlled Trial (RCT)",
+    "type": "Method",
+    "domain": "Experimental Research",
+    "definition": "A type of scientific experiment designed to minimize bias by randomly assigning participants to experimental and control groups.",
+    "description": "RCTs are widely used in medical and behavioral studies to establish causal relationships. Variants include parallel, crossover, cluster, and factorial designs. Randomization ensures comparability between groups.",
+    "properties": {
+      "Design Types": ["Parallel", "Crossover", "Cluster", "Factorial"],
+      "Strengths": ["Bias reduction", "Causal inference", "Reproducibility"],
+      "Weaknesses": ["Cost", "Complexity", "Ethical constraints"]
+    },
+    "relations": [
+      {"type": "reduces", "target": "Bias"},
+      {"type": "used_in", "target": "Human Data Collection"},
+      {"type": "requires", "target": "Ethical Approval"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_3_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Data Documentation",
+    "type": "Task",
+    "domain": "Data Management",
+    "definition": "The process of recording all relevant details about data collection, methods, devices, and issues to ensure reproducibility and traceability.",
+    "description": "Documentation is an essential part of the data lifecycle. It ensures that datasets are interpretable and that future researchers can understand, reuse, and validate results. It includes metadata, logs, and notes on problems.",
+    "properties": {
+      "Benefits": ["Reproducibility", "Transparency", "Error tracking"],
+      "Common Tools": ["CSV logs", "Version control", "Metadata repositories"]
+    },
+    "relations": [
+      {"type": "required_by", "target": "Data Collection"},
+      {"type": "supports", "target": "Open Science"},
+      {"type": "related_to", "target": "FAIR Principles"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_3_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  }
+]

@@ -1,0 +1,210 @@
+[
+  {
+    "entity": "3D Perception",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "3D perception refers to the process of recovering the three-dimensional structure and spatial relationships of a scene from one or more 2D images, enabling machines to understand depth, shape, and layout.",
+    "description": "It bridges 2D image analysis with real-world geometry, using monocular, stereo, or motion cues to estimate depth, reconstruct surfaces, and interpret scene organization.",
+    "properties": {
+      "Goal": "Reconstruct 3D scene geometry and semantics from 2D projections.",
+      "Applications": ["Autonomous driving", "Robotics", "Augmented reality", "3D modeling"],
+      "Methods": ["Stereo vision", "Structure from Motion", "Shape from shading", "Depth from focus"],
+      "Examples": ["Depth map from stereo pair", "Point cloud from video", "Surface normal estimation"]
+    },
+    "relations": [
+      {"type": "enables", "target": "Scene Understanding"},
+      {"type": "uses", "target": "Image Matching"},
+      {"type": "includes", "target": "Depth Estimation"},
+      {"type": "includes", "target": "3D Reconstruction"},
+      {"type": "complements", "target": "2D Vision"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "10-3D_perception-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Depth from Stereo",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Depth from stereo is the recovery of 3D scene depth by triangulating corresponding points in a pair of images captured from slightly different viewpoints (baseline).",
+    "description": "It relies on disparity—the horizontal shift of a point between left and right images—to compute depth inversely proportional to disparity via calibrated camera geometry.",
+    "properties": {
+      "Goal": "Compute per-pixel depth using binocular disparity.",
+      "Applications": ["3D reconstruction", "Robot navigation", "Virtual reality"],
+      "Methods": ["Stereo matching", "Triangulation", "Rectification", "Disparity map refinement"],
+      "Examples": ["Z = (f * B) / d, where d is disparity"]
+    },
+    "relations": [
+      {"type": "is_a", "target": "Passive 3D Perception"},
+      {"type": "requires", "target": "Camera Calibration"},
+      {"type": "uses", "target": "Stereo Matching"},
+      {"type": "outputs", "target": "Depth Map"},
+      {"type": "limited_by", "target": "Baseline Length"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "10-3D_perception-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Structure from Motion",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Structure from Motion (SfM) is the simultaneous estimation of 3D scene structure and camera motion from a set of 2D images taken from different viewpoints, typically using feature correspondences.",
+    "description": "It solves for camera poses and sparse 3D points via bundle adjustment, forming the basis for dense reconstruction and large-scale 3D modeling.",
+    "properties": {
+      "Goal": "Reconstruct 3D scene and camera trajectory from unordered image collections.",
+      "Applications": ["Cultural heritage", "Aerial mapping", "Film production", "SLAM"],
+      "Methods": ["Feature tracking", "Incremental SfM", "Global SfM", "Bundle adjustment"],
+      "Examples": ["3D model from tourist photos", "Point cloud from drone video"]
+    },
+    "relations": [
+      {"type": "is_a", "target": "Multi-view 3D Reconstruction"},
+      {"type": "uses", "target": "Feature Matching"},
+      {"type": "uses", "target": "RANSAC"},
+      {"type": "input_to", "target": "Multi-view Stereo"},
+      {"type": "enables", "target": "Dense Reconstruction"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "10-3D_perception-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Monocular Depth Cues",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "Monocular depth cues are visual signals in a single image that provide information about relative or absolute depth without requiring multiple viewpoints.",
+    "description": "They mimic human perception mechanisms and include occlusion, perspective, shading, texture gradient, and known object size, enabling depth estimation from single images.",
+    "properties": {
+      "Goal": "Infer 3D layout from 2D image cues.",
+      "Applications": ["Single-image depth estimation", "Image editing", "Autonomous navigation"],
+      "Methods": ["Shape from shading", "Depth from defocus", "Learning-based monocular depth"],
+      "Examples": ["Linear perspective in roads", "Occlusion of distant objects"]
+    },
+    "relations": [
+      {"type": "enables", "target": "Single Image 3D"},
+      {"type": "includes", "target": "Occlusion"},
+      {"type": "includes", "target": "Perspective"},
+      {"type": "includes", "target": "Shading"},
+      {"type": "contrasts_with", "target": "Binocular Cues"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "10-3D_perception-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Shape from Shading",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Shape from shading recovers surface orientation (normals) by analyzing how light intensity varies across a surface under known illumination, assuming Lambertian reflectance.",
+    "description": "It solves an inverse optics problem to estimate local surface tilt from image gradients, enabling 3D reconstruction from a single image.",
+    "properties": {
+      "Goal": "Estimate surface normals from intensity gradients.",
+      "Applications": ["Planetary surface mapping", "Medical imaging", "Industrial inspection"],
+      "Methods": ["Reflectance map", "Variational optimization", "Photometric stereo"],
+      "Examples": ["Reconstructing face shape from one photo"]
+    },
+    "relations": [
+      {"type": "is_a", "target": "Monocular Depth Cues"},
+      {"type": "assumes", "target": "Lambertian Reflectance"},
+      {"type": "requires", "target": "Known Light Source"},
+      {"type": "extended_by", "target": "Photometric Stereo"},
+      {"type": "outputs", "target": "Surface Normals"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "10-3D_perception-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Photometric Stereo",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Photometric stereo uses multiple images of a static object under different known lighting directions to estimate per-pixel surface normals by solving a linear system of reflectance equations.",
+    "description": "It decouples albedo and geometry, providing dense, high-quality normal maps even for textureless surfaces, assuming Lambertian reflectance.",
+    "properties": {
+      "Goal": "Recover dense surface normals using multiple illuminations.",
+      "Applications": ["3D scanning", "Cultural heritage digitization", "Quality control"],
+      "Methods": ["Least squares normal estimation", "Albedo-normal separation"],
+      "Examples": ["Normal map from 3+ flash photos"]
+    },
+    "relations": [
+      {"type": "extends", "target": "Shape from Shading"},
+      {"type": "requires", "target": "Multiple Known Lights"},
+      {"type": "handles", "target": "Unknown Albedo"},
+      {"type": "input_to", "target": "Surface Integration"},
+      {"type": "robust_to", "target": "Cast Shadows (with care)"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "10-3D_perception-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Multi-view Stereo",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Multi-view stereo (MVS) computes dense 3D reconstruction from multiple calibrated images by estimating depth or disparity in each view and fusing consistent measurements into a coherent 3D model.",
+    "description": "It extends stereo to arbitrary camera configurations, producing detailed point clouds or meshes using photo-consistency and regularization.",
+    "properties": {
+      "Goal": "Generate dense 3D models from many images.",
+      "Applications": ["3D modeling", "Virtual tourism", "Autonomous mapping"],
+      "Methods": ["Voxel carving", "Patch-based MVS", "Plane sweeping", "Learning-based MVS"],
+      "Examples": ["Dense reconstruction of statues", "City-scale 3D models"]
+    },
+    "relations": [
+      {"type": "follows", "target": "Structure from Motion"},
+      {"type": "generalizes", "target": "Stereo Matching"},
+      {"type": "uses", "target": "Photo-consistency"},
+      {"type": "outputs", "target": "Dense Point Cloud"},
+      {"type": "enables", "target": "Mesh Generation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "10-3D_perception-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Triangulation",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Triangulation is the process of determining the 3D position of a point by intersecting rays from two or more calibrated cameras that observe the corresponding 2D image points.",
+    "description": "It is the geometric foundation of passive 3D reconstruction, converting image correspondences into metric 3D coordinates using camera projection matrices.",
+    "properties": {
+      "Goal": "Compute 3D point from 2D correspondences and camera parameters.",
+      "Applications": ["3D reconstruction", "Robot localization", "Augmented reality"],
+      "Methods": ["Linear triangulation", "Mid-point method", "Optimal triangulation"],
+      "Examples": ["X = intersection of two rays in space"]
+    },
+    "relations": [
+      {"type": "core_of", "target": "Stereo Vision"},
+      {"type": "core_of", "target": "Structure from Motion"},
+      {"type": "requires", "target": "Camera Calibration"},
+      {"type": "requires", "target": "Point Correspondences"},
+      {"type": "outputs", "target": "3D Point"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "10-3D_perception-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  }
+]

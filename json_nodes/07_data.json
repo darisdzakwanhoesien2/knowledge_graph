@@ -1,0 +1,203 @@
+[
+  {
+    "entity": "Pattern Recognition",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "Pattern recognition is the process of automatically detecting and classifying structured patterns or regularities in data, enabling machines to interpret complex signals such as images, speech, or text.",
+    "description": "In computer vision, it involves identifying objects, faces, actions, or scenes by learning discriminative features from labeled data and applying statistical or structural models for decision-making.",
+    "properties": {
+      "Goal": "Assign meaningful labels to input data based on learned patterns.",
+      "Applications": ["Object recognition", "Face detection", "Medical diagnosis", "Document analysis"],
+      "Methods": ["Statistical classification", "Template matching", "Neural networks", "Syntactic analysis"],
+      "Examples": ["Recognizing handwritten digits", "Identifying tumors in MRI scans"]
+    },
+    "relations": [
+      {"type": "enables", "target": "Object Recognition"},
+      {"type": "part_of", "target": "Artificial Intelligence"},
+      {"type": "uses", "target": "Feature Extraction"},
+      {"type": "includes", "target": "Statistical Pattern Recognition"},
+      {"type": "includes", "target": "Structural Pattern Recognition"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "07-recognition-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Statistical Pattern Recognition",
+    "type": "Framework",
+    "domain": "Computer Vision",
+    "definition": "Statistical pattern recognition models patterns as random variables and uses probability theory to make decisions based on feature measurements and class-conditional densities.",
+    "description": "It assumes patterns are represented by feature vectors in a high-dimensional space and applies Bayesian decision theory to minimize classification error.",
+    "properties": {
+      "Goal": "Minimize classification error using probabilistic models.",
+      "Applications": ["Face recognition", "Character recognition", "Speech processing"],
+      "Methods": ["Bayes classifier", "Maximum likelihood", "Gaussian mixture models", "k-NN"],
+      "Examples": ["Classifying iris patterns", "Spam email filtering"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Pattern Recognition"},
+      {"type": "uses", "target": "Feature Vector"},
+      {"type": "foundation_for", "target": "Machine Learning Classifiers"},
+      {"type": "contrasts_with", "target": "Structural Pattern Recognition"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "07-recognition-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Structural Pattern Recognition",
+    "type": "Framework",
+    "domain": "Computer Vision",
+    "definition": "Structural pattern recognition represents patterns using symbolic data structures such as strings, trees, or graphs, emphasizing relational and syntactic organization.",
+    "description": "It is suitable for patterns with explicit compositional structure, using grammars and parsing to recognize hierarchical relationships.",
+    "properties": {
+      "Goal": "Recognize patterns based on their compositional and relational structure.",
+      "Applications": ["Syntactic OCR", "Fingerprint analysis", "Chemical structure recognition"],
+      "Methods": ["Formal grammars", "Graph matching", "Parsing algorithms"],
+      "Examples": ["Recognizing sentence structure", "Identifying molecular bonds"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Pattern Recognition"},
+      {"type": "uses", "target": "Symbolic Representation"},
+      {"type": "contrasts_with", "target": "Statistical Pattern Recognition"},
+      {"type": "applies_to", "target": "Hierarchical Patterns"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "07-recognition-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Feature Vector",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "A feature vector is a fixed-length numerical representation of an input pattern, where each element corresponds to a measured or derived attribute.",
+    "description": "It transforms raw data into a format suitable for statistical classifiers, enabling distance-based or probabilistic decision-making in pattern space.",
+    "properties": {
+      "Goal": "Map complex patterns into comparable numerical space.",
+      "Applications": ["Classification", "Clustering", "Regression"],
+      "Methods": ["Feature extraction", "Dimensionality reduction", "Normalization"],
+      "Examples": ["HOG features for pedestrians", "MFCC for speech", "Pixel intensities"]
+    },
+    "relations": [
+      {"type": "input_to", "target": "Classifier"},
+      {"type": "output_of", "target": "Feature Extraction"},
+      {"type": "used_in", "target": "Statistical Pattern Recognition"},
+      {"type": "transformed_by", "target": "PCA"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "07-recognition-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Classifier",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "A classifier is a function that maps input feature vectors to discrete class labels, typically learned from labeled training examples.",
+    "description": "It forms the decision stage in pattern recognition systems, using learned boundaries or probabilities to assign new observations to predefined categories.",
+    "properties": {
+      "Goal": "Assign input patterns to correct categories with minimal error.",
+      "Applications": ["Object detection", "Face verification", "Anomaly detection"],
+      "Methods": ["Linear discriminant", "SVM", "Decision trees", "Neural networks"],
+      "Examples": ["k-NN", "Naive Bayes", "Random Forest"]
+    },
+    "relations": [
+      {"type": "core_component_of", "target": "Statistical Pattern Recognition"},
+      {"type": "uses", "target": "Feature Vector"},
+      {"type": "trained_on", "target": "Training Data"},
+      {"type": "outputs", "target": "Class Label"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "07-recognition-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Template Matching",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Template matching is a pattern recognition technique that searches for a known pattern (template) in an image by sliding it across all locations and measuring similarity.",
+    "description": "It is simple and effective for rigid, well-defined patterns under controlled conditions but sensitive to scale, rotation, and illumination changes.",
+    "properties": {
+      "Goal": "Locate instances of a known pattern within an image.",
+      "Applications": ["Character recognition", "Defect detection", "Logo identification"],
+      "Methods": ["Correlation", "Normalized cross-correlation", "SSD"],
+      "Examples": ["Finding 'STOP' signs", "Matching printed circuit patterns"]
+    },
+    "relations": [
+      {"type": "is_a", "target": "Pattern Recognition"},
+      {"type": "requires", "target": "Template"},
+      {"type": "sensitive_to", "target": "Geometric Variations"},
+      {"type": "extended_by", "target": "Deformable Templates"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "07-recognition-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Bayes Classifier",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "The Bayes classifier assigns an input pattern to the class with the highest posterior probability, computed using Bayes' theorem and class-conditional likelihoods.",
+    "description": "It is statistically optimal when probability distributions are known, forming the theoretical foundation for many practical classifiers.",
+    "properties": {
+      "Goal": "Minimize expected classification error using probabilistic inference.",
+      "Applications": ["Spam filtering", "Medical diagnosis", "Document classification"],
+      "Methods": ["P(class|features) = P(features|class) * P(class) / P(features)"],
+      "Examples": ["Naive Bayes", "Gaussian Bayes classifier"]
+    },
+    "relations": [
+      {"type": "is_a", "target": "Classifier"},
+      {"type": "foundation_for", "target": "Probabilistic Classification"},
+      {"type": "requires", "target": "Prior Probability"},
+      {"type": "uses", "target": "Likelihood Model"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "07-recognition-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Object Recognition",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Object recognition is the task of identifying and localizing specific objects within images or video, assigning them semantic class labels.",
+    "description": "It combines detection (where) and classification (what) and is a core capability in autonomous systems, surveillance, and augmented reality.",
+    "properties": {
+      "Goal": "Detect and classify objects in visual scenes.",
+      "Applications": ["Autonomous driving", "Robotics", "Image search", "Security"],
+      "Methods": ["Sliding window", "Region proposals", "Deep learning (CNNs)"],
+      "Examples": ["Detecting pedestrians", "Recognizing furniture in rooms"]
+    },
+    "relations": [
+      {"type": "is_a", "target": "Pattern Recognition"},
+      {"type": "requires", "target": "Feature Extraction"},
+      {"type": "enabled_by", "target": "Local Features"},
+      {"type": "modernized_by", "target": "Deep Learning"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "07-recognition-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  }
+]

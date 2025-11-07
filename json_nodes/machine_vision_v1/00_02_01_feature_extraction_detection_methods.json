@@ -1,0 +1,266 @@
+[
+  {
+    "entity": "SIFT",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "A feature detection and description algorithm that identifies keypoints and computes descriptors invariant to scale, rotation, and partial illumination changes.",
+    "description": "SIFT builds a scale-space using Difference-of-Gaussians, detects local extrema, and forms gradient-based descriptors robust to geometric and photometric transformations.",
+    "properties": {
+      "Goal": "Detect stable image features for matching across scales and rotations.",
+      "Applications": ["Image matching", "Object recognition", "3D reconstruction"],
+      "Methods": ["Difference-of-Gaussians", "Gradient histogram descriptors", "Keypoint matching"],
+      "Examples": ["Exam 2015 - Definition", "Exam 2018 - Descriptor explanation"]
+    },
+    "relations": [
+      {"type": "extends", "target": "Feature descriptor"},
+      {"type": "used_in", "target": "Bag-of-Words"},
+      {"type": "related_to", "target": "Harris Corner Detector"},
+      {"type": "supports", "target": "Structure-from-Motion"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Harris Corner Detector",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "A feature detector that identifies corners by measuring local intensity variations using the autocorrelation matrix.",
+    "description": "The Harris detector finds points with significant intensity change in orthogonal directions, forming the basis of many tracking and matching algorithms.",
+    "properties": {
+      "Goal": "Detect stable corner-like features in images.",
+      "Applications": ["Feature tracking", "Image registration", "Object recognition"],
+      "Methods": ["Autocorrelation matrix", "Corner response function", "Non-maximum suppression"],
+      "Examples": ["Exam 2015 - Principle question", "Exam 2018 - Method explanation"]
+    },
+    "relations": [
+      {"type": "foundation_for", "target": "SIFT"},
+      {"type": "used_in", "target": "Optical flow"},
+      {"type": "related_to", "target": "K-means clustering"},
+      {"type": "evaluated_by", "target": "Precision-Recall"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Hough Transform",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "A feature extraction technique used to detect parametric shapes such as lines, circles, or ellipses in images.",
+    "description": "The transform maps image edge points into a parameter space where shapes correspond to peaks, enabling robust detection despite noise or occlusion.",
+    "properties": {
+      "Goal": "Detect geometric primitives via voting in parameter space.",
+      "Applications": ["Line detection", "Circle detection", "Shape analysis"],
+      "Methods": ["Parameter-space accumulation", "Threshold-based peak detection"],
+      "Examples": ["Exam 2015 - Principle question", "Exam 2018 - Example usage"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Image segmentation"},
+      {"type": "contrasts_with", "target": "RANSAC"},
+      {"type": "supports", "target": "Shape recognition"},
+      {"type": "requires", "target": "Edge detection"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Random Sample Consensus (RANSAC)",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "An iterative algorithm to estimate model parameters from data containing outliers by repeatedly sampling minimal subsets and testing consensus.",
+    "description": "RANSAC is robust to outliers and commonly used in fitting geometric models such as lines, planes, or homographies.",
+    "properties": {
+      "Goal": "Estimate parameters robustly in the presence of noise and outliers.",
+      "Applications": ["Line fitting", "Homography estimation", "Triangulation refinement"],
+      "Methods": ["Iterative sampling", "Consensus evaluation", "Model re-estimation"],
+      "Examples": ["Exam 2015 - Theory", "Exam 2018 - Usage example"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Least squares estimation"},
+      {"type": "used_in", "target": "Triangulation"},
+      {"type": "contrasts_with", "target": "Hough Transform"},
+      {"type": "foundation_for", "target": "Affine transformation estimation"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Local Binary Patterns (LBP)",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "A texture descriptor that encodes the local spatial pattern of pixel intensities into binary codes based on neighbor comparisons.",
+    "description": "LBP provides a rotation- and grayscale-invariant way to represent texture; it’s lightweight and robust, making it popular for real-time classification.",
+    "properties": {
+      "Goal": "Represent texture structures in a compact and invariant form.",
+      "Applications": ["Texture classification", "Face recognition", "Material analysis"],
+      "Methods": ["Neighborhood thresholding", "Histogram of binary codes", "Rotation-invariant encoding"],
+      "Examples": ["Exam 2017 - Texture task", "Exam 2020 - Texture classification"]
+    },
+    "relations": [
+      {"type": "extends", "target": "Texture analysis"},
+      {"type": "used_with", "target": "Euclidean distance"},
+      {"type": "compared_to", "target": "Filter bank methods"},
+      {"type": "supports", "target": "Seashell classification"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "K-Means Clustering",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "An unsupervised learning algorithm that partitions data into K clusters by minimizing within-cluster variance.",
+    "description": "Used to group similar pixels, features, or image patches, serving as a basis for segmentation and visual vocabulary creation.",
+    "properties": {
+      "Goal": "Group data points into clusters based on feature similarity.",
+      "Applications": ["Image segmentation", "Bag-of-Words clustering", "Color quantization"],
+      "Methods": ["Iterative centroid update", "Euclidean distance minimization"],
+      "Examples": ["Exam 2016 - Principle", "Exam 2019 - Usage explanation"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Image segmentation"},
+      {"type": "foundation_for", "target": "Bag-of-Words"},
+      {"type": "related_to", "target": "Unsupervised learning"},
+      {"type": "evaluated_by", "target": "Confusion matrix"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Otsu’s Thresholding Method",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "An automatic global thresholding technique that separates foreground and background by minimizing intra-class intensity variance.",
+    "description": "Commonly used in image preprocessing for binarization tasks, providing an optimal threshold without supervision.",
+    "properties": {
+      "Goal": "Automatically determine an optimal threshold to separate regions.",
+      "Applications": ["Image segmentation", "Preprocessing for OCR", "Object extraction"],
+      "Methods": ["Histogram-based variance minimization"],
+      "Examples": ["Exam 2018 - Principle", "Exam 2019 - Usage question"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Background subtraction"},
+      {"type": "contrasts_with", "target": "K-Means Clustering"},
+      {"type": "supports", "target": "Image segmentation"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Harris–Laplace Detector",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "A multi-scale feature detector combining corner detection (Harris) with scale selection (Laplacian) to identify stable features across resolutions.",
+    "description": "Enhances standard corner detectors by integrating scale information for improved invariance.",
+    "properties": {
+      "Goal": "Detect scale-invariant interest points.",
+      "Applications": ["Feature matching", "Object tracking", "Scale-space analysis"],
+      "Methods": ["Corner response computation", "Laplacian-of-Gaussian scale selection"],
+      "Examples": ["Exam 2016 - Extended question"]
+    },
+    "relations": [
+      {"type": "extends", "target": "Harris Corner Detector"},
+      {"type": "related_to", "target": "SIFT"},
+      {"type": "supports", "target": "Structure-from-Motion"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Photometric Stereo",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "A technique for estimating surface normals by observing an object under multiple known lighting directions.",
+    "description": "Allows reconstruction of fine surface details by exploiting reflectance differences under controlled illumination.",
+    "properties": {
+      "Goal": "Recover detailed surface orientation from shading cues.",
+      "Applications": ["Shape-from-shading", "Industrial inspection", "Material analysis"],
+      "Methods": ["Lambertian reflectance model", "Linear intensity equations"],
+      "Examples": ["Exam 2017 - Principle question", "Exam 2018 - Example"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Surface reconstruction"},
+      {"type": "related_to", "target": "Diffuse reflection"},
+      {"type": "supports", "target": "Structure-from-Motion"}
+    ],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "Machine Vision exams (2014–2020)",
+      "created_at": "2025-11-04",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Feature descriptor",
+    "type": "Concept",
+    "domain": "Feature Extraction",
+    "definition": "A representation of an image patch or interest point that captures its essential characteristics, designed to be robust to variations in illumination, viewpoint, and scale.",
+    "properties": {},
+    "relations": [],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "02-features-00.pdf",
+      "created_at": "2023-10-27",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Bag-of-Words",
+    "type": "Concept",
+    "domain": "Feature Representation",
+    "definition": "A sparse vector representation of an image (or document) based on the frequency of visual words (or terms) from a predefined vocabulary.",
+    "properties": {},
+    "relations": [],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "02-features-00.pdf",
+      "created_at": "2023-10-27",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Maximally Stable Extremal Regions (MSER)",
+    "type": "Method",
+    "domain": "Machine Vision",
+    "definition": "A method for detecting regions in an image that are stable across a wide range of thresholds, often used for text detection and object recognition.",
+    "properties": {},
+    "relations": [],
+    "metadata": {
+      "created_by": "Daris",
+      "source": "02-features-00.pdf",
+      "created_at": "2023-10-27",
+      "version": "1.0"
+    }
+  }
+]

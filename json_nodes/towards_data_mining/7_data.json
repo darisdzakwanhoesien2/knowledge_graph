@@ -1,0 +1,251 @@
+[
+  {
+    "entity": "Normalization",
+    "type": "Process",
+    "domain": "Data Pre-processing",
+    "definition": "The process of adjusting values measured on different scales to a notionally common scale without distorting differences in the ranges of values.",
+    "description": "Normalization helps learning algorithms converge faster and ensures that attributes with large numerical ranges do not dominate those with smaller ranges. It is a core data preprocessing step required by many distance-based or gradient-based learning models.",
+    "properties": {
+      "Reasons": [
+        "Improves model convergence and training stability",
+        "Prevents attributes with large ranges from dominating smaller ones",
+        "Required for certain algorithms (e.g., neural networks, k-NN, PCA)"
+      ],
+      "Considerations": [
+        "Store scaling parameters for later use (e.g., for inference data)",
+        "Choose normalization technique based on variable characteristics"
+      ]
+    },
+    "relations": [
+      {"type": "has_subtype", "target": "Min-Max Normalization"},
+      {"type": "has_subtype", "target": "Z-score Standardization"},
+      {"type": "has_subtype", "target": "Decimal Scaling"},
+      {"type": "related_to", "target": "Data Transformation"},
+      {"type": "used_in", "target": "Machine Learning"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_7_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Min-Max Normalization",
+    "type": "Method",
+    "domain": "Data Pre-processing",
+    "definition": "A normalization method that scales data to a fixed range, typically [0, 1], based on the minimum and maximum values of each variable.",
+    "description": "This linear transformation maps the minimum value to 0 and the maximum to 1 (or another defined interval [a, b]). It preserves relationships between data points but is sensitive to outliers.",
+    "properties": {
+      "Formula": "v' = (v - v_min) / (v_max - v_min)",
+      "Range": "[0, 1] or [a, b]",
+      "Advantages": ["Simple to compute", "Preserves shape of distribution"],
+      "Disadvantages": ["Sensitive to outliers"]
+    },
+    "relations": [
+      {"type": "subtype_of", "target": "Normalization"},
+      {"type": "related_to", "target": "Scaling"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_7_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Z-score Standardization",
+    "type": "Method",
+    "domain": "Data Pre-processing",
+    "definition": "A normalization technique that rescales data to have a mean of 0 and a standard deviation of 1.",
+    "description": "Z-score standardization centers data by removing the mean and scales it by dividing by the standard deviation. It is especially useful when min and max values are unknown or when data contains outliers.",
+    "properties": {
+      "Formula": "v' = (v - mean(v)) / sd(v)",
+      "Advantages": ["Handles outliers better than min-max scaling", "Useful when ranges are unknown"],
+      "Use Cases": ["Regression", "PCA", "Outlier detection under Gaussian assumption"]
+    },
+    "relations": [
+      {"type": "subtype_of", "target": "Normalization"},
+      {"type": "used_in", "target": "Outlier Detection"},
+      {"type": "related_to", "target": "Standard Deviation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_7_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Decimal Scaling",
+    "type": "Method",
+    "domain": "Data Pre-processing",
+    "definition": "A normalization method that scales data by moving the decimal point of values based on the maximum absolute value of the variable.",
+    "description": "Decimal scaling divides each value by a power of 10 such that all transformed values fall within the range [-1, 1]. The power is determined by the largest absolute value in the dataset.",
+    "properties": {
+      "Formula": "v' = v / 10^j where j = smallest integer such that max(|v'|) < 1",
+      "Advantages": ["Simple to compute", "Effective when values vary by powers of ten"],
+      "Disadvantages": ["Less flexible for distributions with small variance"]
+    },
+    "relations": [
+      {"type": "subtype_of", "target": "Normalization"},
+      {"type": "related_to", "target": "Scaling"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_7_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Discretization",
+    "type": "Process",
+    "domain": "Data Transformation",
+    "definition": "The process of converting continuous variables into categorical ones by dividing their range into intervals or groups.",
+    "description": "Discretization is used when models or analyses require categorical data, or when researchers want to study group-level differences instead of individual variations. However, it often reduces information and statistical power.",
+    "properties": {
+      "Methods": ["Median split", "Equal width binning", "Equal frequency binning", "Domain-based grouping"],
+      "Advantages": ["Simplifies analysis", "Enables categorical modeling"],
+      "Disadvantages": [
+        "Loss of information",
+        "Reduced precision",
+        "Incompatibility across studies due to arbitrary cutoffs"
+      ]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Data Classification"},
+      {"type": "alternative_to", "target": "Continuous Variable Modeling"},
+      {"type": "related_to", "target": "Concept Hierarchy"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_7_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Dummy Coding",
+    "type": "Technique",
+    "domain": "Data Transformation",
+    "definition": "A method for encoding categorical variables as binary numeric features for use in regression and machine learning models.",
+    "description": "Dummy coding represents K categories with K-1 binary variables. It allows categorical data to be incorporated into models that require numerical inputs.",
+    "properties": {
+      "Example": {
+        "Variable": ["Red", "Blue", "Green", "Yellow"],
+        "Encoded": ["Dummy_Red", "Dummy_Blue", "Dummy_Green"]
+      },
+      "Advantages": ["Enables inclusion of categorical variables in regression models"],
+      "Limitations": ["Increases dimensionality", "Risk of multicollinearity if not handled properly"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Regression Modeling"},
+      {"type": "related_to", "target": "Categorical Variables"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_7_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Data Reduction",
+    "type": "Process",
+    "domain": "Data Management",
+    "definition": "The process of obtaining a reduced representation of the dataset that retains essential information while minimizing storage and computation requirements.",
+    "description": "Data reduction improves processing efficiency by decreasing the number of variables, values, or observations without significantly compromising analytical accuracy. It enables faster computation and clearer insights.",
+    "properties": {
+      "Techniques": [
+        "Attribute reduction (feature selection)",
+        "Data aggregation and generalization",
+        "Variable construction",
+        "Numerosity reduction",
+        "Principal Component Analysis (PCA)",
+        "Discrete Wavelet Transform (DWT)"
+      ],
+      "Goals": ["Efficiency", "Simplicity", "Improved interpretability"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Feature Engineering"},
+      {"type": "includes", "target": "Principal Component Analysis"},
+      {"type": "includes", "target": "Discrete Wavelet Transform"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_7_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Principal Component Analysis (PCA)",
+    "type": "Method",
+    "domain": "Dimensionality Reduction",
+    "definition": "A statistical technique that transforms correlated variables into a smaller number of uncorrelated variables called principal components.",
+    "description": "PCA reduces the dimensionality of data by finding orthogonal directions that capture the most variance. It is commonly used for visualization, compression, and to handle multicollinearity.",
+    "properties": {
+      "Steps": [
+        "Compute covariance matrix",
+        "Find eigenvalues and eigenvectors",
+        "Project data onto principal components"
+      ],
+      "Advantages": ["Removes multicollinearity", "Improves computation efficiency"],
+      "Limitations": ["Loss of interpretability", "Assumes linearity"]
+    },
+    "relations": [
+      {"type": "subtype_of", "target": "Data Reduction"},
+      {"type": "alternative_to", "target": "Nonlinear PCA"},
+      {"type": "related_to", "target": "Feature Extraction"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_7_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Discrete Wavelet Transform (DWT)",
+    "type": "Method",
+    "domain": "Signal Processing",
+    "definition": "A linear signal processing technique used to decompose data into different frequency components and analyze each component with a resolution matched to its scale.",
+    "description": "DWT is effective for dimensionality reduction in high-dimensional data, especially when the number of variables exceeds the number of samples. It preserves both frequency and location information, unlike Fourier transform.",
+    "properties": {
+      "Applications": ["Image compression", "Feature extraction", "Time-series analysis"],
+      "Advantages": ["Handles non-stationary data", "Reduces dimensionality efficiently"]
+    },
+    "relations": [
+      {"type": "subtype_of", "target": "Data Reduction"},
+      {"type": "related_to", "target": "Principal Component Analysis"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_7_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Box-Cox Transformation",
+    "type": "Method",
+    "domain": "Statistical Transformation",
+    "definition": "A family of power transformations that aim to stabilize variance and make data more normally distributed.",
+    "description": "Box-Cox transformation improves normality assumptions for statistical models. It only applies to positive data but can handle skewed distributions effectively.",
+    "properties": {
+      "Formula": "T(Y) = (Y^λ - 1) / λ for λ ≠ 0; T(Y) = ln(Y) for λ = 0",
+      "Limitations": ["Only works with positive values", "No guarantee of perfect normality"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Transformation to Normality"},
+      {"type": "related_to", "target": "Data Normalization"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_7_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  }
+]

@@ -1,0 +1,247 @@
+[
+  {
+    "entity": "Noise",
+    "type": "Concept",
+    "domain": "Data Quality",
+    "definition": "Random or systematic errors in data that obscure the true underlying signal or pattern.",
+    "description": "Noise can originate from measurement errors, equipment malfunctions, environmental factors, or data entry mistakes. It can distort models, reduce performance, and create false patterns during analysis, especially in supervised learning.",
+    "properties": {
+      "Types": ["Attribute noise", "Label noise"],
+      "Sources": ["Sensor malfunction", "Human error", "Data transmission issues"],
+      "Impact": ["Increased error rate", "Overfitting risk", "Reduced generalization"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Outliers"},
+      {"type": "handled_by", "target": "Noise Filters"},
+      {"type": "handled_by", "target": "Data Polishing"},
+      {"type": "mitigated_by", "target": "Robust Learning Algorithms"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_6_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Robust Learning Algorithms",
+    "type": "Method",
+    "domain": "Machine Learning",
+    "definition": "Algorithms capable of learning accurate models even when training data contains noise, outliers, or errors.",
+    "description": "Robust learners are designed to minimize the impact of corrupted or noisy instances. They produce models similar to those obtained from clean data, often using regularization, pruning, or robust loss functions.",
+    "properties": {
+      "Examples": ["C4.5 Decision Tree with pruning", "Support Vector Machines", "Random Forests"],
+      "Techniques": ["Pruning", "Regularization", "Robust loss functions"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Supervised Learning"},
+      {"type": "mitigates", "target": "Noise"},
+      {"type": "alternative_to", "target": "Data Polishing"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_6_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Data Polishing",
+    "type": "Technique",
+    "domain": "Data Cleaning",
+    "definition": "The process of identifying and correcting noisy or corrupted data before building predictive models.",
+    "description": "Data polishing focuses on improving data quality by removing or correcting noise manually or through algorithms. It is particularly useful for small datasets where noisy samples can be easily isolated.",
+    "properties": {
+      "Steps": ["Detect noise", "Correct corrupted instances", "Validate polished data"],
+      "Use Cases": ["Small datasets", "Low noise frequency"],
+      "Limitations": ["Inefficient for large-scale data", "Risk of removing valid samples"]
+    },
+    "relations": [
+      {"type": "alternative_to", "target": "Robust Learning Algorithms"},
+      {"type": "related_to", "target": "Noise Filters"},
+      {"type": "used_in", "target": "Data Cleaning"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_6_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Noise Filters",
+    "type": "Method",
+    "domain": "Signal Processing",
+    "definition": "Techniques for identifying and removing noise from data, including specific frequency interference or corrupted samples.",
+    "description": "Noise filters aim to isolate and eliminate unwanted variations in the data, such as electrical interference or measurement errors. Over-filtering can remove meaningful information.",
+    "properties": {
+      "Examples": ["Low-pass filter", "Notch filter", "Spectral filtering"],
+      "Sources of Noise": ["50 Hz power line", "Infrared absorbance errors", "Equipment malfunction"],
+      "Risks": ["Loss of valuable signal components"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Data Preprocessing"},
+      {"type": "mitigates", "target": "Noise"},
+      {"type": "related_to", "target": "Data Polishing"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_6_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Data Pollution",
+    "type": "Concept",
+    "domain": "Data Quality",
+    "definition": "The presence of incorrect, inconsistent, or irrelevant data values that do not conform to intended formats or meanings.",
+    "description": "Data pollution occurs when datasets contain invalid entries, such as incorrect category values, formatting errors, or corrupted text fields. These issues often result from system repurposing or manual entry errors.",
+    "properties": {
+      "Examples": [
+        "Gender field containing 'male', 'female', and 'business'",
+        "Free text with delimiters",
+        "Misplaced decimal points"
+      ],
+      "Causes": ["Software misuse", "Copy-paste errors", "CSV formatting issues"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Noise"},
+      {"type": "handled_by", "target": "Data Cleaning"},
+      {"type": "influences", "target": "Data Quality"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_6_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Signal Saturation",
+    "type": "Phenomenon",
+    "domain": "Signal Processing",
+    "definition": "A condition where sensor readings reach their upper or lower limit and cannot record values beyond that threshold.",
+    "description": "Signal saturation leads to repeated minimum or maximum values, reducing variability and masking true signal dynamics. It often occurs when sensors exceed their operational range.",
+    "properties": {
+      "Symptoms": ["Repeated min/max values", "Clipped signals", "Loss of detail"],
+      "Causes": ["Sensor range limits", "Hardware constraints"],
+      "Handling": ["Mark corrupted sections", "Exclude extreme sequences"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Noise"},
+      {"type": "handled_by", "target": "Data Cleaning"},
+      {"type": "affects", "target": "Signal Quality"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_6_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Outliers",
+    "type": "Concept",
+    "domain": "Statistics",
+    "definition": "Data points that significantly deviate from the expected pattern or distribution of a dataset.",
+    "description": "Outliers can result from noise, measurement errors, or genuine rare events. They may distort statistical summaries and machine learning models. Outlier analysis involves detecting, interpreting, and deciding whether to correct or retain them.",
+    "properties": {
+      "Types": ["Global", "Contextual", "Collective"],
+      "Causes": ["Calibration errors", "External disruptions", "Rare phenomena"],
+      "Impact": ["Model distortion", "Misleading correlations"]
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Anomalies"},
+      {"type": "handled_by", "target": "Outlier Detection Methods"},
+      {"type": "related_to", "target": "Noise"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_6_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Anomalies",
+    "type": "Concept",
+    "domain": "Data Mining",
+    "definition": "Rare and valid instances that deviate from normal behavior but carry valuable information rather than being errors.",
+    "description": "Anomalies differ from outliers in that they often represent meaningful or significant deviations, such as fraudulent activity, medical conditions, or rare events. Detecting anomalies helps in security, finance, and environmental monitoring.",
+    "properties": {
+      "Applications": [
+        "Intrusion detection",
+        "Credit card fraud detection",
+        "Medical diagnostics",
+        "Climate and environmental monitoring"
+      ],
+      "Difference from Outliers": "Outliers may be noise or errors; anomalies are often valid and informative."
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Outliers"},
+      {"type": "detected_by", "target": "Anomaly Detection Methods"},
+      {"type": "related_to", "target": "Novelty Detection"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_6_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Outlier Detection Methods",
+    "type": "Framework",
+    "domain": "Machine Learning",
+    "definition": "Algorithms and approaches designed to identify data points that deviate significantly from expected normal patterns.",
+    "description": "Outlier detection methods vary based on whether labels exist (supervised), partial labels (semi-supervised), or no labels (unsupervised). They aim to separate normal behavior from abnormal instances using distance, density, or statistical assumptions.",
+    "properties": {
+      "Categories": ["Supervised", "Semi-supervised", "Unsupervised"],
+      "Examples": [
+        "k-Nearest Neighbors (distance-based)",
+        "Local Outlier Factor (density-based)",
+        "Gaussian Distribution (parametric)",
+        "Kernel Density Estimation (nonparametric)",
+        "K-Means or GMM (clustering-based)",
+        "SVM or Random Forest (classification-based)"
+      ]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Anomaly Detection"},
+      {"type": "applies_to", "target": "Outliers"},
+      {"type": "includes", "target": "Proximity-Based Methods"},
+      {"type": "includes", "target": "Statistical Methods"},
+      {"type": "includes", "target": "Clustering Methods"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_6_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Proximity-Based Methods",
+    "type": "Method",
+    "domain": "Outlier Detection",
+    "definition": "Methods that define outliers as data points distant from their nearest neighbors in feature space.",
+    "description": "These methods rely on distance metrics such as Euclidean or Mahalanobis distance to detect isolated instances. Variants include distance-based and density-based approaches.",
+    "properties": {
+      "Examples": ["k-Nearest Neighbors", "Local Outlier Factor (LOF)"],
+      "Strengths": ["Effective for global and local outliers"],
+      "Weaknesses": ["Sensitive to distance metric choice", "Poor scalability on large data"]
+    },
+    "relations": [
+      {"type": "subtype_of", "target": "Outlier Detection Methods"},
+      {"type": "related_to", "target": "Distance Measures"},
+      {"type": "used_in", "target": "Unsupervised Outlier Detection"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_6_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  }
+]
