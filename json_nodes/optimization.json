@@ -1,0 +1,91 @@
+{
+  "nodes": {},
+  "edges": [
+    { "source": "Unconstrained Optimization", "type": "is_a", "target": "Continuous Optimization" },
+    { "source": "Constrained Optimization Problem", "type": "is_a", "target": "Continuous Optimization" },
+    { "source": "Linear Program (LP)", "type": "is_a", "target": "Constrained Optimization Problem" },
+    { "source": "Nonlinear Least Squares Problems", "type": "is_a", "target": "Unconstrained Optimization" },
+    { "source": "Least Squares Problems", "type": "is_a", "target": "Nonlinear Least Squares Problems" },
+
+    { "source": "Steepest Descent Method", "type": "is_a", "target": "Line Search Methods" },
+    { "source": "Newton's Method (Optimization)", "type": "is_a", "target": "Line Search Methods" },
+    { "source": "Quasi-Newton Methods", "type": "is_a", "target": "Line Search Methods" },
+    { "source": "Gauss–Newton Method", "type": "is_a", "target": "Line Search Methods" },
+
+    { "source": "Trust Region Methods (TRMs)", "type": "alternative_to", "target": "Line Search Methods" },
+    { "source": "Levenberg–Marquardt Method", "type": "is_a", "target": "Trust Region Methods (TRMs)" },
+
+    { "source": "Direction of Steepest Descent", "type": "is_a", "target": "Descent Direction ($p_k$)" },
+    { "source": "Newton's Method (Optimization)", "type": "uses_direction", "target": "Descent Direction ($p_k$)" },
+    { "source": "Quasi-Newton Methods", "type": "computes", "target": "Descent Direction ($p_k$)" },
+
+    { "source": "First-Order Necessary Condition (FONC)", "type": "generalized_by", "target": "Karush-Kuhn-Tucker (KKT) Conditions" },
+    { "source": "Second-Order Sufficient Conditions (SOSC)", "type": "generalized_by", "target": "Second Order Sufficient Conditions (Constrained)" },
+    { "source": "Second Order Necessary Conditions (Constrained)", "type": "requires", "target": "Critical Cone ($\\mathcal{C}(x^{*},\\lambda^{*})$)" },
+    { "source": "Second Order Sufficient Conditions (Constrained)", "type": "requires", "target": "Critical Cone ($\\mathcal{C}(x^{*},\\lambda^{*})$)" },
+
+    { "source": "Tangent Cone ($T_\\Omega(x)$)", "type": "contains", "target": "Critical Cone ($\\mathcal{C}(x^{*},\\lambda^{*})$)" },
+    { "source": "Active Set of Indices ($\\mathcal{A}(x)$)", "type": "defines", "target": "Critical Cone ($\\mathcal{C}(x^{*},\\lambda^{*})$)" },
+    { "source": "Linear Independence Constraint Qualification (LICQ)", "type": "ensures", "target": "Tangent Cone ($T_\\Omega(x)$) = Linearized Cone" },
+
+    { "source": "Lagrangian Function ($\\mathcal{L}(x, \\lambda)$)", "type": "defines", "target": "Dual Objective Function ($q(\\lambda)$)" },
+    { "source": "Dual Objective Function ($q(\\lambda)$)", "type": "maximized_in", "target": "Dual Problem (76)" },
+    { "source": "Weak Duality", "type": "implies", "target": "Dual Problem (76) ≤ Primal" },
+    { "source": "Strong Duality (Theorem 12.12)", "type": "holds_under", "target": "Slater's Condition" },
+    { "source": "Strong Duality (Theorem 12.12)", "type": "holds_when", "target": "KKT satisfied" },
+
+    { "source": "Linear Program (LP) in Canonical Form (65)", "type": "converted_to", "target": "Linear Program (LP) in Standard Form (64)" },
+    { "source": "Slack Variables ($z$)", "type": "used_in", "target": "Conversion to Standard Form" },
+    { "source": "Simplex Method", "type": "operates_on", "target": "Basic Feasible Solution (Vertex)" },
+    { "source": "Simplex Method", "type": "uses", "target": "Minimum Ratio Rule" },
+    { "source": "Simplex Method", "type": "terminates_when", "target": "All reduced costs ≥ 0" },
+
+    { "source": "Residual Functions ($r_j(x)$)", "type": "define", "target": "Least Squares Problems" },
+    { "source": "Jacobian J(x)", "type": "computed_from", "target": "Residual Functions ($r_j(x)$)" },
+    { "source": "Gauss–Newton Method", "type": "approximates_Hessian_with", "target": "J^T J" },
+    { "source": "Levenberg–Marquardt Method", "type": "regularizes", "target": "J^T J + μI" },
+    { "source": "Linear Least Squares Problem (Linear Regression)", "type": "solved_by", "target": "Normal Equations" },
+    { "source": "Linear Least Squares Problem (Linear Regression)", "type": "solved_stably_by", "target": "QR Decomposition" },
+
+    { "source": "SR1 Update", "type": "is_a", "target": "Quasi-Newton Methods" },
+    { "source": "BFGS method", "type": "is_a", "target": "Quasi-Newton Methods" },
+    { "source": "Secant Condition", "type": "satisfied_by", "target": "SR1 Update" },
+    { "source": "Secant Condition", "type": "satisfied_by", "target": "BFGS method" },
+
+    { "source": "Steepest Descent Method", "type": "converges_with_rate", "target": "Linear (C = (κ-1)/(κ+1))" },
+    { "source": "Newton's Method (Optimization)", "type": "converges_with_rate", "target": "Quadratic" },
+    { "source": "Quasi-Newton Methods", "type": "converges_with_rate", "target": "Superlinear" },
+    { "source": "Bisection Method (Step Length)", "type": "converges_with_rate", "target": "Linear (C=0.5)" },
+    { "source": "Condition Number (κ(Q))", "type": "controls_rate_of", "target": "Steepest Descent Method" },
+
+    { "source": "Trust Region Subproblem (52)", "type": "uses_model", "target": "Model Function ($m_k(p)$)" },
+    { "source": "Trust Region Subproblem (52)", "type": "constrained_by", "target": "Trust Region Ball" },
+    { "source": "Comparison Ratio ($\\rho_k$)", "type": "controls", "target": "Trust Region Radius Update" },
+    { "source": "Krylov Subspace Approximation (TR Subproblem)", "type": "approximates", "target": "Trust Region Subproblem (52)" },
+    { "source": "Steihaug-Toint CG", "type": "is_implementation_of", "target": "Krylov Subspace Approximation (TR Subproblem)" },
+
+    { "source": "Bisection Method (Step Length)", "type": "used_in", "target": "Wolfe Line Search" },
+    { "source": "Bisection Method (Step Length)", "type": "solves", "target": "φ'(α) = 0" },
+    { "source": "Exact Line Search", "type": "ideal_for", "target": "Quadratic Function (Optimization Tool)" },
+
+    { "source": "Quadratic Function (Optimization Tool)", "type": "derived_from", "target": "Taylor Expansion (2nd order)" },
+    { "source": "Model Function ($m_k(p)$)", "type": "is", "target": "Quadratic Function (Optimization Tool)" },
+    { "source": "Secant Condition", "type": "approximates", "target": "Hessian action via finite differences" },
+
+    { "source": "Nonlinear Least Squares Problems", "type": "solved_by", "target": "Gauss–Newton Method" },
+    { "source": "Nonlinear Least Squares Problems", "type": "solved_robustly_by", "target": "Levenberg–Marquardt Method" },
+    { "source": "Linear Least Squares Problem (Linear Regression)", "type": "solved_by", "target": "QR or SVD" },
+    { "source": "Constrained Optimization Problem", "type": "solved_by", "target": "Interior Point Methods" },
+    { "source": "Constrained Optimization Problem", "type": "solved_by", "target": "SQP (Sequential Quadratic Programming)" },
+
+    { "source": "Farkas' Lemma", "type": "proves", "target": "KKT Necessity" },
+    { "source": "KKT Conditions", "type": "reduce_to", "target": "Normal Equations in Linear LS" },
+    { "source": "Hessian Matrix", "type": "used_in", "target": "Newton's Method (Optimization)" },
+    { "source": "Positive Definite Matrix", "type": "ensures", "target": "Unique Minimizer of Quadratic" },
+    { "source": "Saddle Point", "type": "has", "target": "Indefinite Hessian" }
+  ],
+  "metadata": {
+    "last_built": "2025-11-10 16:45:00",
+    "note": "Enriched with 160+ pedagogically rich edges for optimization."
+  }
+}

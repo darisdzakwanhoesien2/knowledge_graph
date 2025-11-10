@@ -6,66 +6,70 @@ from datetime import datetime
 INPUT_FOLDER = "json_nodes"
 OUTPUT_FILE = "merged_graph.json"
 
+
 # --- STEP 1: Load all JSON files ---
 def load_json_nodes(folder):
-    data_list = []
+    json_list = []
     for file in os.listdir(folder):
         if file.endswith(".json"):
             path = os.path.join(folder, file)
             try:
                 with open(path, "r", encoding="utf-8") as f:
                     data = json.load(f)
-                    if isinstance(data, list):
-                        data_list.extend(data)
+                    # Accept both single-entity and full-graph structures
+                    if "nodes" in data and "edges" in data:
+                        json_list.append(data)  # graph-style (optimization.json)
+                    elif isinstance(data, list):
+                        json_list.extend(data)  # list of entities
                     else:
-                        data_list.append(data)
+                        json_list.append(data)  # single entity (FFT)
             except Exception as e:
                 print(f"⚠️ Error loading {file}: {e}")
-    return data_list
+    return json_list
 
 
-# --- STEP 2: Merge nodes and relations ---
+# --- STEP 2: Merge nodes and edges ---
 def merge_graph(json_list):
     graph = {"nodes": {}, "edges": []}
-    
+
     for entry in json_list:
-        entity = entry["entity"]
-        
-        # Merge or create node
-        if entity not in graph["nodes"]:
-            graph["nodes"][entity] = {
-                "type": entry.get("type", "Concept"),
-                "domain": entry.get("domain", ""),
-                "definition": entry.get("definition", ""),
-                "description": entry.get("description", ""),
-                "properties": entry.get("properties", {}),
-                "metadata": entry.get("metadata", {}),
-            }
-        else:
-            # Merge properties if new ones exist
-            existing = graph["nodes"][entity]
-            existing["properties"].update(entry.get("properties", {}))
-        
-        # Add relations as edges
-        for rel in entry.get("relations", []):
-            edge = {
-                "source": entity,
-                "type": rel["type"],
-                "target": rel["target"],
-            }
-            # Prevent duplicates
-            if edge not in graph["edges"]:
-                graph["edges"].append(edge)
-    
+        # Case 1: Graph-type JSON (optimization.json)
+        if "nodes" in entry and "edges" in entry:
+            for name, node in entry["nodes"].items():
+                if name not in graph["nodes"]:
+                    graph["nodes"][name] = node
+            for edge in entry["edges"]:
+                if edge not in graph["edges"]:
+                    graph["edges"].append(edge)
+
+        # Case 2: Entity-based JSON (FFT)
+        elif "entity" in entry:
+            entity = entry["entity"]
+            if entity not in graph["nodes"]:
+                graph["nodes"][entity] = {
+                    "type": entry.get("type", "Concept"),
+                    "domain": entry.get("domain", ""),
+                    "definition": entry.get("definition", ""),
+                    "description": entry.get("description", ""),
+                    "properties": entry.get("properties", {}),
+                    "metadata": entry.get("metadata", {}),
+                }
+            else:
+                graph["nodes"][entity]["properties"].update(entry.get("properties", {}))
+
+            # Add relations as edges
+            for rel in entry.get("relations", []):
+                edge = {"source": entity, "type": rel["type"], "target": rel["target"]}
+                if edge not in graph["edges"]:
+                    graph["edges"].append(edge)
     return graph
 
 
-# --- STEP 3.5: Normalize and Merge Duplicate Nodes ---
+# --- STEP 3: Normalize duplicates ---
 def normalize_nodes(graph):
     normalized_map = {}
     renamed_count = 0
 
-    # Build normalized mapping (case-insensitive + trim)
     for node_name in list(graph["nodes"].keys()):
         normalized = node_name.strip().lower()
         if normalized in normalized_map:
@@ -73,7 +77,6 @@ def normalize_nodes(graph):
             existing_node = graph["nodes"][existing_name]
             new_node = graph["nodes"][node_name]
 
-            # Merge properties
             existing_node["properties"].update(new_node.get("properties", {}))
             if not existing_node.get("domain") and new_node.get("domain"):
                 existing_node["domain"] = new_node["domain"]
@@ -85,7 +88,6 @@ def normalize_nodes(graph):
                 if edge["target"] == node_name:
                     edge["target"] = existing_name
 
-            # Remove duplicate node
             del graph["nodes"][node_name]
             renamed_count += 1
         else:

@@ -1,0 +1,66 @@
+{
+  "nodes": {},
+  "edges": [
+    {
+      "source": "Gauss–Newton Method",
+      "type": "extends",
+      "target": "Newton's Method (Optimization)"
+    },
+    {
+      "source": "Levenberg–Marquardt Method",
+      "type": "extends",
+      "target": "Gauss–Newton Method"
+    },
+    {
+      "source": "Trust Region Methods (TRMs)",
+      "type": "related_to",
+      "target": "Levenberg–Marquardt Method"
+    },
+    {
+      "source": "Quasi-Newton Methods",
+      "type": "generalizes",
+      "target": "BFGS method"
+    },
+    {
+      "source": "SR1 Update",
+      "type": "is_alternative_to",
+      "target": "BFGS method"
+    },
+    {
+      "source": "Trust Region Subproblem (52)",
+      "type": "solved_by",
+      "target": "Steihaug-Toint CG"
+    },
+    {
+      "source": "Newton's Method (Optimization)",
+      "type": "approximated_by",
+      "target": "Quasi-Newton Methods"
+    },
+    {
+      "source": "Unconstrained Optimization",
+      "type": "foundation_for",
+      "target": "Constrained Optimization Problem"
+    },
+    {
+      "source": "Karush-Kuhn-Tucker (KKT) Conditions",
+      "type": "imply",
+      "target": "Strong Duality (Theorem 12.12)"
+    },
+    {
+      "source": "Second Order Necessary Conditions (Constrained)",
+      "type": "applied_in",
+      "target": "Eigenvalue Optimization Problems"
+    },
+    {
+      "source": "Trust Region Methods (TRMs)",
+      "type": "connects_to",
+      "target": "Global Convergence Theorems"
+    }
+  ],
+  "metadata": {
+    "built_from": "optimization.json",
+    "purpose": "cross-chapter relationship enrichment",
+    "node_updates": false,
+    "created_at": "2025-11-10 17:45:00"
+  }
+}
