@@ -1,204 +1,271 @@
 [
   {
-    "entity": "Motion",
-    "type": "Concept",
-    "domain": "Computer Vision",
-    "definition": "Motion in computer vision refers to the apparent displacement of image brightness patterns between consecutive frames in a video sequence, caused by relative movement between the camera and the scene.",
-    "description": "It provides critical information about scene dynamics, enabling applications such as tracking, segmentation, and 3D reconstruction. Motion analysis distinguishes between camera motion, object motion, and complex non-rigid deformations.",
+    "entity": "Linear Program (LP) in Standard Form (64)",
+    "type": "Optimization Problem Type",
+    "domain": "Linear Programming",
+    "definition": "The problem of minimizing a cost function $f(x)=c^{T}x$ subject to linear equality constraints $Ax=b$ and non-negativity constraints $x\\ge0$.",
+    "description": "This is the formulation assumed when applying the Simplex method. It requires conversion tricks (e.g., slack variables) if the original problem contains inequalities. Typically assumes $m<n$ and $A$ has full row rank (linearly independent rows).",
     "properties": {
-      "Goal": "Estimate and interpret changes in image appearance over time.",
-      "Applications": ["Video stabilization", "Object tracking", "Action recognition", "Autonomous navigation"],
-      "Methods": ["Optical flow", "Feature tracking", "Block matching", "Differential methods"],
-      "Examples": ["Car moving across frames", "Person walking", "Camera panning"]
+      "Goal": "Minimize $c^{T}x$ over the feasible region defined by $Ax=b$ and $x\\ge0$.",
+      "Applications": [
+        "Solving systems arising from problems like the 'factory output allocation problem' after conversion"
+      ],
+      "Methods": [
+        "Conversion from Canonical Form (65) using slack variables"
+      ],
+      "Examples": []
     },
     "relations": [
-      {"type": "analyzed_by", "target": "Optical Flow"},
-      {"type": "used_in", "target": "Motion Segmentation"},
-      {"type": "enables", "target": "3D Reconstruction"},
-      {"type": "related_to", "target": "Temporal Analysis"},
-      {"type": "caused_by", "target": "Relative Movement"}
+      {
+        "type": "Assumed Condition",
+        "target": "$m<n$ and $A$ has full row rank"
+      },
+      {
+        "type": "Solved By",
+        "target": "Simplex Method"
+      }
     ],
     "metadata": {
       "created_by": "system",
-      "source": "08-motion-00.pdf",
-      "created_at": "2025-11-06",
+      "source": "",
+      "created_at": "2025-11-10",
       "version": "1.0"
     }
   },
   {
-    "entity": "Optical Flow",
-    "type": "Method",
-    "domain": "Computer Vision",
-    "definition": "Optical flow is the dense 2D vector field representing the apparent motion of brightness patterns between two consecutive image frames, assigning a displacement vector to each pixel.",
-    "description": "It models local image changes under the brightness constancy assumption and is used to estimate scene motion, segment moving objects, and support higher-level video analysis.",
+    "entity": "Linear Program (LP) in Canonical Form (65)",
+    "type": "Optimization Problem Type",
+    "domain": "Linear Programming",
+    "definition": "The problem of minimizing $c^{T}x$ subject to inequality constraints $Ax\\le b$ and non-negativity constraints $x\\ge0$.",
+    "description": "This form represents the feasible region $\\Omega$ as a polyhedron (polygon when $n=2$). It is convertible to standard form (64) using slack variables.",
     "properties": {
-      "Goal": "Compute per-pixel motion vectors between image pairs.",
-      "Applications": ["Motion compensation", "Video compression", "Robot navigation", "Medical imaging"],
-      "Methods": ["Lucas-Kanade (sparse)", "Horn-Schunck (dense)", "Farneback", "Deep learning-based flow"],
-      "Examples": ["Flow field around a moving car", "Expansion flow from camera zoom"]
+      "Goal": "Minimize $c^{T}x$.",
+      "Applications": [
+        "Initial formulation of problems like the 'factory output allocation problem'"
+      ],
+      "Methods": [
+        "Introducing $m$ slack variables $z\\ge0$ to obtain $Ax+Iz=b$ and achieve standard form"
+      ],
+      "Examples": []
     },
     "relations": [
-      {"type": "is_a", "target": "Motion Estimation"},
-      {"type": "assumes", "target": "Brightness Constancy"},
-      {"type": "used_in", "target": "Motion Segmentation"},
-      {"type": "extended_by", "target": "Deep Optical Flow"},
-      {"type": "contrasts_with", "target": "Feature Tracking"}
+      {
+        "type": "Converted To",
+        "target": "Linear Program (LP) in Standard Form (64)"
+      },
+      {
+        "type": "Feasible Region Visualization",
+        "target": "Polyhedron (polygon for $n=2$)"
+      }
     ],
     "metadata": {
       "created_by": "system",
-      "source": "08-motion-00.pdf",
-      "created_at": "2025-11-06",
+      "source": "",
+      "created_at": "2025-11-10",
       "version": "1.0"
     }
   },
   {
-    "entity": "Brightness Constancy Assumption",
-    "type": "Concept",
-    "domain": "Computer Vision",
-    "definition": "The brightness constancy assumption states that the intensity of a moving point remains constant between consecutive frames, i.e., I(x, t) = I(x + d, t + 1), where d is the displacement.",
-    "description": "It is the foundational constraint in differential optical flow methods, enabling the formulation of the optical flow constraint equation from spatiotemporal image gradients.",
+    "entity": "Simplex Method",
+    "type": "Optimization Algorithm",
+    "domain": "Linear Programming",
+    "definition": "A descent method for solving LP problems in standard form by starting at a vertex of the feasible region and moving along edges to adjacent vertices where the cost strictly decreases.",
+    "description": "The method guarantees convergence to the global minimizer (assuming non-degeneracy) because the cost decreases at each pivot and no vertex is revisited. It was devised by George Dantzig in the 1940s.",
     "properties": {
-      "Goal": "Link pixel intensity across time for motion estimation.",
-      "Applications": ["Optical flow computation", "Motion detection", "Tracking"],
-      "Methods": ["Gradient-based flow", "Aperture problem solving"],
-      "Examples": ["Valid for Lambertian surfaces under constant illumination"]
+      "Goal": "Locate the global minimizer of an LP in standard form.",
+      "Applications": [
+        "Solving linear programs in standard form (64)"
+      ],
+      "Methods": [
+        "Phase I: Find an initial basic feasible solution.",
+        "Phase II: Perform descent steps along edges from vertex to vertex.",
+        "Pivoting: Solve for the entering variable and update basis.",
+        "Use reduced cost vector $s = c_{N} - N^{T}\\lambda$ to select entering variable."
+      ],
+      "Examples": [
+        "Example (67) solved starting from $x_{1}=8$, $x_{2}=9$"
+      ]
     },
     "relations": [
-      {"type": "core_of", "target": "Differential Optical Flow"},
-      {"type": "violated_by", "target": "Specular Highlights"},
-      {"type": "violated_by", "target": "Occlusion"},
-      {"type": "complemented_by", "target": "Smoothness Constraint"}
+      {
+        "type": "Termination Condition (Optimal)",
+        "target": "Reduced cost vector $s\\ge0$"
+      },
+      {
+        "type": "Termination Condition (Unbounded)",
+        "target": "If $d = B^{-1}u \\le 0$ for the column $u$ of entering variable"
+      },
+      {
+        "type": "Worst Case Complexity",
+        "target": "$\\binom{m}{n}$ (but typically $\\le 3m$ pivots)"
+      }
     ],
     "metadata": {
       "created_by": "system",
-      "source": "08-motion-00.pdf",
-      "created_at": "2025-11-06",
+      "source": "",
+      "created_at": "2025-11-10",
       "version": "1.0"
     }
   },
   {
-    "entity": "Aperture Problem",
-    "type": "Concept",
-    "domain": "Computer Vision",
-    "definition": "The aperture problem arises when observing motion through a local window: only the motion component perpendicular to an edge can be measured, leaving the parallel component ambiguous.",
-    "description": "It explains why local motion measurements are underconstrained and requires integration over larger regions or use of corner features to resolve full 2D motion.",
+    "entity": "Basic Feasible Solution (Vertex)",
+    "type": "Solution Point/Geometric Vertex",
+    "domain": "Linear Programming",
+    "definition": "A solution $x$ to $Ax=b$ in standard form such that $x\\ge0$ and exactly $n-m$ components are zero (assuming full row rank of $A$).",
+    "description": "These points correspond to the vertices of the feasible polyhedron. The Simplex method moves exclusively between such points.",
     "properties": {
-      "Goal": "N/A",
-      "Applications": ["Explains limitations of local flow", "Justifies global methods"],
-      "Methods": ["N/A"],
-      "Examples": ["Straight edge moving sideways — only normal flow detectable"]
+      "Goal": "Serve as endpoints for descent steps along feasible edges.",
+      "Applications": [
+        "Starting point for Simplex Phase II (if $B^{-1}b \\ge 0$)"
+      ],
+      "Methods": [],
+      "Examples": [
+        "For problem (67), initial vertex: $x_{1}=8$, $x_{2}=9$ (basic), $x_{3}=x_{4}=x_{5}=0$ (non-basic)."
+      ]
     },
     "relations": [
-      {"type": "limitation_of", "target": "Local Motion Estimation"},
-      {"type": "solved_by", "target": "Global Optimization"},
-      {"type": "solved_by", "target": "Corner Features"},
-      {"type": "related_to", "target": "Optical Flow Constraint"}
+      {
+        "type": "Components",
+        "target": "$m$ basic variables (positive) and $n-m$ non-basic variables (zero)"
+      },
+      {
+        "type": "Condition for Feasibility",
+        "target": "$B^{-1}b \\ge 0$"
+      }
     ],
     "metadata": {
       "created_by": "system",
-      "source": "08-motion-00.pdf",
-      "created_at": "2025-11-06",
+      "source": "",
+      "created_at": "2025-11-10",
       "version": "1.0"
     }
   },
   {
-    "entity": "Lucas-Kanade Method",
-    "type": "Method",
-    "domain": "Computer Vision",
-    "definition": "The Lucas-Kanade method is a sparse, differential technique for optical flow estimation that assumes local motion constancy within small spatial neighborhoods and solves for motion using weighted least squares.",
-    "description": "It is efficient and robust when applied to textured regions or tracked features, commonly used in real-time tracking and sparse flow applications.",
+    "entity": "Minimum Ratio Rule",
+    "type": "Selection Criterion/Rule",
+    "domain": "Simplex Method",
+    "definition": "The rule to determine the leaving basic variable by computing $\\theta^* = \\min\\left\\{\\frac{(B^{-1}b)_{i}}{(B^{-1}u)_{i}} \\mid (B^{-1}u)_{i} > 0\\right\\}$, where $u$ is the column of the entering variable in $N$.",
+    "description": "This rule ensures the step size along the edge is maximal while preserving feasibility, identifying the next vertex.",
     "properties": {
-      "Goal": "Estimate local motion at feature points with sub-pixel accuracy.",
-      "Applications": ["Feature tracking", "Visual odometry", "Augmented reality"],
-      "Methods": ["Local window analysis", "Weighted least squares", "Pyramidal refinement"],
-      "Examples": ["Tracking facial landmarks", "Corner point tracking in video"]
+      "Goal": "Determine the leaving variable and step size to the next vertex.",
+      "Applications": [
+        "Step 3 of the Simplex Method"
+      ],
+      "Methods": [
+        "Compute ratios $\\frac{(B^{-1}b)_{i}}{(B^{-1}u)_{i}}$ only for $i$ where $(B^{-1}u)_{i} > 0$."
+      ],
+      "Examples": [
+        "In example (67), ratios $\\frac{8}{2}=4$ and $\\frac{9}{3}=3$; minimum is 3, so $x_{2}$ leaves."
+      ]
     },
     "relations": [
-      {"type": "is_a", "target": "Sparse Optical Flow"},
-      {"type": "assumes", "target": "Local Smoothness"},
-      {"type": "uses", "target": "Image Gradient"},
-      {"type": "robust_to", "target": "Small Motions"},
-      {"type": "extended_by", "target": "Pyramidal Lucas-Kanade"}
+      {
+        "type": "Uses Vector $u$",
+        "target": "Column of $N$ corresponding to entering variable $x_j$"
+      }
     ],
     "metadata": {
       "created_by": "system",
-      "source": "08-motion-00.pdf",
-      "created_at": "2025-11-06",
+      "source": "",
+      "created_at": "2025-11-10",
       "version": "1.0"
     }
   },
   {
-    "entity": "Horn-Schunck Method",
-    "type": "Method",
-    "domain": "Computer Vision",
-    "definition": "The Horn-Schunck method is a dense optical flow algorithm that minimizes a global energy functional combining the brightness constancy error and a smoothness term across the entire image.",
-    "description": "It produces smooth flow fields by enforcing spatial coherence, making it suitable for dense motion estimation even in textureless regions.",
+    "entity": "Critical Cone ($\\mathcal{C}(x^{*},\\lambda^{*})$)",
+    "type": "Geometric Concept/Set",
+    "domain": "Constrained Optimization Theory",
+    "definition": "The set of directions $w\\in\\mathbb{R}^{n}$ such that $\\nabla c_{i}(x^{*})^{T}w = 0$ for all active constraints $i$ (i.e., $c_{i}(x^{*})=0$ and $\\lambda^{*}_{i}>0$), and $\\nabla c_{i}(x^{*})^{T}w \\ge 0$ for active constraints with $\\lambda^{*}_{i}=0$.",
+    "description": "Used to restrict second-order necessary/sufficient conditions at a KKT point. For the eigenvalue problem $\\min x^{T}Qx$ s.t. $\\|x\\|=1$, it is the tangent plane $\\{w \\mid x^{*T}w=0\\}$.",
     "properties": {
-      "Goal": "Compute smooth, dense optical flow over the full image.",
-      "Applications": ["Motion segmentation", "Video editing", "Fluid flow visualization"],
-      "Methods": ["Variational optimization", "Euler-Lagrange equations", "Iterative solvers"],
-      "Examples": ["Global flow in translating scenes", "Dense flow in medical ultrasound"]
+      "Goal": "Define the subspace on which the Hessian of the Lagrangian must be positive semidefinite (second-order conditions).",
+      "Applications": [
+        "Second-Order Necessary Conditions (Theorem 12.5)"
+      ],
+      "Methods": [],
+      "Examples": [
+        "For constraint $c(x) = \\|x\\|^2 - 1 = 0$, $\\mathcal{C}(x^{*},\\lambda^{*}) = \\{w \\mid x^{*T}w = 0\\}$."
+      ]
     },
     "relations": [
-      {"type": "is_a", "target": "Dense Optical Flow"},
-      {"type": "uses", "target": "Global Smoothness"},
-      {"type": "complements", "target": "Lucas-Kanade Method"},
-      {"type": "foundation_for", "target": "Variational Flow Methods"}
+      {
+        "type": "Restricts",
+        "target": "Hessian of Lagrangian $\\nabla_{xx}^{2}\\mathcal{L}(x^{*},\\lambda^{*})$"
+      }
     ],
     "metadata": {
       "created_by": "system",
-      "source": "08-motion-00.pdf",
-      "created_at": "2025-11-06",
+      "source": "",
+      "created_at": "2025-11-10",
       "version": "1.0"
     }
   },
   {
-    "entity": "Motion Segmentation",
-    "type": "Method",
-    "domain": "Computer Vision",
-    "definition": "Motion segmentation is the process of partitioning a video into regions corresponding to independently moving objects based on their motion patterns.",
-    "description": "It leverages optical flow or feature trajectories to group pixels with coherent motion, enabling object-level video analysis.",
+    "entity": "Second Order Necessary Condition (Eigenvalue Problem)",
+    "type": "Necessary Condition/Verification",
+    "domain": "Constrained Optimization Theory",
+    "definition": "At a local minimizer $x^{*}$ of $\\min x^{T}Qx$ s.t. $\\|x\\|=1$, the restricted Hessian satisfies $w^{T}(Q - \\lambda^{*}I)w \\ge 0$ for all $w \\in \\mathcal{C}(x^{*},\\lambda^{*}) = \\{w \\mid x^{*T}w=0\\}$.",
+    "description": "Equivalent to $\\lambda^{*}$ being the smallest eigenvalue of $Q$. If $\\lambda^{*}$ is not the smallest, $x^{*}$ cannot be a local minimizer.",
     "properties": {
-      "Goal": "Separate independently moving objects in dynamic scenes.",
-      "Applications": ["Video surveillance", "Autonomous driving", "Action analysis"],
-      "Methods": ["Flow clustering", "Layered motion models", "Graph cuts"],
-      "Examples": ["Separating pedestrian from background", "Isolating multiple cars"]
+      "Goal": "Verify whether a KKT point $x^{*}$ (unit eigenvector) is a local minimizer.",
+      "Applications": [
+        "Analyzing constrained eigenvalue problems"
+      ],
+      "Methods": [
+        "Check if $\\lambda^{*}$ is the smallest eigenvalue of $Q$."
+      ],
+      "Examples": [
+        "If $\\lambda^{*}$ is the smallest eigenvalue and multiplicity one, $x^{*}$ is a local minimizer."
+      ]
     },
     "relations": [
-      {"type": "uses", "target": "Optical Flow"},
-      {"type": "enables", "target": "Object Tracking"},
-      {"type": "part_of", "target": "Video Analysis"},
-      {"type": "related_to", "target": "Layered Representation"}
+      {
+        "type": "Related KKT Solution",
+        "target": "Unit eigenvector $x^{*}$ with eigenvalue $\\lambda^{*}$"
+      },
+      {
+        "type": "Related Lagrangian Hessian",
+        "target": "$Q - \\lambda^{*}I$"
+      }
     ],
     "metadata": {
       "created_by": "system",
-      "source": "08-motion-00.pdf",
-      "created_at": "2025-11-06",
+      "source": "",
+      "created_at": "2025-11-10",
       "version": "1.0"
     }
   },
   {
-    "entity": "Feature Tracking",
-    "type": "Method",
-    "domain": "Computer Vision",
-    "definition": "Feature tracking involves detecting distinctive points in one frame and finding their corresponding locations in subsequent frames using local search and similarity metrics.",
-    "description": "It is a sparse motion representation widely used in real-time systems due to low computational cost and robustness when features are well-distributed.",
+    "entity": "Duality Theory (Convex)",
+    "type": "Optimization Concept/Theory",
+    "domain": "Convex Optimization",
+    "definition": "A framework for analyzing the primal problem $\\min~f(x)$ s.t. $c(x)\\ge0$ via the Lagrangian and dual problem, valid under convexity assumptions on $f$ and concavity on $c_j$.",
+    "description": "Requires $f$ convex and $c_j$ concave so that the Lagrangian $\\mathcal{L}(x,\\lambda) = f(x) - \\lambda^{T}c(x)$ is convex in $x$ for fixed $\\lambda\\ge0$. Enables weak/strong duality results.",
     "properties": {
-      "Goal": "Maintain persistent point correspondences across video frames.",
-      "Applications": ["SLAM", "Structure from Motion", "Camera pose estimation"],
-      "Methods": ["KLT tracker", "Descriptor matching", "Sub-pixel refinement"],
-      "Examples": ["Tracking Harris corners over time", "Sparse trajectory bundles"]
+      "Goal": "Analyze and solve constrained convex optimization problems using dual variables.",
+      "Applications": [
+        "Linear Programming",
+        "Quadratic Programming"
+      ],
+      "Methods": [
+        "Form Lagrangian $\\mathcal{L}(x,\\lambda)=f(x)-\\lambda^{T}c(x)$"
+      ],
+      "Examples": []
     },
     "relations": [
-      {"type": "alternative_to", "target": "Dense Optical Flow"},
-      {"type": "uses", "target": "Local Features"},
-      {"type": "input_to", "target": "Structure from Motion"},
-      {"type": "implemented_as", "target": "KLT Tracker"}
+      {
+        "type": "Requires Convexity Of",
+        "target": "$f(x)$"
+      },
+      {
+        "type": "Requires Concavity Of",
+        "target": "$c_j(x)$"
+      }
     ],
     "metadata": {
       "created_by": "system",
-      "source": "08-motion-00.pdf",
-      "created_at": "2025-11-06",
+      "source": "",
+      "created_at": "2025-11-10",
       "version": "1.0"
     }
   }

@@ -1,0 +1,202 @@
+[
+  {
+    "entity": "Krylov Subspace",
+    "type": "Concept",
+    "domain": "Numerical Analysis",
+    "definition": "The Krylov subspace K_j(A; I) is defined as the span of the matrix powers {I, A, A^2, ..., A^{j-1}} for a square matrix A, generating a sequence of subspaces used in iterative methods.",
+    "description": "Krylov subspaces are fundamental in algorithms for solving linear systems, eigenvalue problems, and matrix approximations, enabling reduced-order computations for large matrices.",
+    "properties": {
+      "Goal": "Generate subspaces for iterative numerical methods.",
+      "Applications": ["Eigenvalue computation", "Linear solvers", "Matrix exponentiation"],
+      "Methods": ["Arnoldi iteration", "Lanczos algorithm", "GMRES"],
+      "Examples": ["K_1(A; I) = span{I}", "K_2(A; I) = span{I, A}"]
+    },
+    "relations": [
+      {"type": "generated_from", "target": "Matrix Powers"},
+      {"type": "used_in", "target": "Iterative Methods"},
+      {"type": "related_to", "target": "Invariant Subspace"},
+      {"type": "dimension", "target": "j"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "05_factoring_algorithmically.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Matrix Product V1 V2",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "The matrix product V1 V2 represents the set of all matrices formed by multiplying elements from subspaces V1 and V2, i.e., {V1 V2 : V1 ∈ V1, V2 ∈ V2}.",
+    "description": "This construct is used to approximate or factor large matrices A by finding subspaces such that A lies in V1 V2, enabling low-parameter representations.",
+    "properties": {
+      "Goal": "Represent matrices as products of subspace elements for factorization.",
+      "Applications": ["Matrix approximation", "Low-rank factoring", "Compression"],
+      "Methods": ["Subspace identification", "Optimization over subspaces"],
+      "Examples": ["A ≈ V1 V2 for V1, V2 low-dimensional"]
+    },
+    "relations": [
+      {"type": "approximates", "target": "Square Matrix A"},
+      {"type": "related_to", "target": "Low-Rank Approximation"},
+      {"type": "uses", "target": "Subspaces V1 V2"},
+      {"type": "enables", "target": "Algorithmic Factoring"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "05_factoring_algorithmically.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Projection Operator",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A projection operator P is an idempotent matrix satisfying P^2 = P, mapping vectors onto a subspace while being zero on its complement.",
+    "description": "Projections decompose spaces into direct sums, with R(P) as the range and R(I - P) as the orthogonal complement if P is orthogonal.",
+    "properties": {
+      "Goal": "Project vectors onto subspaces.",
+      "Applications": ["Least squares", "Subspace methods", "Decomposition"],
+      "Methods": ["Orthogonal projection", "Oblique projection"],
+      "Examples": ["P with P^2 = P", "I - P as complement projection"]
+    },
+    "relations": [
+      {"type": "satisfies", "target": "Idempotency P^2 = P"},
+      {"type": "defines", "target": "Range R(P)"},
+      {"type": "complements_with", "target": "I - P"},
+      {"type": "used_in", "target": "Subspace Decomposition"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "05_factoring_algorithmically.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Range of Projection",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "The range R(P) of a projection P is the set {y : y = Px for some x}, representing the subspace onto which P projects.",
+    "description": "For orthogonal projections, R(P) is perpendicular to R(I - P), forming an orthogonal decomposition of the space.",
+    "properties": {
+      "Goal": "Define the projected subspace.",
+      "Applications": ["Subspace identification", "Dimensionality reduction"],
+      "Methods": ["Column span of P", "Fixed points of P"],
+      "Examples": ["R(P) = span{columns of P}"]
+    },
+    "relations": [
+      {"type": "defined_by", "target": "Projection Operator"},
+      {"type": "orthogonal_to", "target": "R(I - P)"},
+      {"type": "part_of", "target": "Direct Sum Decomposition"},
+      {"type": "related_to", "target": "Kernel of I - P"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "05_factoring_algorithmically.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Orthogonal Complement",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "The orthogonal complement of a subspace V is the set of vectors perpendicular to all elements in V, denoted V^⊥.",
+    "description": "For projections, if P is orthogonal, then R(P) ⊥ R(I - P), ensuring the decomposition is orthogonal.",
+    "properties": {
+      "Goal": "Decompose space into perpendicular subspaces.",
+      "Applications": ["Gram-Schmidt", "Least squares", "Spectral methods"],
+      "Methods": ["Dot product zero condition", "Null space of transpose"],
+      "Examples": ["R(I - P) as complement of R(P)"]
+    },
+    "relations": [
+      {"type": "property_of", "target": "Orthogonal Projection"},
+      {"type": "ensures", "target": "Direct Sum"},
+      {"type": "related_to", "target": "Inner Product Space"},
+      {"type": "used_in", "target": "Subspace Factoring"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "05_factoring_algorithmically.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Algorithmic Factoring",
+    "type": "Method",
+    "domain": "Numerical Analysis",
+    "definition": "Algorithmic factoring refers to computational methods for decomposing matrices into structured forms like products of subspaces or triangular factors.",
+    "description": "It leverages Krylov subspaces and projections to factor matrices efficiently, especially for large-scale problems.",
+    "properties": {
+      "Goal": "Factor matrices using algorithmic techniques.",
+      "Applications": ["Large linear systems", "Eigenproblems", "Approximations"],
+      "Methods": ["Subspace iteration", "Projection-based factoring"],
+      "Examples": ["A = V1 W^{-1} using subspaces"]
+    },
+    "relations": [
+      {"type": "uses", "target": "Krylov Subspace"},
+      {"type": "incorporates", "target": "Projection Operator"},
+      {"type": "alternative_to", "target": "Direct Factorization"},
+      {"type": "applied_to", "target": "Square Matrix A"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "05_factoring_algorithmically.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Invariant Subspace",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "An invariant subspace W for matrix A satisfies A W ⊆ W, meaning A maps W into itself.",
+    "description": "Invariant subspaces are key in spectral theory and factoring, often identified via Krylov methods or projections.",
+    "properties": {
+      "Goal": "Find subspaces stable under matrix action.",
+      "Applications": ["Eigen decomposition", "Schur form", "Model reduction"],
+      "Methods": ["Subspace iteration", "Arnoldi process"],
+      "Examples": ["Eigenvector spans 1D invariant subspace"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Krylov Subspace"},
+      {"type": "projected_onto", "target": "Projection Operator"},
+      {"type": "used_in", "target": "Matrix Factoring"},
+      {"type": "contains", "target": "Eigenvectors"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "05_factoring_algorithmically.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Square Matrix A",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A square matrix A ∈ ℂ^{n×n} is a matrix with equal rows and columns, central to linear transformations and eigenvalue problems.",
+    "description": "In factoring contexts, A is decomposed using subspaces, projections, or iterations for computational efficiency.",
+    "properties": {
+      "Goal": "Represent linear operators on finite-dimensional spaces.",
+      "Applications": ["Systems of equations", "Transformations", "Spectral analysis"],
+      "Methods": ["Factorization", "Iteration", "Diagonalization"],
+      "Examples": ["A with complex entries"]
+    },
+    "relations": [
+      {"type": "factored_by", "target": "Algorithmic Factoring"},
+      {"type": "generates", "target": "Krylov Subspace"},
+      {"type": "acts_on", "target": "Invariant Subspace"},
+      {"type": "projected_by", "target": "Projection Operator"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "05_factoring_algorithmically.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]

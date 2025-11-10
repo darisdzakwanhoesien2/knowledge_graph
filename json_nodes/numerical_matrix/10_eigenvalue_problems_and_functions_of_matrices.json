@@ -1,0 +1,202 @@
+[
+  {
+    "entity": "Eigenvalue Problem",
+    "type": "Problem",
+    "domain": "Numerical Linear Algebra",
+    "definition": "The task of finding scalar λ ∈ ℂ and nonzero vector x ∈ ℂⁿ such that Ax = λx, where A ∈ ℂ^{n×n}.",
+    "description": "Eigenvalues and eigenvectors reveal spectral properties of matrices, enabling diagonalization, stability analysis, and function evaluation. The standard problem assumes A is square; generalized forms involve matrix pencils (A-λB).",
+    "properties": {
+      "Goal": "Compute spectrum and invariant subspaces for analysis and transformation of linear operators.",
+      "Applications": ["Vibration analysis", "Stability of dynamical systems", "Google PageRank", "Quantum mechanics"],
+      "Methods": ["Power iteration", "QR algorithm", "Arnoldi iteration", "Jacobi-Davidson"],
+      "Examples": ["Ax = λx", "det(A−λI)=0 (characteristic equation)"]
+    },
+    "relations": [
+      {"type": "generalizes_to", "target": "Generalized Eigenvalue Problem"},
+      {"type": "solved_by", "target": "QR Algorithm"},
+      {"type": "foundation_for", "target": "Matrix Functions"},
+      {"type": "related_to", "target": "Jordan Canonical Form"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "10_eigenvalue_problems_and_functions_of_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Gershgorin Circle Theorem",
+    "type": "Theorem",
+    "domain": "Matrix Analysis",
+    "definition": "Every eigenvalue of A ∈ ℂ^{n×n} lies in at least one disk Dⱼ = {z : |z − aⱼⱼ| ≤ Rⱼ}, where Rⱼ = Σ_{l≠j} |aⱼₗ|}.",
+    "description": "Provides eigenvalue localization without computation. Disks are centered at diagonal entries with radii equal to off-diagonal row sums. Useful for bounding spectral radius and detecting diagonal dominance.",
+    "properties": {
+      "Goal": "Locate eigenvalues in complex plane using only matrix entries.",
+      "Applications": ["Convergence analysis", "Error bounding", "Preconditioning design"],
+      "Methods": ["Row-sum computation", "Union of disks", "Refinement via similarity"],
+      "Examples": ["Strictly diagonally dominant → eigenvalues in disjoint disks"]
+    },
+    "relations": [
+      {"type": "bounds", "target": "Spectrum"},
+      {"type": "refined_by", "target": "Brauer Cassini Ovals"},
+      {"type": "used_in", "target": "Initial Eigenvalue Estimation"},
+      {"type": "related_to", "target": "Spectral Radius"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "10_eigenvalue_problems_and_functions_of_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Power Iteration",
+    "type": "Method",
+    "domain": "Eigenvalue Algorithms",
+    "definition": "An iterative method that computes the dominant eigenvalue and eigenvector by repeatedly applying A to a vector and normalizing: q^{(k)} = A q^{(k-1)} / ||A q^{(k-1)}||, λ^{(k)} = (A q^{(k)}, q^{(k)}).",
+    "description": "Converges linearly to the eigenvector corresponding to the largest-magnitude eigenvalue if |λ₁| > |λ₂| ≥ ... ≥ |λₙ|. Convergence rate is |λ₂/λ₁|. Inverse iteration targets smallest or shifted eigenvalues.",
+    "properties": {
+      "Goal": "Find dominant eigenpair with minimal storage and simple operations.",
+      "Applications": ["PageRank", "Principal Component Analysis", "Vibration modes"],
+      "Methods": ["Rayleigh quotient", "Normalization", "Deflation", "Shift-and-invert"],
+      "Examples": ["q^{(k)} ≈ x₁ + O((λ₂/λ₁)^k)"]
+    },
+    "relations": [
+      {"type": "special_case_of", "target": "Subspace Iteration"},
+      {"type": "enhanced_by", "target": "Rayleigh Quotient Iteration"},
+      {"type": "requires", "target": "Spectral Gap"},
+      {"type": "related_to", "target": "Inverse Iteration"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "10_eigenvalue_problems_and_functions_of_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Householder Reflection",
+    "type": "Transformation",
+    "domain": "Numerical Linear Algebra",
+    "definition": "A unitary matrix H = I − 2vv*/(v*v) that reflects a vector x across the hyperplane perpendicular to v, mapping x to σe₁.",
+    "description": "Used in QR factorization and Hessenberg reduction to introduce zeros below the subdiagonal. Numerically stable and requires O(n) operations per reflection. Essential for implicit QR algorithm.",
+    "properties": {
+      "Goal": "Zero out selected entries via unitary similarity while preserving eigenvalues.",
+      "Applications": ["QR decomposition", "Hessenberg form", "Tridiagonalization"],
+      "Methods": ["Sign choice for stability", "WY representation", "Blocked Householder"],
+      "Examples": ["H x = −sign(x₁) ||x|| e₁"]
+    },
+    "relations": [
+      {"type": "building_block_of", "target": "QR Algorithm"},
+      {"type": "unitary", "target": "Reflection"},
+      {"type": "used_in", "target": "Hessenberg Reduction"},
+      {"type": "related_to", "target": "Givens Rotation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "10_eigenvalue_problems_and_functions_of_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "QR Algorithm",
+    "type": "Algorithm",
+    "domain": "Eigenvalue Computation",
+    "definition": "An iterative method that computes the Schur form via repeated QR decompositions: A_{k+1} = R_k Q_k, with A_0 = A. With shifts, converges cubically to upper triangular form.",
+    "description": "The de facto standard for dense eigenvalue problems. Implicit version uses Householder/Bulge chasing to reduce cost from O(n³) per iteration to O(n). Francis shift accelerates convergence.",
+    "properties": {
+      "Goal": "Compute all eigenvalues (and optionally eigenvectors) via unitary similarity to triangular form.",
+      "Applications": ["MATLAB eig", "LAPACK", "Control theory", "PDE solvers"],
+      "Methods": ["Hessenberg reduction", "Francis double shift", "Deflation", "Balancing"],
+      "Examples": ["A_{k+1} = Q_k* A_k Q_k"]
+    },
+    "relations": [
+      {"type": "computes", "target": "Schur Form"},
+      {"type": "uses", "target": "Householder Reflection"},
+      {"type": "accelerated_by", "target": "Francis Shift"},
+      {"type": "related_to", "target": "Hessenberg Form"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "10_eigenvalue_problems_and_functions_of_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Generalized Eigenvalue Problem",
+    "type": "Problem",
+    "domain": "Numerical Linear Algebra",
+    "definition": "Find λ ∈ ℂ and nonzero x ∈ ℂⁿ such that Ax = λBx, with A, B ∈ ℂ^{n×n}.",
+    "description": "Arises in structural dynamics, control, and Markov chains. Reduced to standard form if B invertible (M = B⁻¹A). QZ algorithm generalizes QR using unitary transformations to triangularize both matrices.",
+    "properties": {
+      "Goal": "Solve coupled systems or weighted eigenvalue problems.",
+      "Applications": ["Vibration with constraints", "Markov chain stationary distribution", "Optimal control"],
+      "Methods": ["QZ algorithm", "Cholesky + standard EVP", "Shift-and-invert"],
+      "Examples": ["Ax = λBx with B positive definite"]
+    },
+    "relations": [
+      {"type": "solved_by", "target": "QZ Algorithm"},
+      {"type": "reduces_to", "target": "Standard Eigenvalue Problem"},
+      {"type": "generalizes", "target": "Eigenvalue Problem"},
+      {"type": "related_to", "target": "Matrix Pencil"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "10_eigenvalue_problems_and_functions_of_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Matrix Function",
+    "type": "Concept",
+    "domain": "Matrix Analysis",
+    "definition": "A function f applied to matrix A such that f(A) respects the spectral mapping: if A = XΛX⁻¹, then f(A) = X f(Λ) X⁻¹, with f(Λ) = diag(f(λⱼ)).",
+    "description": "Defined via Jordan form or Cauchy integral. Preserves eigenvalues: σ(f(A)) = f(σ(A)). Computed via Schur form, Padé approximants, or scaling-and-squaring (for exp).",
+    "properties": {
+      "Goal": "Extend scalar functions to matrices while preserving algebraic structure.",
+      "Applications": ["Matrix exponential in ODEs", "Matrix logarithm in geometry", "Sign function in control"],
+      "Methods": ["Schur-Parlett", "Scaling-and-squaring", "Padé approximation", "Contour integral"],
+      "Examples": ["exp(A)", "A^{1/2}", "sign(A)"]
+    },
+    "relations": [
+      {"type": "computed_via", "target": "Schur Decomposition"},
+      {"type": "preserves", "target": "Spectral Mapping Theorem"},
+      {"type": "used_in", "target": "Exponential Integrators"},
+      {"type": "related_to", "target": "Cauchy Integral Formula"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "10_eigenvalue_problems_and_functions_of_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Field of Values",
+    "type": "Concept",
+    "domain": "Matrix Analysis",
+    "definition": "The set F(A) = {x*Ax : x ∈ ℂⁿ, ||x||=1}, also known as the numerical range.",
+    "description": "Convex, compact set containing all eigenvalues. Bounds spectral radius and condition number. For normal matrices, F(A) is the convex hull of eigenvalues.",
+    "properties": {
+      "Goal": "Characterize operator behavior beyond eigenvalues.",
+      "Applications": ["Stability analysis", "Convergence of iterations", "Pseudospectrum approximation"],
+      "Methods": ["Rayleigh quotient", "Hausdorff-Toeplitz theorem", "Discretization"],
+      "Examples": ["F(A) = conv(σ(A)) if A normal"]
+    },
+    "relations": [
+      {"type": "contains", "target": "Spectrum"},
+      {"type": "equals_for", "target": "Normal Matrix"},
+      {"type": "bounds", "target": "Numerical Radius"},
+      {"type": "related_to", "target": "Pseudospectrum"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "10_eigenvalue_problems_and_functions_of_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]

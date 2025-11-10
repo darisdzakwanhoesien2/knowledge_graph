@@ -1,0 +1,77 @@
+[
+  {
+    "entity": "Matrix Computations",
+    "type": "Concept",
+    "domain": "Numerical Linear Algebra",
+    "definition": "The study and development of algorithms for performing operations on matrices, including addition, multiplication, inversion, decomposition, and solving linear systems.",
+    "description": "Matrix computations are central to numerical analysis, scientific computing, and computational science. They underpin applications in physics simulations, data analysis, machine learning, and computer graphics. The computational complexity of classical algorithms for matrix multiplication is O(n³), while storage is typically O(n²).",
+    "properties": {
+      "Goal": "Efficiently perform fundamental matrix operations with numerical stability and minimal computational cost.",
+      "Applications": ["Scientific computing", "PDE discretization", "Data analysis", "Machine learning", "Computer graphics"],
+      "Methods": ["Gaussian elimination", "LU decomposition", "SVD", "Iterative methods"],
+      "Examples": ["Matrix multiplication", "Solving Ax=b", "Eigenvalue computation"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Numerical Analysis"},
+      {"type": "used_in", "target": "Scientific Computing"},
+      {"type": "depends_on", "target": "Linear Algebra"},
+      {"type": "related_to", "target": "Partial Differential Equations"},
+      {"type": "related_to", "target": "Matrix Factorization"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "01_introduction.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Inner Product",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A binary operation on two vectors in ℂⁿ that produces a scalar, defined as ⟨x, y⟩ = yᵀx̄ = ∑ⱼ xⱼȳⱼ, where x, y ∈ ℂⁿ.",
+    "description": "The inner product (also known as dot product in real vector spaces) measures similarity between vectors and forms the foundation of orthogonality, norms, and projections. In complex spaces, it involves conjugation to ensure positive definiteness of the induced norm.",
+    "properties": {
+      "Goal": "Quantify angle and similarity between vectors; enable orthogonal decomposition.",
+      "Applications": ["Gram-Schmidt orthogonalization", "Least squares", "Signal processing", "Quantum mechanics"],
+      "Methods": ["N/A"],
+      "Examples": ["⟨x, y⟩ = ∑ xⱼȳⱼ over j=1 to n"]
+    },
+    "relations": [
+      {"type": "generalization_of", "target": "Dot Product"},
+      {"type": "used_in", "target": "Gram-Schmidt Process"},
+      {"type": "foundation_for", "target": "Norm"},
+      {"type": "related_to", "target": "Orthogonality"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "01_introduction.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Computational Complexity (Matrix Multiplication)",
+    "type": "Metric",
+    "domain": "Algorithm Analysis",
+    "definition": "The asymptotic resource requirement for matrix multiplication and related operations, classically O(n³) time and O(n²) space for n×n matrices.",
+    "description": "Standard matrix multiplication of two n×n matrices requires O(n³) arithmetic operations using the naive algorithm. While theoretical improvements exist (e.g., Strassen’s O(n².⁸⁰⁷)), practical methods remain close to O(n³). Storage scales quadratically as O(n²).",
+    "properties": {
+      "Goal": "Assess efficiency and scalability of matrix algorithms.",
+      "Applications": ["Performance prediction", "Algorithm selection", "Hardware design"],
+      "Methods": ["Big-O notation", "Arithmetic circuit complexity"],
+      "Examples": ["O(n³) time", "O(n²) space"]
+    },
+    "relations": [
+      {"type": "applies_to", "target": "Matrix Multiplication"},
+      {"type": "contrasts_with", "target": "Subcubic Algorithms"},
+      {"type": "related_to", "target": "Strassen Algorithm"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "01_introduction.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]

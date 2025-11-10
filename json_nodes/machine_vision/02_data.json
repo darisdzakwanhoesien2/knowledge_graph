@@ -1,0 +1,173 @@
+[
+  {
+    "entity": "Pinhole Model",
+    "type": "Model",
+    "domain": "Computer Vision",
+    "definition": "The pinhole model is a simplified geometric approximation of image formation in which light rays from a 3D scene pass through an infinitesimally small aperture (pinhole) and project onto an image plane, forming an inverted image.",
+    "description": "It serves as the foundational camera model in computer vision, enabling the mathematical description of perspective projection without lens distortions. Real cameras approximate this model using lenses to focus light.",
+    "properties": {
+      "Goal": "Model the geometric relationship between 3D world points and their 2D projections on the image plane.",
+      "Applications": ["Camera calibration", "3D reconstruction", "Structure from motion"],
+      "Methods": ["Perspective projection equations", "Homogeneous coordinates"],
+      "Examples": ["Deriving image coordinates from world coordinates using focal length f"]
+    },
+    "relations": [
+      {"type": "basis_for", "target": "Perspective Projection"},
+      {"type": "approximated_by", "target": "Camera"},
+      {"type": "used_in", "target": "Camera Calibration"},
+      {"type": "related_to", "target": "Camera Obscura"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "02-imaging-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Perspective Projection",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Perspective projection is the process by which 3D points in the world are mapped to 2D points on an image plane through a projection center, simulating how the human eye or a pinhole camera perceives depth.",
+    "description": "It results in closer objects appearing larger and parallel lines converging at vanishing points. The projection is governed by similar triangles and the focal length of the imaging system.",
+    "properties": {
+      "Goal": "Transform 3D world coordinates (X, Y, Z) into 2D image coordinates (x, y).",
+      "Applications": ["3D reconstruction", "Augmented reality", "Photogrammetry"],
+      "Methods": ["Pinhole camera equations: x = f * X/Z, y = f * Y/Z"],
+      "Examples": ["Railroad tracks appearing to converge in photographs"]
+    },
+    "relations": [
+      {"type": "extends", "target": "Pinhole Model"},
+      {"type": "causes", "target": "Perspective Distortion"},
+      {"type": "used_in", "target": "3D Perception"},
+      {"type": "inverse_of", "target": "Triangulation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "02-imaging-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Camera Obscura",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "Camera obscura is an optical device that projects an inverted image of a scene through a small hole onto a surface inside a darkened chamber.",
+    "description": "It is the historical and physical precursor to modern photographic cameras and the conceptual basis for the pinhole camera model in computer vision.",
+    "properties": {
+      "Goal": "Demonstrate natural image formation via light projection.",
+      "Applications": ["Artistic drawing aid", "Historical optics experiments"],
+      "Methods": ["Single aperture light projection"],
+      "Examples": ["Artists using camera obscura for realistic perspective in paintings"]
+    },
+    "relations": [
+      {"type": "inspired", "target": "Pinhole Model"},
+      {"type": "predecessor_of", "target": "Photographic Camera"},
+      {"type": "demonstrates", "target": "Perspective Projection"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "02-imaging-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Perspective Distortion",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "Perspective distortion refers to the apparent deformation of objects in images due to the viewpoint and the geometry of perspective projection, even when the lens is perfect.",
+    "description": "It causes nonlinear transformations between views: straight lines remain straight, but angles, shapes, and relative sizes change depending on distance and camera orientation.",
+    "properties": {
+      "Goal": "N/A",
+      "Applications": ["Wide-angle photography", "Architectural imaging"],
+      "Methods": ["N/A"],
+      "Examples": ["Tall buildings appearing to lean inward when photographed from below"]
+    },
+    "relations": [
+      {"type": "result_of", "target": "Perspective Projection"},
+      {"type": "differs_from", "target": "Lens Distortion"},
+      {"type": "mitigated_by", "target": "Viewpoint Normalization"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "02-imaging-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Focal Length",
+    "type": "Metric",
+    "domain": "Computer Vision",
+    "definition": "Focal length is the distance between the camera's optical center and the image plane where a sharp image of an object at infinity is formed.",
+    "description": "It determines the scale of the projected image and the field of view. In the pinhole model, it directly appears in the projection equations x = f * X/Z and y = f * Y/Z.",
+    "properties": {
+      "Goal": "Control magnification and field of view in imaging systems.",
+      "Applications": ["Zoom lenses", "Camera calibration", "Depth estimation"],
+      "Methods": ["Intrinsic parameter in camera matrix"],
+      "Examples": ["Telephoto (long f) vs. wide-angle (short f) lenses"]
+    },
+    "relations": [
+      {"type": "parameter_in", "target": "Pinhole Model"},
+      {"type": "affects", "target": "Field of View"},
+      {"type": "used_in", "target": "Perspective Projection"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "02-imaging-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Image Plane",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "The image plane is the two-dimensional surface onto which 3D scene points are projected to form a 2D image in the pinhole camera model.",
+    "description": "In real cameras, it corresponds to the sensor plane (CCD/CMOS); in theoretical models, it can be placed in front (virtual) or behind (real) the projection center.",
+    "properties": {
+      "Goal": "Capture the 2D projection of the 3D world.",
+      "Applications": ["Sensor design", "Projection geometry"],
+      "Methods": ["Coordinate transformation"],
+      "Examples": ["Real image plane (behind lens), Virtual image plane (front projection)"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Pinhole Model"},
+      {"type": "corresponds_to", "target": "Sensor Plane"},
+      {"type": "receives", "target": "Projected Rays"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "02-imaging-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Simplified Imaging Model",
+    "type": "Framework",
+    "domain": "Computer Vision",
+    "definition": "A simplified imaging model breaks down image formation into geometric, optical, and sensor components to abstract the camera as a measurable system.",
+    "description": "It separates concerns: geometry (projection), optics (light focusing), and sensor (light measurement), forming the basis for camera modeling and calibration.",
+    "properties": {
+      "Goal": "Provide a modular understanding of the imaging pipeline.",
+      "Applications": ["Camera modeling", "Photometric calibration"],
+      "Methods": ["Decomposition into sub-models"],
+      "Examples": ["Geometric → Pinhole, Optical → Thin lens, Sensor → Radiometric response"]
+    },
+    "relations": [
+      {"type": "includes", "target": "Geometric Model"},
+      {"type": "includes", "target": "Optical Model"},
+      {"type": "includes", "target": "Sensor Model"},
+      {"type": "foundation_for", "target": "Camera Calibration"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "02-imaging-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  }
+]

@@ -1,0 +1,434 @@
+[
+  {
+    "front": "🧩 Binary Image\n📘 Domain: Computer Vision",
+    "back": "**Definition:** A binary image is a digital image that has only two possible values for each pixel, typically represented as 0 (black) and 1 (white), representing background and foreground respectively.\n\n**Description:** It is the result of thresholding a grayscale image and serves as a simplified representation for segmentation, object detection, and morphological processing in computer vision pipelines.\n\n**Goal:** Separate objects of interest from the background using intensity thresholds.\n**Applications:** Object segmentation, Document analysis, Medical imaging, Industrial inspection\n**Methods:** Thresholding, Otsu's method, Adaptive thresholding\n**Examples:** Scanned text documents, Silhouettes, Mask images"
+  },
+  {
+    "front": "🧩 Thresholding\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Thresholding is an image segmentation technique that converts a grayscale image into a binary image by assigning pixel values above a threshold to one class and below to another.\n\n**Description:** It is one of the simplest and most widely used segmentation methods, effective when objects and background have sufficiently different intensity distributions.\n\n**Goal:** Create a binary mask separating foreground from background.\n**Applications:** Document binarization, Motion detection, Edge-based segmentation\n**Methods:** Global thresholding, Local/adaptive thresholding, Otsu's method\n**Examples:** Converting medical scans to highlight tumors, Isolating text in scanned pages"
+  },
+  {
+    "front": "🧩 Preprocessing\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Preprocessing refers to operations applied to an input image before the main analysis to enhance relevant features and suppress noise or unwanted variations.\n\n**Description:** In binary image analysis, it improves the quality of subsequent thresholding and segmentation by reducing noise, normalizing illumination, and enhancing contrast.\n\n**Goal:** Improve image quality for robust downstream processing.\n**Applications:** Noise reduction, Contrast enhancement, Illumination correction\n**Methods:** Smoothing filters, Histogram equalization, Bilateral filtering\n**Examples:** Applying Gaussian blur before thresholding, Removing salt-and-pepper noise"
+  },
+  {
+    "front": "🧩 Segmentation\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Segmentation is the process of partitioning an image into meaningful regions or objects, often producing a binary mask where each region is labeled.\n\n**Description:** In binary vision, it typically results in a foreground/background separation and is a critical step before recognition or measurement.\n\n**Goal:** Isolate objects of interest from the background.\n**Applications:** Object counting, Defect detection, Character recognition\n**Methods:** Thresholding, Edge detection, Region growing\n**Examples:** Separating cells in microscopy, Extracting text blocks"
+  },
+  {
+    "front": "🧩 Post-processing\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Post-processing involves refinement operations applied to segmented binary images to correct errors, remove noise, and improve object integrity.\n\n**Description:** Common operations include morphological filtering to close gaps, remove small islands, or smooth boundaries in binary masks.\n\n**Goal:** Clean and refine binary segmentation results.\n**Applications:** Hole filling, Noise removal, Boundary smoothing\n**Methods:** Morphological closing, Opening, Connected component filtering\n**Examples:** Removing small speckles after thresholding, Filling holes in segmented objects"
+  },
+  {
+    "front": "🧩 Shape Representation\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Shape representation involves extracting compact and descriptive features from binary object silhouettes to enable recognition and classification.\n\n**Description:** It transforms raw pixel data into structural descriptors such as contours, moments, or geometric properties for higher-level analysis.\n\n**Goal:** Encode object geometry in a recognition-friendly format.\n**Applications:** Object classification, Pose estimation, Defect analysis\n**Methods:** Contour extraction, Moment invariants, Fourier descriptors\n**Examples:** Circularity measure, Bounding box, Convex hull"
+  },
+  {
+    "front": "🧩 Labeling\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Labeling is the process of assigning a unique identifier to each connected component in a binary image, enabling individual object analysis.\n\n**Description:** Also known as connected component labeling, it is essential for counting, measuring, and tracking distinct objects in a scene.\n\n**Goal:** Identify and enumerate separate objects in a binary mask.\n**Applications:** Particle counting, Cell tracking, Character segmentation\n**Methods:** Two-pass algorithm, Union-find, Recursive labeling\n**Examples:** Labeling individual coins in an image, Numbering text lines"
+  },
+  {
+    "front": "🧩 Recognition\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Recognition in binary image analysis refers to classifying or identifying objects based on their shape, size, or extracted features from labeled regions.\n\n**Description:** It maps low-level binary patterns to semantic categories using prior knowledge, templates, or learned models.\n\n**Goal:** Assign meaningful labels to detected objects.\n**Applications:** OCR, Symbol recognition, Part identification\n**Methods:** Template matching, Feature classification, Statistical pattern recognition\n**Examples:** Identifying machine parts on a conveyor, Reading license plates"
+  },
+  {
+    "front": "🧩 Binary Image Analysis Pipeline\n📘 Domain: Computer Vision",
+    "back": "**Definition:** The binary image analysis pipeline is a sequential workflow consisting of preprocessing, segmentation, post-processing, labeling, shape representation, and recognition to extract meaningful information from images.\n\n**Description:** It represents a classical, modular approach to vision tasks where images are progressively transformed from raw pixels to semantic understanding via binary intermediates.\n\n**Goal:** Achieve automatic object understanding through structured processing stages.\n**Applications:** Document processing, Industrial automation, Biomedical analysis\n**Methods:** Modular stage-wise processing, Feedback loops (optional)\n**Examples:** OCR system pipeline, Defect detection in manufacturing"
+  },
+  {
+    "front": "🧩 3D Perception\n📘 Domain: Computer Vision",
+    "back": "**Definition:** 3D perception refers to the process of recovering the three-dimensional structure and spatial relationships of a scene from one or more 2D images, enabling machines to understand depth, shape, and layout.\n\n**Description:** It bridges 2D image analysis with real-world geometry, using monocular, stereo, or motion cues to estimate depth, reconstruct surfaces, and interpret scene organization.\n\n**Goal:** Reconstruct 3D world from 2D visual data\n**Applications:** 3D modeling, Autonomous navigation, Augmented reality\n**Methods:** Structure from Motion, Multi-view Stereo, Dense Matching\n**Examples:** Multi-view stereo reconstruction, Optical illusions from ambiguous 3D interpretations"
+  },
+  {
+    "front": "🧩 Depth from Stereo\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Depth from stereo is the recovery of 3D scene depth by triangulating corresponding points in a pair of images captured from slightly different viewpoints (baseline).\n\n**Description:** It relies on disparity—the horizontal shift of a point between left and right images—to compute depth inversely proportional to disparity via calibrated camera geometry.\n\n**Goal:** Compute per-pixel depth using binocular disparity.\n**Applications:** 3D reconstruction, Robot navigation, Virtual reality\n**Methods:** Stereo matching, Triangulation, Rectification, Disparity map refinement\n**Examples:** Z = (f * B) / d, where d is disparity"
+  },
+  {
+    "front": "🧩 Structure from Motion\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Structure from Motion (SfM) is the simultaneous estimation of 3D scene structure and camera motion from a set of 2D images taken from different viewpoints, typically using feature correspondences.\n\n**Description:** It solves for camera poses and sparse 3D points via bundle adjustment, forming the basis for dense reconstruction and large-scale 3D modeling.\n\n**Goal:** Reconstruct 3D scene and camera trajectory from unordered image collections.\n**Applications:** Cultural heritage, Aerial mapping, Film production, SLAM\n**Methods:** Feature tracking, Incremental SfM, Global SfM, Bundle adjustment\n**Examples:** 3D model from tourist photos, Point cloud from drone video"
+  },
+  {
+    "front": "🧩 Monocular Depth Cues\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Monocular depth cues are visual signals in a single image that provide information about relative or absolute depth without requiring multiple viewpoints.\n\n**Description:** They mimic human perception mechanisms and include occlusion, perspective, shading, texture gradient, and known object size, enabling depth estimation from single images.\n\n**Goal:** Infer 3D layout from 2D image cues.\n**Applications:** Single-image depth estimation, Image editing, Autonomous navigation\n**Methods:** Shape from shading, Depth from defocus, Learning-based monocular depth\n**Examples:** Linear perspective in roads, Occlusion of distant objects"
+  },
+  {
+    "front": "🧩 Shape from Shading\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Shape from shading recovers surface orientation (normals) by analyzing how light intensity varies across a surface under known illumination, assuming Lambertian reflectance.\n\n**Description:** It solves an inverse optics problem to estimate local surface tilt from image gradients, enabling 3D reconstruction from a single image.\n\n**Goal:** Estimate surface normals from intensity gradients.\n**Applications:** Planetary surface mapping, Medical imaging, Industrial inspection\n**Methods:** Reflectance map, Variational optimization, Photometric stereo\n**Examples:** Reconstructing face shape from one photo"
+  },
+  {
+    "front": "🧩 Photometric Stereo\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Photometric stereo uses multiple images of a static object under different known lighting directions to estimate per-pixel surface normals by solving a linear system of reflectance equations.\n\n**Description:** It decouples albedo and geometry, providing dense, high-quality normal maps even for textureless surfaces, assuming Lambertian reflectance.\n\n**Goal:** Recover detailed surface orientation from shading cues.\n**Applications:** Shape-from-shading, Industrial inspection, Material analysis\n**Methods:** Lambertian reflectance model, Linear intensity equations\n**Examples:** Exam 2017 - Principle question, Exam 2018 - Example"
+  },
+  {
+    "front": "🧩 Multi-view Stereo\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Multi-view stereo (MVS) computes dense 3D reconstruction from multiple calibrated images by estimating depth or disparity in each view and fusing consistent measurements into a coherent 3D model.\n\n**Description:** It extends stereo to arbitrary camera configurations, producing detailed point clouds or meshes using photo-consistency and regularization.\n\n**Goal:** Dense 3D reconstruction from image sets\n**Applications:** 3D scanning, Virtual reality, Archaeology\n**Methods:** Feature matching, Depth map fusion\n**Examples:** Reconstruction of architectural columns and dinosaur models from photographs"
+  },
+  {
+    "front": "🧩 Triangulation\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Triangulation is the process of determining the 3D position of a point by intersecting rays from two or more calibrated cameras that observe the corresponding 2D image points.\n\n**Description:** It is the geometric foundation of passive 3D reconstruction, converting image correspondences into metric 3D coordinates using camera projection matrices.\n\n**Goal:** Compute 3D point from 2D correspondences and camera parameters.\n**Applications:** 3D reconstruction, Robot localization, Augmented reality\n**Methods:** Linear triangulation, Mid-point method, Optimal triangulation\n**Examples:** X = intersection of two rays in space"
+  },
+  {
+    "front": "🧩 Image Matching\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Image matching is the process of establishing correspondences between two or more images of the same scene taken from different viewpoints, times, or sensors to determine geometric or photometric relationships.\n\n**Description:** It forms the foundation for applications requiring image alignment, such as panorama stitching, 3D reconstruction, and visual tracking. Matching can be sparse (feature-based) or dense (pixel-wise).\n\n**Goal:** Find reliable point or region correspondences across images.\n**Applications:** Structure from Motion, Stereo vision, Image retrieval, Augmented reality\n**Methods:** Feature-based matching, Area-based matching, Direct methods, Learning-based matching\n**Examples:** Matching SIFT features, Dense optical flow, Template correlation"
+  },
+  {
+    "front": "🧩 Epipolar Geometry\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Epipolar geometry describes the intrinsic projective relationship between two views of a 3D scene, constraining the location of corresponding points to lie on corresponding epipolar lines.\n\n**Description:** It reduces the search space for matching from 2D to 1D and is encapsulated by the fundamental matrix (for uncalibrated cameras) or essential matrix (for calibrated cameras).\n\n**Goal:** Constrain correspondence search using stereo geometry.\n**Applications:** Stereo matching, Camera calibration, Motion estimation\n**Methods:** Fundamental matrix estimation, Essential matrix, Epipolar line computation\n**Examples:** Left image point maps to line in right image"
+  },
+  {
+    "front": "🧩 Fundamental Matrix\n📘 Domain: Computer Vision",
+    "back": "**Definition:** The fundamental matrix is a 3x3 rank-2 matrix that encapsulates the epipolar geometry between two uncalibrated images, mapping points in one image to epipolar lines in the other.\n\n**Description:** It is estimated from point correspondences and used to enforce geometric consistency in matching and reconstruction. F satisfies x'ᵀ F x = 0 for corresponding points x and x'.\n\n**Goal:** Encode projective geometry between two views without calibration.\n**Applications:** Correspondence validation, Camera pose estimation, Image rectification\n**Methods:** 8-point algorithm, 7-point algorithm, RANSAC estimation\n**Examples:** F computed from 8+ matches, Used in guided matching"
+  },
+  {
+    "front": "🧩 Essential Matrix\n📘 Domain: Computer Vision",
+    "back": "**Definition:** The essential matrix is a 3x3 matrix that describes the epipolar geometry between two calibrated cameras, encoding relative rotation and translation (up to scale) between their coordinate systems.\n\n**Description:** It is a specialized version of the fundamental matrix when intrinsic parameters are known. E = K'ᵀ F K, and it has exactly two equal non-zero singular values.\n\n**Goal:** Recover relative pose from calibrated image pairs.\n**Applications:** 5-point algorithm, Visual odometry, SLAM initialization\n**Methods:** 5-point algorithm, Nister's method, Decomposition into R and t\n**Examples:** E from 5+ matches in calibrated stereo"
+  },
+  {
+    "front": "🧩 RANSAC\n📘 Domain: Computer Vision",
+    "back": "**Definition:** RANSAC (Random Sample Consensus) is a robust estimation algorithm that fits a model to data containing outliers by iteratively selecting random subsets, estimating the model, and counting inliers.\n\n**Description:** It is widely used in geometric vision to estimate fundamental/essential matrices, homographies, or camera poses from noisy correspondences.\n\n**Goal:** Estimate model parameters robustly in the presence of outliers.\n**Applications:** Feature matching cleanup, Pose estimation, Image stitching\n**Methods:** Random sampling, Model fitting, Inlier counting, Iteration until confidence\n**Examples:** Estimating F from 1000 matches with 60% outliers"
+  },
+  {
+    "front": "🧩 Stereo Matching\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Stereo matching is the process of finding corresponding pixels between a pair of rectified stereo images to compute depth via triangulation, producing a disparity map.\n\n**Description:** It exploits epipolar constraints to reduce search to 1D and uses similarity measures (e.g., SAD, NCC) with aggregation and optimization to handle ambiguity and occlusions.\n\n**Goal:** Compute dense depth from calibrated stereo pairs.\n**Applications:** 3D reconstruction, Robot navigation, Autonomous driving\n**Methods:** Local block matching, Semi-global matching, Graph cuts, Deep stereo\n**Examples:** Disparity map from left-right image pair"
+  },
+  {
+    "front": "🧩 Image Rectification\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Image rectification is the process of warping a stereo image pair so that epipolar lines become horizontal and conjugate points have the same y-coordinate, simplifying correspondence search.\n\n**Description:** It enables efficient scanline-based stereo algorithms and is typically performed using the fundamental matrix or known camera parameters.\n\n**Goal:** Align epipolar lines for efficient stereo matching.\n**Applications:** Dense stereo, Disparity estimation, Multi-view stereo\n**Methods:** Hartley’s method, Polar rectification, Calibrated rectification\n**Examples:** Transforming converging epipoles to infinity"
+  },
+  {
+    "front": "🧩 Homography\n📘 Domain: Computer Vision",
+    "back": "**Definition:** A homography is a 3x3 projective transformation that maps points from one plane to another (or between two views of the same plane), preserving collinearity but not distances or angles.\n\n**Description:** It is used to align images of planar scenes, remove perspective distortion, and enable direct pixel-wise comparison in matching.\n\n**Goal:** Map image coordinates between planar views.\n**Applications:** Panorama stitching, Image mosaicking, Augmented reality, Document scanning\n**Methods:** DLT (Direct Linear Transformation), RANSAC estimation from 4+ points\n**Examples:** Warping book page to frontal view"
+  },
+  {
+    "front": "🧩 Pinhole Model\n📘 Domain: Computer Vision",
+    "back": "**Definition:** The pinhole model is a simplified geometric approximation of image formation in which light rays from a 3D scene pass through an infinitesimally small aperture (pinhole) and project onto an image plane, forming an inverted image.\n\n**Description:** It serves as the foundational camera model in computer vision, enabling the mathematical description of perspective projection without lens distortions. Real cameras approximate this model using lenses to focus light.\n\n**Goal:** Model the geometric relationship between 3D world points and their 2D projections on the image plane.\n**Applications:** Camera calibration, 3D reconstruction, Structure from motion\n**Methods:** Perspective projection equations, Homogeneous coordinates\n**Examples:** Deriving image coordinates from world coordinates using focal length f"
+  },
+  {
+    "front": "🧩 Perspective Projection\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Perspective projection is the process by which 3D points in the world are mapped to 2D points on an image plane through a projection center, simulating how the human eye or a pinhole camera perceives depth.\n\n**Description:** It results in closer objects appearing larger and parallel lines converging at vanishing points. The projection is governed by similar triangles and the focal length of the imaging system.\n\n**Goal:** Transform 3D world coordinates (X, Y, Z) into 2D image coordinates (x, y).\n**Applications:** 3D reconstruction, Augmented reality, Photogrammetry\n**Methods:** Pinhole camera equations: x = f * X/Z, y = f * Y/Z\n**Examples:** Railroad tracks appearing to converge in photographs"
+  },
+  {
+    "front": "🧩 Camera Obscura\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Camera obscura is an optical device that projects an inverted image of a scene through a small hole onto a surface inside a darkened chamber.\n\n**Description:** It is the historical and physical precursor to modern photographic cameras and the conceptual basis for the pinhole camera model in computer vision.\n\n**Goal:** Demonstrate natural image formation via light projection.\n**Applications:** Artistic drawing aid, Historical optics experiments\n**Methods:** Single aperture light projection\n**Examples:** Artists using camera obscura for realistic perspective in paintings"
+  },
+  {
+    "front": "🧩 Perspective Distortion\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Perspective distortion refers to the apparent deformation of objects in images due to the viewpoint and the geometry of perspective projection, even when the lens is perfect.\n\n**Description:** It causes nonlinear transformations between views: straight lines remain straight, but angles, shapes, and relative sizes change depending on distance and camera orientation.\n\n**Goal:** N/A\n**Applications:** Wide-angle photography, Architectural imaging\n**Methods:** N/A\n**Examples:** Tall buildings appearing to lean inward when photographed from below"
+  },
+  {
+    "front": "🧩 Focal Length\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Focal length is the distance between the camera's optical center and the image plane where a sharp image of an object at infinity is formed.\n\n**Description:** It determines the scale of the projected image and the field of view. In the pinhole model, it directly appears in the projection equations x = f * X/Z and y = f * Y/Z.\n\n**Goal:** Control magnification and field of view in imaging systems.\n**Applications:** Zoom lenses, Camera calibration, Depth estimation\n**Methods:** Intrinsic parameter in camera matrix\n**Examples:** Telephoto (long f) vs. wide-angle (short f) lenses"
+  },
+  {
+    "front": "🧩 Image Plane\n📘 Domain: Computer Vision",
+    "back": "**Definition:** The image plane is the two-dimensional surface onto which 3D scene points are projected to form a 2D image in the pinhole camera model.\n\n**Description:** In real cameras, it corresponds to the sensor plane (CCD/CMOS); in theoretical models, it can be placed in front (virtual) or behind (real) the projection center.\n\n**Goal:** Capture the 2D projection of the 3D world.\n**Applications:** Sensor design, Projection geometry\n**Methods:** Coordinate transformation\n**Examples:** Real image plane (behind lens), Virtual image plane (front projection)"
+  },
+  {
+    "front": "🧩 Simplified Imaging Model\n📘 Domain: Computer Vision",
+    "back": "**Definition:** A simplified imaging model breaks down image formation into geometric, optical, and sensor components to abstract the camera as a measurable system.\n\n**Description:** It separates concerns: geometry (projection), optics (light focusing), and sensor (light measurement), forming the basis for camera modeling and calibration.\n\n**Goal:** Provide a modular understanding of the imaging pipeline.\n**Applications:** Camera modeling, Photometric calibration\n**Methods:** Decomposition into sub-models\n**Examples:** Geometric → Pinhole, Optical → Thin lens, Sensor → Radiometric response"
+  },
+  {
+    "front": "🧩 SIFT\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A feature detection and description algorithm that identifies keypoints and computes descriptors invariant to scale, rotation, and partial illumination changes.\n\n**Description:** SIFT builds a scale-space using Difference-of-Gaussians, detects local extrema, and forms gradient-based descriptors robust to geometric and photometric transformations.\n\n**Goal:** Detect stable image features for matching across scales and rotations.\n**Applications:** Image matching, Object recognition, 3D reconstruction\n**Methods:** Difference-of-Gaussians, Gradient histogram descriptors, Keypoint matching\n**Examples:** Exam 2015 - Definition, Exam 2018 - Descriptor explanation"
+  },
+  {
+    "front": "🧩 Harris Corner Detector\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A feature detector that identifies corners by measuring local intensity variations using the autocorrelation matrix.\n\n**Description:** The Harris detector finds points with significant intensity change in orthogonal directions, forming the basis of many tracking and matching algorithms.\n\n**Goal:** Detect stable, repeatable interest points corresponding to corners or junctions.\n**Applications:** Feature tracking, Camera calibration, Image alignment\n**Methods:** Image gradients, Structure tensor, Corner response function R = det(M) - k*trace(M)^2\n**Examples:** L-junctions, T-junctions, Building corners"
+  },
+  {
+    "front": "🧩 Hough Transform\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A feature extraction technique used to detect parametric shapes such as lines, circles, or ellipses in images.\n\n**Description:** The transform maps image edge points into a parameter space where shapes correspond to peaks, enabling robust detection despite noise or occlusion.\n\n**Goal:** Detect geometric primitives via voting in parameter space.\n**Applications:** Line detection, Circle detection, Shape analysis\n**Methods:** Parameter-space accumulation, Threshold-based peak detection\n**Examples:** Exam 2015 - Principle question, Exam 2018 - Example usage"
+  },
+  {
+    "front": "🧩 Random Sample Consensus (RANSAC)\n📘 Domain: Machine Vision",
+    "back": "**Definition:** An iterative algorithm to estimate model parameters from data containing outliers by repeatedly sampling minimal subsets and testing consensus.\n\n**Description:** RANSAC is robust to outliers and commonly used in fitting geometric models such as lines, planes, or homographies.\n\n**Goal:** Estimate parameters robustly in the presence of noise and outliers.\n**Applications:** Line fitting, Homography estimation, Triangulation refinement\n**Methods:** Iterative sampling, Consensus evaluation, Model re-estimation\n**Examples:** Exam 2015 - Theory, Exam 2018 - Usage example"
+  },
+  {
+    "front": "🧩 Local Binary Patterns (LBP)\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A texture descriptor that encodes the local spatial pattern of pixel intensities into binary codes based on neighbor comparisons.\n\n**Description:** LBP provides a rotation- and grayscale-invariant way to represent texture; it’s lightweight and robust, making it popular for real-time classification.\n\n**Goal:** Represent texture structures in a compact and invariant form.\n**Applications:** Texture classification, Face recognition, Material analysis\n**Methods:** Neighborhood thresholding, Histogram of binary codes, Rotation-invariant encoding\n**Examples:** Exam 2017 - Texture task, Exam 2020 - Texture classification"
+  },
+  {
+    "front": "🧩 K-Means Clustering\n📘 Domain: Machine Vision",
+    "back": "**Definition:** An unsupervised learning algorithm that partitions data into K clusters by minimizing within-cluster variance.\n\n**Description:** Used to group similar pixels, features, or image patches, serving as a basis for segmentation and visual vocabulary creation.\n\n**Goal:** Group data points into clusters based on feature similarity.\n**Applications:** Image segmentation, Bag-of-Words clustering, Color quantization\n**Methods:** Iterative centroid update, Euclidean distance minimization\n**Examples:** Exam 2016 - Principle, Exam 2019 - Usage explanation"
+  },
+  {
+    "front": "🧩 Otsu’s Thresholding Method\n📘 Domain: Machine Vision",
+    "back": "**Definition:** An automatic global thresholding technique that separates foreground and background by minimizing intra-class intensity variance.\n\n**Description:** Commonly used in image preprocessing for binarization tasks, providing an optimal threshold without supervision.\n\n**Goal:** Automatically determine an optimal threshold to separate regions.\n**Applications:** Image segmentation, Preprocessing for OCR, Object extraction\n**Methods:** Histogram-based variance minimization\n**Examples:** Exam 2018 - Principle, Exam 2019 - Usage question"
+  },
+  {
+    "front": "🧩 Harris–Laplace Detector\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A multi-scale feature detector combining corner detection (Harris) with scale selection (Laplacian) to identify stable features across resolutions.\n\n**Description:** Enhances standard corner detectors by integrating scale information for improved invariance.\n\n**Goal:** Detect scale-invariant interest points.\n**Applications:** Feature matching, Object tracking, Scale-space analysis\n**Methods:** Corner response computation, Laplacian-of-Gaussian scale selection\n**Examples:** Exam 2016 - Extended question"
+  },
+  {
+    "front": "🧩 Feature descriptor\n📘 Domain: Feature Extraction",
+    "back": "**Definition:** A representation of an image patch or interest point that captures its essential characteristics, designed to be robust to variations in illumination, viewpoint, and scale.\n\n**Description:** \n\n"
+  },
+  {
+    "front": "🧩 Bag-of-Words\n📘 Domain: Feature Representation",
+    "back": "**Definition:** A sparse vector representation of an image (or document) based on the frequency of visual words (or terms) from a predefined vocabulary.\n\n**Description:** \n\n"
+  },
+  {
+    "front": "🧩 Maximally Stable Extremal Regions (MSER)\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A method for detecting regions in an image that are stable across a wide range of thresholds, often used for text detection and object recognition.\n\n**Description:** \n\n"
+  },
+  {
+    "front": "🧩 Texture\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Texture refers to the spatial arrangement and variation of intensity or color values in an image region, representing surface patterns independent of overall color or brightness.\n\n**Description:** It provides critical information about material properties and structural repetition. Texture analysis enables segmentation, classification, and synthesis in natural and artificial scenes.\n\n**Goal:** Capture local spatial patterns and repetitions in image intensity or color.\n**Applications:** Material classification, Image segmentation, Defect detection, Content-based retrieval\n**Methods:** Statistical methods, Filter banks, Structural analysis\n**Examples:** Grass, Sand, Brick wall, Checkerboard, Striped fabric"
+  },
+  {
+    "front": "🧩 Texture Segmentation\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Texture segmentation is the process of partitioning an image into regions with homogeneous texture properties, separating areas of different surface patterns.\n\n**Description:** It extends intensity-based segmentation by incorporating local spatial statistics or frequency content to distinguish textured regions.\n\n**Goal:** Group pixels into regions sharing similar textural appearance.\n**Applications:** Medical imaging, Remote sensing, Fabric inspection, Scene understanding\n**Methods:** Supervised classification, Unsupervised clustering, Filter response analysis\n**Examples:** Separating grass from sky, Isolating wood grain from metal"
+  },
+  {
+    "front": "🧩 Texture Descriptors\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Texture descriptors are quantitative features extracted from image patches to characterize local texture properties in a compact, discriminative form.\n\n**Description:** They transform raw pixel neighborhoods into feature vectors suitable for classification, clustering, or similarity comparison.\n\n**Goal:** Encode texture appearance into robust, comparable feature representations.\n**Applications:** Texture classification, Retrieval, Synthesis, Anomaly detection\n**Methods:** Gray-level co-occurrence matrix, Local Binary Patterns, Gabor filters, Histogram of gradients\n**Examples:** GLCM contrast, LBP codes, Filter bank energy"
+  },
+  {
+    "front": "🧩 Local Binary Patterns\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Local Binary Patterns (LBP) is a texture descriptor that labels each pixel by thresholding its neighborhood and encoding the result as a binary pattern, forming a rotation-invariant texture spectrum.\n\n**Description:** It is computationally efficient and robust to monotonic illumination changes, widely used for face recognition and texture classification.\n\n**Goal:** Describe local texture via binary comparisons with center pixel.\n**Applications:** Face recognition, Biomedical texture analysis, Industrial surface inspection\n**Methods:** Circular neighborhood sampling, Binary encoding, Histogram aggregation\n**Examples:** LBP(8,1) code, Uniform LBP, Rotation-invariant LBP"
+  },
+  {
+    "front": "🧩 Statistical Texture Analysis\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Statistical texture analysis models texture as the spatial distribution of gray-level values, using statistical measures to characterize local intensity variations.\n\n**Description:** It assumes texture arises from repeated patterns or random processes and uses first- or second-order statistics to describe regions.\n\n**Goal:** Quantify texture via intensity distribution and spatial relationships.\n**Applications:** Remote sensing, Medical diagnostics, Quality control\n**Methods:** Co-occurrence matrices, Run-length encoding, Autocorrelation\n**Examples:** GLCM energy, Contrast, Entropy"
+  },
+  {
+    "front": "🧩 Gray-Level Co-occurrence Matrix\n📘 Domain: Computer Vision",
+    "back": "**Definition:** The Gray-Level Co-occurrence Matrix (GLCM) is a second-order statistical method that counts the frequency of intensity pairs at a given spatial offset in an image.\n\n**Description:** It captures spatial relationships between pixel values and derives texture features like contrast, correlation, energy, and homogeneity.\n\n**Goal:** Model joint probability of intensity pairs at specific displacements.\n**Applications:** Texture classification, Medical image analysis, Satellite imagery\n**Methods:** Matrix construction, Feature extraction (contrast, entropy, etc.)\n**Examples:** GLCM at (1,0) for horizontal texture, Haralick features"
+  },
+  {
+    "front": "🧩 Filter Bank Methods\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Filter bank methods apply a set of linear filters (e.g., Gabor, wavelet) tuned to different frequencies and orientations to decompose texture into frequency-scale components.\n\n**Description:** They model texture in the frequency domain, capturing multi-scale and multi-orientation patterns inspired by human visual cortex.\n\n**Goal:** Describe texture using responses to multiple spatial-frequency filters.\n**Applications:** Texture classification, Defect detection, Material identification\n**Methods:** Gabor filters, Laws masks, Energy feature computation\n**Examples:** Exam 2016 - Texture task, Exam 2019 - Conceptual question"
+  },
+  {
+    "front": "🧩 Structural Texture Analysis\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Structural texture analysis assumes texture is composed of repeated primitive elements (textons) arranged according to placement rules.\n\n**Description:** It focuses on identifying basic texture elements and their spatial organization, suitable for regular, man-made patterns.\n\n**Goal:** Decompose texture into primitives and syntactic rules.\n**Applications:** Fabric design, Pattern recognition, Synthetic texture generation\n**Methods:** Morphological operations, Grammar-based modeling, Texton mapping\n**Examples:** Brick wall = rectangle + grid, Checkerboard = square + alternation"
+  },
+  {
+    "front": "🧩 Motion\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Motion in computer vision refers to the apparent displacement of image brightness patterns between consecutive frames in a video sequence, caused by relative movement between the camera and the scene.\n\n**Description:** It provides critical information about scene dynamics, enabling applications such as tracking, segmentation, and 3D reconstruction. Motion analysis distinguishes between camera motion, object motion, and complex non-rigid deformations.\n\n**Goal:** Estimate and interpret changes in image appearance over time.\n**Applications:** Video stabilization, Object tracking, Action recognition, Autonomous navigation\n**Methods:** Optical flow, Feature tracking, Block matching, Differential methods\n**Examples:** Car moving across frames, Person walking, Camera panning"
+  },
+  {
+    "front": "🧩 Optical Flow\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Optical flow is the dense 2D vector field representing the apparent motion of brightness patterns between two consecutive image frames, assigning a displacement vector to each pixel.\n\n**Description:** It models local image changes under the brightness constancy assumption and is used to estimate scene motion, segment moving objects, and support higher-level video analysis.\n\n**Goal:** Compute per-pixel motion vectors between image pairs.\n**Applications:** Motion compensation, Video compression, Robot navigation, Medical imaging\n**Methods:** Lucas-Kanade (sparse), Horn-Schunck (dense), Farneback, Deep learning-based flow\n**Examples:** Flow field around a moving car, Expansion flow from camera zoom"
+  },
+  {
+    "front": "🧩 Brightness Constancy Assumption\n📘 Domain: Computer Vision",
+    "back": "**Definition:** The brightness constancy assumption states that the intensity of a moving point remains constant between consecutive frames, i.e., I(x, t) = I(x + d, t + 1), where d is the displacement.\n\n**Description:** It is the foundational constraint in differential optical flow methods, enabling the formulation of the optical flow constraint equation from spatiotemporal image gradients.\n\n**Goal:** Link pixel intensity across time for motion estimation.\n**Applications:** Optical flow computation, Motion detection, Tracking\n**Methods:** Gradient-based flow, Aperture problem solving\n**Examples:** Valid for Lambertian surfaces under constant illumination"
+  },
+  {
+    "front": "🧩 Aperture Problem\n📘 Domain: Computer Vision",
+    "back": "**Definition:** The aperture problem arises when observing motion through a local window: only the motion component perpendicular to an edge can be measured, leaving the parallel component ambiguous.\n\n**Description:** It explains why local motion measurements are underconstrained and requires integration over larger regions or use of corner features to resolve full 2D motion.\n\n**Goal:** Explain the fundamental ambiguity in local motion detection.\n**Applications:** Optical flow, Edge tracking, Motion estimation\n**Methods:** Gradient constraint equation, Lucas–Kanade method, Global smoothness enforcement\n**Examples:** Exam 2015 - Definition, Exam 2019 - Optical flow task"
+  },
+  {
+    "front": "🧩 Lucas-Kanade Method\n📘 Domain: Computer Vision",
+    "back": "**Definition:** The Lucas-Kanade method is a sparse, differential technique for optical flow estimation that assumes local motion constancy within small spatial neighborhoods and solves for motion using weighted least squares.\n\n**Description:** It is efficient and robust when applied to textured regions or tracked features, commonly used in real-time tracking and sparse flow applications.\n\n**Goal:** Estimate local motion at feature points with sub-pixel accuracy.\n**Applications:** Feature tracking, Visual odometry, Augmented reality\n**Methods:** Local window analysis, Weighted least squares, Pyramidal refinement\n**Examples:** Tracking facial landmarks, Corner point tracking in video"
+  },
+  {
+    "front": "🧩 Horn-Schunck Method\n📘 Domain: Computer Vision",
+    "back": "**Definition:** The Horn-Schunck method is a dense optical flow algorithm that minimizes a global energy functional combining the brightness constancy error and a smoothness term across the entire image.\n\n**Description:** It produces smooth flow fields by enforcing spatial coherence, making it suitable for dense motion estimation even in textureless regions.\n\n**Goal:** Compute smooth, dense optical flow over the full image.\n**Applications:** Motion segmentation, Video editing, Fluid flow visualization\n**Methods:** Variational optimization, Euler-Lagrange equations, Iterative solvers\n**Examples:** Global flow in translating scenes, Dense flow in medical ultrasound"
+  },
+  {
+    "front": "🧩 Motion Segmentation\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Motion segmentation is the process of partitioning a video into regions corresponding to independently moving objects based on their motion patterns.\n\n**Description:** It leverages optical flow or feature trajectories to group pixels with coherent motion, enabling object-level video analysis.\n\n**Goal:** Separate independently moving objects in dynamic scenes.\n**Applications:** Video surveillance, Autonomous driving, Action analysis\n**Methods:** Flow clustering, Layered motion models, Graph cuts\n**Examples:** Separating pedestrian from background, Isolating multiple cars"
+  },
+  {
+    "front": "🧩 Feature Tracking\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Feature tracking involves detecting distinctive points in one frame and finding their corresponding locations in subsequent frames using local search and similarity metrics.\n\n**Description:** It is a sparse motion representation widely used in real-time systems due to low computational cost and robustness when features are well-distributed.\n\n**Goal:** Maintain persistent point correspondences across video frames.\n**Applications:** SLAM, Structure from Motion, Camera pose estimation\n**Methods:** KLT tracker, Descriptor matching, Sub-pixel refinement\n**Examples:** Tracking Harris corners over time, Sparse trajectory bundles"
+  },
+  {
+    "front": "🧩 Specular Reflection\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Specular reflection is the mirror-like reflection of light from a surface in which light from a single incoming direction is reflected into a single outgoing direction, following the law of reflection.\n\n**Description:** It produces highlights and sharp reflections, characteristic of smooth, shiny surfaces. In computer vision, specular highlights are often modeled separately from diffuse reflection to improve surface reconstruction and material estimation.\n\n**Goal:** Model mirror-like light behavior on smooth surfaces.\n**Applications:** Shape from shading, Material classification, Highlight removal\n**Methods:** Law of reflection: angle of incidence = angle of reflection\n**Examples:** Shiny metal surfaces, Water reflections, Glass"
+  },
+  {
+    "front": "🧩 Diffuse Reflection\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Diffuse reflection occurs when light striking a rough surface is scattered in many directions, with equal radiance in all directions (Lambertian reflection).\n\n**Description:** It is responsible for the matte appearance of non-shiny surfaces. In vision, it is used to estimate surface orientation and albedo under known lighting.\n\n**Goal:** Model light scattering from rough, matte surfaces.\n**Applications:** Photometric stereo, Albedo estimation, Shape recovery\n**Methods:** Lambert's cosine law: intensity ∝ cos(θ)\n**Examples:** Paper, Cloth, Painted walls"
+  },
+  {
+    "front": "🧩 Light\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Light is electromagnetic radiation within the visible spectrum (approximately 380–700 nm) that can be perceived by the human visual system.\n\n**Description:** In computer vision, light is modeled as energy propagating through space, interacting with matter via reflection, transmission, and absorption. Its spectral composition determines perceived color.\n\n**Goal:** Enable visual perception and image formation.\n**Applications:** Illumination modeling, Color analysis, Radiometry\n**Methods:** Spectral power distribution, Wavelength-based analysis\n**Examples:** Sunlight, LED illumination, Laser light"
+  },
+  {
+    "front": "🧩 Visible Spectrum\n📘 Domain: Computer Vision",
+    "back": "**Definition:** The visible spectrum is the portion of the electromagnetic spectrum with wavelengths between approximately 380 and 700 nanometers, detectable by the human eye.\n\n**Description:** Different wavelengths within this range are perceived as different colors, from violet (short) to red (long). It forms the basis for trichromatic color vision in humans and most imaging sensors.\n\n**Goal:** Define the range of light responsible for color vision.\n**Applications:** Color imaging, Spectral analysis, Display technology\n**Methods:** Spectrophotometry, Prism dispersion\n**Examples:** 380 nm → violet, 550 nm → green, 700 nm → red"
+  },
+  {
+    "front": "🧩 Illuminating Source\n📘 Domain: Computer Vision",
+    "back": "**Definition:** An illuminating source is any object or phenomenon that emits electromagnetic radiation, contributing directly to scene illumination.\n\n**Description:** The perceived color depends on the spectral power distribution of the emitted light. Multiple sources combine additively. Examples include natural (sun) and artificial (bulbs) light.\n\n**Goal:** Provide primary light energy to a scene.\n**Applications:** Color constancy, White balancing, Relighting\n**Methods:** Additive color mixing, Spectral emission modeling\n**Examples:** Sun, Incandescent bulb, Fluorescent light, Monitor screen"
+  },
+  {
+    "front": "🧩 Reflecting Source\n📘 Domain: Computer Vision",
+    "back": "**Definition:** A reflecting source is a surface that reflects incident light from illuminating sources, contributing to the light reaching the observer or camera.\n\n**Description:** Its color depends on which wavelengths are absorbed and which are reflected (subtractive mixing). Pigments and dyes are common examples.\n\n**Goal:** Modulate incident light to produce colored appearance.\n**Applications:** Color segmentation, Material recognition, Reflectance estimation\n**Methods:** Subtractive color mixing, Spectral reflectance curves\n**Examples:** Red paint, Green leaf, Blue fabric"
+  },
+  {
+    "front": "🧩 Additive Rule\n📘 Domain: Computer Vision",
+    "back": "**Definition:** The additive rule states that the total spectrum observed from multiple illuminating sources is the sum of their individual spectral power distributions.\n\n**Description:** This linear superposition applies to light sources emitting directly into the scene. It is fundamental to color mixing in displays and multi-light illumination models.\n\n**Goal:** Predict combined effect of multiple light emitters.\n**Applications:** Stage lighting, Display calibration, Multi-spectral imaging\n**Methods:** Spectral summation: E_total(λ) = Σ E_i(λ)\n**Examples:** Mixing red + green light → yellow"
+  },
+  {
+    "front": "🧩 Subtractive Rule\n📘 Domain: Computer Vision",
+    "back": "**Definition:** The subtractive rule describes how the perceived color of mixed reflecting sources depends on the remaining wavelengths after selective absorption by each material.\n\n**Description:** Used in printing and pigments, it models how filters or dyes remove parts of the spectrum. The result is the intersection of reflected wavelengths.\n\n**Goal:** Model color formation via selective light absorption.\n**Applications:** Color printing (CMYK), Paint mixing, Filter design\n**Methods:** Multiplicative reflectance: R_total(λ) = Π R_i(λ)\n**Examples:** Yellow + magenta filter → red transmission"
+  },
+  {
+    "front": "🧩 Reflection\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Reflection is the process by which light bounces off a surface, changing direction without being absorbed or transmitted.\n\n**Description:** It can be specular (mirror-like) or diffuse (scattered), depending on surface roughness. Essential for image formation in most vision systems.\n\n**Goal:** Redirect incident light toward observer or sensor.\n**Applications:** Shape reconstruction, BRDF estimation, Photometric analysis\n**Methods:** Law of reflection, Fresnel equations\n**Examples:** Mirror, Polished metal, Matte paper"
+  },
+  {
+    "front": "🧩 Transmission\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Transmission is the passage of light through a material without significant scattering or absorption, typically in transparent or translucent media.\n\n**Description:** It allows light to propagate through objects like glass or water, often with refraction. Important in underwater imaging and optical systems.\n\n**Goal:** Allow light to pass through matter.\n**Applications:** Lens modeling, Underwater vision, Medical imaging\n**Methods:** Beer-Lambert law, Refraction (Snell's law)\n**Examples:** Clear glass, Water, Air"
+  },
+  {
+    "front": "🧩 Absorption\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Absorption is the process by which the energy of light is converted into another form (usually heat) when interacting with matter.\n\n**Description:** It selectively removes certain wavelengths, determining the color of reflecting objects. Critical for understanding material appearance and spectral selectivity.\n\n**Goal:** Convert light energy into internal energy.\n**Applications:** Spectral imaging, Color filtering, Thermal imaging\n**Methods:** Absorption coefficient, Beer-Lambert law\n**Examples:** Black surface absorbing all light, Red filter absorbing blue/green"
+  },
+  {
+    "front": "🧩 Convolutional Neural Network (CNN)\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A deep learning architecture composed of convolutional, pooling, and fully connected layers that automatically learn hierarchical visual features.\n\n**Description:** CNNs dominate modern computer vision tasks by learning spatial hierarchies of features directly from raw image data without handcrafted descriptors.\n\n**Goal:** Automatically learn discriminative visual representations.\n**Applications:** Image classification, Object detection, Semantic segmentation\n**Methods:** Backpropagation, Convolutional filtering, Pooling operations\n**Examples:** Exam 2018 - Modern methods, Exam 2019 - High-level discussion"
+  },
+  {
+    "front": "🧩 Bag-of-Words (BoW) Representation\n📘 Domain: Feature Representation",
+    "back": "**Definition:** An image representation that models visual content as a histogram of discrete visual words learned from feature descriptors.\n\n**Description:** BoW models are popular for image classification and retrieval due to their simplicity and effectiveness, despite losing spatial information.\n\n**Goal:** Represent images as collections of visual words for classification or retrieval.\n**Applications:** Image classification, Content-based image retrieval, Object recognition\n**Methods:** Feature extraction (e.g., SIFT, SURF), Visual vocabulary creation (e.g., K-Means), Histogram generation\n**Examples:** Image search engines, Category recognition"
+  },
+  {
+    "front": "🧩 Visual words\n📘 Domain: Feature Representation",
+    "back": "**Definition:** A cluster center in the feature space, representing a common visual pattern or feature, used to build Bag-of-Words representations.\n\n**Description:** \n\n"
+  },
+  {
+    "front": "🧩 Image segmentation\n📘 Domain: Segmentation",
+    "back": "**Definition:** The process of partitioning a digital image into multiple segments (sets of pixels) to simplify and/or change the representation of an image into something that is more meaningful and easier to analyze.\n\n**Description:** Image segmentation is typically used to locate objects and boundaries (lines, curves, etc.) in images. More precisely, image segmentation is the process of assigning a label to every pixel in an image such that pixels with the same label share certain characteristics.\n\n**Goal:** Divide an image into coherent regions for further analysis.\n**Applications:** Object detection, Medical imaging, Scene understanding\n**Methods:** Thresholding, Region growing, Graph-based segmentation\n**Examples:** Exam 2019 - Principle, Exam 2020 - Segmentation method"
+  },
+  {
+    "front": "🧩 Background Subtraction\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A motion-based segmentation approach that isolates moving foreground objects by comparing each frame to a background model.\n\n**Description:** Widely used in video surveillance, motion analysis, and dynamic scene understanding.\n\n**Goal:** Separate moving objects from a static or slowly changing background.\n**Applications:** Surveillance, Traffic monitoring, Gesture recognition\n**Methods:** Frame differencing, Gaussian mixture models, Otsu thresholding\n**Examples:** Exam 2018 - Segmentation question"
+  },
+  {
+    "front": "🧩 Lucas–Kanade Optical Flow\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A differential method for optical flow estimation assuming constant motion within a local neighborhood.\n\n**Description:** Solves the aperture problem by enforcing spatial smoothness; widely used for motion tracking and video stabilization.\n\n**Goal:** Estimate pixel displacement between consecutive frames.\n**Applications:** Motion tracking, Stabilization, 3D reconstruction\n**Methods:** Gradient constraint equation, Least-squares solution over a window\n**Examples:** Exam 2019 - Optical flow task"
+  },
+  {
+    "front": "🧩 Structure-from-Motion (SfM)\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A technique that recovers 3D structure and camera motion from multiple overlapping 2D images.\n\n**Description:** Combines feature matching, triangulation, and bundle adjustment to produce dense reconstructions and camera pose estimates.\n\n**Goal:** Estimate 3D geometry and motion from image sequences.\n**Applications:** 3D reconstruction, AR/VR, Robot localization\n**Methods:** Feature matching, Bundle adjustment, Triangulation\n**Examples:** Exam 2019 - Method explanation, Exam 2020 - Stereo extension"
+  },
+  {
+    "front": "🧩 Texture Analysis\n📘 Domain: Machine Vision",
+    "back": "**Definition:** The process of quantifying image surface characteristics using spatial variations in intensity or color.\n\n**Description:** Includes statistical, structural, and filter-based approaches to characterize surface patterns or material properties.\n\n**Goal:** Extract numerical features that describe texture patterns.\n**Applications:** Texture classification, Surface inspection, Remote sensing\n**Methods:** Co-occurrence matrices, Filter banks, LBP histograms\n**Examples:** Exam 2015 - Seashell texture, Exam 2018 - Filter bank task"
+  },
+  {
+    "front": "🧩 Edge Detection\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A fundamental operation that detects local discontinuities in intensity to outline object boundaries.\n\n**Description:** Typical operators like Sobel, Prewitt, or Canny emphasize intensity gradients to delineate shapes for segmentation and recognition.\n\n**Goal:** Identify object boundaries via intensity gradients.\n**Applications:** Shape analysis, Hough Transform, Segmentation preprocessing\n**Methods:** Gradient computation, Thresholding, Non-maximum suppression\n**Examples:** Exam 2015 - Preprocessing, Exam 2018 - Edge-based Hough task"
+  },
+  {
+    "front": "🧩 Graph-Based Segmentation\n📘 Domain: Machine Vision",
+    "back": "**Definition:** An image segmentation method that models the image as a graph, where pixels or regions are nodes and edge weights represent similarity.\n\n**Description:** Cuts or merges in the graph minimize a global cost function, yielding coherent region boundaries.\n\n**Goal:** Group pixels by minimizing inter-region dissimilarity.\n**Applications:** Object segmentation, Superpixel generation, Video segmentation\n**Methods:** Normalized cuts, Minimum spanning tree, Spectral clustering\n**Examples:** Exam 2018 - Segmentation discussion"
+  },
+  {
+    "front": "🧩 Local Features\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Local features are distinctive image patterns that are detected at specific points (keypoints) and described in a way that enables reliable matching across different views, scales, or illumination conditions.\n\n**Description:** They serve as the foundation for tasks requiring correspondence between images, such as stitching, 3D reconstruction, object recognition, and tracking. A complete local feature pipeline includes detection, description, and matching.\n\n**Goal:** Establish robust point correspondences between images under geometric and photometric transformations.\n**Applications:** Image matching, Panorama stitching, Structure from Motion, Object recognition\n**Methods:** Keypoint detection, Descriptor extraction, Feature matching\n**Examples:** Harris corners, SIFT keypoints, ORB features"
+  },
+  {
+    "front": "🧩 Keypoint Detection\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Keypoint detection is the process of identifying salient, repeatable locations in an image where local features can be reliably extracted and matched across different views.\n\n**Description:** Good keypoints are typically corners, blobs, or junctions that remain stable under small transformations. Detection is the first stage in the local feature pipeline.\n\n**Goal:** Locate stable points invariant to translation, rotation, and scale (to varying degrees).\n**Applications:** Feature-based alignment, Visual odometry, Augmented reality\n**Methods:** Harris, FAST, DoG (SIFT), MSER\n**Examples:** Corner points, Blob centers, Region extrema"
+  },
+  {
+    "front": "🧩 Feature Description\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Feature description involves computing a compact, discriminative vector (descriptor) from the image patch around a detected keypoint to enable robust matching.\n\n**Description:** The descriptor captures local appearance and is designed to be invariant to scale, rotation, and illumination changes. It is the second stage after keypoint detection.\n\n**Goal:** Encode local image appearance into a matching-friendly representation.\n**Applications:** Wide baseline matching, Object retrieval, Loop closure in SLAM\n**Methods:** SIFT, SURF, BRIEF, ORB, Histogram of gradients\n**Examples:** 128D SIFT vector, 64D SURF, 256-bit BRIEF"
+  },
+  {
+    "front": "🧩 Feature Matching\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Feature matching is the process of finding correspondences between descriptors from two images by measuring similarity (e.g., Euclidean distance or Hamming distance).\n\n**Description:** It establishes pairwise associations between keypoints, enabling geometric verification (e.g., via RANSAC) to filter outliers. It is the final stage in local feature pipelines.\n\n**Goal:** Identify correct point-to-point correspondences across images.\n**Applications:** Image stitching, 3D reconstruction, Visual tracking\n**Methods:** Nearest neighbor, Ratio test, Cross-checking, FLANN\n**Examples:** Matching SIFT descriptors, Hamming distance for binary ORB"
+  },
+  {
+    "front": "🧩 Image Gradient\n📘 Domain: Computer Vision",
+    "back": "**Definition:** The image gradient is a vector field representing the directional change in intensity at each pixel, computed as the partial derivatives in x and y directions.\n\n**Description:** It is fundamental to edge and corner detection. The magnitude indicates edge strength, and the direction indicates edge orientation.\n\n**Goal:** Quantify local intensity changes for feature detection.\n**Applications:** Edge detection, Corner detection, Optical flow\n**Methods:** Sobel operator, Prewitt, Finite differences\n**Examples:** ∇I = [∂I/∂x, ∂I/∂y]"
+  },
+  {
+    "front": "🧩 Structure Tensor\n📘 Domain: Computer Vision",
+    "back": "**Definition:** The structure tensor (or second-moment matrix) is a 2x2 matrix that summarizes the predominant directions and strength of gradients in a local image neighborhood.\n\n**Description:** It is used in corner detection to distinguish corners (high variation in all directions), edges (variation in one direction), and flat regions (low variation).\n\n**Goal:** Analyze local gradient distribution for feature classification.\n**Applications:** Corner detection, Motion estimation, Texture analysis\n**Methods:** M = Σ w [Ix², IxIy; IxIy, Iy²], Eigenvalue analysis\n**Examples:** Harris response, Shi-Tomasi corner measure"
+  },
+  {
+    "front": "🧩 Pinhole Camera Model\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A simplified geometric model of image formation in which light rays pass through a single small aperture and project an inverted image onto an image plane.\n\n**Description:** Used as the mathematical basis for camera calibration and projection matrix derivation in both single-view and multi-view geometry.\n\n**Goal:** Model how 3D points project onto a 2D image plane.\n**Applications:** Camera calibration, 3D reconstruction, Stereo imaging\n**Methods:** Homogeneous coordinate projection, Matrix-based projection equations\n**Examples:** Exam 2014 - Projection geometry, Exam 2016 - Stereo setup"
+  },
+  {
+    "front": "🧩 Radial Distortion\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A lens distortion where straight lines appear curved due to nonlinear magnification that varies with distance from the image center.\n\n**Description:** Commonly corrected during camera calibration using polynomial or division models to improve geometric accuracy.\n\n**Goal:** Model and correct optical distortion effects in imaging systems.\n**Applications:** Camera calibration, 3D measurement, Photogrammetry\n**Methods:** Polynomial distortion model, Inverse distortion mapping\n**Examples:** Exam 2014 - Lens modeling, Exam 2018 - Definition question"
+  },
+  {
+    "front": "🧩 HSV Color Space\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A color representation model that describes colors in terms of hue, saturation, and value, which better aligns with human color perception.\n\n**Description:** HSV is commonly used in segmentation and tracking tasks because hue can be more stable under illumination variations.\n\n**Goal:** Represent and manipulate color information in perceptually meaningful terms.\n**Applications:** Color-based segmentation, Object tracking, Skin detection\n**Methods:** RGB-to-HSV conversion, Thresholding by hue and saturation\n**Examples:** Exam 2015 - Definition, Exam 2019 - Basic term question"
+  },
+  {
+    "front": "🧩 Depth of Field\n📘 Domain: Machine Vision",
+    "back": "**Definition:** The range of distances within a scene that appear acceptably sharp in an image.\n\n**Description:** Controlled by aperture size, focal length, and sensor distance; important in focus estimation and 3D reconstruction.\n\n**Goal:** Quantify and control image sharpness across depth layers.\n**Applications:** Focus measurement, Autofocus systems, 3D reconstruction\n**Methods:** Optical modeling, Focus metric computation\n**Examples:** Exam 2020 - Definition question"
+  },
+  {
+    "front": "🧩 Epipolar Constraint\n📘 Domain: Machine Vision",
+    "back": "**Definition:** A geometric relationship stating that a point in one image must lie on a specific line (the epipolar line) in the other image when both views observe the same 3D point.\n\n**Description:** Derived from camera projection matrices and the essential matrix; simplifies stereo correspondence search.\n\n**Goal:** Reduce 2D stereo correspondence search to 1D along epipolar lines.\n**Applications:** Stereo vision, Structure-from-Motion, Camera calibration\n**Methods:** Essential matrix computation, Epipolar geometry modeling\n**Examples:** Exam 2018 - Theoretical question, Exam 2020 - Stereo derivation"
+  },
+  {
+    "front": "🧩 Metamers\n📘 Domain: Machine Vision",
+    "back": "**Definition:** Different spectral distributions that produce the same color perception under specific lighting conditions.\n\n**Description:** Important in color science and sensor calibration, explaining why cameras and human vision may differ in color interpretation.\n\n**Goal:** Understand perceptual equivalence in color representation.\n**Applications:** Color calibration, Illumination modeling, Spectral imaging\n**Methods:** Spectral measurement, Color matching functions\n**Examples:** Exam 2017 - Definition, Exam 2019 - Conceptual question"
+  },
+  {
+    "front": "🧩 Chromatic Aberration\n📘 Domain: Machine Vision",
+    "back": "**Definition:** An optical phenomenon where different wavelengths of light focus at different distances, causing color fringes in images.\n\n**Description:** Corrected via lens design or software post-processing to ensure color alignment in multi-channel imaging.\n\n**Goal:** Reduce color blurring caused by wavelength-dependent refraction.\n**Applications:** Lens design, Image restoration, Color correction\n**Methods:** Spectral lens calibration, Image deconvolution\n**Examples:** Exam 2018 - Definition question"
+  },
+  {
+    "front": "🧩 Camera Extrinsics\n📘 Domain: Machine Vision",
+    "back": "**Definition:** Parameters that describe the position and orientation of a camera in a world coordinate system.\n\n**Description:** Extrinsics link the camera reference frame to world coordinates, essential for triangulation and multi-view alignment.\n\n**Goal:** Map coordinates between camera and world spaces.\n**Applications:** Stereo calibration, SLAM, 3D reconstruction\n**Methods:** Rotation-translation matrix estimation, PnP algorithms\n**Examples:** Exam 2014 - Camera calibration task"
+  },
+  {
+    "front": "🧩 Pattern Recognition\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Pattern recognition is the process of automatically detecting and classifying structured patterns or regularities in data, enabling machines to interpret complex signals such as images, speech, or text.\n\n**Description:** In computer vision, it involves identifying objects, faces, actions, or scenes by learning discriminative features from labeled data and applying statistical or structural models for decision-making.\n\n**Goal:** Assign meaningful labels to input data based on learned patterns.\n**Applications:** Object recognition, Face detection, Medical diagnosis, Document analysis\n**Methods:** Statistical classification, Template matching, Neural networks, Syntactic analysis\n**Examples:** Recognizing handwritten digits, Identifying tumors in MRI scans"
+  },
+  {
+    "front": "🧩 Statistical Pattern Recognition\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Statistical pattern recognition models patterns as random variables and uses probability theory to make decisions based on feature measurements and class-conditional densities.\n\n**Description:** It assumes patterns are represented by feature vectors in a high-dimensional space and applies Bayesian decision theory to minimize classification error.\n\n**Goal:** Minimize classification error using probabilistic models.\n**Applications:** Face recognition, Character recognition, Speech processing\n**Methods:** Bayes classifier, Maximum likelihood, Gaussian mixture models, k-NN\n**Examples:** Classifying iris patterns, Spam email filtering"
+  },
+  {
+    "front": "🧩 Structural Pattern Recognition\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Structural pattern recognition represents patterns using symbolic data structures such as strings, trees, or graphs, emphasizing relational and syntactic organization.\n\n**Description:** It is suitable for patterns with explicit compositional structure, using grammars and parsing to recognize hierarchical relationships.\n\n**Goal:** Recognize patterns based on their compositional and relational structure.\n**Applications:** Syntactic OCR, Fingerprint analysis, Chemical structure recognition\n**Methods:** Formal grammars, Graph matching, Parsing algorithms\n**Examples:** Recognizing sentence structure, Identifying molecular bonds"
+  },
+  {
+    "front": "🧩 Feature Vector\n📘 Domain: Computer Vision",
+    "back": "**Definition:** A feature vector is a fixed-length numerical representation of an input pattern, where each element corresponds to a measured or derived attribute.\n\n**Description:** It transforms raw data into a format suitable for statistical classifiers, enabling distance-based or probabilistic decision-making in pattern space.\n\n**Goal:** Map complex patterns into comparable numerical space.\n**Applications:** Classification, Clustering, Regression\n**Methods:** Feature extraction, Dimensionality reduction, Normalization\n**Examples:** HOG features for pedestrians, MFCC for speech, Pixel intensities"
+  },
+  {
+    "front": "🧩 Classifier\n📘 Domain: Computer Vision",
+    "back": "**Definition:** A classifier is a function that maps input feature vectors to discrete class labels, typically learned from labeled training examples.\n\n**Description:** It forms the decision stage in pattern recognition systems, using learned boundaries or probabilities to assign new observations to predefined categories.\n\n**Goal:** Assign input patterns to correct categories with minimal error.\n**Applications:** Object detection, Face verification, Anomaly detection\n**Methods:** Linear discriminant, SVM, Decision trees, Neural networks\n**Examples:** k-NN, Naive Bayes, Random Forest"
+  },
+  {
+    "front": "🧩 Template Matching\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Template matching is a pattern recognition technique that searches for a known pattern (template) in an image by sliding it across all locations and measuring similarity.\n\n**Description:** It is simple and effective for rigid, well-defined patterns under controlled conditions but sensitive to scale, rotation, and illumination changes.\n\n**Goal:** Locate instances of a known pattern within an image.\n**Applications:** Character recognition, Defect detection, Logo identification\n**Methods:** Correlation, Normalized cross-correlation, SSD\n**Examples:** Finding 'STOP' signs, Matching printed circuit patterns"
+  },
+  {
+    "front": "🧩 Bayes Classifier\n📘 Domain: Computer Vision",
+    "back": "**Definition:** The Bayes classifier assigns an input pattern to the class with the highest posterior probability, computed using Bayes' theorem and class-conditional likelihoods.\n\n**Description:** It is statistically optimal when probability distributions are known, forming the theoretical foundation for many practical classifiers.\n\n**Goal:** Minimize expected classification error using probabilistic inference.\n**Applications:** Spam filtering, Medical diagnosis, Document classification\n**Methods:** P(class|features) = P(features|class) * P(class) / P(features)\n**Examples:** Naive Bayes, Gaussian Bayes classifier"
+  },
+  {
+    "front": "🧩 Object Recognition\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Object recognition is the task of identifying and localizing specific objects within images or video, assigning them semantic class labels.\n\n**Description:** It combines detection (where) and classification (what) and is a core capability in autonomous systems, surveillance, and augmented reality.\n\n**Goal:** Detect and classify objects in visual scenes.\n**Applications:** Autonomous driving, Robotics, Image search, Security\n**Methods:** Sliding window, Region proposals, Deep learning (CNNs)\n**Examples:** Detecting pedestrians, Recognizing furniture in rooms"
+  },
+  {
+    "front": "🧩 Computer Vision\n📘 Domain: Artificial Intelligence",
+    "back": "**Definition:** Computer vision is an interdisciplinary field that enables computers to gain high-level understanding from digital images or videos by automating tasks that the human visual system can perform.\n\n**Description:** It involves processing visual data to extract meaningful information, often converting images into higher-level representations. Closely related to artificial intelligence, it focuses on application-oriented tasks rather than theoretical aspects.\n\n**Goal:** Automate visual perception and interpretation\n**Applications:** Image recognition, 3D reconstruction, Video analysis, Object detection\n**Methods:** Machine Learning, Deep Neural Networks\n**Examples:** N/A"
+  },
+  {
+    "front": "🧩 Machine Vision\n📘 Domain: Artificial Intelligence",
+    "back": "**Definition:** Machine vision refers to the application-oriented implementation of computer vision technologies, emphasizing practical deployment over theoretical research.\n\n**Description:** It is more focused on real-world industrial and engineering applications compared to the broader and more academic field of computer vision.\n\n**Goal:** Practical automation of visual tasks\n**Applications:** Industrial inspection, Robotics, Quality control\n**Methods:** N/A\n**Examples:** N/A"
+  },
+  {
+    "front": "🧩 Image Processing\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Image processing involves the transformation of images into other images, often as a preprocessing step to support higher-level computer vision tasks.\n\n**Description:** It includes operations like filtering, enhancement, and compression, typically producing modified images rather than semantic interpretations.\n\n**Goal:** Transform and enhance image data\n**Applications:** Noise reduction, Edge detection, Image restoration\n**Methods:** Filtering, Morphological operations\n**Examples:** N/A"
+  },
+  {
+    "front": "🧩 Image Understanding\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Image understanding is the process of making decisions based on images and constructing scene descriptions.\n\n**Description:** It goes beyond mere image transformation to interpret content, recognize objects, and infer relationships within visual scenes.\n\n**Goal:** Semantic interpretation of visual data\n**Applications:** Scene description, Object recognition, Activity understanding\n**Methods:** N/A\n**Examples:** N/A"
+  },
+  {
+    "front": "🧩 Image Recognition\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Image recognition is the ability of software to identify objects, places, people, writing, and actions in images.\n\n**Description:** It enables systems to classify and localize entities within visual data, forming a core capability in modern computer vision applications.\n\n**Goal:** Identify and classify visual elements\n**Applications:** Facial recognition, Object detection, Scene labeling\n**Methods:** Deep Learning, Convolutional Neural Networks\n**Examples:** Classification + Localization, Object Detection, Semantic Segmentation, Instance Segmentation"
+  },
+  {
+    "front": "🧩 Computational Photography\n📘 Domain: Computer Vision",
+    "back": "**Definition:** Computational photography uses algorithmic techniques to enhance or extend the capabilities of digital imaging beyond traditional photography limits.\n\n**Description:** It combines multiple exposures, focuses, or sensor data to produce images with improved dynamic range, sharpness, or reduced noise.\n\n**Goal:** Overcome hardware limitations via computation\n**Applications:** Deblurring, HDR imaging, Light field capture\n**Methods:** Image fusion, Motion deblurring\n**Examples:** Deblurring motion-blurred images, Fusing short and long exposures for night scenes"
+  }
+]

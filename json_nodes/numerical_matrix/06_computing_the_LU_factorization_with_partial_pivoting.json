@@ -1,0 +1,208 @@
+[
+  {
+    "entity": "LU Factorization with Partial Pivoting",
+    "type": "Method",
+    "domain": "Numerical Linear Algebra",
+    "definition": "LU factorization with partial pivoting decomposes a matrix A ∈ ℂ^{n×n} into PA = LU, where P is a permutation matrix, L is unit lower triangular with |l_{ij}| ≤ 1 for i > j, and U is upper triangular. Partial pivoting selects the largest absolute entry in the current column as the pivot to minimize numerical instability.",
+    "description": "This algorithm enhances the stability of Gaussian elimination by row permutations to avoid small pivots. It is the standard method for solving linear systems Ax = b in practice, balancing computational cost (O(n³)) with robustness against round-off errors in floating-point arithmetic.",
+    "properties": {
+      "Goal": "Stable triangular factorization of a matrix for solving linear systems and computing inverses.",
+      "Applications": [
+        "Solving Ax = b",
+        "Matrix inversion",
+        "Determinant computation",
+        "Condition number estimation"
+      ],
+      "Methods": [
+        "Gaussian elimination with row pivoting",
+        "In-place storage using single array",
+        "Compact WY representation for L"
+      ],
+      "Examples": [
+        "4×4 matrix example with pivots 8, 17/4, -6/7, 2 showing growth control"
+      ]
+    },
+    "relations": [
+      {"type": "improves", "target": "Gaussian Elimination"},
+      {"type": "uses", "target": "Permutation Matrix"},
+      {"type": "produces", "target": "Lower Triangular Matrix"},
+      {"type": "produces", "target": "Upper Triangular Matrix"},
+      {"type": "controls", "target": "Growth Factor"},
+      {"type": "enables", "target": "Backward Stable Solver"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "06_computing_the_LU_factorization_with_partial_pivoting.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Partial Pivoting",
+    "type": "Strategy",
+    "domain": "Numerical Linear Algebra",
+    "definition": "A pivoting strategy in Gaussian elimination that, at step k, permutes rows so that the entry of largest magnitude in column k (from row k to n) becomes the pivot, ensuring |pivot| = max_{i≥k} |a_{ik}|.",
+    "description": "Partial pivoting prevents division by small pivots, reducing amplification of round-off errors. It guarantees that all subdiagonal entries in L satisfy |l_{ij}| ≤ 1, bounding the growth factor ρ ≤ 2^{n-1} in theory, though typically much smaller in practice.",
+    "properties": {
+      "Goal": "Minimize numerical error propagation during elimination by choosing largest available pivot.",
+      "Applications": [
+        "LU factorization",
+        "Linear system solving",
+        "Matrix decomposition in finite precision"
+      ],
+      "Methods": [
+        "Row interchange before elimination step",
+        "Column scanning for max absolute value"
+      ],
+      "Examples": [
+        "P1 swaps rows to bring largest entry to diagonal position"
+      ]
+    },
+    "relations": [
+      {"type": "part_of", "target": "LU Factorization with Partial Pivoting"},
+      {"type": "reduces", "target": "Round-off Error"},
+      {"type": "bounds", "target": "Growth Factor"},
+      {"type": "contrasts", "target": "Complete Pivoting"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "06_computing_the_LU_factorization_with_partial_pivoting.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Permutation Matrix",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A permutation matrix P is a square matrix with exactly one 1 in each row and column and 0s elsewhere. Multiplying PA permutes the rows of A; AP permutes columns.",
+    "description": "In LU with partial pivoting, P represents the cumulative row interchanges. Since P^{-1} = P^T = P^*, it preserves norms: ||Px|| = ||x||. The final factorization is PA = LU.",
+    "properties": {
+      "Goal": "Represent row or column reordering in matrix factorizations.",
+      "Applications": [
+        "Pivoting in LU",
+        "Reordering for sparsity",
+        "Graph relabeling"
+      ],
+      "Methods": [
+        "Identity with swapped rows",
+        "Product of elementary permutation matrices"
+      ],
+      "Examples": [
+        "P = [0 1; 1 0] swaps rows 1 and 2"
+      ]
+    },
+    "relations": [
+      {"type": "used_in", "target": "LU Factorization with Partial Pivoting"},
+      {"type": "preserves", "target": "Euclidean Norm"},
+      {"type": "inverts_to", "target": "Itself"},
+      {"type": "represents", "target": "Row Permutation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "06_computing_the_LU_factorization_with_partial_pivoting.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+  "entity": "Growth Factor",
+  "type": "Metric",
+  "domain": "Numerical Linear Algebra",
+  "definition": "The growth factor rho in LU factorization with partial pivoting is defined as rho = max_{i,j} |u_{ij}| / max_{i,j} |a_{ij}|, measuring the largest entry in U relative to the original matrix A.",
+  "description": "Controls backward stability: computed factors satisfy L_hat U_hat = P A + delta A with ||delta A|| / ||A|| = O(rho epsilon_machine). Partial pivoting keeps rho moderate in practice, though worst-case rho = 2^{n-1} is possible.",
+  "properties": {
+    "Goal": "Quantify element growth during Gaussian elimination to assess numerical stability.",
+    "Applications": [
+      "Backward error analysis",
+      "Condition estimation",
+      "Pivoting strategy evaluation"
+    ],
+    "Methods": [
+      "Ratio of max |u_{ij}| to max |a_{ij}|",
+      "Monitored during factorization"
+    ],
+    "Examples": [
+      "Wilkinson's matrix gives rho approx 2^{n-1}"
+    ]
+  },
+  "relations": [
+    {"type": "bounded_by", "target": "Partial Pivoting"},
+    {"type": "affects", "target": "Backward Stability"},
+    {"type": "measured_in", "target": "Upper Triangular Factor"}
+  ],
+  "metadata": {
+    "created_by": "system",
+    "source": "06_computing_the_LU_factorization_with_partial_pivoting.pdf",
+    "created_at": "2025-11-10",
+    "version": "1.0"
+  }
+},
+  {
+    "entity": "Condition Number",
+    "type": "Metric",
+    "domain": "Numerical Linear Algebra",
+    "definition": "The condition number κ(W) of a nonsingular matrix W is κ(W) = ||W|| ⋅ ||W^{-1}||, with respect to any consistent matrix norm. For the 1-norm or ∞-norm, κ₁(W) = σ₁/σₙ where σ are singular values.",
+    "description": "Measures sensitivity of linear system solution to perturbations. Large κ implies ill-conditioned system: small changes in input cause large output changes. In LU context, related to pivot size and growth.",
+    "properties": {
+      "Goal": "Quantify sensitivity of Ax = b to perturbations in A or b.",
+      "Applications": [
+        "Error bounds in linear solvers",
+        "Preconditioning design",
+        "Numerical stability analysis"
+      ],
+      "Methods": [
+        "SVD-based: κ₂ = σ_max / σ_min",
+        "1-norm estimation via Hager's method"
+      ],
+      "Examples": [
+        "κ(A) ≈ 10^k ⇒ lose k digits of accuracy"
+      ]
+    },
+    "relations": [
+      {"type": "estimated_via", "target": "LU Factorization"},
+      {"type": "equals", "target": "Ratio of Extreme Singular Values"},
+      {"type": "impacts", "target": "Solution Accuracy"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "06_computing_the_LU_factorization_with_partial_pivoting.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Gaussian Elimination",
+    "type": "Method",
+    "domain": "Linear Algebra",
+    "definition": "Gaussian elimination transforms a linear system Ax = b into upper triangular form Ux = c via row operations: adding multiples of one row to another. With pivoting, it forms the basis of LU factorization.",
+    "description": "Core algorithm for solving linear systems. Without pivoting, unstable for small pivots. With partial pivoting, becomes robust standard method. Can be expressed as sequence of rank-1 updates or multiplier storage in L.",
+    "properties": {
+      "Goal": "Reduce system to triangular form for back substitution.",
+      "Applications": [
+        "Linear system solving",
+        "Matrix factorization",
+        "Determinant via product of diagonals"
+      ],
+      "Methods": [
+        "Forward elimination",
+        "Back substitution",
+        "Pivoting variants"
+      ],
+      "Examples": [
+        "4×4 system reduced step-by-step with P, L, U shown"
+      ]
+    },
+    "relations": [
+      {"type": "foundation_of", "target": "LU Factorization"},
+      {"type": "enhanced_by", "target": "Partial Pivoting"},
+      {"type": "performs", "target": "Row Reduction"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "06_computing_the_LU_factorization_with_partial_pivoting.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]

@@ -1,0 +1,185 @@
+[
+  {
+    "entity": "Sparse Approximate Inverse",
+    "type": "Method",
+    "domain": "Numerical Linear Algebra",
+    "definition": "A sparse approximate inverse (SAI) preconditioner computes a sparse matrix M such that ||I - MA||_F or ||I - AW||_F is minimized over all matrices W with a prescribed sparsity pattern, effectively approximating A^{-1} directly.",
+    "description": "Application cost is O(nnz(M)) matrix-vector products. Excellent parallel performance due to explicit form. Often constructed via Frobenius norm minimization on independent columns or using QR factorizations of local submatrices.",
+    "properties": {
+      "Goal": "Construct explicit sparse approximation to A^{-1} for fast matrix-vector products",
+      "Applications": [
+        "Highly parallel architectures (GPU, many-core)",
+        "Unstructured grids",
+        "High-performance computing"
+      ],
+      "Methods": [
+        "Frobenius norm minimization per column",
+        "SPAID (sparse approximate inverse by distance)",
+        "FSAI (factorized sparse approximate inverse)"
+      ],
+      "Examples": [
+        "min_W ||AW - I||_F with W constrained to sparsity pattern of A^k"
+      ]
+    },
+    "relations": [],
+    "metadata": {
+      "created_by": "system",
+      "source": "09_preconditioning.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Inner Product",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A binary operation on two vectors in ℂⁿ that produces a scalar, defined as ⟨x, y⟩ = yᵀx̄ = ∑ⱼ xⱼȳⱼ, where x, y ∈ ℂⁿ.",
+    "description": "The inner product (also known as dot product in real vector spaces) measures similarity between vectors and forms the foundation of orthogonality, norms, and projections. In complex spaces, it involves conjugation to ensure positive definiteness of the induced norm.",
+    "properties": {
+      "Goal": "Quantify angle and similarity between vectors; enable orthogonal decomposition",
+      "Applications": [
+        "Gram-Schmidt orthogonalization",
+        "Least squares",
+        "Signal processing",
+        "Quantum mechanics"
+      ],
+      "Methods": [
+        "N/A"
+      ],
+      "Examples": [
+        "⟨x, y⟩ = ∑ xⱼȳⱼ over j=1 to n"
+      ]
+    },
+    "relations": [],
+    "metadata": {
+      "created_by": "system",
+      "source": "01_introduction.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Orthogonal Complement",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "The orthogonal complement of a subspace V is the set of vectors perpendicular to all elements in V, denoted V^⊥.",
+    "description": "For projections, if P is orthogonal, then R(P) ⊥ R(I - P), ensuring the decomposition is orthogonal.",
+    "properties": {
+      "Goal": "Decompose space into perpendicular subspaces",
+      "Applications": [
+        "Gram-Schmidt",
+        "Least squares",
+        "Spectral methods"
+      ],
+      "Methods": [
+        "Dot product zero condition",
+        "Null space of transpose"
+      ],
+      "Examples": [
+        "R(I - P) as complement of R(P)"
+      ]
+    },
+    "relations": [],
+    "metadata": {
+      "created_by": "system",
+      "source": "05_factoring_algorithmically.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Computational Complexity (Matrix Multiplication)",
+    "type": "Metric",
+    "domain": "Algorithm Analysis",
+    "definition": "The asymptotic resource requirement for matrix multiplication and related operations, classically O(n³) time and O(n²) space for n×n matrices.",
+    "description": "Standard matrix multiplication of two n×n matrices requires O(n³) arithmetic operations using the naive algorithm. While theoretical improvements exist (e.g., Strassen's O(n².⁸⁰⁷)), practical methods remain close to O(n³). Storage scales quadratically as O(n²).",
+    "properties": {
+      "Goal": "Assess efficiency and scalability of matrix algorithms",
+      "Applications": [
+        "Performance prediction",
+        "Algorithm selection",
+        "Hardware design"
+      ],
+      "Methods": [
+        "Big-O notation",
+        "Arithmetic circuit complexity"
+      ],
+      "Examples": [
+        "O(n³) time",
+        "O(n²) space"
+      ]
+    },
+    "relations": [],
+    "metadata": {
+      "created_by": "system",
+      "source": "01_introduction.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Discrete Fourier Transform (DFT)",
+    "type": "Method",
+    "domain": "Signal Processing",
+    "definition": "A linear transformation mapping a sequence x₀, ..., x_{n-1} to coefficients cⱼ = ∑ₖ xₖ ω^{jk}, where ω = e^{-2πi/n}, represented by the Vandermonde matrix Fₙ.",
+    "description": "The DFT diagonalizes circulant matrices and enables fast convolution, filtering, and spectral analysis. The Fast Fourier Transform (FFT) computes it in O(n log n) using divide-and-conquer on power-of-two sizes.",
+    "properties": {
+      "Goal": "Decompose signals into frequency components and accelerate convolution/correlation",
+      "Applications": [
+        "Audio processing",
+        "Image compression",
+        "PDE solvers",
+        "Polynomial multiplication"
+      ],
+      "Methods": [
+        "Cooley-Tukey FFT",
+        "Radix-2",
+        "Split-radix",
+        "Bluestein"
+      ],
+      "Examples": [
+        "F₄ = [[1,1,1,1], [1,-1,1,-1], ...]",
+        "FFT of length 2^l"
+      ]
+    },
+    "relations": [],
+    "metadata": {
+      "created_by": "system",
+      "source": "07_using_the_structure_in_computations_Cholesky_factorization_Sylvester_equation_and_FFT.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Fast Fourier Transform (FFT)",
+    "type": "Algorithm",
+    "domain": "Numerical Algorithms",
+    "definition": "An efficient algorithm for computing the DFT in O(n log n) operations by recursively splitting into even/odd indices when n is a power of two.",
+    "description": "The Cooley-Tukey FFT reduces DFT complexity from O(n²) to O(n log n) using butterfly operations and twiddle factors. It is foundational in digital signal processing and enables real-time spectral analysis.",
+    "properties": {
+      "Goal": "Compute DFT with minimal arithmetic operations using recursive decomposition",
+      "Applications": [
+        "Spectral methods",
+        "FFT-based convolution",
+        "MRI reconstruction",
+        "Audio synthesis"
+      ],
+      "Methods": [
+        "Decimation-in-time",
+        "Decimation-in-frequency",
+        "Bit-reversal",
+        "In-place computation"
+      ],
+      "Examples": [
+        "Radix-2 butterfly: yⱼ = x_{2j} + ω^j x_{2j+1}"
+      ]
+    },
+    "relations": [],
+    "metadata": {
+      "created_by": "system",
+      "source": "07_using_the_structure_in_computations_Cholesky_factorization_Sylvester_equation_and_FFT.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]

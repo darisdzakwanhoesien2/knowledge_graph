@@ -1,0 +1,152 @@
+[
+  {
+    "entity": "Cholesky Factorization",
+    "type": "Method",
+    "domain": "Numerical Linear Algebra",
+    "definition": "A decomposition of a Hermitian positive definite matrix A into A = R*R, where R is an upper triangular matrix with positive diagonal entries.",
+    "description": "Cholesky factorization exploits symmetry and positive definiteness to reduce computational cost from O(n³) for general LU to approximately n³/3 flops while requiring only n²/2 storage. It is widely used in optimization, Monte Carlo simulations, and solving normal equations.",
+    "properties": {
+      "Goal": "Efficiently factorize Hermitian positive definite matrices with half the storage and one-third the operations of LU.",
+      "Applications": ["Quadratic programming", "Kalman filtering", "Covariance decomposition", "Monte Carlo methods"],
+      "Methods": ["Block elimination", "Outer product form", "Inner product form"],
+      "Examples": ["A = R*R with R upper triangular and diag(R) > 0"]
+    },
+    "relations": [
+      {"type": "specializes", "target": "LU Factorization"},
+      {"type": "requires", "target": "Positive Definite Matrix"},
+      {"type": "outputs", "target": "Upper Triangular Factor"},
+      {"type": "related_to", "target": "LDL* Decomposition"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "07_using_the_structure_in_computations_Cholesky_factorization_Sylvester_equation_and_FFT.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Positive Definite Matrix",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A Hermitian matrix A ∈ ℂ^{n×n} such that (Ax, x) > 0 for all nonzero x ∈ ℂ^n.",
+    "description": "Positive definite matrices arise in energy minimization, covariance modeling, and elliptic PDEs. They guarantee unique Cholesky factors, stable inverses, and real positive eigenvalues. The property is preserved under congruence: M*A*M is positive definite if M is invertible.",
+    "properties": {
+      "Goal": "Model strictly convex quadratic forms and ensure numerical stability in factorizations.",
+      "Applications": ["Optimization", "Statistics", "Physics simulations", "Control theory"],
+      "Methods": ["Sylvester's criterion", "Cholesky test", "Eigenvalue analysis"],
+      "Examples": ["Covariance matrices", "Hessians of convex functions", "A = R*R"]
+    },
+    "relations": [
+      {"type": "generalization_of", "target": "Positive Semidefinite"},
+      {"type": "enables", "target": "Cholesky Factorization"},
+      {"type": "preserved_under", "target": "Congruence Transformation"},
+      {"type": "related_to", "target": "Elliptic PDE"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "07_using_the_structure_in_computations_Cholesky_factorization_Sylvester_equation_and_FFT.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Sylvester Equation",
+    "type": "Concept",
+    "domain": "Control Theory",
+    "definition": "A matrix equation of the form AX − XB = C, where A, B, C are given matrices and X is unknown.",
+    "description": "The Sylvester equation models linear system interconnections and appears in control design, model reduction, and eigenvalue assignment. When σ(A) ∩ σ(B) = ∅, it has a unique solution solvable in O(n³) via Schur triangulation or vectorization (kronecker form).",
+    "properties": {
+      "Goal": "Solve for coupling matrix X in interconnected linear systems or compute Lyapunov functions.",
+      "Applications": ["Stability analysis", "Model order reduction", "Riccati equations", "Pole placement"],
+      "Methods": ["Schur method", "Hessenberg-Schur algorithm", "Bartels-Stewart", "Vectorization"],
+      "Examples": ["AX − XA* = −BB* (Lyapunov)", "AX − XB = C with diagonal A, B"]
+    },
+    "relations": [
+      {"type": "generalizes", "target": "Lyapunov Equation"},
+      {"type": "solved_via", "target": "Schur Triangulation"},
+      {"type": "used_in", "target": "Control Synthesis"},
+      {"type": "related_to", "target": "Kronecker Product"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "07_using_the_structure_in_computations_Cholesky_factorization_Sylvester_equation_and_FFT.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Discrete Fourier Transform (DFT)",
+    "type": "Method",
+    "domain": "Signal Processing",
+    "definition": "A linear transformation mapping a sequence x₀, ..., x_{n-1} to coefficients cⱼ = ∑ₖ xₖ ω^{jk}, where ω = e^{-2πi/n}, represented by the Vandermonde matrix Fₙ.",
+    "description": "The DFT diagonalizes circulant matrices and enables fast convolution, filtering, and spectral analysis. The Fast Fourier Transform (FFT) computes it in O(n log n) using divide-and-conquer on power-of-two sizes.",
+    "properties": {
+      "Goal": "Decompose signals into frequency components and accelerate convolution/correlation.",
+      "Applications": ["Audio processing", "Image compression", "PDE solvers", "Polynomial multiplication"],
+      "Methods": ["Cooley-Tukey FFT", "Radix-2", "Split-radix", "Bluestein"],
+      "Examples": ["F₄ = [[1,1,1,1], [1,-1,1,-1], ...]", "FFT of length 2^l"]
+    },
+    "relations": [
+      {"type": "computed_by", "target": "Fast Fourier Transform"},
+      {"type": "diagonalizes", "target": "Circulant Matrix"},
+      {"type": "unitary_up_to_scaling", "target": "Fₙ*/√n"},
+      {"type": "related_to", "target": "Vandermonde Matrix"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "07_using_the_structure_in_computations_Cholesky_factorization_Sylvester_equation_and_FFT.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Fast Fourier Transform (FFT)",
+    "type": "Algorithm",
+    "domain": "Numerical Algorithms",
+    "definition": "An efficient algorithm for computing the DFT in O(n log n) operations by recursively splitting into even/odd indices when n is a power of two.",
+    "description": "The Cooley-Tukey FFT reduces DFT complexity from O(n²) to O(n log n) using butterfly operations and twiddle factors. It is foundational in digital signal processing and enables real-time spectral analysis.",
+    "properties": {
+      "Goal": "Compute DFT with minimal arithmetic operations using recursive decomposition.",
+      "Applications": ["Spectral methods", "FFT-based convolution", "MRI reconstruction", "Audio synthesis"],
+      "Methods": ["Decimation-in-time", "Decimation-in-frequency", "Bit-reversal", "In-place computation"],
+      "Examples": ["Radix-2 butterfly: yⱼ = x_{2j} + ω^j x_{2j+1}"]
+    },
+    "relations": [
+      {"type": "implements", "target": "Discrete Fourier Transform"},
+      {"type": "complexity_reduction", "target": "O(n²) to O(n log n)"},
+      {"type": "uses", "target": "Twiddle Factors"},
+      {"type": "related_to", "target": "Butterfly Diagram"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "07_using_the_structure_in_computations_Cholesky_factorization_Sylvester_equation_and_FFT.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Schur Triangulation",
+    "type": "Method",
+    "domain": "Numerical Linear Algebra",
+    "definition": "A similarity transformation A = Q T Q* where T is upper triangular and Q is unitary, revealing eigenvalues on the diagonal of T.",
+    "description": "Schur form is the foundation for robust eigenvalue computation and solving Sylvester equations. The QR-based Francis algorithm computes it in O(n³) with high backward stability. Real Schur form handles complex conjugate pairs.",
+    "properties": {
+      "Goal": "Reduce matrix to triangular form under unitary similarity to expose eigenvalues and enable block algorithms.",
+      "Applications": ["Eigenvalue problems", "Sylvester solvers", "Matrix functions", "Control theory"],
+      "Methods": ["Francis QR algorithm", "Hessenberg reduction", "Double shift"],
+      "Examples": ["A = Q T Q* with T upper triangular, diag(T) = eigenvalues"]
+    },
+    "relations": [
+      {"type": "generalizes", "target": "Hessenberg Form"},
+      {"type": "enables", "target": "Sylvester Equation Solution"},
+      {"type": "computed_by", "target": "QR Algorithm"},
+      {"type": "related_to", "target": "Unitary Similarity"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "07_using_the_structure_in_computations_Cholesky_factorization_Sylvester_equation_and_FFT.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]

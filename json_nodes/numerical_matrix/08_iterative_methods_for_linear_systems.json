@@ -1,0 +1,277 @@
+[
+  {
+    "entity": "Iterative Methods",
+    "type": "Method",
+    "domain": "Numerical Analysis",
+    "definition": "Iterative methods are algorithms that generate a sequence of approximations x_j to the solution x of a linear system Ax = b, starting from an initial guess and refining it until convergence.",
+    "description": "They are preferred for large sparse systems where direct methods like Gaussian elimination are O(n^3) and computationally expensive, with per-iteration costs often O(n^2) or less, such as O(n) for sparse or O(n log n) with structured matrices.",
+    "properties": {
+      "Goal": "Solve large linear systems efficiently without full factorization.",
+      "Applications": ["PDE discretizations", "Optimization", "Eigenproblems"],
+      "Methods": ["Krylov subspace methods", "Conjugate gradient", "GMRES", "Preconditioned iterations"],
+      "Examples": ["x_{j+1} = x_j + correction", "Convergence when ||r_j|| small"]
+    },
+    "relations": [
+      {"type": "alternative_to", "target": "Direct Methods"},
+      {"type": "uses", "target": "Krylov Subspace"},
+      {"type": "improved_by", "target": "Preconditioning"},
+      {"type": "measures_convergence", "target": "Residual Norm"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "08_iterative_methods_for_linear_systems.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Linear System",
+    "type": "Concept",
+    "domain": "Numerical Analysis",
+    "definition": "A linear system is an equation of the form Ax = b where A is an n x n matrix, x is the unknown vector, and b is the right-hand side vector.",
+    "description": "For large n (e.g., 10^4 to 10^8), iterative methods are used due to high O(n^3) cost of direct solvers, especially when A is sparse or structured.",
+    "properties": {
+      "Goal": "Find x such that Ax = b.",
+      "Applications": ["Scientific simulations", "Machine learning", "Engineering"],
+      "Methods": ["Direct (LU, QR)", "Iterative (CG, GMRES)"],
+      "Examples": ["A in C^{n x n}, b in C^n"]
+    },
+    "relations": [
+      {"type": "solved_by", "target": "Iterative Methods"},
+      {"type": "preconditioned_as", "target": "M^{-1} A x = M^{-1} b"},
+      {"type": "residual", "target": "r = b - A x"},
+      {"type": "convergence_bound", "target": "Polynomial Minimization"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "08_iterative_methods_for_linear_systems.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Krylov Subspace",
+    "type": "Concept",
+    "domain": "Numerical Analysis",
+    "definition": "The Krylov subspace K_j(A; b) is the span of {b, A b, A^2 b, ..., A^{j-1} b}, forming the basis for many iterative solvers.",
+    "description": "It is invariant under A if dim K_j = dim K_{j+1}, and approximations x_j are sought in x_0 + K_j to minimize residuals.",
+    "properties": {
+      "Goal": "Build low-dimensional subspaces for approximations.",
+      "Applications": ["GMRES", "Conjugate gradient", "Arnoldi iteration"],
+      "Methods": ["Power iteration", "Orthogonalization"],
+      "Examples": ["K_j(A; b) with basis matrix M = [b, A b, ..., A^{j-1} b]"]
+    },
+    "relations": [
+      {"type": "generated_by", "target": "Matrix Powers"},
+      {"type": "orthogonalized_by", "target": "Arnoldi Process"},
+      {"type": "used_in", "target": "GMRES"},
+      {"type": "invariant_under", "target": "A"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "08_iterative_methods_for_linear_systems.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Arnoldi Process",
+    "type": "Method",
+    "domain": "Numerical Analysis",
+    "definition": "The Arnoldi process builds an orthonormal basis Qⱼ for the Krylov subspace Kⱼ(A; b) and a Hessenberg matrix Hⱼ such that A Qⱼ = Qⱼ₊₁ Ĥⱼ.",
+    "description": "It uses Gram–Schmidt-like orthogonalisation to compute basis vectors qₖ recursively, enabling reduced-order projections for solving systems or eigenvalues.",
+    "properties": {
+      "Goal": "Orthogonalise Krylov basis for stable computations.",
+      "Applications": ["GMRES", "Eigenvalue solvers", "Matrix functions"],
+      "Methods": ["Recursive computation: hₖ,ₖ₋₁ qₖ = A qₖ₋₁ − Σ hₗ,ₖ₋₁ qₗ"],
+      "Examples": ["Qⱼ₊₁ Ĥⱼ = A Qⱼ"]
+    },
+    "relations": [
+      {"type": "orthogonalises", "target": "Krylov Subspace"},
+      {"type": "produces", "target": "Hessenberg Matrix"},
+      {"type": "used_in", "target": "GMRES"},
+      {"type": "similar_to", "target": "Lanczos Algorithm"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "08_iterative_methods_for_linear_systems.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "GMRES",
+    "type": "Method",
+    "domain": "Numerical Analysis",
+    "definition": "Generalised Minimal Residual (GMRES) is an iterative method that finds xⱼ in x₀ + Kⱼ(A; r₀) minimising ‖b − A xⱼ‖₂ for nonsymmetric systems.",
+    "description": "It uses Arnoldi to build the basis and solves a least-squares problem with the Hessenberg matrix at each step, restarting when j is large.",
+    "properties": {
+      "Goal": "Minimise residual norm over Krylov subspace.",
+      "Applications": ["Nonsymmetric linear systems", "PDE solvers"],
+      "Methods": ["Arnoldi orthogonalisation", "Least squares on Ĥⱼ y − α e₁"],
+      "Examples": ["xⱼ = Qⱼ yⱼ where yⱼ minimises ‖Ĥⱼ y − α e₁‖"]
+    },
+    "relations": [
+      {"type": "based_on", "target": "Arnoldi Process"},
+      {"type": "minimises", "target": "Residual Norm"},
+      {"type": "for", "target": "Nonsymmetric Matrices"},
+      {"type": "variant_of", "target": "Krylov Subspace Methods"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "08_iterative_methods_for_linear_systems.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Conjugate Gradient Method",
+    "type": "Method",
+    "domain": "Numerical Analysis",
+    "definition": "The Conjugate Gradient (CG) method solves symmetric positive definite systems Ax = b by minimising the A-norm error ‖x − xⱼ‖ₐ over the Krylov subspace.",
+    "description": "It generates A-conjugate search directions implicitly via a three-term recurrence, equivalent to Lanczos for symmetric matrices, with optimal polynomial approximation properties.",
+    "properties": {
+      "Goal": "Minimise quadratic form (x, A x)/2 − (b, x).",
+      "Applications": ["SPD linear systems", "Optimisation (Newton-CG)"],
+      "Methods": ["Conjugate directions", "Residual orthogonalisation"],
+      "Examples": ["xⱼ₊₁ = xⱼ + αⱼ pⱼ with pⱼ₊₁ = rⱼ₊₁ + βⱼ pⱼ"]
+    },
+    "relations": [
+      {"type": "equivalent_to", "target": "Lanczos Algorithm (for SPD)"},
+      {"type": "minimises", "target": "A-Norm Error"},
+      {"type": "for", "target": "Symmetric Positive Definite Matrices"},
+      {"type": "improved_by", "target": "Preconditioning"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "08_iterative_methods_for_linear_systems.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Preconditioning",
+    "type": "Method",
+    "domain": "Numerical Analysis",
+    "definition": "Preconditioning transforms the system Ax = b into an equivalent form M⁻¹ A x = M⁻¹ b where M approximates A, improving conditioning and convergence speed.",
+    "description": "Good preconditioners M are cheap to invert and make M⁻¹ A close to the identity or with clustered eigenvalues.",
+    "properties": {
+      "Goal": "Accelerate iterative solver convergence.",
+      "Applications": ["Large sparse systems", "PDE solvers"],
+      "Methods": ["Incomplete LU", "Jacobi", "Multigrid", "Domain decomposition"],
+      "Examples": ["Left preconditioning: solve M y = c then A x = M y"]
+    },
+    "relations": [
+      {"type": "improves", "target": "Iterative Methods"},
+      {"type": "approximates", "target": "A⁻¹"},
+      {"type": "used_in", "target": "PCG"},
+      {"type": "related_to", "target": "Condition Number"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "08_iterative_methods_for_linear_systems.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Residual Norm",
+    "type": "Metric",
+    "domain": "Numerical Analysis",
+    "definition": "The residual norm ‖rⱼ‖ = ‖b − A xⱼ‖ measures how well the approximate solution xⱼ satisfies the system Ax = b.",
+    "description": "In iterative methods, residuals decrease monotonically in GMRES, and are used to test convergence.",
+    "properties": {
+      "Goal": "Quantify approximation error in equation satisfaction.",
+      "Applications": ["Convergence testing", "Stopping criteria"],
+      "Methods": ["Euclidean norm", "Relative residual"],
+      "Examples": ["‖rⱼ₊₁‖ ≤ ‖rⱼ‖ in GMRES"]
+    },
+    "relations": [
+      {"type": "minimised_by", "target": "GMRES"},
+      {"type": "orthogonal_to", "target": "Search Directions (in CG)"},
+      {"type": "computed_in", "target": "Iterative Methods"},
+      {"type": "bounds_convergence", "target": "Polynomial Approximation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "08_iterative_methods_for_linear_systems.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "A-Norm Error",
+    "type": "Metric",
+    "domain": "Numerical Analysis",
+    "definition": "The A-norm error ‖x − xⱼ‖ₐ = ( (x − xⱼ), A (x − xⱼ) )^{1/2} measures the error in the energy norm for SPD A.",
+    "description": "CG minimises this norm over the Krylov subspace, relating to the quadratic form minimised in the system.",
+    "properties": {
+      "Goal": "Quantify solution error in energy sense.",
+      "Applications": ["CG convergence analysis", "Variational problems"],
+      "Methods": ["Defined via inner product (x, A y)"],
+      "Examples": ["Min ‖x − xⱼ‖ₐ in CG"]
+    },
+    "relations": [
+      {"type": "minimised_by", "target": "Conjugate Gradient Method"},
+      {"type": "related_to", "target": "Quadratic Form"},
+      {"type": "for", "target": "SPD Matrices"},
+      {"type": "bounds_via", "target": "Chebyshev Polynomials"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "08_iterative_methods_for_linear_systems.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Polynomial Approximation",
+    "type": "Concept",
+    "domain": "Numerical Analysis",
+    "definition": "Polynomial approximation in iterative methods views xⱼ = pⱼ₋₁(A) b as a polynomial in A applied to b, minimising residuals or errors via min-max problems over polynomials.",
+    "description": "Convergence bounds use Chebyshev or other polynomials to estimate rates based on eigenvalue distribution.",
+    "properties": {
+      "Goal": "Approximate A⁻¹ b via polynomials in A.",
+      "Applications": ["Convergence analysis", "Accelerated methods"],
+      "Methods": ["Min-max over deg ≤ j-1", "Chebyshev acceleration"],
+      "Examples": ["min_{deg p ≤ j-1, p(0)=1} max_λ |p(λ)|"]
+    },
+    "relations": [
+      {"type": "underlies", "target": "Krylov Methods Convergence"},
+      {"type": "uses", "target": "Eigenvalue Spectrum"},
+      {"type": "improved_by", "target": "Preconditioning (clustering eigenvalues)"},
+      {"type": "related_to", "target": "Condition Number"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "08_iterative_methods_for_linear_systems.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Hessenberg Matrix",
+    "type": "Concept",
+    "domain": "Numerical Analysis",
+    "definition": "A Hessenberg matrix H is upper triangular except for the subdiagonal, arising in Arnoldi as the projection of A onto the Krylov basis.",
+    "description": "It simplifies least-squares solves in GMRES and eigenvalue computations.",
+    "properties": {
+      "Goal": "Reduce matrix for efficient projections.",
+      "Applications": ["GMRES minimisation", "QR algorithm"],
+      "Methods": ["From Arnoldi: Ĥⱼ with subdiagonal"],
+      "Examples": ["Hⱼ tridiagonal in Lanczos"]
+    },
+    "relations": [
+      {"type": "produced_by", "target": "Arnoldi Process"},
+      {"type": "used_in", "target": "GMRES Least Squares"},
+      {"type": "similar_to", "target": "Tridiagonal Matrix (symmetric case)"},
+      {"type": "decomposed_by", "target": "QR Factorisation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "08_iterative_methods_for_linear_systems.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]

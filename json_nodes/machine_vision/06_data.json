@@ -1,0 +1,179 @@
+[
+  {
+    "entity": "Local Features",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "Local features are distinctive image patterns that are detected at specific points (keypoints) and described in a way that enables reliable matching across different views, scales, or illumination conditions.",
+    "description": "They serve as the foundation for tasks requiring correspondence between images, such as stitching, 3D reconstruction, object recognition, and tracking. A complete local feature pipeline includes detection, description, and matching.",
+    "properties": {
+      "Goal": "Establish robust point correspondences between images under geometric and photometric transformations.",
+      "Applications": ["Image matching", "Panorama stitching", "Structure from Motion", "Object recognition"],
+      "Methods": ["Keypoint detection", "Descriptor extraction", "Feature matching"],
+      "Examples": ["Harris corners", "SIFT keypoints", "ORB features"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Image Matching"},
+      {"type": "enables", "target": "3D Reconstruction"},
+      {"type": "includes", "target": "Keypoint Detection"},
+      {"type": "includes", "target": "Feature Description"},
+      {"type": "precedes", "target": "Feature Matching"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "06-features-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Harris Corner Detector",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "The Harris corner detector identifies image locations where intensity changes significantly in multiple directions by analyzing the local autocorrelation of the image gradient.",
+    "description": "It uses the second-moment matrix (structure tensor) to measure directional variance. A point is classified as a corner if both eigenvalues are large, indicating strong variation in all directions.",
+    "properties": {
+      "Goal": "Detect stable, repeatable interest points corresponding to corners or junctions.",
+      "Applications": ["Feature tracking", "Camera calibration", "Image alignment"],
+      "Methods": ["Image gradients", "Structure tensor", "Corner response function R = det(M) - k*trace(M)^2"],
+      "Examples": ["L-junctions", "T-junctions", "Building corners"]
+    },
+    "relations": [
+      {"type": "is_a", "target": "Keypoint Detection"},
+      {"type": "uses", "target": "Image Gradient"},
+      {"type": "precedes", "target": "Feature Description"},
+      {"type": "robust_to", "target": "Translation"},
+      {"type": "not_robust_to", "target": "Scale Changes"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "06-features-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Keypoint Detection",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Keypoint detection is the process of identifying salient, repeatable locations in an image where local features can be reliably extracted and matched across different views.",
+    "description": "Good keypoints are typically corners, blobs, or junctions that remain stable under small transformations. Detection is the first stage in the local feature pipeline.",
+    "properties": {
+      "Goal": "Locate stable points invariant to translation, rotation, and scale (to varying degrees).",
+      "Applications": ["Feature-based alignment", "Visual odometry", "Augmented reality"],
+      "Methods": ["Harris", "FAST", "DoG (SIFT)", "MSER"],
+      "Examples": ["Corner points", "Blob centers", "Region extrema"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Local Features"},
+      {"type": "precedes", "target": "Feature Description"},
+      {"type": "input_to", "target": "Descriptor Extraction"},
+      {"type": "includes", "target": "Harris Corner Detector"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "06-features-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Feature Description",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Feature description involves computing a compact, discriminative vector (descriptor) from the image patch around a detected keypoint to enable robust matching.",
+    "description": "The descriptor captures local appearance and is designed to be invariant to scale, rotation, and illumination changes. It is the second stage after keypoint detection.",
+    "properties": {
+      "Goal": "Encode local image appearance into a matching-friendly representation.",
+      "Applications": ["Wide baseline matching", "Object retrieval", "Loop closure in SLAM"],
+      "Methods": ["SIFT", "SURF", "BRIEF", "ORB", "Histogram of gradients"],
+      "Examples": ["128D SIFT vector", "64D SURF", "256-bit BRIEF"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Local Features"},
+      {"type": "follows", "target": "Keypoint Detection"},
+      {"type": "input_to", "target": "Feature Matching"},
+      {"type": "uses", "target": "Orientation Normalization"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "06-features-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Feature Matching",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Feature matching is the process of finding correspondences between descriptors from two images by measuring similarity (e.g., Euclidean distance or Hamming distance).",
+    "description": "It establishes pairwise associations between keypoints, enabling geometric verification (e.g., via RANSAC) to filter outliers. It is the final stage in local feature pipelines.",
+    "properties": {
+      "Goal": "Identify correct point-to-point correspondences across images.",
+      "Applications": ["Image stitching", "3D reconstruction", "Visual tracking"],
+      "Methods": ["Nearest neighbor", "Ratio test", "Cross-checking", "FLANN"],
+      "Examples": ["Matching SIFT descriptors", "Hamming distance for binary ORB"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Local Features"},
+      {"type": "follows", "target": "Feature Description"},
+      {"type": "uses", "target": "Descriptor Distance"},
+      {"type": "filtered_by", "target": "RANSAC"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "06-features-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Image Gradient",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "The image gradient is a vector field representing the directional change in intensity at each pixel, computed as the partial derivatives in x and y directions.",
+    "description": "It is fundamental to edge and corner detection. The magnitude indicates edge strength, and the direction indicates edge orientation.",
+    "properties": {
+      "Goal": "Quantify local intensity changes for feature detection.",
+      "Applications": ["Edge detection", "Corner detection", "Optical flow"],
+      "Methods": ["Sobel operator", "Prewitt", "Finite differences"],
+      "Examples": ["∇I = [∂I/∂x, ∂I/∂y]"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Harris Corner Detector"},
+      {"type": "basis_for", "target": "Structure Tensor"},
+      {"type": "input_to", "target": "Edge Detection"},
+      {"type": "related_to", "target": "Edge"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "06-features-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Structure Tensor",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "The structure tensor (or second-moment matrix) is a 2x2 matrix that summarizes the predominant directions and strength of gradients in a local image neighborhood.",
+    "description": "It is used in corner detection to distinguish corners (high variation in all directions), edges (variation in one direction), and flat regions (low variation).",
+    "properties": {
+      "Goal": "Analyze local gradient distribution for feature classification.",
+      "Applications": ["Corner detection", "Motion estimation", "Texture analysis"],
+      "Methods": ["M = Σ w [Ix², IxIy; IxIy, Iy²]", "Eigenvalue analysis"],
+      "Examples": ["Harris response", "Shi-Tomasi corner measure"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Harris Corner Detector"},
+      {"type": "computed_from", "target": "Image Gradient"},
+      {"type": "enables", "target": "Corner Classification"},
+      {"type": "related_to", "target": "Autocorrelation Function"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "06-features-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  }
+]

@@ -1,0 +1,240 @@
+[
+  {
+    "entity": "Preconditioning",
+    "type": "Method",
+    "domain": "Numerical Linear Algebra",
+    "definition": "Preconditioning is the transformation of a linear system Ax = b into an equivalent system M^{-1}Ax = M^{-1}b (left preconditioning) or AM^{-1}y = b with x = M^{-1}y (right), where M ≈ A is a nonsingular matrix that is inexpensive to invert or solve with, designed to improve the convergence rate of iterative methods.",
+    "description": "The goal is to cluster the eigenvalues of the preconditioned matrix away from zero, making Krylov subspace methods like CG, GMRES, or MINRES converge in significantly fewer iterations. Effective preconditioners balance accuracy (M close to A) with computational cost (O(n) or O(n log n) per application).",
+    "properties": {
+      "Goal": "Accelerate convergence of iterative solvers by reducing the effective condition number or eigenvalue spread of the system.",
+      "Applications": [
+        "Large sparse linear systems",
+        "PDE discretizations",
+        "Optimization (Newton-Krylov)",
+        "Inverse problems"
+      ],
+      "Methods": [
+        "Jacobi (diagonal)",
+        "Gauss-Seidel",
+        "Incomplete LU (ILU)",
+        "Sparse approximate inverse (SAI)",
+        "Multigrid",
+        "Domain decomposition"
+      ],
+      "Examples": [
+        "M = diag(A) + ωI (Jacobi with damping)",
+        "M = U^{-1}L^{-1} from incomplete LU of A"
+      ]
+    },
+    "relations": [
+      {"type": "improves", "target": "Conjugate Gradient Method"},
+      {"type": "improves", "target": "GMRES"},
+      {"type": "requires", "target": "Approximate Inverse"},
+      {"type": "reduces", "target": "Spectral Radius"},
+      {"type": "clusters", "target": "Eigenvalues"},
+      {"type": "used_with", "target": "Krylov Subspace Methods"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "09_preconditioning.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Jacobi Preconditioner",
+    "type": "Method",
+    "domain": "Numerical Linear Algebra",
+    "definition": "The Jacobi preconditioner is M = diag(A) + ωI, where diag(A) contains the diagonal entries of A and ω ∈ ℂ is an optional damping parameter (often ω = 0). It is the simplest splitting M = D, N = A - D.",
+    "description": "Extremely cheap to apply (O(n) scaling) and parallelizable. Effective when A is diagonally dominant. Corresponds to the classical Jacobi iterative method. Often used as a baseline or building block in more sophisticated preconditioners.",
+    "properties": {
+      "Goal": "Damp high-frequency error components using only diagonal information.",
+      "Applications": [
+        "Smooth initial guess for multigrid",
+        "Baseline for preconditioner comparison",
+        "Diagonally dominant systems"
+      ],
+      "Methods": [
+        "Extract diagonal",
+        "Optional damping ω",
+        "Inverse is element-wise division"
+      ],
+      "Examples": [
+        "M_i = diag(A) + ωI with ω = 0 for standard Jacobi"
+      ]
+    },
+    "relations": [
+      {"type": "is_a", "target": "Diagonal Preconditioner"},
+      {"type": "part_of", "target": "Splitting Methods"},
+      {"type": "used_in", "target": "Jacobi Iteration"},
+      {"type": "simpler_than", "target": "Gauss-Seidel Preconditioner"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "09_preconditioning.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Incomplete LU Factorization",
+    "type": "Method",
+    "domain": "Numerical Linear Algebra",
+    "definition": "Incomplete LU (ILU) computes factors L̂ and Û such that L̂Û ≈ A with the same sparsity pattern as A (or a prescribed superset), dropping fill-in during Gaussian elimination to control memory and cost.",
+    "description": "Widely used for general sparse matrices. Variants include ILU(0) (no fill), ILU(k) (level-k fill), and ILUT (threshold dropping). Provides a trade-off between robustness and efficiency. Often combined with reordering (e.g., RCM, nested dissection).",
+    "properties": {
+      "Goal": "Approximate LU factorization while preserving sparsity for use as preconditioner.",
+      "Applications": [
+        "Finite element systems",
+        "CFD problems",
+        "Circuit simulation"
+      ],
+      "Methods": [
+        "Modified Gaussian elimination with drop tolerance",
+        "Dual-threshold ILUT",
+        "Level-of-fill ILU(k)"
+      ],
+      "Examples": [
+        "ILU(0): drop all fill-in outside original nonzero pattern"
+      ]
+    },
+    "relations": [
+      {"type": "approximates", "target": "LU Factorization"},
+      {"type": "used_as", "target": "Preconditioner"},
+      {"type": "extends", "target": "Gaussian Elimination"},
+      {"type": "controls", "target": "Fill-in"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "09_preconditioning.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Sparse Approximate Inverse",
+    "type": "Method",
+    "domain": "Numerical Linear Algebra",
+    "definition": "A sparse approximate inverse (SAI) preconditioner computes a sparse matrix M such that ||I - MA||_F or ||I - AW||_F is minimized over all matrices W with a prescribed sparsity pattern, effectively approximating A^{-1} directly.",
+    "description": "Application cost is O(nnz(M)) matrix-vector products. Excellent parallel performance due to explicit form. Often constructed via Frobenius norm minimization on independent columns or using QR factorizations of local submatrices.",
+    "properties": {
+      "Goal": "Construct explicit sparse approximation to A^{-1} for fast matrix-vector products.",
+      "Applications": [
+        "Highly parallel architectures (GPU, many-core)",
+        "Unstructured grids",
+        "High-performance computing"
+      ],
+      "Methods": [
+        "Frobenius norm minimization per column",
+        "SPAID (sparse approximate inverse by distance)",
+        "FSAI (factorized sparse approximate inverse)"
+      ],
+      "Examples": [
+        "min_W ||AW - I||_F with W constrained to sparsity pattern of A^k"
+      ]
+    },
+    "relations": [
+      {"type": "approximates", "target": "Matrix Inverse"},
+      {"type": "avoids", "target": "Triangular Solves"},
+      {"type": "competes_with", "target": "Incomplete LU"},
+      {"type": "enables", "target": "High Parallelism"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "09_preconditioning.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Left Preconditioning",
+    "type": "Technique",
+    "domain": "Numerical Linear Algebra",
+    "definition": "Left preconditioning transforms Ax = b into M^{-1}Ax = M^{-1}b, preserving the solution x but altering the residual norm to ||M^{-1}(b - Ax)||.",
+    "description": "Common in practice because it directly improves the convergence diagnostics used by Krylov methods (residual-based stopping criteria). Does not change the right-hand side in a way that affects eigenvalue clustering as strongly as right preconditioning.",
+    "properties": {
+      "Goal": "Improve convergence while keeping solution unchanged and monitoring preconditioned residuals.",
+      "Applications": [
+        "Standard choice in most libraries (PETSc, Trilinos)",
+        "GMRES with ILU"
+      ],
+      "Methods": [
+        "Apply M^{-1} to system matrix and RHS"
+      ]
+    },
+    "relations": [
+      {"type": "variant_of", "target": "Preconditioning"},
+      {"type": "preserves", "target": "Solution Vector"},
+      {"type": "changes", "target": "Residual Norm"},
+      {"type": "contrasts", "target": "Right Preconditioning"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "09_preconditioning.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Right Preconditioning",
+    "type": "Technique",
+    "domain": "Numerical Linear Algebra",
+    "definition": "Right preconditioning transforms Ax = b into AM^{-1}y = b with x = M^{-1}y, preserving the residual norm ||b - Ax|| but solving for an intermediate variable y.",
+    "description": "Often preferred when the preconditioner naturally approximates the inverse action from the right. Common in domain decomposition and multigrid methods. Requires extra step to recover x.",
+    "properties": {
+      "Goal": "Cluster eigenvalues of AM^{-1} while monitoring true residuals.",
+      "Applications": [
+        "Additive Schwarz",
+        "Algebraic multigrid (AMG)",
+        "When M approximates A from the right"
+      ],
+      "Methods": [
+        "Solve AM^{-1}y = b, then x = M^{-1}y"
+      ]
+    },
+    "relations": [
+      {"type": "variant_of", "target": "Preconditioning"},
+      {"type": "preserves", "target": "Residual Norm"},
+      {"type": "requires", "target": "Extra Solve"},
+      {"type": "used_in", "target": "Domain Decomposition"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "09_preconditioning.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Splitting Methods",
+    "type": "Framework",
+    "domain": "Iterative Methods",
+    "definition": "A matrix splitting decomposes A = M - N where M is nonsingular and easy to invert. The iteration x^{k+1} = M^{-1}Nx^k + M^{-1}b converges if ρ(M^{-1}N) < 1.",
+    "description": "Foundation of classical iterative methods (Jacobi, Gauss-Seidel, SOR) and modern preconditioning. The spectral radius of the iteration matrix B = M^{-1}N determines convergence rate.",
+    "properties": {
+      "Goal": "Construct fixed-point iterations via A = M - N with ρ(M^{-1}N) < 1.",
+      "Applications": [
+        "Stationary iterative methods",
+        "Preconditioner design",
+        "Convergence theory"
+      ],
+      "Methods": [
+        "M = D (Jacobi)",
+        "M = D+L (Gauss-Seidel)",
+        "M = (D+ωL)/ω (SOR)"
+      ]
+    },
+    "relations": [
+      {"type": "underlies", "target": "Jacobi Method"},
+      {"type": "underlies", "target": "Gauss-Seidel Method"},
+      {"type": "generalizes", "target": "Richardson Iteration"},
+      {"type": "foundation_of", "target": "Preconditioning"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "09_preconditioning.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]

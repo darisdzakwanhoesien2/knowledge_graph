@@ -1,0 +1,208 @@
+[
+  {
+    "entity": "Singular Value Decomposition",
+    "type": "Method",
+    "domain": "Linear Algebra",
+    "definition": "The Singular Value Decomposition (SVD) of a matrix A ∈ ℂ^{m×n} is a factorization A = U Σ V^*, where U and V are unitary matrices with orthonormal columns, and Σ is a diagonal matrix with non-negative singular values σ₁ ≥ σ₂ ≥ ⋯ ≥ σ_n ≥ 0 on the diagonal.",
+    "description": "SVD provides the best low-rank approximation of a matrix in both spectral and Frobenius norms, enabling optimal matrix compression, dimensionality reduction, and solving least squares problems. It decomposes any matrix into orthogonal bases that capture the principal directions of variation.",
+    "properties": {
+      "Goal": "Decompose matrix into unitary matrices U, V and diagonal singular values Σ for low-rank approximation and data compression.",
+      "Applications": [
+        "Principal Component Analysis (PCA)",
+        "Image compression",
+        "Least squares problem solving",
+        "Pseudoinverse computation",
+        "Noise reduction in data"
+      ],
+      "Methods": [
+        "Gram-Schmidt orthogonalization",
+        "Householder transformations",
+        "Golub-Reinsch algorithm"
+      ],
+      "Examples": [
+        "A = U Σ V^* where σ₁ is the largest singular value representing maximum variance direction"
+      ]
+    },
+    "relations": [
+      {"type": "uses", "target": "Unitary Matrix"},
+      {"type": "uses", "target": "Singular Value"},
+      {"type": "enables", "target": "Low Rank Approximation"},
+      {"type": "related_to", "target": "Principal Component Analysis"},
+      {"type": "solves", "target": "Matrix Approximation Problem"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "03_the_singular_value_decomposition.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Singular Value",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "The singular values of a matrix A are the non-negative square roots of the eigenvalues of A^*A (or AA^*), ordered as σ₁ ≥ σ₂ ≥ ⋯ ≥ σ_r > 0, where r is the rank of A.",
+    "description": "Singular values measure the 'importance' or 'strength' of each principal direction in the matrix. The largest singular value σ₁ equals the operator norm ||A||, and they uniquely determine the best low-rank approximations.",
+    "properties": {
+      "Goal": "Quantify the magnitude of principal components in matrix decomposition.",
+      "Applications": [
+        "Rank determination",
+        "Condition number computation (σ₁/σ_r)",
+        "Numerical stability analysis"
+      ],
+      "Methods": [
+        "Eigenvalue decomposition of A^*A",
+        "Square root of eigenvalues"
+      ],
+      "Examples": [
+        "σ₁ = ||A|| = max_{||x||=1} ||Ax|| represents maximum stretch"
+      ]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Singular Value Decomposition"},
+      {"type": "computed_from", "target": "Eigenvalue"},
+      {"type": "determines", "target": "Matrix Rank"},
+      {"type": "equals", "target": "Operator Norm"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "03_the_singular_value_decomposition.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Unitary Matrix",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A unitary matrix Q ∈ ℂ^{n×n} satisfies Q^*Q = I, meaning its columns (and rows) form an orthonormal basis that preserves the Euclidean norm: ||Qx|| = ||x|| for all x ∈ ℂ^n.",
+    "description": "Unitary matrices represent rotations and reflections in complex space. They appear in QR decomposition, SVD, and eigenvalue problems, preserving distances and angles during transformations.",
+    "properties": {
+      "Goal": "Preserve norms and inner products in linear transformations.",
+      "Applications": [
+        "QR decomposition",
+        "Singular Value Decomposition",
+        "Numerical linear algebra algorithms",
+        "Quantum computing gates"
+      ],
+      "Methods": [
+        "Gram-Schmidt process",
+        "Householder reflections"
+      ],
+      "Examples": [
+        "Q = [q₁ ⋯ qₙ] where {qⱼ} are orthonormal vectors"
+      ]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Singular Value Decomposition"},
+      {"type": "preserves", "target": "Euclidean Norm"},
+      {"type": "part_of", "target": "QR Decomposition"},
+      {"type": "generalizes", "target": "Orthogonal Matrix"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "03_the_singular_value_decomposition.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Low Rank Approximation",
+    "type": "Method",
+    "domain": "Linear Algebra",
+    "definition": "The low-rank approximation problem finds a rank-k matrix F_k that minimizes ||A - F_k||_F among all rank-k matrices, solved uniquely by SVD: F_k = ∑_{j=1}^k σⱼ uⱼ vⱼ^*.",
+    "description": "SVD provides the optimal rank-k approximation in Frobenius norm, equivalent to keeping the k largest singular values. This compresses data while minimizing reconstruction error.",
+    "properties": {
+      "Goal": "Approximate high-dimensional matrix with lower-rank version minimizing ||A - F_k||_F.",
+      "Applications": [
+        "Data compression",
+        "Dimensionality reduction",
+        "Image denoising",
+        "Recommendation systems"
+      ],
+      "Methods": [
+        "Truncated SVD",
+        "Eckart-Young theorem"
+      ],
+      "Examples": [
+        "F_k = U_k Σ_k V_k^* where error = ∑_{j=k+1}^r σⱼ²"
+      ]
+    },
+    "relations": [
+      {"type": "solved_by", "target": "Singular Value Decomposition"},
+      {"type": "uses", "target": "Frobenius Norm"},
+      {"type": "enables", "target": "Principal Component Analysis"},
+      {"type": "minimizes", "target": "Reconstruction Error"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "03_the_singular_value_decomposition.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Frobenius Norm",
+    "type": "Metric",
+    "domain": "Linear Algebra",
+    "definition": "The Frobenius norm of A ∈ ℂ^{m×n} is ||A||_F = √(∑_{j=1}^m ∑_{k=1}^n |a_{jk}|²) = √trace(A^*A), measuring the Euclidean norm of the matrix treated as a vector in ℂ^{mn}.",
+    "description": "Widely used in matrix approximation problems due to computational convenience and equivalence to SVD error. It's unitarily invariant: ||Q₁AQ₂||_F = ||A||_F for unitary Q₁, Q₂.",
+    "properties": {
+      "Goal": "Measure matrix 'size' as vector in high-dimensional space.",
+      "Applications": [
+        "Low-rank approximation error",
+        "Matrix compression",
+        "Least squares problems"
+      ],
+      "Methods": [
+        "√(sum of squared entries)",
+        "√trace(A^*A)"
+      ],
+      "Examples": [
+        "||A||_F² = ∑ σⱼ² where σⱼ are singular values"
+      ]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Low Rank Approximation"},
+      {"type": "equivalent_to", "target": "Euclidean Norm"},
+      {"type": "sum_of", "target": "Singular Value Squared"},
+      {"type": "invariant_under", "target": "Unitary Transformation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "03_the_singular_value_decomposition.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Operator Norm",
+    "type": "Metric",
+    "domain": "Linear Algebra",
+    "definition": "The operator norm ||A|| = max_{||x||=1} ||Ax|| measures the maximum stretch factor of the linear transformation A: ℂ^n → ℂ^m.",
+    "description": "For SVD, ||A|| = σ₁, the largest singular value. It quantifies how much A can amplify unit vectors and determines numerical stability.",
+    "properties": {
+      "Goal": "Measure maximum amplification by linear transformation.",
+      "Applications": [
+        "Condition number (||A|| ⋅ ||A⁻¹||)",
+        "Stability analysis",
+        "Spectral radius bounds"
+      ],
+      "Methods": [
+        "Largest singular value σ₁",
+        "max_{||x||=1} ||Ax||"
+      ]
+    },
+    "relations": [
+      {"type": "equals", "target": "Largest Singular Value"},
+      {"type": "part_of", "target": "Singular Value Decomposition"},
+      {"type": "measures", "target": "Linear Transformation Stretch"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "03_the_singular_value_decomposition.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]

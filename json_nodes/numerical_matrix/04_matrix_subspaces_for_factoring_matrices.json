@@ -1,0 +1,177 @@
+[
+  {
+    "entity": "Matrix Subspace",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A subset V ⊆ ℂ^{n×n} of matrices closed under addition and scalar multiplication, forming a vector space over ℂ.",
+    "description": "Matrix subspaces are used to model families of matrices sharing structural properties (e.g., invertibility, symmetry, triangularity). They enable low-rank approximations, invariant subspaces in eigenvalue problems, and structured matrix factorizations such as LU or SVD within constrained sets.",
+    "properties": {
+      "Goal": "Group matrices with common algebraic or analytic traits to simplify computations and preserve structure in factorizations.",
+      "Applications": ["Structured matrix factorization", "Low-rank approximation", "Krylov methods", "Invariant subspace computation"],
+      "Methods": ["Span construction", "Closure under operations", "Equivalence via similarity"],
+      "Examples": ["span{I, A}", "span{A, B}", "upper triangular matrices"]
+    },
+    "relations": [
+      {"type": "generalization_of", "target": "Vector Subspace"},
+      {"type": "used_in", "target": "Krylov Subspace"},
+      {"type": "foundation_for", "target": "Nonsingular Matrix Subspace"},
+      {"type": "related_to", "target": "Invariant Subspace"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "04_matrix_subspaces_for_factoring_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Nonsingular Matrix Subspace",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A matrix subspace V ⊆ ℂ^{n×n} that contains at least one invertible matrix (det V ≠ 0 for some V ∈ V).",
+    "description": "Nonsingular subspaces guarantee the existence of invertible elements, enabling the definition of the set of inverses Inv(V) = {V⁻¹ : V ∈ V, det V ≠ 0}. Such subspaces are crucial for ensuring well-defined inverse-based factorizations (e.g., LU within V).",
+    "properties": {
+      "Goal": "Ensure invertibility within a structured family of matrices to support factorization algorithms.",
+      "Applications": ["LU factorization", "Generalized inverse", "Structured preconditioning"],
+      "Methods": ["Perturbation arguments", "Open-dense property in finite dimensions"],
+      "Examples": ["V = span{I, A} for nonsingular A", "Upper triangular matrices with nonzero diagonals"]
+    },
+    "relations": [
+      {"type": "subtype_of", "target": "Matrix Subspace"},
+      {"type": "enables", "target": "LU Factorization"},
+      {"type": "defines", "target": "Inv(V)"},
+      {"type": "related_to", "target": "GL(n,ℂ)"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "04_matrix_subspaces_for_factoring_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Inv(V)",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "The set of inverses of all invertible matrices in a matrix subspace V: Inv(V) = {W : W = V⁻¹, V ∈ V, det V ≠ 0}.",
+    "description": "For nonsingular matrix subspaces, Inv(V) is itself a matrix subspace under mild conditions. This enables dual-space factorizations and ensures closure under inversion within structured sets, vital for algorithmic stability in LU-type methods.",
+    "properties": {
+      "Goal": "Construct a subspace of inverses to maintain structure across factorization steps.",
+      "Applications": ["LU within subspace", "Preconditioner design", "Group-inverse problems"],
+      "Methods": ["Similarity transformation", "Closure proof via nonsingularity"],
+      "Examples": ["Inv(upper triangular) = lower triangular", "Inv(Hermitian) = Hermitian"]
+    },
+    "relations": [
+      {"type": "derived_from", "target": "Nonsingular Matrix Subspace"},
+      {"type": "is_a", "target": "Matrix Subspace"},
+      {"type": "preserves_under", "target": "Similarity Transformation"},
+      {"type": "used_in", "target": "LU Factorization"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "04_matrix_subspaces_for_factoring_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "LU Factorization within Subspace",
+    "type": "Method Gaussian elimination",
+    "domain": "Numerical Linear Algebra",
+    "definition": "Decomposition of a matrix A ∈ V into A = LU where L is lower triangular and U is upper triangular, both belonging to predefined matrix subspaces derived from V.",
+    "description": "By identifying nonsingular matrix subspaces V and W = Inv(V), LU factorization can be confined within V × W, ensuring all intermediate matrices remain structured. This supports specialized algorithms for banded, symmetric positive-definite, or approximate low-rank problems.",
+    "properties": {
+      "Goal": "Perform Gaussian elimination while preserving membership in designated matrix subspaces.",
+      "Applications": ["Banded LU", "SPD factorization", "Low-rank updates", "Krylov-based solvers"],
+      "Methods": ["Schur complement", "Pivot-free elimination", "Subspace projection"],
+      "Examples": ["A ∈ upper triangular → L = I, U = A", "A ∈ V, L ∈ V, U ∈ Inv(V)"]
+    },
+    "relations": [
+      {"type": "requires", "target": "Nonsingular Matrix Subspace"},
+      {"type": "uses", "target": "Inv(V)"},
+      {"type": "extends", "target": "LU Factorization"},
+      {"type": "related_to", "target": "Schur Complement"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "04_matrix_subspaces_for_factoring_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Krylov Subspace",
+    "type": "Concept",
+    "domain": "Numerical Linear Algebra",
+    "definition": "The matrix subspace K_j(A; I) = span{I, A, A², ..., A^{j-1}} generated by powers of a matrix A starting from the identity.",
+    "description": "Krylov subspaces lie at the core of iterative methods for large-scale eigenvalue and linear system problems (GMRES, Lanczos, Arnoldi). Their dimension grows linearly until saturation at the degree of the minimal polynomial of A.",
+    "properties": {
+      "Goal": "Approximate eigenpairs or solve Ax = b using low-dimensional subspaces built from matrix powers.",
+      "Applications": ["GMRES", "Lanczos algorithm", "Arnoldi iteration", "Model order reduction"],
+      "Methods": ["Arnoldi process", "Lanczos tridiagonalization", "Minimal polynomial degree"],
+      "Examples": ["K_3(A;I) = span{I, A, A²}", "K_n(A;I) = ℂ^{n×n} if minimal polynomial degree n"]
+    },
+    "relations": [
+      {"type": "subtype_of", "target": "Matrix Subspace"},
+      {"type": " invariant_under", "target": "Power Iteration"},
+      {"type": "foundation_for", "target": "GMRES"},
+      {"type": "bounded_by", "target": "Minimal Polynomial"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "04_matrix_subspaces_for_factoring_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Matrix Polynomials",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "Functions p(z) = ∑_{k=0}^m c_k z^k evaluated at matrices: p(A) = ∑_{k=0}^m c_k A^k for A ∈ ℂ^{n×n}.",
+    "description": "Matrix polynomials map matrix subspaces to themselves if V is closed under powers of its members. They define minimal and characteristic polynomials, enable Cayley-Hamilton applications, and support function-based iterative methods.",
+    "properties": {
+      "Goal": "Extend scalar polynomial theory to matrices for spectral analysis and function approximation.",
+      "Applications": ["Cayley-Hamilton theorem", "Matrix exponential", " preconditioning", "Spectral projectors"],
+      "Methods": ["Horner scheme", "Paterson-Stockmeyer", "Jordan form evaluation"],
+      "Examples": ["p(z) = z²−2z+1 → p(A) = A²−2A+I = 0", "q(z) = det(A−zI) → q(A)=0"]
+    },
+    "relations": [
+      {"type": "generalizes", "target": "Scalar Polynomial"},
+      {"type": "satisfies", "target": "Cayley-Hamilton Theorem"},
+      {"type": "defines", "target": "Minimal Polynomial"},
+      {"type": "preserves", "target": "Matrix Subspace"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "04_matrix_subspaces_for_factoring_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Projection Operator",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A linear operator P on ℂ^n such that P² = P, projecting vectors onto a subspace R(P) with kernel R(I−P).",
+    "description": "Projections decompose spaces into direct sums and are building blocks for oblique and orthogonal projections in iterative solvers. Orthogonal projections minimize least-squares error and appear in GMRES and conjugate gradients.",
+    "properties": {
+      "Goal": "Decompose space and approximate solutions within subspaces.",
+      "Applications": ["GMRES", "Oblique projection", "Deflation", "Range/Hermite interpolation"],
+      "Methods": ["Orthogonal basis construction", "QR factorization", "SVD-based projection"],
+      "Examples": ["P = VV^H for orthonormal columns V", "I−P orthogonal complement"]
+    },
+    "relations": [
+      {"type": "special_case_of", "target": "Idempotent Operator"},
+      {"type": "used_in", "target": "GMRES"},
+      {"type": "orthogonal_to", "target": "I−P"},
+      {"type": "related_to", "target": "Oblique Projection"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "04_matrix_subspaces_for_factoring_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]

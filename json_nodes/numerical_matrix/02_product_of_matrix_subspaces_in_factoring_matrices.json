@@ -1,0 +1,202 @@
+[
+  {
+    "entity": "Matrix Computations",
+    "type": "Concept",
+    "domain": "Numerical Analysis",
+    "definition": "Matrix computations involve the numerical analysis and solution of problems related to matrices, including factorizations, eigenvalue problems, and approximations, central to scientific computing and data science.",
+    "description": "The field addresses solving linear systems, partial differential equations, and large-scale problems with complexities like O(n^3), evolving from the 70s and 80s with key developments in LU, SVD, and iterative methods.",
+    "properties": {
+      "Goal": "Solve matrix-related problems efficiently in numerical contexts.",
+      "Applications": ["Scientific computing", "Data analysis", "PDE solving", "Linear algebra problems"],
+      "Methods": ["Factorizations (LU, SVD)", "Eigenvalue computations", "Iterative solvers", "Subspace approximations"],
+      "Examples": ["Solving Ax = b", "Approximating large matrices"]
+    },
+    "relations": [
+      {"type": "includes", "target": "LU Factorization"},
+      {"type": "includes", "target": "Singular Value Decomposition"},
+      {"type": "foundation_for", "target": "Product of Matrix Subspaces"},
+      {"type": "related_to", "target": "Eigenvalue Problem"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "02_product_of_matrix_subspaces_in_factoring_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "LU Factorization",
+    "type": "Method",
+    "domain": "Numerical Analysis",
+    "definition": "LU factorization decomposes a matrix A into a lower triangular matrix L and an upper triangular matrix U such that A = LU, or with pivoting PA = LU, enabling efficient solution of linear systems.",
+    "description": "It is a fundamental algorithm with O(n^3) complexity, used for solving Ax = b by forward and backward substitution, and approximated for large matrices using subspace products.",
+    "properties": {
+      "Goal": "Decompose matrices for efficient linear system solving.",
+      "Applications": ["Numerical linear algebra", "PDE discretization", "Data processing"],
+      "Methods": ["Gaussian elimination", "Pivoting for stability", "Partial pivoting"],
+      "Examples": ["A = LU for square matrices", "PA = LU with permutation P"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Matrix Factorization"},
+      {"type": "used_in", "target": "Linear System Solving"},
+      {"type": "approximated_by", "target": "Product of Matrix Subspaces"},
+      {"type": "related_to", "target": "Gram-Schmidt Orthogonalization"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "02_product_of_matrix_subspaces_in_factoring_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Singular Value Decomposition",
+    "type": "Method",
+    "domain": "Numerical Analysis",
+    "definition": "Singular Value Decomposition (SVD) factors a matrix A into A = U Σ V^*, where U and V are unitary matrices and Σ is diagonal with singular values, providing the best low-rank approximations.",
+    "description": "It is a dominant paradigm for matrix factorizations with O(n^3) complexity, useful for eigenvalue problems and data compression, but alternatives like subspace products are explored for efficiency.",
+    "properties": {
+      "Goal": "Provide orthogonal factorization and low-rank approximations.",
+      "Applications": ["Data compression", "Principal component analysis", "Pseudo-inverse"],
+      "Methods": ["Golub-Reinsch algorithm", "Divide-and-conquer", "Iterative methods"],
+      "Examples": ["A ≈ U_k Σ_k V_k^* for rank-k approximation"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Matrix Factorization"},
+      {"type": "alternative_to", "target": "Product of Matrix Subspaces"},
+      {"type": "related_to", "target": "Eigenvalue Problem"},
+      {"type": "used_for", "target": "Low-Rank Approximation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "02_product_of_matrix_subspaces_in_factoring_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Eigenvalue Problem",
+    "type": "Concept",
+    "domain": "Numerical Analysis",
+    "definition": "The eigenvalue problem involves finding scalars λ and vectors x such that Ax = λx for a matrix A, crucial for understanding matrix properties and stability in systems.",
+    "description": "It arises in PDEs and vibrations, solved with O(n^3) methods like QR algorithm, but approximations using subspace products can reduce complexity for large n.",
+    "properties": {
+      "Goal": "Compute eigenvalues and eigenvectors numerically.",
+      "Applications": ["Vibration analysis", "Quantum mechanics", "Stability analysis"],
+      "Methods": ["QR algorithm", "Power iteration", "Lanczos algorithm"],
+      "Examples": ["Symmetric matrix eigenvalues", "Generalized eigenvalue Ax = λBx"]
+    },
+    "relations": [
+      {"type": "solved_by", "target": "Singular Value Decomposition"},
+      {"type": "related_to", "target": "LU Factorization"},
+      {"type": "approximated_by", "target": "Product of Matrix Subspaces"},
+      {"type": "used_in", "target": "Partial Differential Equations"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "02_product_of_matrix_subspaces_in_factoring_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Product of Matrix Subspaces",
+    "type": "Concept",
+    "domain": "Numerical Analysis",
+    "definition": "The product of matrix subspaces V1 V2 is defined as {V1 V2 : V1 ∈ V1, V2 ∈ V2}, providing a framework for approximating matrices with fewer parameters than full rank.",
+    "description": "It allows factoring matrices into low-complexity forms like sum of outer products, useful for large n with small k, achieving 2nk parameters and potential for lower computational costs.",
+    "properties": {
+      "Goal": "Approximate matrices efficiently using subspace products.",
+      "Applications": ["Large matrix factorization", "PDE discretization", "Data storage"],
+      "Methods": ["Subspace multiplication", "Rank-k approximation", "Norm minimization"],
+      "Examples": ["A ≈ sum_{j=1}^k u_j v_j^*", "I + V1 V2 inversion"]
+    },
+    "relations": [
+      {"type": "alternative_to", "target": "Singular Value Decomposition"},
+      {"type": "used_for", "target": "Low-Rank Approximation"},
+      {"type": "related_to", "target": "Gram-Schmidt Orthogonalization"},
+      {"type": "applied_to", "target": "Triangular Matrices"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "02_product_of_matrix_subspaces_in_factoring_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Gram-Schmidt Orthogonalization",
+    "type": "Method",
+    "domain": "Numerical Analysis",
+    "definition": "Gram-Schmidt orthogonalization transforms a set of linearly independent vectors into an orthonormal set using projections and normalization.",
+    "description": "It is used in QR factorization and subspace computations, with classical and modified variants for numerical stability.",
+    "properties": {
+      "Goal": "Produce orthonormal bases from vector sets.",
+      "Applications": ["QR decomposition", "Subspace orthogonalization", "Least squares"],
+      "Methods": ["Classical Gram-Schmidt", "Modified Gram-Schmidt", "Householder reflections"],
+      "Examples": ["Orthogonalizing columns of A"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "QR Factorization"},
+      {"type": "related_to", "target": "LU Factorization"},
+      {"type": "applied_in", "target": "Product of Matrix Subspaces"},
+      {"type": "foundation_for", "target": "Orthogonal Matrices"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "02_product_of_matrix_subspaces_in_factoring_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Low-Rank Approximation",
+    "type": "Method",
+    "domain": "Numerical Analysis",
+    "definition": "Low-rank approximation finds a matrix Fk of rank k that minimizes ||A - Fk|| for a given norm, often using SVD or subspace products for efficiency.",
+    "description": "It reduces storage and computation for large matrices, with subspace products offering 2nk parameters for rank-k approximations.",
+    "properties": {
+      "Goal": "Approximate high-dimensional matrices with lower rank.",
+      "Applications": ["Data compression", "Noise reduction", "Machine learning"],
+      "Methods": ["SVD truncation", "Subspace product", "Randomized algorithms"],
+      "Examples": ["Fk = sum u_j v_j^*", "min_{rank(F)=k} ||A - F||"]
+    },
+    "relations": [
+      {"type": "achieved_by", "target": "Singular Value Decomposition"},
+      {"type": "alternative_via", "target": "Product of Matrix Subspaces"},
+      {"type": "used_in", "target": "Matrix Factorization"},
+      {"type": "measures", "target": "Frobenius Norm"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "02_product_of_matrix_subspaces_in_factoring_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Hermitian Matrix",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A Hermitian matrix M satisfies M^* = M, where * denotes conjugate transpose, with real eigenvalues and orthogonal eigenvectors.",
+    "description": "It requires n^2 real parameters for storage, or fewer in subspace approximations, used in quantum mechanics and signal processing.",
+    "properties": {
+      "Goal": "Model self-adjoint operators in complex spaces.",
+      "Applications": ["Quantum computing", "Covariance matrices", "Spectral analysis"],
+      "Methods": ["Eigen decomposition", "Cholesky factorization (positive definite)"],
+      "Examples": ["M with real diagonal and conjugate symmetric off-diagonals"]
+    },
+    "relations": [
+      {"type": "special_case_of", "target": "Symmetric Matrix (real case)"},
+      {"type": "approximated_by", "target": "Low-Rank Approximation"},
+      {"type": "related_to", "target": "Unitary Matrix"},
+      {"type": "decomposed_by", "target": "Singular Value Decomposition"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "02_product_of_matrix_subspaces_in_factoring_matrices.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]

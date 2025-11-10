@@ -1,0 +1,209 @@
+[
+  {
+    "entity": "Image Matching",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "Image matching is the process of establishing correspondences between two or more images of the same scene taken from different viewpoints, times, or sensors to determine geometric or photometric relationships.",
+    "description": "It forms the foundation for applications requiring image alignment, such as panorama stitching, 3D reconstruction, and visual tracking. Matching can be sparse (feature-based) or dense (pixel-wise).",
+    "properties": {
+      "Goal": "Find reliable point or region correspondences across images.",
+      "Applications": ["Structure from Motion", "Stereo vision", "Image retrieval", "Augmented reality"],
+      "Methods": ["Feature-based matching", "Area-based matching", "Direct methods", "Learning-based matching"],
+      "Examples": ["Matching SIFT features", "Dense optical flow", "Template correlation"]
+    },
+    "relations": [
+      {"type": "enables", "target": "3D Reconstruction"},
+      {"type": "includes", "target": "Feature Matching"},
+      {"type": "includes", "target": "Dense Matching"},
+      {"type": "uses", "target": "Local Features"},
+      {"type": "related_to", "target": "Geometric Transformation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "09-matching-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Epipolar Geometry",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "Epipolar geometry describes the intrinsic projective relationship between two views of a 3D scene, constraining the location of corresponding points to lie on corresponding epipolar lines.",
+    "description": "It reduces the search space for matching from 2D to 1D and is encapsulated by the fundamental matrix (for uncalibrated cameras) or essential matrix (for calibrated cameras).",
+    "properties": {
+      "Goal": "Constrain correspondence search using stereo geometry.",
+      "Applications": ["Stereo matching", "Camera calibration", "Motion estimation"],
+      "Methods": ["Fundamental matrix estimation", "Essential matrix", "Epipolar line computation"],
+      "Examples": ["Left image point maps to line in right image"]
+    },
+    "relations": [
+      {"type": "foundation_for", "target": "Stereo Matching"},
+      {"type": "encapsulated_by", "target": "Fundamental Matrix"},
+      {"type": "encapsulated_by", "target": "Essential Matrix"},
+      {"type": "used_in", "target": "Wide Baseline Matching"},
+      {"type": "related_to", "target": "Baseline"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "09-matching-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Fundamental Matrix",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "The fundamental matrix is a 3x3 rank-2 matrix that encapsulates the epipolar geometry between two uncalibrated images, mapping points in one image to epipolar lines in the other.",
+    "description": "It is estimated from point correspondences and used to enforce geometric consistency in matching and reconstruction. F satisfies x'ᵀ F x = 0 for corresponding points x and x'.",
+    "properties": {
+      "Goal": "Encode projective geometry between two views without calibration.",
+      "Applications": ["Correspondence validation", "Camera pose estimation", "Image rectification"],
+      "Methods": ["8-point algorithm", "7-point algorithm", "RANSAC estimation"],
+      "Examples": ["F computed from 8+ matches", "Used in guided matching"]
+    },
+    "relations": [
+      {"type": "represents", "target": "Epipolar Geometry"},
+      {"type": "estimated_from", "target": "Point Correspondences"},
+      {"type": "generalizes", "target": "Essential Matrix"},
+      {"type": "input_to", "target": "Image Rectification"},
+      {"type": "decomposed_into", "target": "Camera Matrices"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "09-matching-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Essential Matrix",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "The essential matrix is a 3x3 matrix that describes the epipolar geometry between two calibrated cameras, encoding relative rotation and translation (up to scale) between their coordinate systems.",
+    "description": "It is a specialized version of the fundamental matrix when intrinsic parameters are known. E = K'ᵀ F K, and it has exactly two equal non-zero singular values.",
+    "properties": {
+      "Goal": "Recover relative pose from calibrated image pairs.",
+      "Applications": ["5-point algorithm", "Visual odometry", "SLAM initialization"],
+      "Methods": ["5-point algorithm", "Nister's method", "Decomposition into R and t"],
+      "Examples": ["E from 5+ matches in calibrated stereo"]
+    },
+    "relations": [
+      {"type": "special_case_of", "target": "Fundamental Matrix"},
+      {"type": "requires", "target": "Camera Calibration"},
+      {"type": "decomposed_into", "target": "Rotation Matrix"},
+      {"type": "decomposed_into", "target": "Translation Direction"},
+      {"type": "used_in", "target": "Relative Pose Estimation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "09-matching-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "RANSAC",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "RANSAC (Random Sample Consensus) is a robust estimation algorithm that fits a model to data containing outliers by iteratively selecting random subsets, estimating the model, and counting inliers.",
+    "description": "It is widely used in geometric vision to estimate fundamental/essential matrices, homographies, or camera poses from noisy correspondences.",
+    "properties": {
+      "Goal": "Estimate model parameters robustly in the presence of outliers.",
+      "Applications": ["Feature matching cleanup", "Pose estimation", "Image stitching"],
+      "Methods": ["Random sampling", "Model fitting", "Inlier counting", "Iteration until confidence"],
+      "Examples": ["Estimating F from 1000 matches with 60% outliers"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Fundamental Matrix Estimation"},
+      {"type": "used_in", "target": "Homography Estimation"},
+      {"type": "filters", "target": "Outliers"},
+      {"type": "complemented_by", "target": "LO-RANSAC"},
+      {"type": "foundation_for", "target": "Robust Fitting"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "09-matching-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Stereo Matching",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Stereo matching is the process of finding corresponding pixels between a pair of rectified stereo images to compute depth via triangulation, producing a disparity map.",
+    "description": "It exploits epipolar constraints to reduce search to 1D and uses similarity measures (e.g., SAD, NCC) with aggregation and optimization to handle ambiguity and occlusions.",
+    "properties": {
+      "Goal": "Compute dense depth from calibrated stereo pairs.",
+      "Applications": ["3D reconstruction", "Robot navigation", "Autonomous driving"],
+      "Methods": ["Local block matching", "Semi-global matching", "Graph cuts", "Deep stereo"],
+      "Examples": ["Disparity map from left-right image pair"]
+    },
+    "relations": [
+      {"type": "uses", "target": "Epipolar Geometry"},
+      {"type": "requires", "target": "Image Rectification"},
+      {"type": "outputs", "target": "Disparity Map"},
+      {"type": "enables", "target": "Depth Estimation"},
+      {"type": "part_of", "target": "Passive 3D Vision"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "09-matching-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Image Rectification",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Image rectification is the process of warping a stereo image pair so that epipolar lines become horizontal and conjugate points have the same y-coordinate, simplifying correspondence search.",
+    "description": "It enables efficient scanline-based stereo algorithms and is typically performed using the fundamental matrix or known camera parameters.",
+    "properties": {
+      "Goal": "Align epipolar lines for efficient stereo matching.",
+      "Applications": ["Dense stereo", "Disparity estimation", "Multi-view stereo"],
+      "Methods": ["Hartley’s method", "Polar rectification", "Calibrated rectification"],
+      "Examples": ["Transforming converging epipoles to infinity"]
+    },
+    "relations": [
+      {"type": "precedes", "target": "Stereo Matching"},
+      {"type": "uses", "target": "Fundamental Matrix"},
+      {"type": "produces", "target": "Rectified Images"},
+      {"type": "simplifies", "target": "Correspondence Search"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "09-matching-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Homography",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "A homography is a 3x3 projective transformation that maps points from one plane to another (or between two views of the same plane), preserving collinearity but not distances or angles.",
+    "description": "It is used to align images of planar scenes, remove perspective distortion, and enable direct pixel-wise comparison in matching.",
+    "properties": {
+      "Goal": "Map image coordinates between planar views.",
+      "Applications": ["Panorama stitching", "Image mosaicking", "Augmented reality", "Document scanning"],
+      "Methods": ["DLT (Direct Linear Transformation)", "RANSAC estimation from 4+ points"],
+      "Examples": ["Warping book page to frontal view"]
+    },
+    "relations": [
+      {"type": "special_case_of", "target": "Projective Transformation"},
+      {"type": "estimated_from", "target": "Planar Correspondences"},
+      {"type": "used_in", "target": "Image Stitching"},
+      {"type": "contrasts_with", "target": "Fundamental Matrix"},
+      {"type": "induced_by", "target": "Planar Scene"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "09-matching-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  }
+]

@@ -1,0 +1,177 @@
+[
+  {
+    "entity": "Matrix Function",
+    "type": "Concept",
+    "domain": "Numerical Analysis",
+    "definition": "A matrix function f(A) extends scalar functions to matrices A, defined via Jordan form, power series, or other representations, enabling operations like exponentials or square roots on matrices.",
+    "description": "Matrix functions are computed iteratively for large matrices, used in differential equations, control theory, and eigenvalue problems.",
+    "properties": {
+      "Goal": "Apply functional calculus to matrices.",
+      "Applications": ["Exponential integrators", "Matrix equations", "Spectral analysis"],
+      "Methods": ["Power series", "Schur-Parlett", "Newton iteration"],
+      "Examples": ["f(A) where f is sqrt, exp, log"]
+    },
+    "relations": [
+      {"type": "computed_via", "target": "Newton's Iteration"},
+      {"type": "applied_to", "target": "Square Matrix A"},
+      {"type": "used_in", "target": "Eigenvalue Problems"},
+      {"type": "related_to", "target": "Matrix Square Root"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "11_Iterative methods_for_eigenvalue_problems.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Matrix Square Root",
+    "type": "Concept",
+    "domain": "Numerical Analysis",
+    "definition": "The matrix square root X satisfies X^2 = A for a matrix A, with the principal square root being positive definite if A is.",
+    "description": "It is computed iteratively, e.g., via Newton's method, for applications in statistics, control, and geometry.",
+    "properties": {
+      "Goal": "Find X such that X^2 = A.",
+      "Applications": ["Covariance matrices", "Riemannian metrics", "Polar decomposition"],
+      "Methods": ["Newton iteration", "Denman-Beavers", "Schur method"],
+      "Examples": ["X = sqrt(A) for SPD A"]
+    },
+    "relations": [
+      {"type": "instance_of", "target": "Matrix Function"},
+      {"type": "computed_by", "target": "Newton's Iteration for Square Root"},
+      {"type": "requires", "target": "Positive Definite A (for principal)"},
+      {"type": "related_to", "target": "Eigenvalue Decomposition"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "11_Iterative methods_for_eigenvalue_problems.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Newton's Iteration for Square Root",
+    "type": "Method",
+    "domain": "Numerical Analysis",
+    "definition": "Newton's iteration for the matrix square root updates X_{k+1} = (X_k + A X_k^{-1}) / 2, starting from X_0 = I or other, converging quadratically to sqrt(A).",
+    "description": "It is stable for positive definite A, with safeguards for convergence, used in large-scale computations via iterative solvers.",
+    "properties": {
+      "Goal": "Compute sqrt(A) iteratively.",
+      "Applications": ["Matrix sign function", "Algebraic Riccati equations"],
+      "Methods": ["Matrix inversion at each step", "Quadratic convergence"],
+      "Examples": ["X_{k+1} = (X_k + A X_k^{-1}) / 2"]
+    },
+    "relations": [
+      {"type": "computes", "target": "Matrix Square Root"},
+      {"type": "variant_of", "target": "Newton's Method"},
+      {"type": "requires", "target": "Matrix Inversion"},
+      {"type": "converges_to", "target": "sqrt(A)"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "11_Iterative methods_for_eigenvalue_problems.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Eigenvalue Problem",
+    "type": "Concept",
+    "domain": "Numerical Analysis",
+    "definition": "The eigenvalue problem seeks scalars λ and vectors x ≠ 0 such that A x = λ x for matrix A.",
+    "description": "Iterative methods like power iteration or Lanczos are used for large sparse matrices, shifting spectrum for better conditioning.",
+    "properties": {
+      "Goal": "Find eigenvalues λ and eigenvectors x.",
+      "Applications": ["Vibrations", "Stability", "PCA"],
+      "Methods": ["Power method", "QR algorithm", "Lanczos"],
+      "Examples": ["Ax = λx, x ∈ C^n"]
+    },
+    "relations": [
+      {"type": "solved_by", "target": "Iterative Methods"},
+      {"type": "shifted_as", "target": "A - μ I"},
+      {"type": "spectrum", "target": "Λ(A)"},
+      {"type": "related_to", "target": "Singular Value Problem"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "11_Iterative methods_for_eigenvalue_problems.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Spectral Shift",
+    "type": "Method",
+    "domain": "Numerical Analysis",
+    "definition": "Spectral shift transforms the eigenvalue problem to (A - μ I) x = (λ - μ) x, shifting eigenvalues by μ to target specific parts of the spectrum or improve conditioning.",
+    "description": "Choosing μ near a target eigenvalue accelerates convergence in iterative methods; for real μ, it can make the matrix positive definite.",
+    "properties": {
+      "Goal": "Adjust spectrum for better numerical properties.",
+      "Applications": ["Interior eigenvalues", "Deflation", "Preconditioning"],
+      "Methods": ["μ close to target λ", "μ = (λ_min + λ_max)/2"],
+      "Examples": ["Λ(A - μ I) = Λ(A) - μ"]
+    },
+    "relations": [
+      {"type": "transforms", "target": "Eigenvalue Problem"},
+      {"type": "enables", "target": "Positive Definite Matrix"},
+      {"type": "used_in", "target": "Inverse Iteration"},
+      {"type": "estimates", "target": "Approximate μ"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "11_Iterative methods_for_eigenvalue_problems.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Positive Definite Shift",
+    "type": "Method",
+    "domain": "Numerical Analysis",
+    "definition": "Positive definite shift chooses μ such that A - μ I is positive definite, e.g., μ < λ_min(A) for symmetric A, enabling use of CG or other SPD methods.",
+    "description": "It stabilizes iterations and bounds condition number; for estimated ˆμ ≈ λ_min, adjust with a > 0 to ensure positivity.",
+    "properties": {
+      "Goal": "Make shifted matrix SPD for efficient solving.",
+      "Applications": ["Shift-and-invert", "Preconditioned eigensolvers"],
+      "Methods": ["μ = ˆμ - a, a > 0", "Rayleigh quotient estimate"],
+      "Examples": ["A - μ I with μ = ˆμ - a"]
+    },
+    "relations": [
+      {"type": "variant_of", "target": "Spectral Shift"},
+      {"type": "ensures", "target": "Positive Definiteness"},
+      {"type": "used_for", "target": "Conjugate Gradient"},
+      {"type": "based_on", "target": "Eigenvalue Estimate ˆμ"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "11_Iterative methods_for_eigenvalue_problems.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Spectrum Λ(A)",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "The spectrum Λ(A) is the set of all eigenvalues of matrix A.",
+    "description": "Shifting modifies the spectrum as Λ(A - μ I) = Λ(A) - μ, used to isolate eigenvalues or improve numerical properties.",
+    "properties": {
+      "Goal": "Characterize matrix via its eigenvalues.",
+      "Applications": ["Spectral radius", "Conditioning", "Stability"],
+      "Methods": ["Eigen decomposition", "Characteristic polynomial"],
+      "Examples": ["Λ(A) subset C for A in C^{n x n}"]
+    },
+    "relations": [
+      {"type": "of", "target": "Square Matrix A"},
+      {"type": "shifted_by", "target": "Spectral Shift"},
+      {"type": "estimated_via", "target": "Iterative Methods"},
+      {"type": "related_to", "target": "Jordan Form"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "11_Iterative methods_for_eigenvalue_problems.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]
