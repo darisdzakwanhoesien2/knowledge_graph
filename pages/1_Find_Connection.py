@@ -9,7 +9,7 @@ from pyvis.network import Network
 import tempfile
 
 # ==============================
-# --- CONFIG ---
+# --- CONFIGURATION ---
 # ==============================
 GRAPH_FILE = "merged_graph.json"
 
@@ -19,7 +19,9 @@ GRAPH_FILE = "merged_graph.json"
 st.set_page_config(page_title="🔗 Find Connections", layout="wide")
 st.title("🔗 Explore Relationships Between Two Nodes")
 
+# ==============================
 # --- LOAD GRAPH ---
+# ==============================
 if not Path(GRAPH_FILE).exists():
     st.error("merged_graph.json not found. Please run build_graph.py first.")
     st.stop()
@@ -34,9 +36,27 @@ for edge in data["edges"]:
     G.add_edge(edge["source"], edge["target"], type=edge["type"])
 
 # ==============================
+# --- RELATION TRANSLATION (optional readability) ---
+# ==============================
+RELATION_TRANSLATIONS = {
+    "used_in": "is used in",
+    "extends": "extends",
+    "includes": "includes",
+    "is_a_goal_of": "is a goal of",
+    "follows": "follows",
+    "leads_to": "leads to",
+    "part_of": "is part of",
+    "related_to": "is related to",
+    "influences": "influences",
+    "supports": "supports",
+    "affects": "affects",
+}
+
+# ==============================
 # --- SIDEBAR SELECTION ---
 # ==============================
 st.sidebar.header("🎯 Connection Finder")
+
 all_nodes = sorted(list(G.nodes))
 
 source_node = st.sidebar.selectbox("Select Source Node:", all_nodes, key="source_node")
@@ -47,7 +67,7 @@ max_depth = st.sidebar.slider("🔍 Maximum Path Length", min_value=1, max_value
 find_button = st.sidebar.button("🚀 Find Connection")
 
 # ==============================
-# --- FIND CONNECTION ---
+# --- PATHFINDING FUNCTION ---
 # ==============================
 def find_paths(G, source, target, cutoff=4):
     """Find all simple paths between source and target (up to cutoff)."""
@@ -67,12 +87,18 @@ def visualize_path(G, path_nodes):
     net = Network(height="700px", width="100%", bgcolor="#0e1117", font_color="white", directed=True)
     net.barnes_hut(gravity=-20000, central_gravity=0.3, spring_length=150, spring_strength=0.02)
 
-    # Highlight only the path subgraph
     subgraph = G.subgraph(path_nodes).copy()
 
     for node, props in subgraph.nodes(data=True):
-        color = "#00FFAA" if node in [path_nodes[0], path_nodes[-1]] else "#FFD700"
-        title = f"<b>{node}</b><br>{props.get('definition', '')}<br><i>{props.get('domain', '')}</i>"
+        # Color coding: start=green, end=cyan, intermediates=gold
+        if node == path_nodes[0]:
+            color = "#00FFAA"
+        elif node == path_nodes[-1]:
+            color = "#00FFFF"
+        else:
+            color = "#FFD700"
+
+        title = f"<b>{node}</b><br>{props.get('definition','')}<br><i>{props.get('domain','')}</i>"
         net.add_node(node, label=node, title=title, color=color, group=props.get("domain", "Unknown"))
 
     for src, tgt, rel in subgraph.edges(data=True):
@@ -83,7 +109,7 @@ def visualize_path(G, path_nodes):
         return tmp.name
 
 # ==============================
-# --- EXECUTION ---
+# --- MAIN EXECUTION ---
 # ==============================
 if find_button:
     if source_node == target_node:
@@ -94,21 +120,36 @@ if find_button:
             st.error(f"No connection found between '{source_node}' and '{target_node}' within depth {max_depth}.")
         else:
             st.success(f"✅ Found {len(paths)} connection path(s) between the nodes!")
-            for i, path in enumerate(paths[:3]):  # show up to 3 paths
+            for i, path in enumerate(paths[:3]):  # limit to top 3 paths for readability
                 st.markdown(f"### 🧭 Path {i+1}")
                 path_str = " → ".join(path)
                 st.markdown(f"**{path_str}**")
 
-                # Annotate with edge types
-                relation_text = []
+                # --- Extract edge relations ---
+                relations = []
                 for j in range(len(path) - 1):
                     edge_data = G.get_edge_data(path[j], path[j + 1])
-                    if edge_data:
-                        relation_text.append(f"({edge_data['type']})")
-                if relation_text:
-                    rel_chain = " → ".join(relation_text)
-                    st.caption(f"Relations: {rel_chain}")
+                    rel = edge_data["type"] if edge_data else "related_to"
+                    relations.append(rel)
 
-                # Visualize
+                # --- Build natural-language narrative ---
+                narrative_parts = []
+                for k in range(len(path) - 1):
+                    narrative_parts.append(path[k])
+                    readable_rel = RELATION_TRANSLATIONS.get(relations[k], relations[k])
+                    narrative_parts.append(readable_rel)
+                narrative_parts.append(path[-1])
+                narrative_sentence = " ".join(narrative_parts)
+                narrative_sentence = narrative_sentence[0].upper() + narrative_sentence[1:] + "."
+
+                # --- Display narrative ---
+                st.markdown("**🧩 Narrative Connection:**")
+                st.write(narrative_sentence)
+
+                # --- Also show relations chain ---
+                rel_chain = " → ".join([f"({r})" for r in relations])
+                st.caption(f"Relations: {rel_chain}")
+
+                # --- Visualize path ---
                 html_path = visualize_path(G, path)
                 st.components.v1.html(open(html_path, "r", encoding="utf-8").read(), height=750)
