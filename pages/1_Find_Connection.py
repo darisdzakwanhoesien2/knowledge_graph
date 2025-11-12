@@ -36,7 +36,7 @@ for edge in data["edges"]:
     G.add_edge(edge["source"], edge["target"], type=edge["type"])
 
 # ==============================
-# --- RELATION TRANSLATION (optional readability) ---
+# --- RELATION TRANSLATION ---
 # ==============================
 RELATION_TRANSLATIONS = {
     "used_in": "is used in",
@@ -62,14 +62,15 @@ all_nodes = sorted(list(G.nodes))
 source_node = st.sidebar.selectbox("Select Source Node:", all_nodes, key="source_node")
 target_node = st.sidebar.selectbox("Select Target Node:", all_nodes, key="target_node")
 
-max_depth = st.sidebar.slider("🔍 Maximum Path Length", min_value=1, max_value=6, value=4)
+# Expanded max depth up to 15
+max_depth = st.sidebar.slider("🔍 Maximum Path Length", min_value=1, max_value=15, value=6)
 
 find_button = st.sidebar.button("🚀 Find Connection")
 
 # ==============================
-# --- PATHFINDING FUNCTION ---
+# --- PATHFINDING FUNCTIONS ---
 # ==============================
-def find_paths(G, source, target, cutoff=4):
+def find_paths(G, source, target, cutoff=6):
     """Find all simple paths between source and target (up to cutoff)."""
     try:
         paths = list(nx.all_simple_paths(G, source=source, target=target, cutoff=cutoff))
@@ -78,6 +79,15 @@ def find_paths(G, source, target, cutoff=4):
         return []
     except nx.NodeNotFound:
         return []
+
+def find_shortest_path_length(G, source, target):
+    """Find minimum path length (fewest hops) between nodes."""
+    try:
+        return nx.shortest_path_length(G, source=source, target=target)
+    except nx.NetworkXNoPath:
+        return None
+    except nx.NodeNotFound:
+        return None
 
 # ==============================
 # --- VISUALIZATION FUNCTION ---
@@ -115,11 +125,20 @@ if find_button:
     if source_node == target_node:
         st.warning("Please select two *different* nodes.")
     else:
+        # --- Compute minimum path length ---
+        min_length = find_shortest_path_length(G, source_node, target_node)
+        if min_length is not None:
+            st.info(f"📏 Minimum path length between '{source_node}' and '{target_node}': **{min_length} step(s)**")
+        else:
+            st.warning(f"⚠️ No direct or indirect path found between '{source_node}' and '{target_node}'.")
+
+        # --- Find paths (up to cutoff) ---
         paths = find_paths(G, source_node, target_node, cutoff=max_depth)
+
         if not paths:
             st.error(f"No connection found between '{source_node}' and '{target_node}' within depth {max_depth}.")
         else:
-            st.success(f"✅ Found {len(paths)} connection path(s) between the nodes!")
+            st.success(f"✅ Found {len(paths)} connection path(s) within max depth {max_depth}.")
             for i, path in enumerate(paths[:3]):  # limit to top 3 paths for readability
                 st.markdown(f"### 🧭 Path {i+1}")
                 path_str = " → ".join(path)
@@ -146,7 +165,7 @@ if find_button:
                 st.markdown("**🧩 Narrative Connection:**")
                 st.write(narrative_sentence)
 
-                # --- Also show relations chain ---
+                # --- Also show relation chain ---
                 rel_chain = " → ".join([f"({r})" for r in relations])
                 st.caption(f"Relations: {rel_chain}")
 
