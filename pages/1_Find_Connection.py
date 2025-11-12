@@ -11,7 +11,9 @@ import tempfile
 # ==============================
 # --- CONFIGURATION ---
 # ==============================
-GRAPH_FILE = "merged_graph.json"
+BASE_DIR = Path(__file__).resolve().parent.parent  # one level up to project root
+GRAPH_FILE = BASE_DIR / "merged_graph.json"
+
 
 # ==============================
 # --- PAGE SETTINGS ---
