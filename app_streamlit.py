@@ -6,6 +6,7 @@ from pathlib import Path
 import tempfile
 from datetime import datetime
 import random
+from analyze_graph import structural_summary
 
 # ==============================
 # --- CONFIGURATION ---
@@ -230,3 +231,21 @@ with st.sidebar.expander("Start Flashcard Session", expanded=False):
             st.markdown(f"### {card['front']}")
             if st.button("🔁 Show Answer"):
                 st.markdown(card["back"])
+
+# ==============================
+# --- GRAPH ANALYTICS SUMMARY ---
+# ==============================
+st.sidebar.markdown("---")
+st.sidebar.subheader("🧮 Graph Analytics & Summary")
+
+with st.sidebar.expander("View Structural Summary", expanded=False):
+    if st.button("📊 Generate Structural Summary"):
+        with st.spinner("Analyzing graph structure..."):
+            try:
+                summary_structural = structural_summary(GRAPH_FILE)
+                st.success("✅ Structural Summary Generated!")
+                st.json(summary_structural)
+            except Exception as e:
+                st.error(f"Error while analyzing: {e}")
+
+    st.caption("Shows central concepts, community clusters, and bridge nodes.")
