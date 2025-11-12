@@ -7,3 +7,6 @@
 2025-11-06 21:16:09 | RANSAC → Random Sample Consensus (RANSAC)
 2025-11-06 21:18:45 | Structure-from-Motion (SfM) → Structure from Motion
 2025-11-06 21:19:37 | Structural Texture Analysis → Statistical Texture Analysis
+2025-11-10 17:13:41 | Critical Cone ($$ \mathcal{C}(x^*, \lambda^*) $$) → Critical Cone ($\mathcal{C}(x^{*},\lambda^{*})$)
+2025-11-10 17:13:54 | Bisection Method → Bisection Method (Step Length)
+2025-11-10 17:14:09 | Duality Theory (Convex) → Duality Theory (Convex Optimization)

@@ -1,0 +1,253 @@
+[
+  {
+    "entity": "Duality Theory (Convex Optimization)",
+    "type": "Optimization Concept/Theory",
+    "domain": "Convex Optimization",
+    "definition": "A major concept in optimization focused on the relationship between a primal constrained minimization problem ($\\min~f(x)$ subject to $c(x)\\ge0$) and its corresponding dual problem.",
+    "description": "Duality requires strong assumptions, namely that the objective function $f$ must be convex, and the constraint functions $c_{j}$ must be concave (meaning $-c_{j}$ are convex). This guarantees that the Lagrangian $\\mathcal{L}(x,\\lambda)$ is convex in $x$ for any fixed $\\lambda\\ge0$.",
+    "properties": {
+      "Goal": "Analyze and potentially solve constrained optimization problems using dual variables.",
+      "Applications": [
+        "Linear Programming (LP)",
+        "Quadratic Programming (QP)"
+      ],
+      "Methods": [
+        "Formulating the Lagrangian function $\\mathcal{L}(x,\\lambda)=f(x)-\\lambda^{T}c(x)$"
+      ],
+      "Examples": []
+    },
+    "relations": [
+      {
+        "type": "Requires Convexity Of",
+        "target": "$f(x)$"
+      },
+      {
+        "type": "Requires Concavity Of",
+        "target": "$c(x)$"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Dual Objective Function ($q(\\lambda)$)",
+    "type": "Mathematical Function",
+    "domain": "Duality Theory",
+    "definition": "The infimum of the Lagrangian function over $x$ for a fixed $\\lambda\\ge0$: $q(\\lambda)=\\inf_{x}\\mathcal{L}(x,\\lambda)$ (74).",
+    "description": "This function is defined only for those $\\lambda\\ge0$ for which the infimum is finite ($q(\\lambda)> -\\infty$). The dual function $q$ is always concave (hence $-q$ is convex).",
+    "properties": {
+      "Goal": "Define the objective function for the Dual Problem (76).",
+      "Applications": [
+        "Formulating the Dual Problem (76)"
+      ],
+      "Methods": [
+        "Finding critical points by setting $\\nabla_{x}\\mathcal{L}(x,\\lambda)=0$ (assuming smoothness)"
+      ],
+      "Examples": [
+        "For $\\min\\frac{1}{2}(x_{1}^{2}+x_{2}^{2})$ subject to $x_{1}-1\\ge0$, $q(\\lambda)=-\\frac{1}{2}\\lambda^{2}+\\lambda$."
+      ]
+    },
+    "relations": [
+      {
+        "type": "Is Infimum Of",
+        "target": "Lagrangian $\\mathcal{L}(x,\\lambda)$"
+      },
+      {
+        "type": "Used To Formulate",
+        "target": "Dual Problem (76)"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Dual Problem (76)",
+    "type": "Optimization Problem Type",
+    "domain": "Duality Theory",
+    "definition": "The optimization problem defined by maximizing the dual objective function $q(\\lambda)$ subject to the constraint $\\lambda\\ge0$: $\\max~q(\\lambda)$ subject to $\\lambda\\ge0$.",
+    "description": "Solving the dual problem provides information on the original (primal) problem (73). Due to weak duality, the optimal value of (76) is less than or equal to the optimal value of the primal problem.",
+    "properties": {
+      "Goal": "Maximize $q(\\lambda)$ to find the best lower bound for the primal problem's optimal value.",
+      "Applications": [
+        "Solving the Dual LP (79)"
+      ],
+      "Methods": [
+        "Solving the KKT conditions for $x$ once the optimal $\\lambda^*$ is found."
+      ],
+      "Examples": []
+    },
+    "relations": [
+      {
+        "type": "Provides Bound For",
+        "target": "Primal Problem (73)"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Weak Duality",
+    "type": "Theorem/Concept",
+    "domain": "Duality Theory",
+    "definition": "The theorem stating that for any feasible primal solution $x$ and any $\\lambda\\ge0$ such that $q(\\lambda)> -\\infty$, the dual objective function value is always less than or equal to the primal objective value: $q(\\lambda)\\le f(x)$.",
+    "description": "This inequality holds because $c(x)\\ge0$ and $\\lambda\\ge0$ imply $-\\lambda^{T}c(x)\\le0$, so $\\mathcal{L}(x,\\lambda)\\le f(x)$ and thus $q(\\lambda)\\le f(x)$. Weak duality gives a lower bound on the primal optimal value.",
+    "properties": {
+      "Goal": "Provide a simple lower bound for the optimal value of the primal problem.",
+      "Applications": [
+        "Verifying optimality: if $q(\\lambda)=f(x)$ for feasible $x,\\lambda$, then $x$ and $\\lambda$ are optimal"
+      ],
+      "Methods": [],
+      "Examples": []
+    },
+    "relations": [
+      {
+        "type": "Formalized In",
+        "target": "Theorem 12.11 (p. 345)"
+      },
+      {
+        "type": "Implies",
+        "target": "Strong Duality (if additional conditions hold and equality is achieved)"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Strong Duality (Theorem 12.12)",
+    "type": "Theorem/Concept",
+    "domain": "Duality Theory",
+    "definition": "The property that the optimal values of the primal problem $f(x^*)$ and the dual problem $q(\\lambda^*)$ are equal, i.e., $q(\\lambda^{*})=f(x^{*})$. Under convexity and a constraint qualification (e.g., Slater's condition), strong duality holds.",
+    "description": "Theorem 12.12 states that if $x^{*}$ is a solution to the primal problem (73) and there exists $\\lambda^{*}$ such that $(x^{*},\\lambda^{*})$ satisfies the KKT conditions (under convexity assumptions), then $\\lambda^{*}$ solves the dual problem (76) and $f(x^*)=q(\\lambda^*)$.",
+    "properties": {
+      "Goal": "Confirm that a found pair $(x,\\lambda)$ is globally optimal for both the primal and dual problems.",
+      "Applications": [
+        "Solving optimization problems by finding $\\lambda^*$ first and then $x$"
+      ],
+      "Methods": [
+        "Proof combines convexity of $\\mathcal{L}(x,\\lambda^{*})$ in $x$, KKT conditions, and weak duality"
+      ],
+      "Examples": [
+        "In example (75), the value of both the primal and dual problems is $\\frac{1}{2}$."
+      ]
+    },
+    "relations": [
+      {
+        "type": "Requires Fulfillment Of",
+        "target": "KKT conditions (at $x^* , \\lambda^*$)"
+      },
+      {
+        "type": "Formalized In",
+        "target": "Theorem 12.12 (p. 346)"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Dual Linear Program (79)",
+    "type": "Optimization Problem Type",
+    "domain": "Linear Programming/Duality",
+    "definition": "The dual problem corresponding to the primal LP $\\min~c^{T}x$ subject to $Ax\\ge b$ ($Ax-b\\ge0$): $\\max~b^{T}\\lambda$ subject to $A^{T}\\lambda = c$ and $\\lambda\\ge0$.",
+    "description": "The dual objective function $q(\\lambda)$ for this LP is $b^{T}\\lambda$ when the stationarity condition $A^{T}\\lambda = c$ holds (otherwise $q(\\lambda)=-\\infty$). This transformation is useful if the dual problem is easier to solve than the primal.",
+    "properties": {
+      "Goal": "Solve the primal LP (78) indirectly by solving the dual problem.",
+      "Applications": [
+        "Alternative solution method for LP problems"
+      ],
+      "Methods": [
+        "If solved for $\\lambda^{*}$, use $\\lambda^{*}$ to simplify the KKT conditions for $x$"
+      ],
+      "Examples": []
+    },
+    "relations": [
+      {
+        "type": "Primal Is",
+        "target": "LP Problem (78)"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Interior Point Methods",
+    "type": "Optimization Algorithm",
+    "domain": "Constrained Optimization",
+    "definition": "A class of algorithms designed to overcome the combinatorial difficulty associated with optimization problems having many inequality constraints.",
+    "description": "These methods are typically required for Quadratic Programming (QP) problems where the inequality constraints lead to $2^{m}$ possible active sets, making direct application of active-set or corner-based methods impractical.",
+    "properties": {
+      "Goal": "Efficiently solve constrained optimization problems with numerous inequality constraints.",
+      "Applications": [
+        "Quadratic Programming (44)"
+      ],
+      "Methods": [],
+      "Examples": []
+    },
+    "relations": [
+      {
+        "type": "Addresses Difficulty Of",
+        "target": "Inequality constraints ($2^m$ possible active sets)"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Simplex Method Worst-Case Complexity",
+    "type": "Performance Metric/Bound",
+    "domain": "Linear Programming",
+    "definition": "The maximum theoretical number of vertices the Simplex method might have to visit in the worst case, given by the number of feasible basic solutions $\\binom{m}{n}$ (for $m$ constraints and $n$ variables in standard form with $m\\ge n$).",
+    "description": "Although the worst-case scenario is exponential in $n$ (as illustrated by contrived examples like the Klee-Minty cube), the Simplex method is regarded as efficient in practice, typically requiring at most $2m$ to $3m$ pivots.",
+    "properties": {
+      "Goal": "Define the upper bound of computational effort required by the Simplex method in the worst case.",
+      "Applications": [],
+      "Methods": [],
+      "Examples": [
+        "For a problem with $m=6$ equality constraints and $n=2$ non-basic variables (i.e., $6$ choose $2$), there are $\\binom{6}{2}=15$ basic feasible solutions."
+      ]
+    },
+    "relations": [
+      {
+        "type": "Motivated Replacement By",
+        "target": "Polynomial-time LP algorithms (e.g., interior-point methods)"
+      },
+      {
+        "type": "Contrasts With Typical Performance",
+        "target": "$\\le 2m$ or $3m$ pivots"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]

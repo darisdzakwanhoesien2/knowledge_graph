@@ -1,0 +1,243 @@
+[
+  {
+    "entity": "Bisection Method",
+    "type": "Root-Finding Algorithm",
+    "domain": "Numerical Optimization / Line Search",
+    "definition": "A robust bracketing method that locates a root of a continuous function $\\phi(\\alpha)$ by repeatedly halving an interval $[a, b]$ where $\\phi(a) \\le 0 \\le \\phi(b)$ (or vice versa) until the interval length is below a tolerance.",
+    "description": "Used in line search to find a step length $\\alpha_k > 0$ satisfying the Wolfe conditions. Converges **linearly** with rate $C = \\frac{1}{2}$ because the uncertainty interval is halved at each iteration.",
+    "properties": {
+      "Goal": "Find $\\alpha_k$ such that $\\phi(\\alpha_k) \\le \\phi(0) + c_1 \\alpha_k \\phi'(0)$ and $|\\phi'(\\alpha_k)| \\le c_2 |\\phi'(0)|$ (Wolfe conditions).",
+      "Applications": [
+        "Exact line search fallback",
+        "Backtracking line search when Armijo fails"
+      ],
+      "Methods": [
+        "Initialize bracket $[\\alpha_{\\text{low}}, \\alpha_{\\text{high}}]$ with opposite signs or satisfying bounds",
+        "Set midpoint $\\alpha_{\\text{mid}} = \\frac{\\alpha_{\\text{low}} + \\alpha_{\\text{high}}}{2}$",
+        "Shrink interval based on $\\phi(\\alpha_{\\text{mid}})$ sign or Wolfe violation"
+      ],
+      "Examples": [
+        "Solving $\\phi'(\\alpha) = \\alpha^5 - \\alpha - 1 = 0$ in $[1, 2]$"
+      ]
+    },
+    "relations": [
+      {
+        "type": "Convergence Rate",
+        "target": "Linear, $C = \\frac{1}{2}$"
+      },
+      {
+        "type": "Used In",
+        "target": "Strong Wolfe Line Search"
+      },
+      {
+        "type": "Reference",
+        "target": "Nocedal & Wright, p. 56"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Least Squares Problems",
+    "type": "Optimization Problem Type",
+    "domain": "Unconstrained Optimization",
+    "definition": "Minimize $f(x) = \\frac{1}{2} \\| r(x) \\|^2 = \\frac{1}{2} \\sum_{j=1}^m r_j(x)^2$, where $r: \\mathbb{R}^n \\to \\mathbb{R}^m$ is the vector of **residual functions** $r_j(x)$.",
+    "description": "Arises when overdetermined systems $r_j(x) = 0$ ($m \\ge n$) have no exact solution. Transforms root-finding into minimization. Special structure: $\\nabla f(x) = J(x)^T r(x)$, $\\nabla^2 f(x) = J(x)^T J(x) + \\sum r_j(x) \\nabla^2 r_j(x)$.",
+    "properties": {
+      "Goal": "Find best-fit parameters $x^*$ minimizing sum of squared residuals.",
+      "Applications": [
+        "Data fitting",
+        "Machine learning (regression)",
+        "Parameter estimation"
+      ],
+      "Methods": [
+        "Gauss–Newton (ignores second-order residual terms)",
+        "Levenberg–Marquardt (adds damping)",
+        "Full Newton (uses exact Hessian)"
+      ],
+      "Examples": [
+        "Linear regression: $r_j(x) = a_j^T x - b_j$"
+      ]
+    },
+    "relations": [
+      {
+        "type": "Objective",
+        "target": "$f(x) = \\frac{1}{2} \\| r(x) \\|^2$"
+      },
+      {
+        "type": "Gradient",
+        "target": "$\\nabla f(x) = J(x)^T r(x)$"
+      },
+      {
+        "type": "Assumes",
+        "target": "$m \\ge n$ (overdetermined)"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Linear Least Squares Problem (Linear Regression)",
+    "type": "Optimization Problem Type",
+    "domain": "Linear Algebra / Regression",
+    "definition": "Minimize $f(x) = \\frac{1}{2} \\| A x - b \\|^2$, where $A \\in \\mathbb{R}^{m \\times n}$, $b \\in \\mathbb{R}^m$, $m \\ge n$.",
+    "description": "Closed-form solution via **normal equations**: $A^T A x = A^T b$. Numerically stable via **QR factorization**: $A = QR$, solve $R x = Q^T b$.",
+    "properties": {
+      "Goal": "Find $x^*$ minimizing $\\sum (a_j^T x - b_j)^2$.",
+      "Applications": [
+        "Linear regression",
+        "Polynomial fitting"
+      ],
+      "Methods": [
+        "Normal equations (if $A^T A$ well-conditioned)",
+        "QR decomposition (preferred)",
+        "SVD (for rank-deficient cases)"
+      ],
+      "Examples": [
+        "Fit $y = x_1 + x_2 t$: residuals $r_j = x_1 + x_2 t_j - y_j$"
+      ]
+    },
+    "relations": [
+      {
+        "type": "Normal Equations",
+        "target": "$A^T A x = A^T b$"
+      },
+      {
+        "type": "Hessian",
+        "target": "$\\nabla^2 f(x) = A^T A$"
+      },
+      {
+        "type": "Stable Solve Via",
+        "target": "QR: $A = QR$, $R x = Q^T b$"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Gauss–Newton Method",
+    "type": "Quasi-Newton Algorithm",
+    "domain": "Nonlinear Least Squares",
+    "definition": "Iterative method for nonlinear least squares: at $x_k$, solve $J_k^T J_k p_k = -J_k^T r_k$ for step $p_k$, where $J_k = J(x_k)$ is the Jacobian of $r$.",
+    "description": "Approximates Hessian as $B_k = J_k^T J_k$, neglecting $\\sum r_j \\nabla^2 r_j$. Valid when residuals are small at solution. Step satisfies $p_k^T \\nabla f_k = -\\| J_k p_k \\|^2 \\le 0$ (descent unless $J_k p_k = 0$).",
+    "properties": {
+      "Goal": "Efficiently solve nonlinear least squares without computing second derivatives.",
+      "Applications": [
+        "Curve fitting",
+        "Nonlinear regression"
+      ],
+      "Methods": [
+        "Compute $J_k$, $r_k$",
+        "Solve $(J_k^T J_k) p_k = -J_k^T r_k$ (via QR/Cholesky)",
+        "Line search: $x_{k+1} = x_k + \\alpha_k p_k$"
+      ],
+      "Examples": []
+    },
+    "relations": [
+      {
+        "type": "Approximates",
+        "target": "Newton’s method"
+      },
+      {
+        "type": "Hessian Approximation",
+        "target": "$B_k = J_k^T J_k$"
+      },
+      {
+        "type": "Descent Property",
+        "target": "$p_k^T \\nabla f_k = -\\| J_k p_k \\|^2 \\le 0$"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Residual Functions ($r_j(x)$)",
+    "type": "Model Component",
+    "domain": "Least Squares",
+    "definition": "Scalar functions $r_j: \\mathbb{R}^n \\to \\mathbb{R}$, $j=1,\\dots,m$, representing model misfit: $r_j(x) = \\text{model}_j(x) - \\text{data}_j$.",
+    "description": "Stacked into vector $r(x) = [r_1(x), \\dots, r_m(x)]^T$. Objective: $f(x) = \\frac{1}{2} \\| r(x) \\|^2$. Gradient: $\\nabla f(x) = J(x)^T r(x)$, where $J(x) = \\nabla r(x)$ is $m \\times n$ Jacobian.",
+    "properties": {
+      "Goal": "Quantify error between model and observations.",
+      "Applications": [
+        "Define $f(x)$, $\\nabla f(x)$, $J(x)$"
+      ],
+      "Methods": [],
+      "Examples": [
+        "Linear: $r_j(x) = a_j^T x - b_j$",
+        "Nonlinear: $r_j(x) = e^{x_1 t_j} + x_2 \\cos(x_3 t_j) - y_j$"
+      ]
+    },
+    "relations": [
+      {
+        "type": "Forms Vector",
+        "target": "$r(x) \\in \\mathbb{R}^m$"
+      },
+      {
+        "type": "Jacobian",
+        "target": "$J(x) = \\frac{\\partial r_j}{\\partial x_i}$"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Levenberg–Marquardt Method",
+    "type": "Trust-Region Algorithm",
+    "domain": "Nonlinear Least Squares",
+    "definition": "Trust-region method for nonlinear least squares: solve $\\min_{\\|p\\| \\le \\Delta_k} \\| J_k p + r_k \\|^2$ approximately by solving $(J_k^T J_k + \\mu_k I) p = -J_k^T r_k$, adjusting $\\mu_k > 0$ to control step size.",
+    "description": "Combines Gauss–Newton ($\\mu_k = 0$) and steepest descent ($\\mu_k \\to \\infty$). Robust when $J_k^T J_k$ is singular or residuals are large.",
+    "properties": {
+      "Goal": "Solve nonlinear least squares with global convergence.",
+      "Applications": [
+        "Curve fitting",
+        "Computer vision (bundle adjustment)"
+      ],
+      "Methods": [
+        "Choose $\\mu_k$ via trust-region logic or heuristic",
+        "Solve damped normal equations",
+        "Update $\\Delta_k$ based on $\\rho_k$"
+      ],
+      "Examples": []
+    },
+    "relations": [
+      {
+        "type": "Hybrid Of",
+        "target": "Gauss–Newton + Gradient Descent"
+      },
+      {
+        "type": "Trust-Region Subproblem",
+        "target": "$\\| J_k p + r_k \\|^2$, $\\|p\\| \\le \\Delta_k$"
+      },
+      {
+        "type": "Damping Parameter",
+        "target": "$\\mu_k \\ge 0$"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]

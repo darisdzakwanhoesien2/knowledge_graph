@@ -1,0 +1,179 @@
+[
+  {
+    "entity": "Unconstrained Optimization",
+    "type": "Concept",
+    "domain": "Optimization",
+"definition": "A mathematical minimization problem that seeks to find $x \\in \\mathbb{R}^n$ minimizing $f(x)$ with no constraints, so the feasible region $\\Omega$ is the entire space $\\mathbb{R}^n$.",    "description": "This structure notably simplifies the optimization problem because the feasible region is $\\mathbb{R}^{n}$. The solution relies primarily on advanced calculus techniques involving the gradient of $f$ and Taylor's theorem, requiring $f$ to be sufficiently smooth.",
+    "properties": {
+      "Goal": "Minimizing the objective function $f(x)$ over $x \\in \\mathbb{R}^{n}$",
+      "Applications": [],
+      "Methods": ["Line Search Methods", "Trust Region Methods", "Application of Taylor's theorem"]
+    },
+    "relations": [
+      {"type": "is_simplified_by", "target": "Convex Optimization"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_2.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Local Minimizer ($x^*$)",
+    "type": "Concept",
+    "domain": "Optimization",
+    "definition": "A point $x^{*}\\in\\mathbb{R}^{n}$ that is a global minimizer when restricted to some neighborhood of $x^{*}$ intersected with the feasible region $\\Omega$.",
+    "description": "Algorithms typically find only local minimizers, which may provide a poor estimate of the global solution. However, in convex optimization problems, any local minimizer is guaranteed to be a global minimizer.",
+    "properties": {
+      "Goal": "Identify points satisfying $f(x^{*})\\le f(x)$ locally",
+      "Applications": [],
+      "Methods": ["Checking First-Order Necessary Condition (FONC)", "Checking Second-Order Sufficient Conditions (SOSC)"],
+      "Examples": []
+    },
+    "relations": [
+      {"type": "is_prerequisite_for", "target": "Global Minimizer"},
+      {"type": "is_specialized_by", "target": "Strict Local Minimizer"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_2.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "First-Order Necessary Condition (FONC)",
+    "type": "Concept",
+    "domain": "Unconstrained Optimization",
+    "definition": "A necessary condition that a local minimizer $x^{*}$ of a smooth function $f$ must satisfy, requiring that the gradient vanishes: $\\nabla f(x^{*})=0$.",
+    "description": "This condition is derived using Taylor's theorem (2.4) and means that the point $x^{*}$ is a stationary or critical point of $f$. If this condition is not met (i.e., $\\nabla f(x^{*})\\ne0$), the function must decrease when moving in the direction $-\\nabla f(x^{*})$.",
+    "properties": {
+      "Goal": "Identify stationary points that are candidates for minimizers",
+      "Applications": ["Finding stationary points by solving the linear system $\\nabla f(x)=0$"],
+      "Methods": ["Application of Taylor's theorem (2.4)"]
+    },
+    "relations": [
+      {"type": "defines", "target": "Stationary Point"},
+      {"type": "is_required_by", "target": "Second-Order Sufficient Conditions (SOSC)"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_2.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Positive Semidefinite Matrix",
+    "type": "Concept",
+    "domain": "Linear Algebra, Optimization",
+    "definition": "A symmetric matrix $A\\in\\mathbb{R}^{n\\times n}$ where all its eigenvalues are non-negative, which is mathematically equivalent to the condition $x^{T}Ax\\ge0$ for any vector $x$.",
+    "description": "This matrix concept is crucial for the 'second derivative test' in optimization. For a stationary point to be a local minimizer, its Hessian matrix $\\nabla^{2}f(x^{*})$ must satisfy the positive semidefinite property, which forms the Second-Order Necessary Condition.",
+    "properties": {
+      "Goal": "Determine the curvature behavior (non-negative) of a function in all directions",
+      "Applications": ["Defining Second-Order Necessary Condition (SONC)"],
+      "Methods": ["Checking eigenvalues"],
+      "Examples": []
+    },
+    "relations": [
+      {"type": "is_required_for", "target": "Second-Order Necessary Condition"},
+      {"type": "is_strict_form_of", "target": "Positive Definite Matrix"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_2.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Second-Order Sufficient Conditions (SOSC)",
+    "type": "Concept",
+    "domain": "Unconstrained Optimization",
+    "definition": "Conditions guaranteeing that a point $x^{*}$ is a strict local minimizer, requiring that $x^{*}$ is a stationary point ($\\nabla f(x^{*})=0$) and that the Hessian matrix $\\nabla^{2}f(x^{*})$ is positive definite.",
+    "description": "Derived using Taylor's theorem (2.6), SOSC guarantees that $f$ increases in all directions when moving away from $x^{*}$, thereby confirming a strict local minimum. These conditions are sufficient but not necessary; for instance, $f(x)=x^4$ at $x=0$ is a local minimizer but fails the positive definiteness test.",
+    "properties": {
+      "Goal": "Confirm a strict local minimizer exists at a stationary point",
+      "Applications": ["Higher-dimensional second derivative test"],
+      "Methods": ["Checking for positive definiteness of $\\nabla^{2}f(x^{*})$"],
+      "Examples": []
+    },
+    "relations": [
+      {"type": "requires", "target": "First-Order Necessary Condition (FONC)"},
+      {"type": "requires", "target": "Positive Definite Matrix"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_2.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Saddle Point",
+    "type": "Concept",
+    "domain": "Optimization",
+    "definition": "A stationary point $x^*$ where the function $f$ grows in some directions and decreases in other directions when moving away from $x^{*}$.",
+    "description": "Saddle points are critical points where the First-Order Necessary Condition (FONC) holds, but they are neither local minimizers nor maximizers, indicating mixed curvature in the Hessian.",
+    "properties": {
+      "Goal": "Classify stationary points that are not local minimizers.",
+      "Applications": [],
+      "Methods": ["Checking the Hessian matrix $\\nabla^{2}f(x^{*})$ for positive and negative eigenvalues"],
+      "Examples": ["The point $(\\frac{-1}{\\sqrt{3}},0)$ for the function $f(x)=x_{1}(x_{1}^{2}-1)+x_{2}^{2}$"]
+    },
+    "relations": [
+      {"type": "is_type_of", "target": "Stationary Point"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_2.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Line Search Methods",
+    "type": "Method",
+    "domain": "Unconstrained Optimization",
+    "definition": "A family of iterative methods used to solve unconstrained minimization problems by improving the current iterate $x_{k}$ in two sequential steps: choosing a descent direction $p_{k}$ and computing the optimal step length $\\alpha$.",
+    "description": "The second step involves solving a one-dimensional subproblem, $min_{\\alpha>0}f(x_{k}+\\alpha p_{k})$, which finds the optimal distance to move in the chosen direction $p_k$. This subproblem is computationally simpler than the original $n$-dimensional problem.",
+    "properties": {
+      "Goal": "Iteratively find a local minimizer",
+      "Applications": ["Solving unconstrained minimization problems"],
+      "Methods": ["Choosing $p_k$ (descent direction)", "Solving $min_{\\alpha>0}f(x_{k}+\\alpha p_{k})$ for $\\alpha$"],
+      "Examples": []
+    },
+    "relations": [
+      {"type": "is_type_of", "target": "Iterative Method"},
+      {"type": "uses", "target": "Descent Direction ($p_k$)"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_2.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Descent Direction ($p_k$)",
+    "type": "Concept",
+    "domain": "Optimization, Line Search Methods",
+    "definition": "A direction $p_{k}$ chosen in a Line Search Method such that the objective function $f$ decreases when moving from the current iterate $x_{k}$ into that direction.",
+    "description": "Choosing $p_k$ is the first step in Line Search Methods and must precede the determination of the step length $\\alpha$. Since $f$ must decrease, the computed step length $\\alpha$ must be positive.",
+    "properties": {
+      "Goal": "Ensure that the iteration $x_{k+1}$ results in a lower function value than $f(x_k)$",
+      "Applications": ["Used in the first step of Line Search Methods"],
+      "Methods": ["Cleverly computing $p_k$"]
+    },
+    "relations": [
+      {"type": "is_component_of", "target": "Line Search Methods"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_2.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]

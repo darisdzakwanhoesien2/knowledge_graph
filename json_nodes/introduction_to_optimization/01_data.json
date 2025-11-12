@@ -1,0 +1,185 @@
+[
+  {
+    "entity": "Continuous Optimization",
+    "type": "Concept",
+    "domain": "Optimization",
+    "definition": "Formulating a problem mathematically such that the objective function $f: \\mathbb{R}^{n}\\rightarrow\\mathbb{R}$ and the constraints $c_{i}:\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$ are considered over the continuous space $\\mathbb{R}^{n}$",
+    "description": "The dimension $n$ and the number of constraints can be large. It contrasts with discrete optimization, where $\\mathbb{R}^{n}$ is replaced by a discrete set.",
+    "properties": {
+      "Goal": "Consider problem (1.1) on p. 3",
+      "Applications": [],
+      "Methods": ["Smooth optimization (using partial derivatives and gradients)"],
+      "Examples": []
+    },
+    "relations": [
+      {"type": "has_component", "target": "Objective Function ($f$)"},
+      {"type": "has_component", "target": "Constraints ($c_i$)"},
+      {"type": "contrasts_with", "target": "Discrete Optimization"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_1.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Objective Function ($f$)",
+    "type": "Concept",
+    "domain": "Optimization",
+    "definition": "The function $f: \\mathbb{R}^{n}\\rightarrow\\mathbb{R}$ that results from modeling or is given in an optimization problem.",
+    "description": "The objective function is the quantity that is minimized (or maximized, by minimizing $-f$). Its gradient ($\\nabla f$) indicates the directions in which $f$ decreases.",
+    "properties": {
+      "Goal": "To be minimized or maximized",
+      "Applications": [],
+      "Methods": [],
+      "Examples": ["$f(x_{1},x_{2})=x_{1}^{4}+x_{2}^{6}$"]
+    },
+    "relations": [
+      {"type": "has_property", "target": "Convexity"},
+      {"type": "characterized_by", "target": "Gradient (\\nabla f)"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_1.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Gradient (\\nabla f)",
+    "type": "Concept",
+    "domain": "Optimization, Calculus",
+    "definition": "The gradient of $f$, denoted $\\nabla f$, which provides information about the local behavior of the function.",
+    "description": "It appears often in computations, especially in smooth optimization, because it tells in which directions the function $f$ decreases. At a point $x$ on a level set $L_c(f)$, $\\nabla f(x)$ is orthogonal against the tangent plane of the level set.",
+    "properties": {
+      "Goal": "Determine direction of function decrease",
+      "Applications": ["Smooth optimization computations", "Finding tangent planes/lines"],
+      "Methods": ["Computing partial derivatives"],
+      "Examples": ["$\\nabla f(x)=[4x_{1}^{3}, 6x_{2}^{5}]^T$ for $f(x_{1},x_{2})=x_{1}^{4}+x_{2}^{6}$"]
+    },
+    "relations": [
+      {"type": "is_orthogonal_to", "target": "Tangent Plane"},
+      {"type": "is_central_to", "target": "Smooth Optimization"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_1.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Level Set ($L_c(f)$)",
+    "type": "Concept",
+    "domain": "Optimization, Calculus",
+"definition": "The set of points $x \\in \\mathbb{R}^n$ where the function $f$ takes a constant value $c$, defined as $L_c(f) = \\{ x \\in \\mathbb{R}^n \\mid f(x) = c \\}$.",    "description": "These sets are typically of dimension $n-1$. When $n=2$, they are curves and are frequently referred to as 'contours of $f$'.",
+    "properties": {
+      "Goal": "Visualize or understand the function's landscape",
+      "Applications": ["Drawing pictures to illustrate mathematics when $n=2$ or 3"],
+      "Methods": ["Requires computing the gradient $\\nabla f(x)$ to determine orthogonality to the tangent plane"],
+      "Examples": []
+    },
+    "relations": [
+      {"type": "is_characterized_by", "target": "Gradient (\\nabla f)"},
+      {"type": "has_synonym", "target": "Contours of $f$"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_1.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Convexity",
+    "type": "Concept",
+    "domain": "Optimization",
+    "definition": "A simplifying property of function $f$ in a convex set $S\\subset\\mathbb{R}^{n}$ where the line segment between any two points of its graph lies on or above the graph.",
+    "description": "If $f$ is smooth, convexity is equivalent to having a positive semi-definite Hessian matrix everywhere in $S$, meaning the graph of $f$ is 'bowl-like' everywhere. Convexity makes problem solving easier.",
+    "properties": {
+      "Goal": "Simplify optimization problem solving",
+      "Applications": ["Convex Optimization"],
+      "Methods": ["Checking if the Hessian matrix is positive semi-definite"],
+      "Examples": ["$f(x_{1},x_{2})=x_{1}^{4}+x_{2}^{6}$ is convex"]
+    },
+    "relations": [
+      {"type": "is_property_of", "target": "Objective Function ($f$)"},
+      {"type": "related_to", "target": "Hessian Matrix"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_1.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Linear Program (LP)",
+    "type": "Concept",
+    "domain": "Optimization",
+    "definition": "A type of optimization problem where both the objective function $f$ and the constraints functions $c_{i}$ are linear (plus possibly a constant).",
+    "description": "Linear programs started modern numerical optimization requiring electronic computers. The feasible set for an LP is always a convex polygon.",
+    "properties": {
+      "Goal": "Solve optimization problems with strictly linear structures",
+      "Applications": ["Modern numerical optimization"],
+      "Methods": ["Algorithms specific to LP (implied by 'LP alone is a vast area')"],
+      "Examples": ["Example (1.3 a-d) on p. 4"]
+    },
+    "relations": [
+      {"type": "is_type_of", "target": "Constrained Optimization"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_1.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Newton's Method",
+    "type": "Method",
+    "domain": "Numerical Optimization",
+    "definition": "An iterative method for solving a nonlinear system of equations $r(x)=0$. It computes the next iterate $x_{k+1}$ by solving for the zero of the tangent line approximation of $r(x)$ at $x_k$.",
+    "description": "For $n=1$, the iterate is $x_{k+1}=x_{k}-\\frac{r(x_{k})}{r^{\\prime}(x_{k})}$. For $n>2$, the derivative is replaced with the Jacobian, $x_{k+1}=x_{k}-J(x_{k})^{-1}r(x_{k})$. This method is important for devising iterative methods for solving optimization problems.",
+    "properties": {
+      "Goal": "Solve a nonlinear system of equations $r(x)=0$",
+      "Applications": ["Devising iterative methods for optimization problems"],
+      "Methods": ["Uses Taylor's theorem", "Uses Jacobian $J(x_k)$ (if $n>2$)"],
+      "Examples": ["Numerical example (11.31) on p. 281"]
+    },
+    "relations": [
+      {"type": "has_metric", "target": "Quadratic Convergence"},
+      {"type": "requires", "target": "Taylor's Theorem"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_1.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Speed of Convergence (Order p)",
+    "type": "Metric",
+    "domain": "Numerical Optimization",
+    "definition": "A measure used for iterative methods, quantifying how quickly the iterates $x_k$ approach the solution $x$ according to the inequality $||x-x_{k+1}||\\le C||x-x_{k}||^{p}$ for some $C>0$.",
+    "description": "The order $p$ dictates the rate of convergence. If $p=1$, convergence is linear (requiring $0<C<1$); if $p=2$, convergence is quadratic and is considered fast, often sufficient for very good approximations in just 2-4 iterates.",
+    "properties": {
+      "Goal": "Measure the effectiveness and efficiency of an iterative algorithm",
+      "Applications": ["Evaluating Optimization Algorithms"],
+      "Methods": [],
+      "Examples": ["Linear ($p=1$), Quadratic ($p=2$), Cubic ($p=3$)"]
+    },
+    "relations": [
+      {"type": "is_metric_for", "target": "Iterative Method"},
+      {"type": "has_type", "target": "Quadratic Convergence"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_1.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]

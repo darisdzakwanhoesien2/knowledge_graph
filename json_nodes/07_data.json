@@ -1,275 +1,202 @@
-
 [
   {
-    "entity": "Krylov Subspace Approximation (TRM)",
-    "type": "Approximation Technique",
-    "domain": "Trust Region Methods",
-    "definition": "A technique to approximately solve the Trust Region Subproblem (52) by restricting the step $$ p $$ to a low-dimensional Krylov subspace, typically $$ \\operatorname{span}\\{q, B^{-1}q\\} $$, reducing the problem to a 2D constrained optimization.",
-    "description": "Instead of solving the full $$ n $$-dimensional quadratic subproblem exactly, it solves a reduced 2D problem in coefficients $$ (\\alpha, \\beta) $$ using an orthonormal basis $$ \\{\\hat{q}, \\tilde{q}\\} $$ of the subspace (58). This is equivalent to a 2-step Krylov method for the linear system (54).",
+    "entity": "Pattern Recognition",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "Pattern recognition is the process of automatically detecting and classifying structured patterns or regularities in data, enabling machines to interpret complex signals such as images, speech, or text.",
+    "description": "In computer vision, it involves identifying objects, faces, actions, or scenes by learning discriminative features from labeled data and applying statistical or structural models for decision-making.",
     "properties": {
-      "Goal": "Efficiently approximate the solution to the Trust Region Subproblem (52).",
-      "Applications": [
-        "Step computation in Trust Region Methods when $$ n $$ is large"
-      ],
-      "Methods": [
-        "Construct $$ p = [\\hat{q}, \\tilde{q}] \\begin{bmatrix} \\alpha \\\\ \\beta \\end{bmatrix} $$ with orthonormal basis of $$ \\operatorname{span}\\{q, B^{-1}q\\} $$ (58).",
-        "Minimize reduced quadratic model subject to $$ \\|[\\alpha, \\beta]^T\\| \\le \\Delta_k $$.",
-        "Extend to higher-order Krylov: $$ \\operatorname{span}\\{q, B^{-1}q, \\ldots, (B^{-1})^j q\\} $$ for small $$ j $$."
-      ],
-      "Examples": []
+      "Goal": "Assign meaningful labels to input data based on learned patterns.",
+      "Applications": ["Object recognition", "Face detection", "Medical diagnosis", "Document analysis"],
+      "Methods": ["Statistical classification", "Template matching", "Neural networks", "Syntactic analysis"],
+      "Examples": ["Recognizing handwritten digits", "Identifying tumors in MRI scans"]
     },
     "relations": [
-      {
-        "type": "Approximates Solution Of",
-        "target": "Trust Region Subproblem (52)"
-      },
-      {
-        "type": "Equivalent To",
-        "target": "2-step Krylov method for $$ (I + 2\\lambda B^{-1})y = -q $$"
-      },
-      {
-        "type": "Uses Subspace",
-        "target": "$$ \\operatorname{span}\\{q, B^{-1}q\\} $$ (57)"
-      }
+      {"type": "enables", "target": "Object Recognition"},
+      {"type": "part_of", "target": "Artificial Intelligence"},
+      {"type": "uses", "target": "Feature Extraction"},
+      {"type": "includes", "target": "Statistical Pattern Recognition"},
+      {"type": "includes", "target": "Structural Pattern Recognition"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "07-recognition-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Second Order Necessary Conditions (Constrained)",
-    "type": "Necessary Condition/Theorem",
-    "domain": "Constrained Optimization Theory",
-    "definition": "At a local minimizer $$ x^* $$ with Lagrange multipliers $$ \\lambda^* $$, the Hessian of the Lagrangian must satisfy $$ w^T \\nabla_{xx}^2 \\mathcal{L}(x^*, \\lambda^*) w \\ge 0 $$ for all $$ w \\in \\mathcal{C}(x^*, \\lambda^*) $$ (Theorem 12.5, p. 332).",
-    "description": "This is a necessary condition for local optimality. It applies only on the critical cone — directions where the linearized constraints are satisfied and the reduced gradient vanishes.",
+    "entity": "Statistical Pattern Recognition",
+    "type": "Framework",
+    "domain": "Computer Vision",
+    "definition": "Statistical pattern recognition models patterns as random variables and uses probability theory to make decisions based on feature measurements and class-conditional densities.",
+    "description": "It assumes patterns are represented by feature vectors in a high-dimensional space and applies Bayesian decision theory to minimize classification error.",
     "properties": {
-      "Goal": "Verify whether a KKT point $$ x^* $$ can be a local minimizer.",
-      "Applications": [
-        "Classification of stationary points"
-      ],
-      "Methods": [
-        "Evaluate quadratic form $$ w^T \\nabla_{xx}^2 \\mathcal{L}(x^*, \\lambda^*) w $$ on $$ \\mathcal{C}(x^*, \\lambda^*) $$",
-        "For 1D active constraint: check second derivative along feasible arc"
-      ],
-      "Examples": []
+      "Goal": "Minimize classification error using probabilistic models.",
+      "Applications": ["Face recognition", "Character recognition", "Speech processing"],
+      "Methods": ["Bayes classifier", "Maximum likelihood", "Gaussian mixture models", "k-NN"],
+      "Examples": ["Classifying iris patterns", "Spam email filtering"]
     },
     "relations": [
-      {
-        "type": "Formalized In",
-        "target": "Theorem 12.5 (p. 332)"
-      },
-      {
-        "type": "Restricted To",
-        "target": "Critical Cone $$ \\mathcal{C}(x^*, \\lambda^*) $$"
-      }
+      {"type": "part_of", "target": "Pattern Recognition"},
+      {"type": "uses", "target": "Feature Vector"},
+      {"type": "foundation_for", "target": "Machine Learning Classifiers"},
+      {"type": "contrasts_with", "target": "Structural Pattern Recognition"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "07-recognition-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Second Order Sufficient Conditions (Constrained)",
-    "type": "Sufficient Condition/Theorem",
-    "domain": "Constrained Optimization Theory",
-    "definition": "If $$ x^* $$ is a KKT point and $$ w^T \\nabla_{xx}^2 \\mathcal{L}(x^*, \\lambda^*) w > 0 $$ for all $$ w \\in \\mathcal{C}(x^*, \\lambda^*) $$, $$ w \\ne 0 $$, then $$ x^* $$ is a strict local minimizer (Theorem 12.6, p. 333).",
-    "description": "Stronger than necessary conditions, this guarantees local optimality when the Lagrangian Hessian is positive definite on the critical cone.",
+    "entity": "Structural Pattern Recognition",
+    "type": "Framework",
+    "domain": "Computer Vision",
+    "definition": "Structural pattern recognition represents patterns using symbolic data structures such as strings, trees, or graphs, emphasizing relational and syntactic organization.",
+    "description": "It is suitable for patterns with explicit compositional structure, using grammars and parsing to recognize hierarchical relationships.",
     "properties": {
-      "Goal": "Confirm that a KKT point $$ x^* $$ is a strict local minimizer.",
-      "Applications": [
-        "Proving local optimality in constrained problems"
-      ],
-      "Methods": [
-        "Verify positive definiteness of $$ \\nabla_{xx}^2 \\mathcal{L} $$ on $$ \\mathcal{C}(x^*, \\lambda^*) $$",
-        "For linear constraints: check $$ \\nabla^2 f(x^*) \\succ 0 $$ on null space of active constraints"
-      ],
-      "Examples": [
-        "In example (29), point $$ (-1,-1) $$ with $$ \\lambda^* = 1/2 $$ has positive definite $$ \\nabla_{xx}^2 \\mathcal{L} $$ on critical cone → local minimizer."
-      ]
+      "Goal": "Recognize patterns based on their compositional and relational structure.",
+      "Applications": ["Syntactic OCR", "Fingerprint analysis", "Chemical structure recognition"],
+      "Methods": ["Formal grammars", "Graph matching", "Parsing algorithms"],
+      "Examples": ["Recognizing sentence structure", "Identifying molecular bonds"]
     },
     "relations": [
-      {
-        "type": "Formalized In",
-        "target": "Theorem 12.6 (p. 333)"
-      },
-      {
-        "type": "Uses",
-        "target": "Critical Cone $$ \\mathcal{C}(x^*, \\lambda^*) $$"
-      }
+      {"type": "part_of", "target": "Pattern Recognition"},
+      {"type": "uses", "target": "Symbolic Representation"},
+      {"type": "contrasts_with", "target": "Statistical Pattern Recognition"},
+      {"type": "applies_to", "target": "Hierarchical Patterns"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "07-recognition-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Critical Cone ($$ \\mathcal{C}(x^*, \\lambda^*) $$)",
-    "type": "Geometric Concept/Set",
-    "domain": "Constrained Optimization Geometry",
-    "definition": "The set of directions $$ w $$ such that:\n1. $$ w $$ is in the linearized feasible cone: $$ \\nabla c_i(x^*)^T w \\ge 0 $$ for all $$ i $$ with $$ c_i(x^*)=0 $$,\n2. $$ \\nabla f(x^*)^T w = 0 $$ (critical directions).",
-    "description": "Subset of the feasible direction cone $$ \\mathcal{F}(x^*) $$ where first-order improvement is zero. Second-order conditions are checked only on this cone. For equality constraints, it is the null space of $$ \\nabla c(x^*)^T $$.",
+    "entity": "Feature Vector",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "A feature vector is a fixed-length numerical representation of an input pattern, where each element corresponds to a measured or derived attribute.",
+    "description": "It transforms raw data into a format suitable for statistical classifiers, enabling distance-based or probabilistic decision-making in pattern space.",
     "properties": {
-      "Goal": "Define the subspace for second-order optimality tests.",
-      "Applications": [
-        "Second-order necessary/sufficient conditions"
-      ],
-      "Methods": [
-        "Active inequalities with $$ \\lambda_i^* > 0 $$: $$ w \\perp \\nabla c_i(x^*) $$",
-        "Active inequalities with $$ \\lambda_i^* = 0 $$: $$ \\nabla c_i(x^*)^T w \\ge 0 $$",
-        "Equality constraints: $$ \\nabla c_i(x^*)^T w = 0 $$"
-      ],
-      "Examples": [
-        "Example 12.7 (59) at $$ (0,0) $$: $$ \\mathcal{C} = \\{(0, w_2) \\mid w_2 \\ge 0\\} $$"
-      ]
+      "Goal": "Map complex patterns into comparable numerical space.",
+      "Applications": ["Classification", "Clustering", "Regression"],
+      "Methods": ["Feature extraction", "Dimensionality reduction", "Normalization"],
+      "Examples": ["HOG features for pedestrians", "MFCC for speech", "Pixel intensities"]
     },
     "relations": [
-      {
-        "type": "Subset Of",
-        "target": "Linearized Feasible Cone $$ \\mathcal{F}(x^*) $$"
-      },
-      {
-        "type": "Orthogonal To",
-        "target": "$$ \\nabla f(x^*) $$"
-      }
+      {"type": "input_to", "target": "Classifier"},
+      {"type": "output_of", "target": "Feature Extraction"},
+      {"type": "used_in", "target": "Statistical Pattern Recognition"},
+      {"type": "transformed_by", "target": "PCA"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "07-recognition-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Linear Program (LP) in Standard Form (64)",
-    "type": "Optimization Problem Type",
-    "domain": "Linear Programming",
-    "definition": "$$ \\min~c^T x $$ subject to $$ Ax = b $$, $$ x \\ge 0 $$, where $$ A \\in \\mathbb{R}^{m \\times n} $$, $$ m < n $$, and $$ A $$ has full row rank.",
-    "description": "Standard form used by the Simplex Method. All constraints are equalities and non-negativity. Conversion from inequality form requires slack variables.",
+    "entity": "Classifier",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "A classifier is a function that maps input feature vectors to discrete class labels, typically learned from labeled training examples.",
+    "description": "It forms the decision stage in pattern recognition systems, using learned boundaries or probabilities to assign new observations to predefined categories.",
     "properties": {
-      "Goal": "Minimize linear cost over polyhedral feasible set.",
-      "Applications": [
-        "Resource allocation, production planning, logistics"
-      ],
-      "Methods": [
-        "Simplex Method",
-        "Interior Point Methods"
-      ],
-      "Examples": []
+      "Goal": "Assign input patterns to correct categories with minimal error.",
+      "Applications": ["Object detection", "Face verification", "Anomaly detection"],
+      "Methods": ["Linear discriminant", "SVM", "Decision trees", "Neural networks"],
+      "Examples": ["k-NN", "Naive Bayes", "Random Forest"]
     },
     "relations": [
-      {
-        "type": "Converted From",
-        "target": "LP in Canonical Form (65)"
-      },
-      {
-        "type": "Solved By",
-        "target": "Simplex Method"
-      }
+      {"type": "core_component_of", "target": "Statistical Pattern Recognition"},
+      {"type": "uses", "target": "Feature Vector"},
+      {"type": "trained_on", "target": "Training Data"},
+      {"type": "outputs", "target": "Class Label"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "07-recognition-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Linear Program (LP) in Canonical Form (65)",
-    "type": "Optimization Problem Type",
-    "domain": "Linear Programming",
-    "definition": "$$ \\min~c^T x $$ subject to $$ Ax \\le b $$, $$ x \\ge 0 $$.",
-    "description": "Natural modeling form with inequality constraints. Feasible region is a polyhedron (polygon in 2D). Converted to standard form via slack variables.",
+    "entity": "Template Matching",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Template matching is a pattern recognition technique that searches for a known pattern (template) in an image by sliding it across all locations and measuring similarity.",
+    "description": "It is simple and effective for rigid, well-defined patterns under controlled conditions but sensitive to scale, rotation, and illumination changes.",
     "properties": {
-      "Goal": "Minimize linear objective over inequality-constrained domain.",
-      "Applications": [
-        "Initial formulation of real-world LP problems"
-      ],
-      "Methods": [
-        "Add slack variables: $$ Ax + z = b $$, $$ z \\ge 0 $$ → standard form (66)"
-      ],
-      "Examples": []
+      "Goal": "Locate instances of a known pattern within an image.",
+      "Applications": ["Character recognition", "Defect detection", "Logo identification"],
+      "Methods": ["Correlation", "Normalized cross-correlation", "SSD"],
+      "Examples": ["Finding 'STOP' signs", "Matching printed circuit patterns"]
     },
     "relations": [
-      {
-        "type": "Converted To",
-        "target": "LP in Standard Form via $$ [A \\ I] \\begin{bmatrix} x \\\\ z \\end{bmatrix} = b $$ (66)"
-      }
+      {"type": "is_a", "target": "Pattern Recognition"},
+      {"type": "requires", "target": "Template"},
+      {"type": "sensitive_to", "target": "Geometric Variations"},
+      {"type": "extended_by", "target": "Deformable Templates"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "07-recognition-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Slack Variables ($$ z $$)",
-    "type": "Auxiliary Variable",
-    "domain": "Linear Programming",
-    "definition": "Non-negative variables $$ z \\ge 0 $$ introduced to convert inequalities $$ Ax \\le b $$ into equalities $$ Ax + z = b $$.",
-    "description": "Each inequality gets one slack variable. Transforms canonical form into standard form suitable for Simplex Method.",
+    "entity": "Bayes Classifier",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "The Bayes classifier assigns an input pattern to the class with the highest posterior probability, computed using Bayes' theorem and class-conditional likelihoods.",
+    "description": "It is statistically optimal when probability distributions are known, forming the theoretical foundation for many practical classifiers.",
     "properties": {
-      "Goal": "Enable equality-based algorithms on inequality-constrained LPs.",
-      "Applications": [
-        "Conversion from canonical to standard form"
-      ],
-      "Methods": [
-        "Augment constraint matrix: $$ [A \\ I] $$, variable vector: $$ [x; z] $$"
-      ],
-      "Examples": []
+      "Goal": "Minimize expected classification error using probabilistic inference.",
+      "Applications": ["Spam filtering", "Medical diagnosis", "Document classification"],
+      "Methods": ["P(class|features) = P(features|class) * P(class) / P(features)"],
+      "Examples": ["Naive Bayes", "Gaussian Bayes classifier"]
     },
     "relations": [
-      {
-        "type": "Transforms",
-        "target": "LP Canonical Form (65) → Standard Form (66)"
-      }
+      {"type": "is_a", "target": "Classifier"},
+      {"type": "foundation_for", "target": "Probabilistic Classification"},
+      {"type": "requires", "target": "Prior Probability"},
+      {"type": "uses", "target": "Likelihood Model"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "07-recognition-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Simplex Method",
-    "type": "Optimization Algorithm",
-    "domain": "Linear Programming",
-    "definition": "An iterative algorithm that solves LPs in standard form by moving from vertex to adjacent vertex of the feasible polyhedron, reducing cost at each pivot.",
-    "description": "Exploits vertex optimality: optimal solution lies at a vertex. Avoids checking all $2^n$ KKT combinations by following improving edges. Converges in finite steps (non-degenerate case).",
+    "entity": "Object Recognition",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Object recognition is the task of identifying and localizing specific objects within images or video, assigning them semantic class labels.",
+    "description": "It combines detection (where) and classification (what) and is a core capability in autonomous systems, surveillance, and augmented reality.",
     "properties": {
-      "Goal": "Find global minimum of linear program.",
-      "Applications": [
-        "Solving LPs in standard form (64)"
-      ],
-      "Methods": [
-        "Phase I: Find initial basic feasible solution",
-        "Phase II: Pivot to reduce cost until optimality ($$ s \\ge 0 $$)",
-        "Use reduced costs $$ s_j = c_j - \\lambda^T A_{:j} $$ to select entering variable"
-      ],
-      "Examples": []
+      "Goal": "Detect and classify objects in visual scenes.",
+      "Applications": ["Autonomous driving", "Robotics", "Image search", "Security"],
+      "Methods": ["Sliding window", "Region proposals", "Deep learning (CNNs)"],
+      "Examples": ["Detecting pedestrians", "Recognizing furniture in rooms"]
     },
     "relations": [
-      {
-        "type": "Applied To",
-        "target": "Linear Program in Standard Form (64)"
-      },
-      {
-        "type": "Avoids",
-        "target": "Enumerating $2^n$ KKT active-set combinations"
-      }
+      {"type": "is_a", "target": "Pattern Recognition"},
+      {"type": "requires", "target": "Feature Extraction"},
+      {"type": "enabled_by", "target": "Local Features"},
+      {"type": "modernized_by", "target": "Deep Learning"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "07-recognition-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   }

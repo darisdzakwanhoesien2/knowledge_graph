@@ -1,252 +1,208 @@
 [
   {
-    "entity": "Duality Theory (Convex Optimization)",
-    "type": "Optimization Concept/Theory",
-    "domain": "Convex Optimization",
-    "definition": "A major concept in optimization focused on the relationship between a primal constrained minimization problem ($\\min~f(x)$ subject to $c(x)\\ge0$) and its corresponding dual problem.",
-    "description": "Duality requires strong assumptions, namely that the objective function $f$ must be convex, and the constraint functions $c_{j}$ must be concave (meaning $-c_{j}$ are convex). This guarantees that the Lagrangian $\\mathcal{L}(x,\\lambda)$ is convex in $x$ for any fixed $\\lambda\\ge0$.",
+    "entity": "Image Matching",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "Image matching is the process of establishing correspondences between two or more images of the same scene taken from different viewpoints, times, or sensors to determine geometric or photometric relationships.",
+    "description": "It forms the foundation for applications requiring image alignment, such as panorama stitching, 3D reconstruction, and visual tracking. Matching can be sparse (feature-based) or dense (pixel-wise).",
     "properties": {
-      "Goal": "Analyze and potentially solve constrained optimization problems using dual variables.",
-      "Applications": [
-        "Linear Programming (LP)",
-        "Quadratic Programming (QP)"
-      ],
-      "Methods": [
-        "Formulating the Lagrangian function $\\mathcal{L}(x,\\lambda)=f(x)-\\lambda^{T}c(x)$"
-      ],
-      "Examples": []
+      "Goal": "Find reliable point or region correspondences across images.",
+      "Applications": ["Structure from Motion", "Stereo vision", "Image retrieval", "Augmented reality"],
+      "Methods": ["Feature-based matching", "Area-based matching", "Direct methods", "Learning-based matching"],
+      "Examples": ["Matching SIFT features", "Dense optical flow", "Template correlation"]
     },
     "relations": [
-      {
-        "type": "Requires Convexity Of",
-        "target": "$f(x)$"
-      },
-      {
-        "type": "Requires Concavity Of",
-        "target": "$c(x)$"
-      }
+      {"type": "enables", "target": "3D Reconstruction"},
+      {"type": "includes", "target": "Feature Matching"},
+      {"type": "includes", "target": "Dense Matching"},
+      {"type": "uses", "target": "Local Features"},
+      {"type": "related_to", "target": "Geometric Transformation"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "09-matching-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Dual Objective Function ($q(\\lambda)$)",
-    "type": "Mathematical Function",
-    "domain": "Duality Theory",
-    "definition": "The infimum of the Lagrangian function over $x$ for a fixed $\\lambda\\ge0$: $q(\\lambda)=\\inf_{x}\\mathcal{L}(x,\\lambda)$ (74).",
-    "description": "This function is defined only for those $\\lambda\\ge0$ for which the infimum is finite ($q(\\lambda)> -\\infty$). The dual function $q$ is always concave (hence $-q$ is convex).",
+    "entity": "Epipolar Geometry",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "Epipolar geometry describes the intrinsic projective relationship between two views of a 3D scene, constraining the location of corresponding points to lie on corresponding epipolar lines.",
+    "description": "It reduces the search space for matching from 2D to 1D and is encapsulated by the fundamental matrix (for uncalibrated cameras) or essential matrix (for calibrated cameras).",
     "properties": {
-      "Goal": "Define the objective function for the Dual Problem (76).",
-      "Applications": [
-        "Formulating the Dual Problem (76)"
-      ],
-      "Methods": [
-        "Finding critical points by setting $\\nabla_{x}\\mathcal{L}(x,\\lambda)=0$ (assuming smoothness)"
-      ],
-      "Examples": [
-        "For $\\min\\frac{1}{2}(x_{1}^{2}+x_{2}^{2})$ subject to $x_{1}-1\\ge0$, $q(\\lambda)=-\\frac{1}{2}\\lambda^{2}+\\lambda$."
-      ]
+      "Goal": "Constrain correspondence search using stereo geometry.",
+      "Applications": ["Stereo matching", "Camera calibration", "Motion estimation"],
+      "Methods": ["Fundamental matrix estimation", "Essential matrix", "Epipolar line computation"],
+      "Examples": ["Left image point maps to line in right image"]
     },
     "relations": [
-      {
-        "type": "Is Infimum Of",
-        "target": "Lagrangian $\\mathcal{L}(x,\\lambda)$"
-      },
-      {
-        "type": "Used To Formulate",
-        "target": "Dual Problem (76)"
-      }
+      {"type": "foundation_for", "target": "Stereo Matching"},
+      {"type": "encapsulated_by", "target": "Fundamental Matrix"},
+      {"type": "encapsulated_by", "target": "Essential Matrix"},
+      {"type": "used_in", "target": "Wide Baseline Matching"},
+      {"type": "related_to", "target": "Baseline"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "09-matching-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Dual Problem (76)",
-    "type": "Optimization Problem Type",
-    "domain": "Duality Theory",
-    "definition": "The optimization problem defined by maximizing the dual objective function $q(\\lambda)$ subject to the constraint $\\lambda\\ge0$: $\\max~q(\\lambda)$ subject to $\\lambda\\ge0$.",
-    "description": "Solving the dual problem provides information on the original (primal) problem (73). Due to weak duality, the optimal value of (76) is less than or equal to the optimal value of the primal problem.",
+    "entity": "Fundamental Matrix",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "The fundamental matrix is a 3x3 rank-2 matrix that encapsulates the epipolar geometry between two uncalibrated images, mapping points in one image to epipolar lines in the other.",
+    "description": "It is estimated from point correspondences and used to enforce geometric consistency in matching and reconstruction. F satisfies x'ᵀ F x = 0 for corresponding points x and x'.",
     "properties": {
-      "Goal": "Maximize $q(\\lambda)$ to find the best lower bound for the primal problem's optimal value.",
-      "Applications": [
-        "Solving the Dual LP (79)"
-      ],
-      "Methods": [
-        "Solving the KKT conditions for $x$ once the optimal $\\lambda^*$ is found."
-      ],
-      "Examples": []
+      "Goal": "Encode projective geometry between two views without calibration.",
+      "Applications": ["Correspondence validation", "Camera pose estimation", "Image rectification"],
+      "Methods": ["8-point algorithm", "7-point algorithm", "RANSAC estimation"],
+      "Examples": ["F computed from 8+ matches", "Used in guided matching"]
     },
     "relations": [
-      {
-        "type": "Provides Bound For",
-        "target": "Primal Problem (73)"
-      }
+      {"type": "represents", "target": "Epipolar Geometry"},
+      {"type": "estimated_from", "target": "Point Correspondences"},
+      {"type": "generalizes", "target": "Essential Matrix"},
+      {"type": "input_to", "target": "Image Rectification"},
+      {"type": "decomposed_into", "target": "Camera Matrices"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "09-matching-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Weak Duality",
-    "type": "Theorem/Concept",
-    "domain": "Duality Theory",
-    "definition": "The theorem stating that for any feasible primal solution $x$ and any $\\lambda\\ge0$ such that $q(\\lambda)> -\\infty$, the dual objective function value is always less than or equal to the primal objective value: $q(\\lambda)\\le f(x)$.",
-    "description": "This inequality holds because $c(x)\\ge0$ and $\\lambda\\ge0$ imply $-\\lambda^{T}c(x)\\le0$, so $\\mathcal{L}(x,\\lambda)\\le f(x)$ and thus $q(\\lambda)\\le f(x)$. Weak duality gives a lower bound on the primal optimal value.",
+    "entity": "Essential Matrix",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "The essential matrix is a 3x3 matrix that describes the epipolar geometry between two calibrated cameras, encoding relative rotation and translation (up to scale) between their coordinate systems.",
+    "description": "It is a specialized version of the fundamental matrix when intrinsic parameters are known. E = K'ᵀ F K, and it has exactly two equal non-zero singular values.",
     "properties": {
-      "Goal": "Provide a simple lower bound for the optimal value of the primal problem.",
-      "Applications": [
-        "Verifying optimality: if $q(\\lambda)=f(x)$ for feasible $x,\\lambda$, then $x$ and $\\lambda$ are optimal"
-      ],
-      "Methods": [],
-      "Examples": []
+      "Goal": "Recover relative pose from calibrated image pairs.",
+      "Applications": ["5-point algorithm", "Visual odometry", "SLAM initialization"],
+      "Methods": ["5-point algorithm", "Nister's method", "Decomposition into R and t"],
+      "Examples": ["E from 5+ matches in calibrated stereo"]
     },
     "relations": [
-      {
-        "type": "Formalized In",
-        "target": "Theorem 12.11 (p. 345)"
-      },
-      {
-        "type": "Implies",
-        "target": "Strong Duality (if additional conditions hold and equality is achieved)"
-      }
+      {"type": "special_case_of", "target": "Fundamental Matrix"},
+      {"type": "requires", "target": "Camera Calibration"},
+      {"type": "decomposed_into", "target": "Rotation Matrix"},
+      {"type": "decomposed_into", "target": "Translation Direction"},
+      {"type": "used_in", "target": "Relative Pose Estimation"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "09-matching-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Strong Duality (Theorem 12.12)",
-    "type": "Theorem/Concept",
-    "domain": "Duality Theory",
-    "definition": "The property that the optimal values of the primal problem $f(x^*)$ and the dual problem $q(\\lambda^*)$ are equal, i.e., $q(\\lambda^{*})=f(x^{*})$. Under convexity and a constraint qualification (e.g., Slater's condition), strong duality holds.",
-    "description": "Theorem 12.12 states that if $x^{*}$ is a solution to the primal problem (73) and there exists $\\lambda^{*}$ such that $(x^{*},\\lambda^{*})$ satisfies the KKT conditions (under convexity assumptions), then $\\lambda^{*}$ solves the dual problem (76) and $f(x^*)=q(\\lambda^*)$.",
+    "entity": "RANSAC",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "RANSAC (Random Sample Consensus) is a robust estimation algorithm that fits a model to data containing outliers by iteratively selecting random subsets, estimating the model, and counting inliers.",
+    "description": "It is widely used in geometric vision to estimate fundamental/essential matrices, homographies, or camera poses from noisy correspondences.",
     "properties": {
-      "Goal": "Confirm that a found pair $(x,\\lambda)$ is globally optimal for both the primal and dual problems.",
-      "Applications": [
-        "Solving optimization problems by finding $\\lambda^*$ first and then $x$"
-      ],
-      "Methods": [
-        "Proof combines convexity of $\\mathcal{L}(x,\\lambda^{*})$ in $x$, KKT conditions, and weak duality"
-      ],
-      "Examples": [
-        "In example (75), the value of both the primal and dual problems is $\\frac{1}{2}$."
-      ]
+      "Goal": "Estimate model parameters robustly in the presence of outliers.",
+      "Applications": ["Feature matching cleanup", "Pose estimation", "Image stitching"],
+      "Methods": ["Random sampling", "Model fitting", "Inlier counting", "Iteration until confidence"],
+      "Examples": ["Estimating F from 1000 matches with 60% outliers"]
     },
     "relations": [
-      {
-        "type": "Requires Fulfillment Of",
-        "target": "KKT conditions (at $x^* , \\lambda^*$)"
-      },
-      {
-        "type": "Formalized In",
-        "target": "Theorem 12.12 (p. 346)"
-      }
+      {"type": "used_in", "target": "Fundamental Matrix Estimation"},
+      {"type": "used_in", "target": "Homography Estimation"},
+      {"type": "filters", "target": "Outliers"},
+      {"type": "complemented_by", "target": "LO-RANSAC"},
+      {"type": "foundation_for", "target": "Robust Fitting"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "09-matching-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Dual Linear Program (79)",
-    "type": "Optimization Problem Type",
-    "domain": "Linear Programming/Duality",
-    "definition": "The dual problem corresponding to the primal LP $\\min~c^{T}x$ subject to $Ax\\ge b$ ($Ax-b\\ge0$): $\\max~b^{T}\\lambda$ subject to $A^{T}\\lambda = c$ and $\\lambda\\ge0$.",
-    "description": "The dual objective function $q(\\lambda)$ for this LP is $b^{T}\\lambda$ when the stationarity condition $A^{T}\\lambda = c$ holds (otherwise $q(\\lambda)=-\\infty$). This transformation is useful if the dual problem is easier to solve than the primal.",
+    "entity": "Stereo Matching",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Stereo matching is the process of finding corresponding pixels between a pair of rectified stereo images to compute depth via triangulation, producing a disparity map.",
+    "description": "It exploits epipolar constraints to reduce search to 1D and uses similarity measures (e.g., SAD, NCC) with aggregation and optimization to handle ambiguity and occlusions.",
     "properties": {
-      "Goal": "Solve the primal LP (78) indirectly by solving the dual problem.",
-      "Applications": [
-        "Alternative solution method for LP problems"
-      ],
-      "Methods": [
-        "If solved for $\\lambda^{*}$, use $\\lambda^{*}$ to simplify the KKT conditions for $x$"
-      ],
-      "Examples": []
+      "Goal": "Compute dense depth from calibrated stereo pairs.",
+      "Applications": ["3D reconstruction", "Robot navigation", "Autonomous driving"],
+      "Methods": ["Local block matching", "Semi-global matching", "Graph cuts", "Deep stereo"],
+      "Examples": ["Disparity map from left-right image pair"]
     },
     "relations": [
-      {
-        "type": "Primal Is",
-        "target": "LP Problem (78)"
-      }
+      {"type": "uses", "target": "Epipolar Geometry"},
+      {"type": "requires", "target": "Image Rectification"},
+      {"type": "outputs", "target": "Disparity Map"},
+      {"type": "enables", "target": "Depth Estimation"},
+      {"type": "part_of", "target": "Passive 3D Vision"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "09-matching-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Interior Point Methods",
-    "type": "Optimization Algorithm",
-    "domain": "Constrained Optimization",
-    "definition": "A class of algorithms designed to overcome the combinatorial difficulty associated with optimization problems having many inequality constraints.",
-    "description": "These methods are typically required for Quadratic Programming (QP) problems where the inequality constraints lead to $2^{m}$ possible active sets, making direct application of active-set or corner-based methods impractical.",
+    "entity": "Image Rectification",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Image rectification is the process of warping a stereo image pair so that epipolar lines become horizontal and conjugate points have the same y-coordinate, simplifying correspondence search.",
+    "description": "It enables efficient scanline-based stereo algorithms and is typically performed using the fundamental matrix or known camera parameters.",
     "properties": {
-      "Goal": "Efficiently solve constrained optimization problems with numerous inequality constraints.",
-      "Applications": [
-        "Quadratic Programming (44)"
-      ],
-      "Methods": [],
-      "Examples": []
+      "Goal": "Align epipolar lines for efficient stereo matching.",
+      "Applications": ["Dense stereo", "Disparity estimation", "Multi-view stereo"],
+      "Methods": ["Hartley’s method", "Polar rectification", "Calibrated rectification"],
+      "Examples": ["Transforming converging epipoles to infinity"]
     },
     "relations": [
-      {
-        "type": "Addresses Difficulty Of",
-        "target": "Inequality constraints ($2^m$ possible active sets)"
-      }
+      {"type": "precedes", "target": "Stereo Matching"},
+      {"type": "uses", "target": "Fundamental Matrix"},
+      {"type": "produces", "target": "Rectified Images"},
+      {"type": "simplifies", "target": "Correspondence Search"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "09-matching-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Simplex Method Worst-Case Complexity",
-    "type": "Performance Metric/Bound",
-    "domain": "Linear Programming",
-    "definition": "The maximum theoretical number of vertices the Simplex method might have to visit in the worst case, given by the number of feasible basic solutions $\\binom{m}{n}$ (for $m$ constraints and $n$ variables in standard form with $m\\ge n$).",
-    "description": "Although the worst-case scenario is exponential in $n$ (as illustrated by contrived examples like the Klee-Minty cube), the Simplex method is regarded as efficient in practice, typically requiring at most $2m$ to $3m$ pivots.",
+    "entity": "Homography",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "A homography is a 3x3 projective transformation that maps points from one plane to another (or between two views of the same plane), preserving collinearity but not distances or angles.",
+    "description": "It is used to align images of planar scenes, remove perspective distortion, and enable direct pixel-wise comparison in matching.",
     "properties": {
-      "Goal": "Define the upper bound of computational effort required by the Simplex method in the worst case.",
-      "Applications": [],
-      "Methods": [],
-      "Examples": [
-        "For a problem with $m=6$ equality constraints and $n=2$ non-basic variables (i.e., $6$ choose $2$), there are $\\binom{6}{2}=15$ basic feasible solutions."
-      ]
+      "Goal": "Map image coordinates between planar views.",
+      "Applications": ["Panorama stitching", "Image mosaicking", "Augmented reality", "Document scanning"],
+      "Methods": ["DLT (Direct Linear Transformation)", "RANSAC estimation from 4+ points"],
+      "Examples": ["Warping book page to frontal view"]
     },
     "relations": [
-      {
-        "type": "Motivated Replacement By",
-        "target": "Polynomial-time LP algorithms (e.g., interior-point methods)"
-      },
-      {
-        "type": "Contrasts With Typical Performance",
-        "target": "$\\le 2m$ or $3m$ pivots"
-      }
+      {"type": "special_case_of", "target": "Projective Transformation"},
+      {"type": "estimated_from", "target": "Planar Correspondences"},
+      {"type": "used_in", "target": "Image Stitching"},
+      {"type": "contrasts_with", "target": "Fundamental Matrix"},
+      {"type": "induced_by", "target": "Planar Scene"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "09-matching-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   }

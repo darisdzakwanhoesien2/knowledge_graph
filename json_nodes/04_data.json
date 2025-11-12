@@ -1,242 +1,229 @@
 [
   {
-    "entity": "Bisection Method",
-    "type": "Root-Finding Algorithm",
-    "domain": "Numerical Optimization / Line Search",
-    "definition": "A robust bracketing method that locates a root of a continuous function $\\phi(\\alpha)$ by repeatedly halving an interval $[a, b]$ where $\\phi(a) \\le 0 \\le \\phi(b)$ (or vice versa) until the interval length is below a tolerance.",
-    "description": "Used in line search to find a step length $\\alpha_k > 0$ satisfying the Wolfe conditions. Converges **linearly** with rate $C = \\frac{1}{2}$ because the uncertainty interval is halved at each iteration.",
+    "entity": "Binary Image",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "A binary image is a digital image that has only two possible values for each pixel, typically represented as 0 (black) and 1 (white), representing background and foreground respectively.",
+    "description": "It is the result of thresholding a grayscale image and serves as a simplified representation for segmentation, object detection, and morphological processing in computer vision pipelines.",
     "properties": {
-      "Goal": "Find $\\alpha_k$ such that $\\phi(\\alpha_k) \\le \\phi(0) + c_1 \\alpha_k \\phi'(0)$ and $|\\phi'(\\alpha_k)| \\le c_2 |\\phi'(0)|$ (Wolfe conditions).",
-      "Applications": [
-        "Exact line search fallback",
-        "Backtracking line search when Armijo fails"
-      ],
-      "Methods": [
-        "Initialize bracket $[\\alpha_{\\text{low}}, \\alpha_{\\text{high}}]$ with opposite signs or satisfying bounds",
-        "Set midpoint $\\alpha_{\\text{mid}} = \\frac{\\alpha_{\\text{low}} + \\alpha_{\\text{high}}}{2}$",
-        "Shrink interval based on $\\phi(\\alpha_{\\text{mid}})$ sign or Wolfe violation"
-      ],
-      "Examples": [
-        "Solving $\\phi'(\\alpha) = \\alpha^5 - \\alpha - 1 = 0$ in $[1, 2]$"
-      ]
+      "Goal": "Separate objects of interest from the background using intensity thresholds.",
+      "Applications": ["Object segmentation", "Document analysis", "Medical imaging", "Industrial inspection"],
+      "Methods": ["Thresholding", "Otsu's method", "Adaptive thresholding"],
+      "Examples": ["Scanned text documents", "Silhouettes", "Mask images"]
     },
     "relations": [
-      {
-        "type": "Convergence Rate",
-        "target": "Linear, $C = \\frac{1}{2}$"
-      },
-      {
-        "type": "Used In",
-        "target": "Strong Wolfe Line Search"
-      },
-      {
-        "type": "Reference",
-        "target": "Nocedal & Wright, p. 56"
-      }
+      {"type": "produced_by", "target": "Thresholding"},
+      {"type": "input_to", "target": "Morphological Operations"},
+      {"type": "used_in", "target": "Connected Component Labeling"},
+      {"type": "basis_for", "target": "Shape Analysis"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "04-binary-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Least Squares Problems",
-    "type": "Optimization Problem Type",
-    "domain": "Unconstrained Optimization",
-    "definition": "Minimize $f(x) = \\frac{1}{2} \\| r(x) \\|^2 = \\frac{1}{2} \\sum_{j=1}^m r_j(x)^2$, where $r: \\mathbb{R}^n \\to \\mathbb{R}^m$ is the vector of **residual functions** $r_j(x)$.",
-    "description": "Arises when overdetermined systems $r_j(x) = 0$ ($m \\ge n$) have no exact solution. Transforms root-finding into minimization. Special structure: $\\nabla f(x) = J(x)^T r(x)$, $\\nabla^2 f(x) = J(x)^T J(x) + \\sum r_j(x) \\nabla^2 r_j(x)$.",
+    "entity": "Thresholding",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Thresholding is an image segmentation technique that converts a grayscale image into a binary image by assigning pixel values above a threshold to one class and below to another.",
+    "description": "It is one of the simplest and most widely used segmentation methods, effective when objects and background have sufficiently different intensity distributions.",
     "properties": {
-      "Goal": "Find best-fit parameters $x^*$ minimizing sum of squared residuals.",
-      "Applications": [
-        "Data fitting",
-        "Machine learning (regression)",
-        "Parameter estimation"
-      ],
-      "Methods": [
-        "Gauss–Newton (ignores second-order residual terms)",
-        "Levenberg–Marquardt (adds damping)",
-        "Full Newton (uses exact Hessian)"
-      ],
-      "Examples": [
-        "Linear regression: $r_j(x) = a_j^T x - b_j$"
-      ]
+      "Goal": "Create a binary mask separating foreground from background.",
+      "Applications": ["Document binarization", "Motion detection", "Edge-based segmentation"],
+      "Methods": ["Global thresholding", "Local/adaptive thresholding", "Otsu's method"],
+      "Examples": ["Converting medical scans to highlight tumors", "Isolating text in scanned pages"]
     },
     "relations": [
-      {
-        "type": "Objective",
-        "target": "$f(x) = \\frac{1}{2} \\| r(x) \\|^2$"
-      },
-      {
-        "type": "Gradient",
-        "target": "$\\nabla f(x) = J(x)^T r(x)$"
-      },
-      {
-        "type": "Assumes",
-        "target": "$m \\ge n$ (overdetermined)"
-      }
+      {"type": "produces", "target": "Binary Image"},
+      {"type": "part_of", "target": "Segmentation"},
+      {"type": "precedes", "target": "Morphological Processing"},
+      {"type": "enhanced_by", "target": "Preprocessing"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "04-binary-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Linear Least Squares Problem (Linear Regression)",
-    "type": "Optimization Problem Type",
-    "domain": "Linear Algebra / Regression",
-    "definition": "Minimize $f(x) = \\frac{1}{2} \\| A x - b \\|^2$, where $A \\in \\mathbb{R}^{m \\times n}$, $b \\in \\mathbb{R}^m$, $m \\ge n$.",
-    "description": "Closed-form solution via **normal equations**: $A^T A x = A^T b$. Numerically stable via **QR factorization**: $A = QR$, solve $R x = Q^T b$.",
+    "entity": "Preprocessing",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Preprocessing refers to operations applied to an input image before the main analysis to enhance relevant features and suppress noise or unwanted variations.",
+    "description": "In binary image analysis, it improves the quality of subsequent thresholding and segmentation by reducing noise, normalizing illumination, and enhancing contrast.",
     "properties": {
-      "Goal": "Find $x^*$ minimizing $\\sum (a_j^T x - b_j)^2$.",
-      "Applications": [
-        "Linear regression",
-        "Polynomial fitting"
-      ],
-      "Methods": [
-        "Normal equations (if $A^T A$ well-conditioned)",
-        "QR decomposition (preferred)",
-        "SVD (for rank-deficient cases)"
-      ],
-      "Examples": [
-        "Fit $y = x_1 + x_2 t$: residuals $r_j = x_1 + x_2 t_j - y_j$"
-      ]
+      "Goal": "Improve image quality for robust downstream processing.",
+      "Applications": ["Noise reduction", "Contrast enhancement", "Illumination correction"],
+      "Methods": ["Smoothing filters", "Histogram equalization", "Bilateral filtering"],
+      "Examples": ["Applying Gaussian blur before thresholding", "Removing salt-and-pepper noise"]
     },
     "relations": [
-      {
-        "type": "Normal Equations",
-        "target": "$A^T A x = A^T b$"
-      },
-      {
-        "type": "Hessian",
-        "target": "$\\nabla^2 f(x) = A^T A$"
-      },
-      {
-        "type": "Stable Solve Via",
-        "target": "QR: $A = QR$, $R x = Q^T b$"
-      }
+      {"type": "precedes", "target": "Segmentation"},
+      {"type": "improves", "target": "Thresholding"},
+      {"type": "part_of", "target": "Binary Image Analysis Pipeline"},
+      {"type": "uses", "target": "Image Filtering"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "04-binary-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Gauss–Newton Method",
-    "type": "Quasi-Newton Algorithm",
-    "domain": "Nonlinear Least Squares",
-    "definition": "Iterative method for nonlinear least squares: at $x_k$, solve $J_k^T J_k p_k = -J_k^T r_k$ for step $p_k$, where $J_k = J(x_k)$ is the Jacobian of $r$.",
-    "description": "Approximates Hessian as $B_k = J_k^T J_k$, neglecting $\\sum r_j \\nabla^2 r_j$. Valid when residuals are small at solution. Step satisfies $p_k^T \\nabla f_k = -\\| J_k p_k \\|^2 \\le 0$ (descent unless $J_k p_k = 0$).",
+    "entity": "Segmentation",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Segmentation is the process of partitioning an image into meaningful regions or objects, often producing a binary mask where each region is labeled.",
+    "description": "In binary vision, it typically results in a foreground/background separation and is a critical step before recognition or measurement.",
     "properties": {
-      "Goal": "Efficiently solve nonlinear least squares without computing second derivatives.",
-      "Applications": [
-        "Curve fitting",
-        "Nonlinear regression"
-      ],
-      "Methods": [
-        "Compute $J_k$, $r_k$",
-        "Solve $(J_k^T J_k) p_k = -J_k^T r_k$ (via QR/Cholesky)",
-        "Line search: $x_{k+1} = x_k + \\alpha_k p_k$"
-      ],
-      "Examples": []
+      "Goal": "Isolate objects of interest from the background.",
+      "Applications": ["Object counting", "Defect detection", "Character recognition"],
+      "Methods": ["Thresholding", "Edge detection", "Region growing"],
+      "Examples": ["Separating cells in microscopy", "Extracting text blocks"]
     },
     "relations": [
-      {
-        "type": "Approximates",
-        "target": "Newton’s method"
-      },
-      {
-        "type": "Hessian Approximation",
-        "target": "$B_k = J_k^T J_k$"
-      },
-      {
-        "type": "Descent Property",
-        "target": "$p_k^T \\nabla f_k = -\\| J_k p_k \\|^2 \\le 0$"
-      }
+      {"type": "follows", "target": "Preprocessing"},
+      {"type": "precedes", "target": "Post-processing"},
+      {"type": "produces", "target": "Binary Image"},
+      {"type": "enables", "target": "Shape Representation"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "04-binary-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Residual Functions ($r_j(x)$)",
-    "type": "Model Component",
-    "domain": "Least Squares",
-    "definition": "Scalar functions $r_j: \\mathbb{R}^n \\to \\mathbb{R}$, $j=1,\\dots,m$, representing model misfit: $r_j(x) = \\text{model}_j(x) - \\text{data}_j$.",
-    "description": "Stacked into vector $r(x) = [r_1(x), \\dots, r_m(x)]^T$. Objective: $f(x) = \\frac{1}{2} \\| r(x) \\|^2$. Gradient: $\\nabla f(x) = J(x)^T r(x)$, where $J(x) = \\nabla r(x)$ is $m \\times n$ Jacobian.",
+    "entity": "Post-processing",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Post-processing involves refinement operations applied to segmented binary images to correct errors, remove noise, and improve object integrity.",
+    "description": "Common operations include morphological filtering to close gaps, remove small islands, or smooth boundaries in binary masks.",
     "properties": {
-      "Goal": "Quantify error between model and observations.",
-      "Applications": [
-        "Define $f(x)$, $\\nabla f(x)$, $J(x)$"
-      ],
-      "Methods": [],
-      "Examples": [
-        "Linear: $r_j(x) = a_j^T x - b_j$",
-        "Nonlinear: $r_j(x) = e^{x_1 t_j} + x_2 \\cos(x_3 t_j) - y_j$"
-      ]
+      "Goal": "Clean and refine binary segmentation results.",
+      "Applications": ["Hole filling", "Noise removal", "Boundary smoothing"],
+      "Methods": ["Morphological closing", "Opening", "Connected component filtering"],
+      "Examples": ["Removing small speckles after thresholding", "Filling holes in segmented objects"]
     },
     "relations": [
-      {
-        "type": "Forms Vector",
-        "target": "$r(x) \\in \\mathbb{R}^m$"
-      },
-      {
-        "type": "Jacobian",
-        "target": "$J(x) = \\frac{\\partial r_j}{\\partial x_i}$"
-      }
+      {"type": "follows", "target": "Segmentation"},
+      {"type": "precedes", "target": "Labeling"},
+      {"type": "uses", "target": "Morphological Operations"},
+      {"type": "improves", "target": "Binary Image"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "04-binary-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   },
   {
-    "entity": "Levenberg–Marquardt Method",
-    "type": "Trust-Region Algorithm",
-    "domain": "Nonlinear Least Squares",
-    "definition": "Trust-region method for nonlinear least squares: solve $\\min_{\\|p\\| \\le \\Delta_k} \\| J_k p + r_k \\|^2$ approximately by solving $(J_k^T J_k + \\mu_k I) p = -J_k^T r_k$, adjusting $\\mu_k > 0$ to control step size.",
-    "description": "Combines Gauss–Newton ($\\mu_k = 0$) and steepest descent ($\\mu_k \\to \\infty$). Robust when $J_k^T J_k$ is singular or residuals are large.",
+    "entity": "Shape Representation",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Shape representation involves extracting compact and descriptive features from binary object silhouettes to enable recognition and classification.",
+    "description": "It transforms raw pixel data into structural descriptors such as contours, moments, or geometric properties for higher-level analysis.",
     "properties": {
-      "Goal": "Solve nonlinear least squares with global convergence.",
-      "Applications": [
-        "Curve fitting",
-        "Computer vision (bundle adjustment)"
-      ],
-      "Methods": [
-        "Choose $\\mu_k$ via trust-region logic or heuristic",
-        "Solve damped normal equations",
-        "Update $\\Delta_k$ based on $\\rho_k$"
-      ],
-      "Examples": []
+      "Goal": "Encode object geometry in a recognition-friendly format.",
+      "Applications": ["Object classification", "Pose estimation", "Defect analysis"],
+      "Methods": ["Contour extraction", "Moment invariants", "Fourier descriptors"],
+      "Examples": ["Circularity measure", "Bounding box", "Convex hull"]
     },
     "relations": [
-      {
-        "type": "Hybrid Of",
-        "target": "Gauss–Newton + Gradient Descent"
-      },
-      {
-        "type": "Trust-Region Subproblem",
-        "target": "$\\| J_k p + r_k \\|^2$, $\\|p\\| \\le \\Delta_k$"
-      },
-      {
-        "type": "Damping Parameter",
-        "target": "$\\mu_k \\ge 0$"
-      }
+      {"type": "follows", "target": "Labeling"},
+      {"type": "input_to", "target": "Recognition"},
+      {"type": "uses", "target": "Connected Components"},
+      {"type": "extracts", "target": "Geometric Features"}
     ],
     "metadata": {
       "created_by": "system",
-      "source": "",
-      "created_at": "2025-11-10",
+      "source": "04-binary-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Labeling",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Labeling is the process of assigning a unique identifier to each connected component in a binary image, enabling individual object analysis.",
+    "description": "Also known as connected component labeling, it is essential for counting, measuring, and tracking distinct objects in a scene.",
+    "properties": {
+      "Goal": "Identify and enumerate separate objects in a binary mask.",
+      "Applications": ["Particle counting", "Cell tracking", "Character segmentation"],
+      "Methods": ["Two-pass algorithm", "Union-find", "Recursive labeling"],
+      "Examples": ["Labeling individual coins in an image", "Numbering text lines"]
+    },
+    "relations": [
+      {"type": "follows", "target": "Post-processing"},
+      {"type": "precedes", "target": "Shape Representation"},
+      {"type": "uses", "target": "Connected Components"},
+      {"type": "enables", "target": "Object Measurement"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "04-binary-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Recognition",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Recognition in binary image analysis refers to classifying or identifying objects based on their shape, size, or extracted features from labeled regions.",
+    "description": "It maps low-level binary patterns to semantic categories using prior knowledge, templates, or learned models.",
+    "properties": {
+      "Goal": "Assign meaningful labels to detected objects.",
+      "Applications": ["OCR", "Symbol recognition", "Part identification"],
+      "Methods": ["Template matching", "Feature classification", "Statistical pattern recognition"],
+      "Examples": ["Identifying machine parts on a conveyor", "Reading license plates"]
+    },
+    "relations": [
+      {"type": "follows", "target": "Shape Representation"},
+      {"type": "uses", "target": "Geometric Features"},
+      {"type": "part_of", "target": "Binary Image Analysis Pipeline"},
+      {"type": "outputs", "target": "Semantic Labels"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "04-binary-00.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Binary Image Analysis Pipeline",
+    "type": "Framework",
+    "domain": "Computer Vision",
+    "definition": "The binary image analysis pipeline is a sequential workflow consisting of preprocessing, segmentation, post-processing, labeling, shape representation, and recognition to extract meaningful information from images.",
+    "description": "It represents a classical, modular approach to vision tasks where images are progressively transformed from raw pixels to semantic understanding via binary intermediates.",
+    "properties": {
+      "Goal": "Achieve automatic object understanding through structured processing stages.",
+      "Applications": ["Document processing", "Industrial automation", "Biomedical analysis"],
+      "Methods": ["Modular stage-wise processing", "Feedback loops (optional)"],
+      "Examples": ["OCR system pipeline", "Defect detection in manufacturing"]
+    },
+    "relations": [
+      {"type": "includes", "target": "Preprocessing"},
+      {"type": "includes", "target": "Segmentation"},
+      {"type": "includes", "target": "Post-processing"},
+      {"type": "includes", "target": "Labeling"},
+      {"type": "includes", "target": "Shape Representation"},
+      {"type": "includes", "target": "Recognition"},
+      {"type": "foundation_for", "target": "Classical Computer Vision"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "04-binary-00.pdf",
+      "created_at": "2025-11-06",
       "version": "1.0"
     }
   }

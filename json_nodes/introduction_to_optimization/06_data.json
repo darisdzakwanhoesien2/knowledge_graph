@@ -1,0 +1,220 @@
+[
+  {
+    "entity": "Trust Region Methods (TRMs)",
+    "type": "Optimization Algorithm",
+    "domain": "Unconstrained Optimization",
+    "definition": "An iterative method for solving unconstrained optimization problems $\\min f(x)$ by solving a sequence of constrained quadratic subproblems within a trust region around the current iterate $x_k$.",
+    "description": "At each iteration, a step $p_k$ is computed by minimizing a quadratic model $m_k(p)$ of $f(x_k + p)$ subject to $\\|p\\| \\le \\Delta_k$. The radius $\\Delta_k$ is adjusted based on how well the model predicts the actual function decrease.",
+    "properties": {
+      "Goal": "Find a local minimizer of $f(x)$ with robust global convergence properties.",
+      "Applications": [
+        "Large-scale nonlinear optimization",
+        "Non-convex problems where line search may fail"
+      ],
+      "Methods": [
+        "Solve Trust Region Subproblem (52) at each $x_k$",
+        "Use KKT conditions to characterize optimal $p_k$",
+        "Update $\\Delta_k$ using comparison ratio $\\rho_k$"
+      ],
+      "Examples": []
+    },
+    "relations": [
+      {
+        "type": "Solves Via",
+        "target": "Trust Region Subproblem (52)"
+      },
+      {
+        "type": "Alternative To",
+        "target": "Line Search Methods"
+      },
+      {
+        "type": "Global Convergence In",
+        "target": "Nocedal & Wright, Chapter 4"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Trust Region Subproblem (52)",
+    "type": "Constrained Quadratic Program",
+    "domain": "Trust Region Methods",
+    "definition": "$\\min_{p \\in \\mathbb{R}^n} m_k(p) \\quad \\text{subject to} \\quad \\|p\\| \\le \\Delta_k$, where $m_k(p) = f_k + g_k^T p + \\frac{1}{2} p^T B_k p$.",
+    "description": "Core subproblem solved at each TRM iteration. The solution $p_k$ satisfies $(B_k + \\lambda I)p_k = -g_k$, $\\lambda \\ge 0$, $\\lambda(\\|p_k\\| - \\Delta_k) = 0$, and $B_k + \\lambda I \\succeq 0$.",
+    "properties": {
+      "Goal": "Compute a step $p_k$ that sufficiently reduces the model within the trust region.",
+      "Applications": [
+        "Step generation in TRM"
+      ],
+      "Methods": [
+        "Case 1 (interior): $\\lambda = 0$, solve $B_k p = -g_k$ if $\\|p\\| \\le \\Delta_k$",
+        "Case 2 (boundary): solve $(B_k + \\lambda I)p = -g_k$, $\\|p\\| = \\Delta_k$ via root-finding in $\\lambda$",
+        "Approximate via Krylov subspace methods"
+      ],
+      "Examples": []
+    },
+    "relations": [
+      {
+        "type": "Objective",
+        "target": "Model Function $m_k(p)$"
+      },
+      {
+        "type": "Constraint",
+        "target": "Trust Region $\\|p\\| \\le \\Delta_k$"
+      },
+      {
+        "type": "Characterized By",
+        "target": "KKT Conditions (54)–(56)"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Model Function ($m_k(p)$)",
+    "type": "Quadratic Approximation",
+    "domain": "Trust Region Methods",
+    "definition": "Second-order Taylor expansion of $f$ around $x_k$: $m_k(p) = f(x_k) + \\nabla f(x_k)^T p + \\frac{1}{2} p^T B_k p$, where $B_k \\approx \\nabla^2 f(x_k)$.",
+    "description": "Local surrogate for $f$. When $B_k = \\nabla^2 f(x_k)$, the approximation error satisfies $|f(x_k + p) - m_k(p)| = O(\\|p\\|^3)$.",
+    "properties": {
+      "Goal": "Provide a tractable local model for minimization within the trust region.",
+      "Applications": [
+        "Defining Trust Region Subproblem (52)"
+      ],
+      "Methods": [],
+      "Examples": []
+    },
+    "relations": [
+      {
+        "type": "Components",
+        "target": "$f_k = f(x_k)$, $g_k = \\nabla f(x_k)$, $B_k \\approx \\nabla^2 f(x_k)$"
+      },
+      {
+        "type": "Taylor Error",
+        "target": "$O(\\|p\\|^3)$ when $B_k = \\nabla^2 f(x_k)$"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Comparison Ratio ($\\rho_k$)",
+    "type": "Performance Metric",
+    "domain": "Trust Region Methods",
+    "definition": "$\\rho_k = \\frac{f(x_k) - f(x_k + p_k)}{m_k(0) - m_k(p_k)}$ — ratio of actual to predicted reduction.",
+    "description": "Measures model quality. If $\\rho_k \\ge \\eta_1 > 0$ (e.g., 0.1), accept step and possibly increase $\\Delta_k$. If $\\rho_k < \\eta_1$, reject step and shrink $\\Delta_k$.",
+    "properties": {
+      "Goal": "Assess reliability of quadratic model $m_k$ to control trust region radius.",
+      "Applications": [
+        "Step acceptance/rejection",
+        "Adaptive radius update"
+      ],
+      "Methods": [
+        "Accept if $\\rho_k \\ge 0.1$, increase $\\Delta_k$ if $\\rho_k \\ge 0.75$",
+        "Reject and shrink $\\Delta_k$ if $\\rho_k < 0.1$"
+      ],
+      "Examples": []
+    },
+    "relations": [
+      {
+        "type": "Numerator",
+        "target": "Actual reduction $f(x_k) - f(x_k + p_k)$"
+      },
+      {
+        "type": "Denominator",
+        "target": "Predicted reduction $m_k(0) - m_k(p_k)$"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Krylov Subspace Approximation (TR Subproblem)",
+    "type": "Approximation Technique",
+    "domain": "Trust Region Subproblem Solving",
+    "definition": "Approximate solution of the TR subproblem by restricting $p$ to a low-dimensional Krylov subspace $\\mathcal{K}_j = \\operatorname{span}\\{g_k, B_k^{-1}g_k, \\ldots, (B_k^{-1})^{j-1}g_k\\}$.",
+    "description": "For $j=2$, reduces to 2D problem in $\\operatorname{span}\\{g_k, B_k^{-1}g_k\\}$. Fast and effective when $B_k$ is large/sparse. Equivalent to CG steps on the Newton system.",
+    "properties": {
+      "Goal": "Solve TR subproblem approximately when exact solution is costly.",
+      "Applications": [
+        "Large-scale TRMs"
+      ],
+      "Methods": [
+        "Project subproblem onto $\\mathcal{K}_j$",
+        "Solve reduced 2D TR subproblem in $(\\alpha, \\beta)$",
+        "Use Steihaug-Toint truncated CG"
+      ],
+      "Examples": []
+    },
+    "relations": [
+      {
+        "type": "Approximates",
+        "target": "Trust Region Subproblem (52)"
+      },
+      {
+        "type": "Subspace",
+        "target": "$\\mathcal{K}_2 = \\operatorname{span}\\{g_k, B_k^{-1}g_k\\}$"
+      },
+      {
+        "type": "Related To",
+        "target": "Conjugate Gradient Method"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Lagrangian for TR Subproblem ($\\mathcal{L}(p,\\lambda)$)",
+    "type": "Lagrangian Function",
+    "domain": "Trust Region Methods",
+    "definition": "$\\mathcal{L}(p, \\lambda) = m_k(p) + \\lambda (\\|p\\|^2 - \\Delta_k^2)$, where constraint $g(p) = \\Delta_k^2 - \\|p\\|^2 \\ge 0$.",
+    "description": "Used to derive KKT conditions: $\\nabla_p \\mathcal{L} = g_k + B_k p + 2\\lambda p = 0$, $\\lambda \\ge 0$, $\\lambda(\\|p\\|^2 - \\Delta_k^2) = 0$, $B_k + 2\\lambda I \\succeq 0$.",
+    "properties": {
+      "Goal": "Formulate optimality conditions for the TR subproblem.",
+      "Applications": [
+        "Deriving $(B_k + \\lambda I)p = -g_k$ with $\\lambda \\ge 0$"
+      ],
+      "Methods": [
+        "Stationarity: $g_k + (B_k + 2\\lambda I)p = 0$",
+        "Complementary slackness and dual feasibility"
+      ],
+      "Examples": []
+    },
+    "relations": [
+      {
+        "type": "Yields KKT System",
+        "target": "(54)–(56): $(B_k + \\lambda I)p = -g_k$, $\\|p\\| \\le \\Delta_k$, etc."
+      },
+      {
+        "type": "Constraint",
+        "target": "$\\Delta_k^2 - \\|p\\|^2 \\ge 0$"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]

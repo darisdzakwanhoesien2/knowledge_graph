@@ -1,0 +1,260 @@
+[
+  {
+    "entity": "Constrained Optimization Problem",
+    "type": "Optimization Problem Type",
+    "domain": "Optimization Theory",
+    "definition": "Minimize an objective function $f(x)$ subject to equality constraints $c_i(x) = 0$ for $i \\in \\mathcal{E}$ and inequality constraints $c_i(x) \\ge 0$ for $i \\in \\mathcal{I}$, defining the feasible set $\\Omega = \\{x \\in \\mathbb{R}^n \\mid c_i(x) = 0, \\, i \\in \\mathcal{E}; \\, c_i(x) \\ge 0, \\, i \\in \\mathcal{I}\\}$.",
+    "description": "Extends unconstrained optimization by restricting the search to $\\Omega$. Most algorithms find only **local** minimizers within a neighborhood intersected with $\\Omega$.",
+    "properties": {
+      "Goal": "Find $x^* \\in \\Omega$ such that $f(x^*) \\le f(x)$ for all $x \\in \\Omega \\cap \\mathcal{N}(x^*)$ (local minimizer).",
+      "Applications": [
+        "Engineering design",
+        "Economics",
+        "Machine learning (e.g., SVM, constrained regression)"
+      ],
+      "Methods": [
+        "KKT conditions for stationarity",
+        "Active-set methods",
+        "Interior-point methods",
+        "Penalty/barrier methods"
+      ],
+      "Examples": [
+        "$\\min x_1 + x_2$ s.t. $x_1^2 + x_2^2 = 2$ (equality)",
+        "$\\min x_1 + x_2$ s.t. $2 - x_1^2 - x_2^2 \\ge 0$ (inequality)",
+        "QP: $\\min \\frac{1}{2} x^T Q x - b^T x$ s.t. $C x \\le d$"
+      ]
+    },
+    "relations": [
+      {
+        "type": "Stationary Points Via",
+        "target": "Karush-Kuhn-Tucker (KKT) Conditions"
+      },
+      {
+        "type": "Feasible Set Defined By",
+        "target": "Active Set $\\mathcal{A}(x)$"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Karush-Kuhn-Tucker (KKT) Conditions",
+    "type": "First-Order Necessary Conditions",
+    "domain": "Constrained Optimization Theory",
+"definition": "For a local minimizer $x^* \\in \\Omega$ under a constraint qualification (e.g., LICQ), there exist $\\lambda^*_i$ (Lagrange multipliers) such that:\\n1. **Stationarity**: $\\nabla f(x^*) = \\sum_{i \\in \\mathcal{E} \\cup \\mathcal{I}} \\lambda^*_i \\nabla c_i(x^*)$\\\\\n2. **Primal feasibility**: $c_i(x^*) = 0$ ($i \\in \\mathcal{E}$), $c_i(x^*) \\ge 0$ ($i \\in \\mathcal{I}$)$\\\\\n3. **Dual feasibility**: $\\lambda^*_i \\ge 0$ ($i \\in \\mathcal{I}$)$\\\\\n4. **Complementary slackness**: $\\lambda^*_i c_i(x^*) = 0$ ($i \\in \\mathcal{I}$)$\\\\\n(Theorem 12.1, p. 321)",
+    "description": "Generalizes Lagrange multiplier method to inequalities. First-order necessary conditions for local optimality under CQ. Equivalent to $\\nabla_x \\mathcal{L}(x^*, \\lambda^*) = 0$, feasibility, and complementarity.",
+    "properties": {
+      "Goal": "Characterize candidate local minimizers via a system of equations and inequalities.",
+      "Applications": [
+        "Optimality certification",
+        "Algorithm termination (e.g., SQP, IPM)",
+        "Duality theory"
+      ],
+      "Methods": [
+        "Solve $\\nabla_x \\mathcal{L} = 0$, $\\lambda_i c_i = 0$, $\\lambda_i \\ge 0$, $c_i \\ge 0$",
+        "Newton-type methods on KKT system"
+      ],
+      "Examples": [
+        "QP: solve $Q x - b = C^T \\lambda$, $\\lambda \\ge 0$, $\\lambda \\circ (C x - d) = 0$"
+      ]
+    },
+    "relations": [
+      {
+        "type": "Derived From",
+        "target": "Lagrangian Function $\\mathcal{L}(x, \\lambda)$"
+      },
+      {
+        "type": "Requires",
+        "target": "Constraint Qualification (e.g., LICQ)"
+      },
+      {
+        "type": "Proven Using",
+        "target": "Farkas' Lemma"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Lagrangian Function ($\\mathcal{L}(x, \\lambda)$)",
+    "type": "Auxiliary Function",
+    "domain": "Constrained Optimization Theory",
+    "definition": "$\\mathcal{L}(x, \\lambda) = f(x) - \\sum_{i \\in \\mathcal{E}} \\lambda_i c_i(x) - \\sum_{i \\in \\mathcal{I}} \\lambda_i c_i(x)$",
+    "description": "Combines objective and constraints into a single function. KKT stationarity is $\\nabla_x \\mathcal{L}(x^*, \\lambda^*) = 0$. For equality-only: $\\mathcal{L}(x, \\lambda) = f(x) - \\lambda^T c(x)$",
+    "properties": {
+      "Goal": "Convert constrained problem into unconstrained saddle-point problem.",
+      "Applications": [
+        "KKT derivation",
+        "Duality",
+        "SQP methods"
+      ],
+      "Methods": [
+        "Form $\\mathcal{L}$, set $\\nabla_x \\mathcal{L} = 0$",
+        "Dual function: $q(\\lambda) = \\inf_x \\mathcal{L}(x, \\lambda)$"
+      ],
+      "Examples": [
+        "Eigenvalue: $\\mathcal{L}(x, \\lambda) = x^T Q x - \\lambda (x^T x - 1)$"
+      ]
+    },
+    "relations": [
+      {
+        "type": "Stationarity",
+        "target": "$\\nabla_x \\mathcal{L}(x^*, \\lambda^*) = 0$"
+      },
+      {
+        "type": "Defines",
+        "target": "Dual Function $q(\\lambda)$"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Tangent Cone ($T_\\Omega(x)$)",
+    "type": "Geometric Set",
+    "domain": "Constrained Optimization Geometry",
+    "definition": "The set of directions $d$ such that there exists a sequence $x_k \\in \\Omega$, $x_k \\to x$, and $t_k \\downarrow 0$ with $(x_k - x)/t_k \\to d$.",
+    "description": "Limit of feasible directions from $x$. Contains all $d$ for which a feasible path exists in $\\Omega$. Under LICQ, $T_\\Omega(x) = \\mathcal{F}(x)$ (linearized cone).",
+    "properties": {
+      "Goal": "Describe local geometry of feasible set at $x$.",
+      "Applications": [
+        "First-order necessary conditions (Theorem 12.3)",
+        "Convergence analysis"
+      ],
+      "Methods": [],
+      "Examples": [
+        "Equality $c(x)=0$: $T_\\Omega(x) = \\ker \\nabla c(x)^T$",
+        "Inequality at boundary: half-space tangent"
+      ]
+    },
+    "relations": [
+      {
+        "type": "Approximated By",
+        "target": "Linearized Feasible Cone $\\mathcal{F}(x)$"
+      },
+      {
+        "type": "Equal Under",
+        "target": "LICQ"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Linear Independence Constraint Qualification (LICQ)",
+    "type": "Constraint Qualification",
+    "domain": "Constrained Optimization Theory",
+    "definition": "At $x \\in \\Omega$, the gradients $\\{\\nabla c_i(x) \\mid i \\in \\mathcal{A}(x)\\}$ are linearly independent.",
+    "description": "Strong CQ ensuring KKT multipliers are unique and $T_\\Omega(x) = \\mathcal{F}(x)$. Prevents degenerate constraint configurations.",
+    "properties": {
+      "Goal": "Ensure well-posedness of KKT system and geometric regularity.",
+      "Applications": [
+        "Guarantee KKT necessity",
+        "Uniqueness of $\\lambda^*$"
+      ],
+      "Methods": [
+        "Check rank of Jacobian of active constraints = |$\\mathcal{A}(x)$|"
+      ],
+      "Examples": [
+        "Holds for $x^T x = 1$, $x \\ne 0$"
+      ]
+    },
+    "relations": [
+      {
+        "type": "Implies",
+        "target": "$T_\\Omega(x) = \\mathcal{F}(x)$"
+      },
+      {
+        "type": "Stronger Than",
+        "target": "MFCQ, Slater"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Active Set of Indices ($\\mathcal{A}(x)$)",
+    "type": "Index Set",
+    "domain": "Constrained Optimization",
+    "definition": "$\\mathcal{A}(x) = \\mathcal{E} \\cup \\{i \\in \\mathcal{I} \\mid c_i(x) = 0\\}$ — indices of binding constraints at $x$.",
+    "description": "Determines which constraints are active (tight). Only these affect local geometry and KKT conditions.",
+    "properties": {
+      "Goal": "Identify binding constraints for local analysis.",
+      "Applications": [
+        "LICQ check",
+        "Active-set algorithms",
+        "Reduced KKT system"
+      ],
+      "Methods": [],
+      "Examples": []
+    },
+    "relations": [
+      {
+        "type": "Used In",
+        "target": "LICQ, $\\mathcal{F}(x)$, KKT"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Farkas' Lemma",
+    "type": "Alternative Theorem",
+    "domain": "Convex Analysis / Linear Algebra",
+"definition": "For $A \\in \\mathbb{R}^{m \\times n}$, $b \\in \\mathbb{R}^m$, exactly one holds:\\n1. $\\exists x \\ge 0$ s.t. $A x = b$\\\\\n2. $\\exists y$ s.t. $A^T y \\ge 0$, $b^T y < 0$",
+    "description": "Fundamental result in conic duality. Used to prove KKT: if $-\\nabla f(x) \\notin \\mathcal{K}$ (cone of active gradients), then descent direction exists.",
+    "properties": {
+      "Goal": "Prove impossibility of infeasibility via separating hyperplane.",
+      "Applications": [
+        "Proof of KKT (via cone separation)",
+        "LP duality",
+        "Support vector machines"
+      ],
+      "Methods": [
+        "Geometric: separating hyperplane",
+        "Algebraic: Gordan, Motzkin theorems"
+      ],
+      "Examples": []
+    },
+    "relations": [
+      {
+        "type": "Used To Prove",
+        "target": "KKT Necessity"
+      },
+      {
+        "type": "Generalizes",
+        "target": "Gordan's Theorem"
+      }
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]

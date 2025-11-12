@@ -1,0 +1,247 @@
+[
+  {
+    "entity": "Quadratic Function (Optimization Tool)",
+    "type": "Concept",
+    "domain": "Optimization",
+    "definition": "A simple function structure used as a tool to model objective functions, even if the original function is not quadratic.",
+    "description": "Quadratic functions appear in many applications and are useful for analyzing algorithm behavior, such as the speed of convergence of the steepest descent method. They are employed in both unconstrained and constrained optimization contexts, often replacing the original function via Taylor approximation.",
+    "properties": {
+      "Goal": "Simplify analysis and serve as an approximation model for non-quadratic functions",
+      "Applications": ["Unconstrained optimization", "Constrained optimization", "Analyzing Steepest Descent speed"],
+      "Methods": ["Approximating original function via Taylor's theorem"],
+      "Examples": ["Solving the linear system $Qx=b$ where $\\nabla^2 f(x)=Q$"]
+    },
+    "relations": [
+      {"type": "is_approximation_basis_for", "target": "Newton's Method"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_3.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Descent Direction Condition",
+    "type": "Metric",
+    "domain": "Unconstrained Optimization, Line Search Methods",
+    "definition": "The algebraic condition required for a direction $p_{k}$ to ensure the objective function $f$ decreases when moving from $x_{k}$ into $p_{k}$, given by $\\nabla f(x_{k})^{T}p_{k}<0$.",
+    "description": "This condition ensures that the derivative of the one-dimensional function $\\phi(\\alpha)=f(x_{k}+\\alpha p_{k})$ evaluated at $\\alpha=0$ is negative, confirming an initial decrease in $f$. It is based on the first degree Taylor's polynomial.",
+    "properties": {
+      "Goal": "Ensure progress towards a minimizer in Line Search Methods",
+      "Applications": ["Choosing $p_k$ in Line Search methods"],
+      "Methods": ["Using the chain rule to find $\\phi^{\\prime}(0)$"],
+      "Examples": []
+    },
+    "relations": [
+      {"type": "is_required_for", "target": "Line Search Methods"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_3.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Direction of Steepest Descent",
+    "type": "Method",
+    "domain": "Unconstrained Optimization, Line Search Methods",
+    "definition": "The choice of descent direction $p_{k}=-\\nabla f(x_{k})$, which yields the largest decrease in $f$ locally from $x_{k}$ for small $\\alpha>0$.",
+    "description": "This is the simplest and cheapest method for choosing a descent direction, equivalent to setting $B_k=I$ in the generalized direction formula (11). Despite appearing to be the 'best choice' based on local decrease, it can suffer from slow linear convergence, especially if the objective function's condition number is large.",
+    "properties": {
+      "Goal": "Choose the fastest local rate of descent",
+      "Applications": ["Steepest Descent Method"],
+      "Methods": ["Setting $p_k = -\\nabla f(x_k)$"],
+      "Examples": []
+    },
+    "relations": [
+      {"type": "is_special_case_of", "target": "Descent Direction ($p_k$)"},
+      {"type": "is_central_to", "target": "Steepest Descent Method"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_3.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Newton's Method (Optimization)",
+    "type": "Method",
+    "domain": "Unconstrained Optimization",
+    "definition": "A method for finding a stationary point $x^{*}$ by applying the standard Newton's method to solve the nonlinear system $\\nabla f(x)=0$, resulting in the iterative update $x_{k+1}=x_{k}-(\\nabla^{2}f(x_{k}))^{-1}\\nabla f(x_{k})$.",
+    "description": "In the context of line search, this corresponds to using the Hessian $B_{k}=\\nabla^{2}f(x_{k})$ as the approximating matrix and setting the step length $\\alpha=1$ at every step, which is a notable advantage. It replaces the objective function $f$ with a simple quadratic function and, when close to the solution, exhibits rapid quadratic convergence.",
+    "properties": {
+      "Goal": "Find stationary points rapidly",
+      "Applications": ["Small dimensional optimization problems"],
+      "Methods": ["Uses $B_k = \\nabla^2 f(x_k)$", "Sets $\\alpha=1$"],
+      "Examples": ["$min(x_{1}-2)^{4}+(x_{1}-2x_{2})^{2}$"]
+    },
+    "relations": [
+      {"type": "has_convergence_order", "target": "Quadratic Convergence"},
+      {"type": "is_based_on", "target": "Hessian Matrix"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_3.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Steepest Descent Method",
+    "type": "Method",
+    "domain": "Unconstrained Optimization",
+    "definition": "An iterative Line Search Method that consistently uses the Direction of Steepest Descent ($p_k = -\\nabla f(x_k)$) for its search direction, corresponding to setting $B_{k}=I$ in the generalized direction formula (11).",
+    "description": "This method is computationally cheap because it avoids forming or inverting the Hessian. However, its convergence speed is typically linear, and if the condition number of the Hessian approximation $Q$ is large, convergence can be extremely slow.",
+    "properties": {
+      "Goal": "Iteratively minimize $f$ with minimal computational cost per step",
+      "Applications": ["Used when $n$ is large and Hessian computation is too expensive"],
+      "Methods": ["Using exact step length $\\alpha_{k}$ derived from quadratic model"],
+      "Examples": []
+    },
+    "relations": [
+      {"type": "is_governed_by", "target": "Condition Number (\\kappa(Q))"},
+      {"type": "has_convergence_order", "target": "Linear Convergence"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_3.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Condition Number (\\kappa(Q))",
+    "type": "Metric",
+    "domain": "Numerical Analysis, Optimization",
+    "definition": "The ratio of the largest eigenvalue ($\\lambda_n$) to the smallest eigenvalue ($\\lambda_1$) of the matrix $Q$, defined as $\\kappa(Q) = \\frac{\\lambda_n}{\\lambda_1}$, used to analyze the convergence rate of iterative methods.",
+    "description": "For the Steepest Descent method applied to a quadratic function, the condition number dictates the linear convergence rate, $C=\\frac{\\kappa(Q)-1}{\\kappa(Q)+1}$. A large condition number means $C$ is close to 1, indicating very slow convergence, requiring thousands of steps to reach an approximation.",
+    "properties": {
+      "Goal": "Quantify the geometry of the function's contours and predict convergence speed",
+      "Applications": ["Analysis of Steepest Descent Method"],
+      "Methods": ["Calculation using eigenvalues of Q"],
+      "Examples": ["If $\\kappa(Q)=800$, $C=0.9975$"]
+    },
+    "relations": [
+      {"type": "determines_speed_of", "target": "Steepest Descent Method"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_3.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Quasi-Newton Methods",
+    "type": "Method",
+    "domain": "Unconstrained Optimization",
+    "definition": "A family of iterative methods aimed at inexpensively producing a matrix $B_{k}$ that approximates the Hessian matrix $\\nabla^{2}f(x_{k})$, used to compute the descent direction $p_{k}=-B_{k}^{-1}\\nabla f(x_{k})$.",
+    "description": "These methods are used when forming and solving the full Hessian system (12) is too time-consuming, typically aiming for superlinear convergence ($1<p<2$)—a speed that is faster than linear but usually slower than quadratic. They rely on small rank-updates to improve the approximation iteratively.",
+    "properties": {
+      "Goal": "Achieve fast convergence without the expense of calculating the full Hessian",
+      "Applications": ["Unconstrained minimization when $n$ is large"],
+      "Methods": ["Rank-updating schemes ($B_{k+1}=B_{k}+F_{k}$ with $rank(F_k)\\le 2$)"],
+      "Examples": ["SR1 method", "BFGS method"]
+    },
+    "relations": [
+      {"type": "implements", "target": "Secant Condition"},
+      {"type": "aims_for", "target": "Superlinear Convergence"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_3.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Secant Condition",
+    "type": "Concept",
+    "domain": "Quasi-Newton Methods",
+    "definition": "A condition used to define the updated Hessian approximation $B_{k+1}$ in Quasi-Newton methods, derived from the first-degree Taylor approximation of $\\nabla f$ and requiring $B_{k+1}(x_{k+1}-x_{k})=\\nabla f(x_{k+1})-\\nabla f(x_{k})$.",
+    "description": "This condition dictates how the updated matrix $B_{k+1}$ must relate the change in position ($s_k = x_{k+1}-x_{k}$) to the change in gradient ($y_k = \\nabla f(x_{k+1})-\\nabla f(x_{k})$). It is a finite difference approximation of the relationship between the Hessian and the gradient changes.",
+    "properties": {
+      "Goal": "Provide a relationship to constrain the rank-update formula $F_k$",
+      "Applications": ["Deriving SR1 update", "Deriving BFGS method"],
+      "Methods": ["Using Taylor's polynomial of $\\nabla f$"]
+    },
+    "relations": [
+      {"type": "is_basis_for", "target": "SR1 Update"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_3.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "SR1 Update",
+    "type": "Method",
+    "domain": "Quasi-Newton Methods",
+    "definition": "The symmetric rank-one (SR1) update formula used to incrementally modify the Hessian approximation $B_{k}$ using a rank-one matrix update to satisfy the secant condition (17).",
+    "description": "It is the simplest rank-update scheme, defined by $B_{k+1}=B_{k}+\\frac{1}{(y_{k}-B_{k}s_{k})^{T}s_{k}}(y_{k}-B_{k}s_{k})(y_{k}-B_{k}s_{k})^{T}$. This update can fail if the denominator is zero or very small, in which case the matrix $B_k$ is usually left unchanged.",
+    "properties": {
+      "Goal": "Update the Hessian approximation inexpensively while retaining symmetry",
+      "Applications": ["Quasi-Newton Methods"],
+      "Methods": ["Enforcing $B_{k+1}$ symmetry", "Satisfying the Secant Condition"]
+    },
+    "relations": [
+      {"type": "is_type_of", "target": "Rank-One Update"},
+      {"type": "is_precursor_to", "target": "BFGS method"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_3.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Bisection Method (Step Length)",
+    "type": "Method",
+    "domain": "Numerical Optimization, Line Search Methods",
+    "definition": "A basic algorithm for finding a zero of a continuous, univariate function, specifically applied here to find $\\alpha_{k}$ by locating a zero of $\\phi^{\\prime}(\\alpha)=\\nabla f(x_{k}+\\alpha p_{k})^{T}p_{k}$.",
+    "description": "The method iteratively halves an interval $[0, \\hat{\\alpha}]$ that is known to contain a zero of $\\phi^{\\prime}$ because $\\phi^{\\prime}$ changes sign across the interval. Since $\\phi^{\\prime}(0)<0$, it requires guessing a point $\\hat{\\alpha}>0$ such that $\\phi^{\\prime}(\\hat{\\alpha})>0$.",
+    "properties": {
+      "Goal": "Find an approximate optimal step length $\\alpha_{k}$ for the 1D subproblem (7)",
+      "Applications": ["Univariate zero finding"],
+      "Methods": ["Requires only function evaluations (no derivatives)", "Halving the search interval"],
+      "Examples": ["Example with $\\phi^{\\prime}(\\alpha)=\\alpha^{6}-\\alpha-1$"]
+    },
+    "relations": [
+      {"type": "is_used_to_solve", "target": "1D Subproblem (Line Search)"},
+      {"type": "has_convergence_order", "target": "Linear Convergence (C=1/2)"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_3.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Nonlinear Least Squares Problems",
+    "type": "Concept",
+    "domain": "Optimization, Data Fitting",
+    "definition": "Structured unconstrained optimization problems that arise when minimizing the sum of squares of $m$ residual functions $r_{j}(x)$, where $r_{j}:\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$ are smooth functions, often under the assumption $m\\ge n$.",
+    "description": "These problems frequently appear when tuning a model to achieve the best fit for given data, such as in machine learning or neural network applications. Due to their structure, simplifying tricks can be applied, particularly when combined with Line Search and Quasi-Newton methods.",
+    "properties": {
+      "Goal": "Find parameters $x$ that minimize the residual errors between a model and observed data",
+      "Applications": ["Machine learning", "Neural network applications", "Model tuning"],
+      "Methods": ["Structured Quasi-Newton methods"]
+    },
+    "relations": [
+      {"type": "is_type_of", "target": "Unconstrained Optimization"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "chapter_3.pdf",
+      "created_at": "2025-11-10",
+      "version": "1.0"
+    }
+  }
+]
