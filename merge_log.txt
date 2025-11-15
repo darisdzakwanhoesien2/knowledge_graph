@@ -10,3 +10,58 @@
 2025-11-10 17:13:41 | Critical Cone ($$ \mathcal{C}(x^*, \lambda^*) $$) → Critical Cone ($\mathcal{C}(x^{*},\lambda^{*})$)
 2025-11-10 17:13:54 | Bisection Method → Bisection Method (Step Length)
 2025-11-10 17:14:09 | Duality Theory (Convex) → Duality Theory (Convex Optimization)
+Merged Missing at Random → Missing at Random (MAR)
+Merged Missing Not at Random → Missing Not at Random (MNAR)
+Merged Missing Completely at Random → Missing Completely at Random (MCAR)
+Merged Randomized Controlled Trial → Randomized Controlled Trial (RCT)
+Merged Discrete Fourier Transform → Discrete Fourier Transform (DFT)
+Merged Fast Fourier Transform → Fast Fourier Transform (FFT)
+Merged Hessenberg Reduction → Hessenberg Matrix
+Merged Hessenberg Form → Hessenberg Matrix
+Merged Givens Rotation → Householder Reflection
+Merged QR Decomposition → QR Algorithm
+Merged QR Factorisation → QR Algorithm
+Merged QR Factorization → QR Algorithm
+Merged Inverse Iteration → Eigenvalue Problem
+Merged Twiddle Factors → Fast Fourier Transform (FFT)
+Merged Conjugate Gradient → Conjugate Gradient Method
+Merged PCG → Conjugate Gradient Method
+Merged Krylov Subspace Methods → Krylov Subspace
+Merged Search Directions (in CG) → Conjugate Gradient Method
+Merged Eigenvalue → Eigenvalue Problem
+Merged Eigenvalue Problems → Eigenvalue Problem
+Merged Eigenvalue Spectrum → Eigenvalue Problem
+Merged Eigenvalues → Eigenvalue Problem
+Merged Eigenvectors → Eigenvalue Problem
+Merged Eigenvalue Estimate ˆμ → Eigenvalue Problem
+Merged Vector Subspace → Matrix Subspace
+Merged Subspaces V1 V2 → Matrix Subspace
+Merged Subspace Decomposition → Matrix Subspace
+Merged Newton's Iteration → Newton's Iteration for Square Root
+Merged Newton's Method → Newton's Iteration for Square Root
+Merged Similarity Transformation → Schur Triangulation
+Merged Schur Decomposition → Schur Triangulation
+Merged Schur Form → Schur Triangulation
+Merged Schur Complement → LU Factorization
+Merged Sylvester Equation Solution → Sylvester Equation
+Merged Lyapunov Equation → Sylvester Equation
+Merged Discrete Wavelet Transform → Discrete Wavelet Transform (DWT)
+Merged Maximum Likelihood Estimation → Maximum Likelihood Estimation (MLE)
+Merged Missing Completely at Random → Missing Completely at Random (MCAR)
+Merged Missing at Random → Missing at Random (MAR)
+Merged GDPR → General Data Protection Regulation (GDPR)
+Merged Missing Not at Random → Missing Not at Random (MNAR)
+Merged Principal Component Analysis → Principal Component Analysis (PCA)
+Merged SRSWOR → Simple Random Sampling Without Replacement (SRSWOR)
+Merged SRSWR → Simple Random Sampling With Replacement (SRSWR)
+Merged F1-score → F1 Score
+Merged SMOTE → Synthetic Minority Oversampling Technique (SMOTE)
+Merged Z-Score → Z-Score (Statistical)
+Merged Data Preprocessing → Data Pre-processing
+Merged Principal Component Analysis → Principal Component Analysis (PCA)
+Merged Randomized Controlled Trial → Randomized Controlled Trial (RCT)
+Merged Data Normalization → Normalization
+Merged Missing Completely at Random → Missing Completely at Random (MCAR)
+Merged SRSWR → Simple Random Sampling With Replacement (SRSWR)
+Merged SRSWOR → Simple Random Sampling Without Replacement (SRSWOR)
+Merged Discrete Wavelet Transform → Discrete Wavelet Transform (DWT)

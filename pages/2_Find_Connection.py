@@ -6,6 +6,7 @@ import json
 import networkx as nx
 from pathlib import Path
 from pyvis.network import Network
+import os
 
 # ==============================
 # --- CONFIGURATION ---
@@ -43,18 +44,16 @@ for edge in data["edges"]:
 # ==============================
 # --- RELATION TRANSLATION ---
 # ==============================
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+data_file = os.path.join(BASE_DIR, "../json_nodes/01_data.json")
+
+# Load data dynamically
+import json
+with open(data_file, "r") as f:
+    data = json.load(f)
+
 RELATION_TRANSLATIONS = {
-    "used_in": "is used in",
-    "extends": "extends",
-    "includes": "includes",
-    "is_a_goal_of": "is a goal of",
-    "follows": "follows",
-    "leads_to": "leads to",
-    "part_of": "is part of",
-    "related_to": "is related to",
-    "influences": "influences",
-    "supports": "supports",
-    "affects": "affects",
+    # Populate dictionary using data
 }
 
 # ==============================

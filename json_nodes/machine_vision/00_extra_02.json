@@ -1,0 +1,163 @@
+[
+  {
+    "entity": "Binary Mask",
+    "type": "Concept",
+    "domain": "Computer Vision",
+    "definition": "A binary mask is a binary image where each pixel indicates whether it belongs to the foreground (typically 1 or white) or background (typically 0 or black), used to isolate regions of interest.",
+    "description": "It serves as a spatial filter to selectively process or analyze specific parts of an image. Binary masks are fundamental in segmentation pipelines, enabling operations like feature extraction or morphological processing on only the foreground regions.",
+    "properties": {
+      "Goal": "Isolate and define regions of interest in an image",
+      "Applications": ["Object segmentation", "Region-based feature extraction", "Masking in image editing", "ROI processing"],
+      "Methods": ["Thresholding", "Edge detection + filling", "Manual annotation"],
+      "Examples": ["White shell regions on black background", "Foreground object in medical imaging"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Connected Component Labeling"},
+      {"type": "used_in", "target": "Morphological Operations"},
+      {"type": "produced_by", "target": "Thresholding"},
+      {"type": "enables", "target": "Region of Interest (ROI) Analysis"},
+      {"type": "supports", "target": "Image Segmentation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "morphology_and_segmentation.pdf",
+      "created_at": "2025-11-12",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Erosion",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Erosion is a morphological operation that shrinks foreground objects in a binary or grayscale image by removing pixels from object boundaries using a structuring element.",
+    "description": "It eliminates small noise, detaches weakly connected components, and thins objects. The result depends on the size and shape of the structuring element (e.g., disk, square). In binary images, a foreground pixel remains only if all pixels in the structuring element neighborhood are foreground.",
+    "properties": {
+      "Goal": "Shrink objects and remove small noise or protrusions",
+      "Applications": ["Noise reduction", "Boundary smoothing", "Separation of touching objects", "Skeletonization"],
+      "Methods": ["Structuring element convolution", "Hit-or-miss transform"],
+      "Examples": ["Removing salt noise from binary thresholded image", "Separating overlapping shells before labeling"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Morphological Operations"},
+      {"type": "used_with", "target": "Structuring Element"},
+      {"type": "precedes", "target": "Dilation"},
+      {"type": "composes", "target": "Opening"},
+      {"type": "used_in", "target": "Binary Image Preprocessing"},
+      {"type": "inverse_of", "target": "Dilation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "morphology_and_segmentation.pdf",
+      "created_at": "2025-11-12",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Dilation",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Dilation is a morphological operation that expands foreground objects in a binary or grayscale image by adding pixels to object boundaries using a structuring element.",
+    "description": "It fills small holes, connects nearby components, and thickens objects. A foreground pixel is set if at least one pixel in the structuring element neighborhood is foreground. Commonly used to restore object size after erosion or to close gaps.",
+    "properties": {
+      "Goal": "Expand objects and fill small gaps or holes",
+      "Applications": ["Hole filling", "Connecting broken structures", "Boundary expansion", "Image restoration"],
+      "Methods": ["Structuring element convolution", "Minkowski addition"],
+      "Examples": ["Filling cracks in segmented shells", "Closing small gaps in blood vessel segmentation"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Morphological Operations"},
+      {"type": "used_with", "target": "Structuring Element"},
+      {"type": "follows", "target": "Erosion"},
+      {"type": "composes", "target": "Closing"},
+      {"type": "used_in", "target": "Binary Image Enhancement"},
+      {"type": "inverse_of", "target": "Erosion"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "morphology_and_segmentation.pdf",
+      "created_at": "2025-11-12",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Opening",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Opening is a morphological operation defined as erosion followed by dilation using the same structuring element, used to remove small objects and noise while preserving larger structures.",
+    "description": "It acts as a non-linear filter that eliminates thin protrusions, small islands, and noise without significantly altering the shape or size of larger foreground regions. Opening is idempotent and useful for cleaning binary segmentation results.",
+    "properties": {
+      "Goal": "Remove small noise and detach weakly connected components",
+      "Applications": ["Noise suppression", "Object separation", "Preprocessing for connected component analysis", "Fingerprint enhancement"],
+      "Methods": ["Erosion then Dilation", "Structuring element selection (disk, cross)"],
+      "Examples": ["Removing salt-and-pepper noise from thresholded seashell image", "Cleaning small debris before labeling"]
+    },
+    "relations": [
+      {"type": "composed_of", "target": "Erosion"},
+      {"type": "composed_of", "target": "Dilation"},
+      {"type": "part_of", "target": "Morphological Operations"},
+      {"type": "used_in", "target": "Image Segmentation Pipeline"},
+      {"type": "improves", "target": "Connected Component Labeling"},
+      {"type": "alternative_to", "target": "Median Filtering"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "morphology_and_segmentation.pdf",
+      "created_at": "2025-11-12",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Closing",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Closing is a morphological operation defined as dilation followed by erosion using the same structuring element, used to fill small holes and connect nearby components while preserving overall shape.",
+    "description": "It closes small gaps and holes within foreground objects without enlarging them significantly. Like opening, it is idempotent and commonly applied after thresholding to produce solid, compact regions suitable for further analysis.",
+    "properties": {
+      "Goal": "Fill small holes and connect disjoint parts of objects",
+      "Applications": ["Hole filling", "Gap closure", "Smoothing object interiors", "Post-processing segmentation"],
+      "Methods": ["Dilation then Erosion", "Structuring element (disk recommended for isotropy)"],
+      "Examples": ["Filling dark spots inside segmented seashells", "Connecting broken edges in vessel segmentation"]
+    },
+    "relations": [
+      {"type": "composed_of", "target": "Dilation"},
+      {"type": "composed_of", "target": "Erosion"},
+      {"type": "part_of", "target": "Morphological Operations"},
+      {"type": "used_in", "target": "Image Segmentation Pipeline"},
+      {"type": "complements", "target": "Opening"},
+      {"type": "improves", "target": "Region Integrity"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "morphology_and_segmentation.pdf",
+      "created_at": "2025-11-12",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Connected Component Labeling",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Connected Component Labeling is an algorithm that assigns a unique label to each connected group of foreground pixels in a binary image, identifying individual objects.",
+    "description": "It scans the image and groups 4-connected or 8-connected foreground pixels into distinct components. Commonly implemented via two-pass algorithms (raster scan + union-find) or recursive flood-fill. Essential for counting, locating, and analyzing separate objects in segmented images.",
+    "properties": {
+      "Goal": "Identify and enumerate distinct objects in a binary image",
+      "Applications": ["Object counting", "Individual ROI extraction", "Shape analysis", "Tracking initialization"],
+      "Methods": ["Two-pass labeling", "Union-find data structure", "Flood-fill recursion"],
+      "Examples": ["Labeling each seashell in a multi-object image", "Counting cells in microscopy"]
+    },
+    "relations": [
+      {"type": "requires", "target": "Binary Mask"},
+      {"type": "improved_by", "target": "Opening"},
+      {"type": "improved_by", "target": "Closing"},
+      {"type": "enables", "target": "Per-Object Feature Extraction"},
+      {"type": "part_of", "target": "Image Segmentation"},
+      {"type": "used_in", "target": "Object Detection Pipeline"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "morphology_and_segmentation.pdf",
+      "created_at": "2025-11-12",
+      "version": "1.0"
+    }
+  }
+]

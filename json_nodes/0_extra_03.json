@@ -1,0 +1,306 @@
+[
+  {
+    "entity": "Data Format Differences",
+    "type": "concept",
+    "domain": "Data Integration",
+    "definition": "Differences in structural or syntactic representation of data originating from multiple sources.",
+    "description": "Common variations include CSV vs TXT, comma vs tab separators, and presence or absence of header rows.",
+    "properties": {
+      "examples": ["csv", "txt", "tab-separated", "comma-separated"],
+      "challenges": ["inconsistent parsing", "schema mismatch"]
+    },
+    "relations": [
+      {"type": "affects", "target": "Data Merging"},
+      {"type": "related_to", "target": "Data Quality"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Cultural Formatting Differences",
+    "type": "concept",
+    "domain": "Data Integration",
+    "definition": "Variations in numeric and textual conventions across regions that affect data interpretation.",
+    "description": "Typical issues include decimal comma versus decimal point and different date formats.",
+    "properties": {
+      "examples": ["1,23 vs 1.23", "DD/MM/YYYY vs MM/DD/YYYY"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Data Format Differences"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Unit Mismatch",
+    "type": "error_type",
+    "domain": "Data Integration",
+    "definition": "A discrepancy where multiple data sources represent the same measurement using different units.",
+    "description": "Examples include centimeters vs inches or acceleration measured in g versus m/s^2.",
+    "properties": {
+      "consequences": ["incorrect model inputs", "distorted feature magnitudes"]
+    },
+    "relations": [
+      {"type": "affects", "target": "Data Merging"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Timestamp Mismatch",
+    "type": "error_type",
+    "domain": "Temporal Data",
+    "definition": "Differences in the timestamp formats or reference scales used by multiple sensors or data sources.",
+    "description": "Examples include Unix timestamps versus human-readable dates.",
+    "properties": {
+      "examples": ["Unix epoch", "ISO date strings"]
+    },
+    "relations": [
+      {"type": "requires", "target": "Timestamp Synchronization"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Timestamp Synchronization",
+    "type": "method",
+    "domain": "Temporal Data",
+    "definition": "The process of aligning timestamps from multiple sources to a common reference scale.",
+    "description": "Necessary when merging data from different devices or modalities.",
+    "properties": {
+      "methods": ["clock alignment", "interpolation", "offset correction"]
+    },
+    "relations": [
+      {"type": "supports", "target": "Data Merging"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Label Inconsistency",
+    "type": "error_type",
+    "domain": "Data Integration",
+    "definition": "A mismatch in semantic meaning or granularity of labels across datasets.",
+    "description": "Example: one dataset defines 'walking' as flat-ground walking while another includes stairs.",
+    "properties": {
+      "effects": ["ambiguity", "inconsistent supervision"]
+    },
+    "relations": [
+      {"type": "affects", "target": "Supervised Learning"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Sensor Placement Variability",
+    "type": "concept",
+    "domain": "Sensor Data",
+    "definition": "Differences in sensor orientation or placement on the body or environment.",
+    "description": "Placement differences significantly alter the recorded signals even for identical activities.",
+    "properties": {
+      "examples": ["upper arm vs wrist", "left vs right side"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Calibration Differences"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Environmental Condition Variability",
+    "type": "concept",
+    "domain": "Data Collection",
+    "definition": "Changes in external conditions that affect the comparability of collected data.",
+    "description": "Examples include season, terrain, indoor versus outdoor conditions, and environmental noise.",
+    "properties": {
+      "variables": ["temperature", "surface gradient", "lighting"]
+    },
+    "relations": [
+      {"type": "affects", "target": "Data Merging"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Calibration Differences",
+    "type": "error_type",
+    "domain": "Sensor Data",
+    "definition": "Variability in sensor output caused by imperfect or inconsistent calibration between devices.",
+    "description": "Occurs even when sensors are of the same model and manufacturer.",
+    "properties": {
+      "causes": ["manufacturing tolerance", "wear", "environmental effects"]
+    },
+    "relations": [
+      {"type": "affects", "target": "Sensor Placement Variability"},
+      {"type": "related_to", "target": "Data Merging"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Incompatible Data Collection Protocols",
+    "type": "concept",
+    "domain": "Data Collection",
+    "definition": "A situation where datasets cannot be merged due to incompatible procedures, sampling rates, or measurement rules.",
+    "description": "Arises when two studies follow fundamentally different data-collection methodologies.",
+    "properties": {
+      "reasons": ["different sampling rates", "non-matching units", "inconsistent label definitions"]
+    },
+    "relations": [
+      {"type": "prevents", "target": "Data Merging"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Sampling Rate Mismatch",
+    "type": "error_type",
+    "domain": "Sampling",
+    "definition": "A discrepancy in sampling frequencies across sensors or data sources.",
+    "description": "Makes direct merging difficult without resampling.",
+    "properties": {
+      "examples": ["50 Hz vs 100 Hz"]
+    },
+    "relations": [
+      {"type": "requires", "target": "GCD-Based Downsampling"},
+      {"type": "requires", "target": "LCM-Based Oversampling"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Battery–Sampling Trade-Off",
+    "type": "concept",
+    "domain": "Sensor Data",
+    "definition": "A trade-off between sampling rate and device battery consumption.",
+    "description": "Higher sampling frequencies drain battery faster, limiting experiment duration.",
+    "properties": {
+      "factors": ["sampling rate", "battery capacity"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Sampling Rate Mismatch"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "GCD-Based Downsampling",
+    "type": "method",
+    "domain": "Sampling",
+    "definition": "Downsampling multiple signals to a shared sampling frequency derived from their greatest common divisor.",
+    "description": "Can reduce data quantity but aligns signals to a common time base.",
+    "properties": {
+      "effect": "information loss"
+    },
+    "relations": [
+      {"type": "addresses", "target": "Sampling Rate Mismatch"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "LCM-Based Oversampling",
+    "type": "method",
+    "domain": "Sampling",
+    "definition": "Oversampling multiple signals to a shared sampling frequency derived from their least common multiple.",
+    "description": "Increases data size but avoids discarding information.",
+    "properties": {
+      "effect": "increased computational cost"
+    },
+    "relations": [
+      {"type": "addresses", "target": "Sampling Rate Mismatch"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Confusion Matrix",
+    "type": "data_structure",
+    "domain": "Performance Metrics",
+    "definition": "A contingency table summarizing prediction results in classification tasks.",
+    "description": "Captures true positives, false positives, true negatives, and false negatives.",
+    "properties": {
+      "entries": ["TP", "FP", "TN", "FN"]
+    },
+    "relations": [
+      {"type": "foundation_of", "target": "Precision"},
+      {"type": "foundation_of", "target": "Recall"},
+      {"type": "foundation_of", "target": "F1 Score"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Balanced Accuracy",
+    "type": "metric",
+    "domain": "Performance Metrics",
+    "definition": "The average of recall obtained on each class.",
+    "description": "Designed for imbalanced datasets where standard accuracy is misleading.",
+    "properties": {
+      "formula": "(TP/(TP+FN) + TN/(TN+FP)) / 2"
+    },
+    "relations": [
+      {"type": "improves", "target": "Accuracy"},
+      {"type": "related_to", "target": "Imbalanced Data"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Precision",
+    "type": "metric",
+    "domain": "Performance Metrics",
+    "definition": "The proportion of predicted positives that are true positives.",
+    "description": "Indicates how many positive predictions are correct.",
+    "properties": {
+      "formula": "TP / (TP + FP)"
+    },
+    "relations": [
+      {"type": "related_to", "target": "Recall"},
+      {"type": "component_of", "target": "F1 Score"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Recall",
+    "type": "metric",
+    "domain": "Performance Metrics",
+    "definition": "The proportion of actual positives that are correctly identified.",
+    "description": "Also called sensitivity; important in medical and anomaly detection tasks.",
+    "properties": {
+      "formula": "TP / (TP + FN)"
+    },
+    "relations": [
+      {"type": "related_to", "target": "Precision"},
+      {"type": "component_of", "target": "F1 Score"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Specificity",
+    "type": "metric",
+    "domain": "Performance Metrics",
+    "definition": "The proportion of actual negatives that are correctly identified.",
+    "description": "Complementary to recall, especially important for false-positive control.",
+    "properties": {
+      "formula": "TN / (TN + FP)"
+    },
+    "relations": [
+      {"type": "related_to", "target": "Recall"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "F1 Score",
+    "type": "metric",
+    "domain": "Performance Metrics",
+    "definition": "The harmonic mean of precision and recall.",
+    "description": "Balances false positives and false negatives and is robust to imbalance.",
+    "properties": {
+      "formula": "2 * (precision * recall) / (precision + recall)"
+    },
+    "relations": [
+      {"type": "depends_on", "target": "Precision"},
+      {"type": "depends_on", "target": "Recall"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Cohen’s Kappa",
+    "type": "metric",
+    "domain": "Performance Metrics",
+    "definition": "A statistic measuring inter-rater or model–true-label agreement adjusted for chance.",
+    "description": "Useful for assessing classifier reliability beyond simple accuracy.",
+    "properties": {
+      "formula": "kappa = (p0 - pe) / (1 - pe)"
+    },
+    "relations": [
+      {"type": "alternative_to", "target": "Accuracy"}
+    ],
+    "metadata": {"source_pdf": true}
+  }
+]

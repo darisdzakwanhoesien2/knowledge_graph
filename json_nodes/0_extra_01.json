@@ -1,0 +1,214 @@
+[
+  {
+    "entity": "Personal Data",
+    "type": "concept",
+    "domain": "Privacy",
+    "definition": "Any information relating to an identified or identifiable natural person.",
+    "description": "Covers both direct identifiers and quasi-identifiers that can re-identify individuals when combined.",
+    "properties": {
+      "examples": ["names", "addresses", "location traces", "online identifiers"],
+      "legal_status": "Protected under GDPR"
+    },
+    "relations": [
+      {"type": "protected_by", "target": "General Data Protection Regulation (GDPR)"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Pseudonymisation",
+    "type": "method",
+    "domain": "Privacy",
+    "definition": "Replacing identifying attributes with artificial identifiers while keeping a mapping for re-identification.",
+    "description": "Provides partial privacy but is reversible when the mapping is available.",
+    "properties": {
+      "characteristics": ["mapping retained separately", "reversible"],
+      "use_cases": ["research follow-ups", "risk-controlled data release"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Personal Data"},
+      {"type": "contrasts_with", "target": "Anonymisation"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "k-Anonymity",
+    "type": "privacy_property",
+    "domain": "Privacy",
+    "definition": "A property ensuring each record is indistinguishable from at least k-1 others based on quasi-identifiers.",
+    "description": "Achieved through generalisation or suppression; vulnerable to attribute disclosure attacks.",
+    "properties": {
+      "parameter": "k",
+      "methods": ["suppression", "generalisation"]
+    },
+    "relations": [
+      {"type": "applied_to", "target": "Tabular Data"},
+      {"type": "supports", "target": "Anonymisation"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Advanced Data Modification",
+    "type": "method",
+    "domain": "Privacy",
+    "definition": "Heuristic or algorithmic methods for modifying datasets to reduce privacy risk while retaining analytical value.",
+    "description": "Includes perturbation, synthetic data generation, and suppression heuristics.",
+    "properties": {
+      "approaches": ["perturbation", "synthetic data", "attribute suppression heuristics"]
+    },
+    "relations": [
+      {"type": "derived_from", "target": "Anonymisation"}
+    ],
+    "metadata": {"source_pdf": true, "definition_inferred": true}
+  },
+  {
+    "entity": "Relational Database",
+    "type": "data_structure",
+    "domain": "Databases",
+    "definition": "A structured collection of relations (tables) organized according to the relational model.",
+    "description": "Implements schemas, supports SQL, and typically enforces ACID properties.",
+    "properties": {
+      "features": ["tables", "schemas", "ACID transactions"],
+      "examples": ["PostgreSQL", "MySQL", "Oracle"]
+    },
+    "relations": [
+      {"type": "supports", "target": "SQL"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "NoSQL Databases",
+    "type": "category",
+    "domain": "Databases",
+    "definition": "A broad category of database systems that do not use the relational model.",
+    "description": "Includes document stores, key-value stores, columnar stores, and graph databases.",
+    "properties": {
+      "advantages": ["schema flexibility", "horizontal scaling"],
+      "examples": ["MongoDB"]
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Relational Database"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "MongoDB",
+    "type": "software_system",
+    "domain": "Databases",
+    "definition": "A document-oriented NoSQL database storing data in BSON format.",
+    "description": "Allows flexible schema design and uses a hierarchical document model.",
+    "properties": {
+      "storage_format": "BSON",
+      "model": "Document Store"
+    },
+    "relations": [
+      {"type": "instance_of", "target": "NoSQL Databases"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Entity-Relationship Modeling",
+    "type": "method",
+    "domain": "Databases",
+    "definition": "A conceptual modeling method describing entities, attributes, and relationships.",
+    "description": "Used to design relational schemas and understand domain structure.",
+    "properties": {
+      "components": ["entities", "attributes", "relationships"]
+    },
+    "relations": [
+      {"type": "used_to", "target": "Design Relational Database schemas"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Relational Algebra",
+    "type": "theory",
+    "domain": "Databases",
+    "definition": "A formal set of operations on relations forming the foundation of SQL.",
+    "description": "Core operators include projection, selection, and natural join.",
+    "properties": {
+      "operators": ["projection", "selection", "join"]
+    },
+    "relations": [
+      {"type": "foundation_of", "target": "SQL"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "SQL",
+    "type": "language",
+    "domain": "Databases",
+    "definition": "A declarative language for managing and querying relational databases.",
+    "description": "Supports SELECT, JOIN, INSERT, UPDATE, DELETE, and schema definition.",
+    "properties": {
+      "categories": ["DDL", "DML", "DQL"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Relational Database"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "CIA Triad",
+    "type": "security_model",
+    "domain": "Security",
+    "definition": "A model defining three core principles of information security: Confidentiality, Integrity, Availability.",
+    "description": "Used to categorize threats and security controls.",
+    "properties": {
+      "principles": ["Confidentiality", "Integrity", "Availability"]
+    },
+    "relations": [
+      {"type": "applies_to", "target": "Information Security"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Open Data Licences",
+    "type": "category",
+    "domain": "Licensing",
+    "definition": "Licenses governing how datasets may be used, shared, and modified.",
+    "description": "Includes CC0, CC BY, and ODbL with differing attribution and sharing requirements.",
+    "properties": {
+      "examples": ["CC0", "CC BY", "ODbL"]
+    },
+    "relations": [
+      {"type": "applies_to", "target": "Open Data"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Metadata",
+    "type": "concept",
+    "domain": "Data Management",
+    "definition": "Structured information describing a dataset’s content, structure, provenance, and semantics.",
+    "description": "Supports FAIR principles by enabling discovery and reuse.",
+    "properties": {
+      "components": ["variable descriptions", "units", "provenance", "versioning"]
+    },
+    "relations": [
+      {"type": "supports", "target": "FAIR Principles"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "ActivityMeasurement",
+    "type": "data_entity",
+    "domain": "Example Schema",
+    "definition": "An example entity representing individual activity measurements.",
+    "description": "Used to illustrate relational and document database modeling.",
+    "properties": {
+      "attributes": [
+        "measurementId",
+        "personId",
+        "monitorId",
+        "measurementDate",
+        "activeMinutes",
+        "steps",
+        "calories"
+      ]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Activity Monitoring Schema"}
+    ],
+    "metadata": {"source_pdf": true}
+  }
+]

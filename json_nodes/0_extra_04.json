@@ -1,0 +1,214 @@
+[
+  {
+    "entity": "Available-Case Analysis",
+    "type": "method",
+    "domain": "Missing Data Handling",
+    "definition": "A deletion method where all available observations for each variable or pair of variables are used without requiring complete records.",
+    "description": "Also known as pairwise deletion. It uses all observed values for each statistical computation, enabling retention of more data than listwise deletion.",
+    "properties": {
+      "advantages": ["retains more data", "useful for covariance estimation"],
+      "disadvantages": ["inconsistent sample sizes", "may bias associations under MAR or MNAR"]
+    },
+    "relations": [
+      {"type": "contrast_with", "target": "Complete-Case Analysis"},
+      {"type": "related_to", "target": "Deletion"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Complete-Case Analysis",
+    "type": "method",
+    "domain": "Missing Data Handling",
+    "definition": "A deletion method where entire rows containing any missing values are removed from analysis.",
+    "description": "Also known as listwise deletion. Many tools do this automatically, which may reduce sample size and introduce bias.",
+    "properties": {
+      "advantages": ["simple to implement"],
+      "disadvantages": ["loss of data", "biased estimates unless MCAR"]
+    },
+    "relations": [
+      {"type": "contrast_with", "target": "Available-Case Analysis"},
+      {"type": "related_to", "target": "Deletion"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Hot Deck Imputation",
+    "type": "method",
+    "domain": "Missing Data Handling",
+    "definition": "An imputation technique where missing values are replaced with values drawn from similar cases within the same dataset.",
+    "description": "Values are selected from cases that are most similar to the incomplete record; appropriate when missingness is rare.",
+    "properties": {
+      "source": "same dataset",
+      "requirements": ["sufficient similar donors"]
+    },
+    "relations": [
+      {"type": "contrast_with", "target": "Cold Deck Imputation"},
+      {"type": "instance_of", "target": "Imputation"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Cold Deck Imputation",
+    "type": "method",
+    "domain": "Missing Data Handling",
+    "definition": "An imputation technique where missing values are replaced with values drawn from an external but similar dataset.",
+    "description": "Used when in-dataset donor values are insufficient or not representative.",
+    "properties": {
+      "source": "external dataset",
+      "risk": ["dataset mismatch bias"]
+    },
+    "relations": [
+      {"type": "contrast_with", "target": "Hot Deck Imputation"},
+      {"type": "instance_of", "target": "Imputation"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Last Observation Carried Forward",
+    "type": "method",
+    "domain": "Time-Series Missing Data",
+    "definition": "A method that fills missing time-series values using the last observed measurement in the sequence.",
+    "description": "Often used in clinical trials; can introduce bias even under MCAR.",
+    "properties": {
+      "assumption": "stability of observation over time",
+      "problems": ["bias", "distorted autocorrelation"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Baseline Observation Carried Forward"},
+      {"type": "part_of", "target": "Time-Series Missing Data Handling"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Baseline Observation Carried Forward",
+    "type": "method",
+    "domain": "Time-Series Missing Data",
+    "definition": "A method where all missing values are replaced with the baseline measurement.",
+    "description": "Simplifies analysis but can severely distort temporal trends.",
+    "properties": {
+      "strength": "preserves baseline values",
+      "weakness": ["bias", "underestimates change"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Last Observation Carried Forward"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Full Information Maximum Likelihood",
+    "type": "method",
+    "domain": "Missing Data Modeling",
+    "definition": "A maximum likelihood estimation approach that uses all available data to estimate parameters without explicitly imputing missing values.",
+    "description": "Relies on likelihood contributions from incomplete cases; improves overall parameter accuracy.",
+    "properties": {
+      "advantages": ["uses all available data", "works under MAR"],
+      "limitations": ["underestimates standard errors", "requires correct model specification"]
+    },
+    "relations": [
+      {"type": "uses", "target": "Expectation-Maximization Algorithm"},
+      {"type": "instance_of", "target": "Maximum Likelihood Estimation"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Expectation-Maximization Algorithm",
+    "type": "algorithm",
+    "domain": "Statistical Estimation",
+    "definition": "An iterative algorithm for maximum likelihood estimation in the presence of missing or latent variables.",
+    "description": "Alternates between estimating expected log-likelihood (E-step) and maximizing it (M-step) until convergence.",
+    "properties": {
+      "steps": ["E-step", "M-step"],
+      "requirements": ["numerical data", "convergence criteria"]
+    },
+    "relations": [
+      {"type": "computes", "target": "Full Information Maximum Likelihood"},
+      {"type": "related_to", "target": "Maximum Likelihood Estimation"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Imputation Pile-Up",
+    "type": "phenomenon",
+    "domain": "Imputation Issues",
+    "definition": "The tendency of imputed values to cluster around central tendencies such as the mean.",
+    "description": "Common in mean imputation, reducing variability and distorting distributions.",
+    "properties": {
+      "effects": ["loss of variance", "biased correlations"]
+    },
+    "relations": [
+      {"type": "caused_by", "target": "Mean Imputation"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Loss of Variability in Imputed Data",
+    "type": "phenomenon",
+    "domain": "Imputation Issues",
+    "definition": "Reduction in variance of the dataset caused by imputation methods that fail to incorporate uncertainty.",
+    "description": "Occurs in mean and regression imputation, affecting model estimates.",
+    "properties": {
+      "consequences": ["biased standard errors", "overconfident estimates"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Imputation Pile-Up"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Impossible Imputation Values",
+    "type": "error_type",
+    "domain": "Imputation Issues",
+    "definition": "Imputed values that are logically or physically impossible within the domain of the variable.",
+    "description": "Examples include negative ozone values or impossible categorical combinations.",
+    "properties": {
+      "causes": ["regression imputation", "improper model constraints"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Regression Imputation"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Within-Imputation Variance",
+    "type": "statistical_measure",
+    "domain": "Multiple Imputation",
+    "definition": "The component of variance resulting from sampling uncertainty within each imputed dataset.",
+    "description": "Represents traditional sampling variance from standard complete-data analyses.",
+    "properties": {
+      "symbol": "Ū"
+    },
+    "relations": [
+      {"type": "part_of", "target": "Total Variance in Multiple Imputation"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Between-Imputation Variance",
+    "type": "statistical_measure",
+    "domain": "Multiple Imputation",
+    "definition": "The variance arising from differences among the multiple imputed datasets.",
+    "description": "Reflects uncertainty about the correct value to impute.",
+    "properties": {
+      "symbol": "B"
+    },
+    "relations": [
+      {"type": "part_of", "target": "Total Variance in Multiple Imputation"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Total Variance in Multiple Imputation",
+    "type": "statistical_measure",
+    "domain": "Multiple Imputation",
+    "definition": "The combined variance estimate incorporating both within- and between-imputation variance.",
+    "description": "Ensures correct standard errors and confidence intervals under MI.",
+    "properties": {
+      "formula": "T = Ū + (1 + 1/M) * B"
+    },
+    "relations": [
+      {"type": "includes", "target": "Within-Imputation Variance"},
+      {"type": "includes", "target": "Between-Imputation Variance"}
+    ],
+    "metadata": {"source_pdf": true}
+  }
+]

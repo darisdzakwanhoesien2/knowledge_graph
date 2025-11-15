@@ -1,0 +1,365 @@
+[
+  {
+    "entity": "Scaling to Arbitrary Range",
+    "type": "method",
+    "domain": "Data Transformation",
+    "definition": "A normalization technique that linearly maps values to any target interval [a, b].",
+    "description": "Generalization of min–max normalization where the target range is not limited to [0, 1], enabling flexible rescaling.",
+    "properties": {
+      "formula": "x' = (x - min) / (max - min) * (b - a) + a",
+      "requirements": ["known min", "known max"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Min-Max Normalization"},
+      {"type": "part_of", "target": "Data Transformation"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Storing Normalization Parameters",
+    "type": "process",
+    "domain": "Data Transformation",
+    "definition": "The practice of saving transformation parameters such as means, standard deviations, and min–max values for use in future data preprocessing.",
+    "description": "Essential to avoid data leakage and ensure consistent scaling between training and test sets.",
+    "properties": {
+      "parameters": ["mean", "standard deviation", "min", "max"],
+      "purpose": ["reproducibility", "consistency"]
+    },
+    "relations": [
+      {"type": "supports", "target": "Model Generalization"},
+      {"type": "required_by", "target": "Min-Max Normalization"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Extreme Z-Score Threshold Rule",
+    "type": "heuristic",
+    "domain": "Outlier Detection",
+    "definition": "A method for identifying extreme values using high absolute Z-score cutoffs, typically 6–7, instead of the conventional 3.",
+    "description": "Used to avoid misclassifying valid but rare signals as outliers, particularly in highly variable datasets.",
+    "properties": {
+      "thresholds": ["|z| > 6", "|z| > 7"],
+      "purpose": "avoid over-removal of valid extreme values"
+    },
+    "relations": [
+      {"type": "related_to", "target": "Z-score Standardization"},
+      {"type": "instance_of", "target": "Outlier Detection Methods"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Measurement Error Visualization",
+    "type": "method",
+    "domain": "Data Quality",
+    "definition": "Visualization techniques used to detect measurement errors through plots and distribution analysis.",
+    "description": "Includes visual detection of extreme Z-scores, artifacts, or sudden jumps in sensor data.",
+    "properties": {
+      "tools": ["histograms", "box plots", "time-series plots"]
+    },
+    "relations": [
+      {"type": "supports", "target": "Outlier Detection Methods"},
+      {"type": "related_to", "target": "Data Quality"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Median Split",
+    "type": "method",
+    "domain": "Discretization",
+    "definition": "A discretization method that divides a continuous variable into two groups using the median value as the threshold.",
+    "description": "Commonly used for creating binary categories but may lead to information loss.",
+    "properties": {
+      "output": "two categories",
+      "risk": ["loss of variance", "misclassification"]
+    },
+    "relations": [
+      {"type": "instance_of", "target": "Discretization"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Distinctive Grouping",
+    "type": "method",
+    "domain": "Discretization",
+    "definition": "A discretization method that forms groups based on meaningful or domain-specific distinctions rather than uniform intervals.",
+    "description": "Useful when natural categories exist, such as age groups or educational stages.",
+    "properties": {
+      "basis": ["domain knowledge", "semantic categories"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Discretization"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Equal-Length Binning",
+    "type": "method",
+    "domain": "Discretization",
+    "definition": "A discretization method dividing the range of a variable into intervals of equal width.",
+    "description": "Bin boundaries are uniformly spaced, which may result in uneven sample counts per bin in skewed distributions.",
+    "properties": {
+      "bin_type": "fixed-width",
+      "risks": ["unbalanced bins"]
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Equal-Size Binning"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Equal-Size Binning",
+    "type": "method",
+    "domain": "Discretization",
+    "definition": "A discretization method dividing data into bins containing approximately equal numbers of observations.",
+    "description": "Also known as equal-frequency binning; adjusts bin boundaries based on data distribution.",
+    "properties": {
+      "bin_type": "equal-frequency",
+      "risks": ["variable bin widths"]
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Equal-Length Binning"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Natural Cut Points",
+    "type": "method",
+    "domain": "Discretization",
+    "definition": "A discretization approach that chooses cut points based on evident gaps or changes in the data distribution.",
+    "description": "Often identified visually or via distribution-based heuristics.",
+    "properties": {
+      "identification": ["visual inspection", "distribution jumps"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Discretization"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Concept Hierarchies",
+    "type": "structure",
+    "domain": "Discretization",
+    "definition": "Hierarchical structures that represent data from low-level granular categories to increasingly general abstractions.",
+    "description": "Used for discretization and data generalization, enabling multi-level analysis.",
+    "properties": {
+      "levels": ["fine-grained", "intermediate", "coarse"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Data Generalization"},
+      {"type": "part_of", "target": "Discretization"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Dichotomization",
+    "type": "method",
+    "domain": "Discretization",
+    "definition": "A method that converts a continuous variable into two groups based on a threshold.",
+    "description": "Simplifies analysis but leads to substantial information loss.",
+    "properties": {
+      "risks": ["information loss", "increased misclassification"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Median Split"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Problems of Discretization",
+    "type": "concept",
+    "domain": "Discretization",
+    "definition": "The set of issues created when transforming continuous variables into discrete categories.",
+    "description": "Includes information loss, artificial boundaries, and increased risk of misclassification.",
+    "properties": {
+      "effects": ["reduced statistical power", "loss of granularity"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Discretization"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Information Loss Through Dichotomization",
+    "type": "phenomenon",
+    "domain": "Discretization",
+    "definition": "The reduction of statistical information caused by collapsing continuous variables into binary categories.",
+    "description": "Leads to loss of variability and weaker associations.",
+    "properties": {
+      "causes": ["thresholding", "binary splitting"]
+    },
+    "relations": [
+      {"type": "instance_of", "target": "Problems of Discretization"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Misclassification Risk at Cut Points",
+    "type": "phenomenon",
+    "domain": "Discretization",
+    "definition": "The risk of mislabeling cases that fall near bin boundaries when discretizing continuous variables.",
+    "description": "Boundary decisions may not reflect underlying data continuity.",
+    "properties": {
+      "causes": ["abrupt thresholds"],
+      "effects": ["noisy categorical labels"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Discretization"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Factor Variables",
+    "type": "datatype",
+    "domain": "Categorical Data",
+    "definition": "Variables that represent categories encoded as discrete levels rather than numeric values.",
+    "description": "Used in statistical modeling to encode nominal or ordinal categories.",
+    "properties": {
+      "levels": "categorical labels"
+    },
+    "relations": [
+      {"type": "used_in", "target": "Dummy Coding"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Frequency Tables",
+    "type": "method",
+    "domain": "Categorical Data",
+    "definition": "Tabular summaries of categorical variables showing counts per category.",
+    "description": "Useful for summarizing distributions of factor variables.",
+    "properties": {
+      "outputs": ["counts", "proportions"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Categorical Data"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Correspondence Tests",
+    "type": "method",
+    "domain": "Categorical Data",
+    "definition": "Statistical tests evaluating the association between two categorical variables.",
+    "description": "Includes chi-square–type methods applicable to contingency tables.",
+    "properties": {
+      "inputs": ["contingency table"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Frequency Tables"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Categorical vs Continuous Visualization",
+    "type": "method",
+    "domain": "Categorical Data",
+    "definition": "Visualization techniques that compare categorical groups against continuous measurements.",
+    "description": "Examples include grouped boxplots for continuous outcomes across category levels.",
+    "properties": {
+      "tools": ["boxplots", "violin plots"]
+    },
+    "relations": [
+      {"type": "supports", "target": "Factor Variables"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Data Aggregation",
+    "type": "method",
+    "domain": "Data Reduction",
+    "definition": "A data reduction method that summarizes groups of data points into aggregate values.",
+    "description": "Common aggregates include mean, sum, and group-level statistics.",
+    "properties": {
+      "aggregates": ["mean", "sum", "count"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Data Reduction"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Data Generalization",
+    "type": "method",
+    "domain": "Data Reduction",
+    "definition": "A reduction method where data is replaced by more general forms using hierarchical abstraction.",
+    "description": "Often implemented using concept hierarchies to reduce granularity.",
+    "properties": {
+      "approach": ["hierarchical abstraction"]
+    },
+    "relations": [
+      {"type": "uses", "target": "Concept Hierarchies"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Variable Construction",
+    "type": "process",
+    "domain": "Data Reduction",
+    "definition": "Constructing new variables from existing ones to improve predictive performance or simplify data representation.",
+    "description": "Includes building composite indicators or derived attributes.",
+    "properties": {
+      "examples": ["interaction terms", "index scores"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Data Reduction"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Nonparametric Data Reduction Methods",
+    "type": "method",
+    "domain": "Data Reduction",
+    "definition": "Reduction methods that do not assume specific parametric forms and rely on data-driven transformations.",
+    "description": "Useful when normality or linearity assumptions do not hold.",
+    "properties": {
+      "examples": ["binning", "wavelet transforms"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Data Reduction"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Transformation to Normality",
+    "type": "method",
+    "domain": "Data Transformation",
+    "definition": "Techniques aimed at making a variable's distribution more Gaussian.",
+    "description": "Used to satisfy model assumptions; includes Box–Cox and other power transformations.",
+    "properties": {
+      "goal": "approximate normality"
+    },
+    "relations": [
+      {"type": "related_to", "target": "Box-Cox Transformation"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Normality Tests",
+    "type": "method",
+    "domain": "Statistical Diagnostics",
+    "definition": "Statistical methods used to evaluate whether data follow a normal distribution.",
+    "description": "Although not named explicitly, includes families of tests such as Shapiro–Wilk and KS tests.",
+    "properties": {
+      "outputs": ["p-value", "decision on normality"]
+    },
+    "relations": [
+      {"type": "supports", "target": "Transformation to Normality"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Solutions for Non-Normality",
+    "type": "strategy",
+    "domain": "Statistical Diagnostics",
+    "definition": "Approaches to address non-normal data, including transformations or use of nonparametric models.",
+    "description": "Ensures suitability of statistical models when assumptions fail.",
+    "properties": {
+      "strategies": ["transform variables", "apply nonparametric models"]
+    },
+    "relations": [
+      {"type": "uses", "target": "Normality Tests"},
+      {"type": "related_to", "target": "Transformation to Normality"}
+    ],
+    "metadata": {"source_pdf": true}
+  }
+]

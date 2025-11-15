@@ -1,0 +1,567 @@
+[
+  {
+    "entity": "Generalizability",
+    "type": "concept",
+    "domain": "Model Evaluation",
+    "definition": "The degree to which a model's findings or predictions apply beyond the data on which it was trained.",
+    "description": "Generalizability reflects how well a model captures patterns that extend to new individuals, settings, or datasets.",
+    "properties": {
+      "aspects": ["population generalizability", "dataset generalizability"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Model Generalization"},
+      {"type": "part_of", "target": "Model Evaluation"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Generalization Error",
+    "type": "metric",
+    "domain": "Model Evaluation",
+    "definition": "The expected error of a model when applied to new, unseen data.",
+    "description": "It captures the discrepancy between training performance and real-world prediction accuracy.",
+    "properties": {
+      "components": ["bias", "variance"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Generalizability"},
+      {"type": "contrast_with", "target": "Training Error"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Generalization Gap",
+    "type": "metric",
+    "domain": "Model Evaluation",
+    "definition": "The difference between training error and test error for a model.",
+    "description": "A large gap indicates overfitting, while a small gap suggests good generalizability.",
+    "properties": {
+      "formula": "generalization_gap = test_error - training_error"
+    },
+    "relations": [
+      {"type": "related_to", "target": "Overfitting"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Dataset Generalization",
+    "type": "concept",
+    "domain": "Model Evaluation",
+    "definition": "The ability of a model to perform well on datasets collected under conditions different from the training dataset.",
+    "description": "Important for real-world deployment, where data collection conditions vary.",
+    "properties": {
+      "sources_of_variation": ["different populations", "different sensors", "different contexts"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Generalizability"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Retrospective Models",
+    "type": "model_type",
+    "domain": "Descriptive Modeling",
+    "definition": "Models that analyze past data to understand patterns, associations, or structures.",
+    "description": "Used for insight generation and explanation rather than future prediction.",
+    "properties": {
+      "primary_goal": "understanding past phenomena"
+    },
+    "relations": [
+      {"type": "instance_of", "target": "Descriptive Modeling"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Prospective Models",
+    "type": "model_type",
+    "domain": "Predictive Modeling",
+    "definition": "Models designed to predict future outcomes based on current or historical data.",
+    "description": "Used in forecasting, risk assessment, and decision automation.",
+    "properties": {
+      "primary_goal": "predicting future events"
+    },
+    "relations": [
+      {"type": "instance_of", "target": "Predictive Modeling"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Theory-Driven Models",
+    "type": "model_type",
+    "domain": "Modeling Approaches",
+    "definition": "Models constructed primarily from theoretical principles rather than empirical patterns.",
+    "description": "Often focuses on causal explanation and interpretable structures.",
+    "properties": {
+      "advantages": ["interpretability", "causal validity"]
+    },
+    "relations": [
+      {"type": "contrast_with", "target": "Data-Driven Models"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Data-Driven Models",
+    "type": "model_type",
+    "domain": "Modeling Approaches",
+    "definition": "Models built primarily from observed data, with minimal theoretical assumptions.",
+    "description": "Typical in machine learning, where predictive accuracy is prioritized.",
+    "properties": {
+      "advantages": ["high predictive power"],
+      "risks": ["overfitting"]
+    },
+    "relations": [
+      {"type": "contrast_with", "target": "Theory-Driven Models"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Explanatory Power",
+    "type": "property",
+    "domain": "Model Interpretation",
+    "definition": "The ability of a model to explain underlying relationships and mechanisms within data.",
+    "description": "Prioritized in scientific modeling where interpretability and causal understanding are necessary.",
+    "properties": {
+      "factors": ["model structure", "variable relationships"]
+    },
+    "relations": [
+      {"type": "often_increases", "target": "Model Simplicity"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Predictive Power",
+    "type": "property",
+    "domain": "Model Performance",
+    "definition": "The ability of a model to accurately predict new observations.",
+    "description": "Often maximized using data-driven machine learning approaches.",
+    "properties": {
+      "metrics": ["RMSE", "accuracy", "AUC"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Predictive Modeling"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Minimum Sample Size for Statistical Inference",
+    "type": "requirement",
+    "domain": "Sampling",
+    "definition": "The smallest number of observations needed to perform statistically valid inference.",
+    "description": "Depends on model complexity, effect sizes, and desired confidence levels.",
+    "properties": {
+      "influenced_by": ["variance", "population size", "test type"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Sample Size"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Sample Size for Predictive Modeling",
+    "type": "requirement",
+    "domain": "Sampling",
+    "definition": "The amount of data required for building predictive models that generalize well.",
+    "description": "Larger sample sizes reduce variance and improve generalization.",
+    "properties": {
+      "depends_on": ["model complexity", "noise level", "feature dimensionality"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Sample Size"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Precision of Parameter Estimation",
+    "type": "metric",
+    "domain": "Statistical Inference",
+    "definition": "The degree of certainty in estimated model parameters.",
+    "description": "Higher sample sizes typically increase precision and reduce standard errors.",
+    "properties": {
+      "improved_by": ["larger datasets"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Sample Size"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Population Representativeness",
+    "type": "concept",
+    "domain": "Sampling",
+    "definition": "The extent to which a sample reflects the target population.",
+    "description": "Critical for valid generalization of study results.",
+    "properties": {
+      "risks_of_failure": ["sampling bias", "non-response bias"]
+    },
+    "relations": [
+      {"type": "supports", "target": "Generalizability"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Access to Data",
+    "type": "constraint",
+    "domain": "Data Collection",
+    "definition": "The availability of suitable and sufficient data for training and evaluating models.",
+    "description": "Practical and ethical challenges may restrict data collection and usage.",
+    "properties": {
+      "limitations": ["privacy", "cost", "logistics"]
+    },
+    "relations": [
+      {"type": "affects", "target": "Sample Size"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Training Set",
+    "type": "data_partition",
+    "domain": "Model Evaluation",
+    "definition": "The subset of data used to estimate model parameters.",
+    "description": "Forms the basis of the model's learned patterns.",
+    "properties": {
+      "purpose": ["parameter estimation"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Data Partitioning"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Test Set",
+    "type": "data_partition",
+    "domain": "Model Evaluation",
+    "definition": "The subset of data reserved for evaluating a model's predictive performance.",
+    "description": "Used only after model training and selection.",
+    "properties": {
+      "purpose": ["generalization assessment"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Data Partitioning"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Hold-Out Method",
+    "type": "method",
+    "domain": "Model Evaluation",
+    "definition": "A data partitioning approach where the dataset is split into training and testing subsets.",
+    "description": "Common simple method for estimating predictive performance.",
+    "properties": {
+      "common_splits": ["80-20", "2/3-1/3"]
+    },
+    "relations": [
+      {"type": "instance_of", "target": "Data Partitioning"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Eighty-Twenty Split",
+    "type": "data_partition",
+    "domain": "Model Evaluation",
+    "definition": "A partitioning approach where 80% of data is used for training and 20% for testing.",
+    "description": "A common default in machine learning experiments.",
+    "properties": {
+      "ratio": "80-20"
+    },
+    "relations": [
+      {"type": "instance_of", "target": "Hold-Out Method"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Two-Thirds One-Third Split",
+    "type": "data_partition",
+    "domain": "Model Evaluation",
+    "definition": "A data partitioning scheme where two-thirds of the data is used for training and one-third for testing.",
+    "description": "Alternative to the 80-20 split.",
+    "properties": {
+      "ratio": "2/3-1/3"
+    },
+    "relations": [
+      {"type": "instance_of", "target": "Hold-Out Method"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Training-Validation-Test Split",
+    "type": "data_partition",
+    "domain": "Model Evaluation",
+    "definition": "A three-way data split used to train, tune, and evaluate machine learning models.",
+    "description": "Enables both hyperparameter tuning and final unbiased model evaluation.",
+    "properties": {
+      "components": ["training", "validation", "test"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Cross-Validation"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Participant-Wise Cross-Validation",
+    "type": "method",
+    "domain": "Model Evaluation",
+    "definition": "A cross-validation technique where data from each participant forms a separate fold.",
+    "description": "Used when data from the same participant is highly correlated.",
+    "properties": {
+      "use_case": ["sensor-based human activity recognition"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Cross-Validation"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Leave-One-Out Validation",
+    "type": "method",
+    "domain": "Model Evaluation",
+    "definition": "A cross-validation technique where each instance is used as its own test set.",
+    "description": "Computationally expensive but maximally uses available data.",
+    "properties": {
+      "folds": "n"
+    },
+    "relations": [
+      {"type": "part_of", "target": "Cross-Validation"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Temporal Dependency in Data",
+    "type": "phenomenon",
+    "domain": "Time-Series Data",
+    "definition": "The property that observations close in time are correlated rather than independent.",
+    "description": "Invalidates random sampling and certain cross-validation methods.",
+    "properties": {
+      "causes": ["sliding windows", "sensor signals"]
+    },
+    "relations": [
+      {"type": "affects", "target": "Data Partitioning"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "No Random Sampling Under Temporal Dependence",
+    "type": "constraint",
+    "domain": "Time-Series Data",
+    "definition": "A restriction that prevents using random train-test splits when data points are temporally correlated.",
+    "description": "Random splits cause leakage because training and test sets contain nearly identical patterns.",
+    "properties": {
+      "effects": ["data leakage", "inflated accuracy"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Temporal Dependency in Data"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Day-Based Partitioning",
+    "type": "method",
+    "domain": "Time-Series Data",
+    "definition": "A data-splitting strategy where entire days are used as units to avoid temporal leakage.",
+    "description": "Ensures that temporally adjacent observations are not split across training and test sets.",
+    "properties": {
+      "unit": "day"
+    },
+    "relations": [
+      {"type": "addresses", "target": "Temporal Leakage"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Temporal Leakage",
+    "type": "error_type",
+    "domain": "Model Evaluation",
+    "definition": "Inadvertent inclusion of temporally correlated information in both training and test sets.",
+    "description": "Causes overestimation of model performance.",
+    "properties": {
+      "sources": ["random splitting", "overlapping windows"]
+    },
+    "relations": [
+      {"type": "caused_by", "target": "Temporal Dependency in Data"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Sliding Windows",
+    "type": "method",
+    "domain": "Feature Extraction",
+    "definition": "A method for extracting features from sequential data by moving a fixed-size window across time.",
+    "description": "Used in time-series classification and signal processing.",
+    "properties": {
+      "parameters": ["window size", "step size"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Window-Based Feature Extraction"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Overlapping Windows",
+    "type": "method",
+    "domain": "Feature Extraction",
+    "definition": "Sliding windows that partially overlap to create highly correlated feature vectors.",
+    "description": "Leads to temporal dependency between training instances.",
+    "properties": {
+      "effect": "induces correlation"
+    },
+    "relations": [
+      {"type": "causes", "target": "Temporal Dependency in Data"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Window-Based Feature Extraction",
+    "type": "method",
+    "domain": "Feature Extraction",
+    "definition": "Feature extraction performed on short, fixed-length windows of time-series data.",
+    "description": "Generates feature vectors for classification tasks such as activity recognition.",
+    "properties": {
+      "common_features": ["mean", "variance", "energy"]
+    },
+    "relations": [
+      {"type": "uses", "target": "Sliding Windows"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Individual Models",
+    "type": "model_type",
+    "domain": "Modeling Approaches",
+    "definition": "Models trained on data from a single individual for personalized prediction.",
+    "description": "Performs well on the specific individual but generalizes poorly to others.",
+    "properties": {
+      "strength": "high personalization",
+      "weakness": "poor population generalization"
+    },
+    "relations": [
+      {"type": "contrast_with", "target": "Population Models"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Population Models",
+    "type": "model_type",
+    "domain": "Modeling Approaches",
+    "definition": "Models trained on data from multiple individuals to generalize across users.",
+    "description": "More robust in diverse real-world applications.",
+    "properties": {
+      "strength": "better generalization"
+    },
+    "relations": [
+      {"type": "contrast_with", "target": "Individual Models"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Activity Recognition",
+    "type": "application",
+    "domain": "Machine Learning Applications",
+    "definition": "The task of identifying human activities from sensor or contextual data.",
+    "description": "Commonly involves using wearable sensor data like accelerometers and temperature sensors.",
+    "properties": {
+      "typical_inputs": ["accelerometer", "gyroscope", "temperature"]
+    },
+    "relations": [
+      {"type": "uses", "target": "Window-Based Feature Extraction"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Sensor-Based Activity Detection",
+    "type": "application",
+    "domain": "Machine Learning Applications",
+    "definition": "Detecting human activities using sensor data collected from wearable or ambient devices.",
+    "description": "Depends heavily on feature extraction and handling temporal correlations.",
+    "properties": {
+      "sensors": ["accelerometers", "temperature sensors"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Activity Recognition"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Multi-Modal Feature Inputs",
+    "type": "concept",
+    "domain": "Feature Engineering",
+    "definition": "Combining features from multiple sensor modalities for improved model performance.",
+    "description": "For example, integrating accelerometer features with body temperature signals.",
+    "properties": {
+      "modalities": ["accelerometer", "temperature"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Activity Recognition"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Model Complexity–Generalization Tradeoff",
+    "type": "concept",
+    "domain": "Model Selection",
+    "definition": "The tradeoff in which more complex models fit training data better but often generalize worse.",
+    "description": "Central to selecting models that balance expressiveness with robustness.",
+    "properties": {
+      "risk": "overfitting"
+    },
+    "relations": [
+      {"type": "related_to", "target": "Model Selection"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Simpler Models Generalize Better",
+    "type": "principle",
+    "domain": "Model Selection",
+    "definition": "The principle that models with lower complexity often perform better on new data.",
+    "description": "Reflects Occam's razor in predictive modeling.",
+    "properties": {
+      "benefits": ["robustness", "lower variance"]
+    },
+    "relations": [
+      {"type": "supports", "target": "Model Complexity–Generalization Tradeoff"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Overcomplex Models",
+    "type": "model_issue",
+    "domain": "Model Selection",
+    "definition": "Models that are excessively flexible and overfit training data.",
+    "description": "Characterized by small training error and large generalization error.",
+    "properties": {
+      "symptom": "large generalization gap"
+    },
+    "relations": [
+      {"type": "related_to", "target": "Overfitting"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Hyperparameter Selection",
+    "type": "process",
+    "domain": "Model Selection",
+    "definition": "The process of choosing optimal hyperparameters for a learning algorithm.",
+    "description": "Typically done using validation sets or cross-validation.",
+    "properties": {
+      "examples": ["regularization strength", "learning rate", "tree depth"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Model Selection"},
+      {"type": "related_to", "target": "Cross-Validation"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Feature Selection",
+    "type": "process",
+    "domain": "Model Selection",
+    "definition": "The process of identifying the most relevant features for a predictive model.",
+    "description": "Reduces overfitting, improves generalization, and simplifies models.",
+    "properties": {
+      "methods": ["filter methods", "wrapper methods", "embedded methods"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Model Selection"}
+    ],
+    "metadata": {"source_pdf": true}
+  }
+]

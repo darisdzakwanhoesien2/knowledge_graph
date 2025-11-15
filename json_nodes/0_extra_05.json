@@ -1,0 +1,511 @@
+[
+  {
+    "entity": "Attribute Noise",
+    "type": "error_type",
+    "domain": "Data Quality",
+    "definition": "Noise arising from erroneous, missing, or corrupted feature values in data.",
+    "description": "Attribute noise distorts the representation of instances and can weaken classifiers by shifting feature distributions.",
+    "properties": {
+      "examples": ["typos", "invalid numeric values", "sensor failures"],
+      "effects": ["class boundary distortion", "small erroneous clusters"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Noise"},
+      {"type": "affects", "target": "Supervised Learning"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Label Noise",
+    "type": "error_type",
+    "domain": "Data Quality",
+    "definition": "Noise caused by incorrect, inconsistent, or subjective class labels.",
+    "description": "Label noise is particularly harmful for supervised learning, as it directly corrupts ground truth.",
+    "properties": {
+      "sources": ["human mistakes", "ambiguous labeling", "subjective judgments"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Noisy Data"},
+      {"type": "affects", "target": "Supervised Learning"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Noise Frequency Filtering",
+    "type": "method",
+    "domain": "Signal Processing",
+    "definition": "The removal of specific high- or low-frequency noise components from continuous signals.",
+    "description": "Includes removing characteristic electrical interference, such as 50 Hz noise from power lines.",
+    "properties": {
+      "examples": ["notch filter", "band-pass filter"],
+      "risks": ["loss of useful information"]
+    },
+    "relations": [
+      {"type": "instance_of", "target": "Noise Filters"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Equipment Error",
+    "type": "error_type",
+    "domain": "Data Quality",
+    "definition": "Noise or erroneous values caused by malfunctioning or poorly calibrated measurement devices.",
+    "description": "Common in sensor-based data collection, producing sudden spikes or unrealistic readings.",
+    "properties": {
+      "causes": ["device failure", "poor calibration"],
+      "effects": ["outliers", "attribute noise"]
+    },
+    "relations": [
+      {"type": "produces", "target": "Attribute Noise"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Garbage Values",
+    "type": "error_type",
+    "domain": "Data Pollution",
+    "definition": "Invalid or meaningless values inserted into data fields due to errors, incompatibilities, or manual mistakes.",
+    "description": "Garbage values may originate from free text fields, broken encodings, or copy-paste errors.",
+    "properties": {
+      "examples": ["nonsense strings", "unexpected tokens"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Data Pollution"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Delimiter Contamination",
+    "type": "error_type",
+    "domain": "Data Pollution",
+    "definition": "A data corruption issue where field values include delimiter characters, causing misalignment in structured formats.",
+    "description": "Occurs in CSV or TSV files when text fields contain commas, tabs, or semicolons.",
+    "properties": {
+      "effects": ["row fragmentation", "column shifts"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Data Pollution"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Free-Text Field Contamination",
+    "type": "error_type",
+    "domain": "Data Pollution",
+    "definition": "Contamination caused by unstructured free-text fields containing unexpected patterns that break parsing.",
+    "description": "Includes unescaped punctuation, symbols, or embedded delimiters.",
+    "properties": {
+      "sources": ["manual entry", "copy-paste"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Data Pollution"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Thousand-Separator Contamination",
+    "type": "error_type",
+    "domain": "Data Pollution",
+    "definition": "The presence of thousands separators in numeric fields causing parsing issues or incorrect numerical conversion.",
+    "description": "Common when merging data across locales with different numeric conventions.",
+    "properties": {
+      "examples": ["1,000.50", "1.000,50"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Data Format Differences"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Domain Drift",
+    "type": "phenomenon",
+    "domain": "Data Quality",
+    "definition": "A mismatch between the original data schema design and current data usage, leading to invalid category values.",
+    "description": "Occurs when systems are repurposed, such as a 'Gender' field receiving business-related labels.",
+    "properties": {
+      "effects": ["category misalignment", "data pollution"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Data Pollution"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Global Outliers",
+    "type": "outlier_type",
+    "domain": "Outlier Detection",
+    "definition": "Data points that deviate significantly from the overall distribution of the dataset.",
+    "description": "Most classical outlier detection methods target global outliers.",
+    "properties": {
+      "examples": ["extreme sensor readings"]
+    },
+    "relations": [
+      {"type": "instance_of", "target": "Outliers"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Contextual Outliers",
+    "type": "outlier_type",
+    "domain": "Outlier Detection",
+    "definition": "Values that are only outliers within a specific contextual setting or subset of conditions.",
+    "description": "A temperature of +25°C is an outlier in Oulu in January but not in July.",
+    "properties": {
+      "requires": ["contextual attributes"]
+    },
+    "relations": [
+      {"type": "contrast_with", "target": "Global Outliers"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Collective Outliers",
+    "type": "outlier_type",
+    "domain": "Outlier Detection",
+    "definition": "Groups of observations that together deviate significantly from the dataset’s normal behavior.",
+    "description": "Individually normal points form an abnormal cluster, such as suspicious block transactions.",
+    "properties": {
+      "examples": ["market manipulation patterns"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Contextual Outliers"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Outlier Score",
+    "type": "metric",
+    "domain": "Outlier Detection",
+    "definition": "A continuous measure estimating how strongly an instance differs from expected normal behavior.",
+    "description": "Used by many unsupervised and distance-based outlier detection models.",
+    "properties": {
+      "scale": "continuous"
+    },
+    "relations": [
+      {"type": "used_in", "target": "Unsupervised Outlier Detection"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Binary Outlier Classification",
+    "type": "metric",
+    "domain": "Outlier Detection",
+    "definition": "A binary decision mechanism indicating whether an instance is labeled as outlier or normal.",
+    "description": "Often derived from thresholding outlier scores.",
+    "properties": {
+      "outputs": ["outlier", "non-outlier"]
+    },
+    "relations": [
+      {"type": "derived_from", "target": "Outlier Score"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Subjective Outlier Thresholding",
+    "type": "method",
+    "domain": "Outlier Detection",
+    "definition": "Human-defined thresholding used to determine whether deviation magnitude is sufficient to consider a point an outlier.",
+    "description": "Cutoff values depend on domain knowledge and application-specific tolerances.",
+    "properties": {
+      "difficulty": "non-universal thresholds"
+    },
+    "relations": [
+      {"type": "related_to", "target": "Binary Outlier Classification"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Supervised Outlier Detection",
+    "type": "method",
+    "domain": "Outlier Detection",
+    "definition": "Outlier detection using labeled datasets, typically training classifiers to distinguish normal and abnormal instances.",
+    "description": "Challenges include extreme class imbalance and insufficient outlier examples.",
+    "properties": {
+      "models": ["binary classifier", "one-class models"]
+    },
+    "relations": [
+      {"type": "contrast_with", "target": "Unsupervised Outlier Detection"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Semi-Supervised Outlier Detection",
+    "type": "method",
+    "domain": "Outlier Detection",
+    "definition": "A hybrid outlier detection method using both labeled and unlabeled data.",
+    "description": "Most useful for modeling normal behavior rather than rare anomalies.",
+    "properties": {
+      "strength": "leverages unlabeled data"
+    },
+    "relations": [
+      {"type": "contrast_with", "target": "Supervised Outlier Detection"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Unsupervised Outlier Detection",
+    "type": "method",
+    "domain": "Outlier Detection",
+    "definition": "Outlier detection assuming that normal instances form clusters, while outliers lie far from these clusters.",
+    "description": "Useful when labels are unavailable; many clustering and density-based techniques apply.",
+    "properties": {
+      "assumptions": ["normal data clustered"]
+    },
+    "relations": [
+      {"type": "contrast_with", "target": "Supervised Outlier Detection"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Parametric Outlier Detection",
+    "type": "method",
+    "domain": "Statistical Outlier Detection",
+    "definition": "Outlier detection assuming that normal data follow a known parametric distribution.",
+    "description": "Includes Gaussian modeling, where low-probability instances are flagged as outliers.",
+    "properties": {
+      "examples": ["Gaussian distribution"]
+    },
+    "relations": [
+      {"type": "instance_of", "target": "Statistical Outlier Detection"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Nonparametric Outlier Detection",
+    "type": "method",
+    "domain": "Statistical Outlier Detection",
+    "definition": "Outlier detection without assuming any prior data distribution, relying instead on data-driven density estimation.",
+    "description": "Often uses kernel density estimation to identify low-density regions.",
+    "properties": {
+      "examples": ["kernel density estimation"]
+    },
+    "relations": [
+      {"type": "instance_of", "target": "Statistical Outlier Detection"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Gaussian Outlier Modeling",
+    "type": "method",
+    "domain": "Statistical Outlier Detection",
+    "definition": "A parametric approach modeling normal data using a Gaussian distribution and identifying low-likelihood instances as outliers.",
+    "description": "Effective when data approximately follow normal distributions.",
+    "properties": {
+      "requirements": ["mean and covariance estimation"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Parametric Outlier Detection"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Kernel Density Estimation for Outlier Detection",
+    "type": "method",
+    "domain": "Statistical Outlier Detection",
+    "definition": "Outlier detection using a nonparametric density estimate of the normal data distribution.",
+    "description": "Instances in low-density areas under the estimated kernel distribution are considered outliers.",
+    "properties": {
+      "techniques": ["Gaussian kernels", "Epanechnikov kernels"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Nonparametric Outlier Detection"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Distance-Based Outlier Detection",
+    "type": "method",
+    "domain": "Proximity-Based Methods",
+    "definition": "Outlier detection based on distances to neighbors using global parameters such as radius and neighbor threshold.",
+    "description": "Points with too few neighbors within a specified distance are flagged as outliers.",
+    "properties": {
+      "parameters": ["radius r", "threshold t"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Proximity-Based Methods"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Density-Based Outlier Detection",
+    "type": "method",
+    "domain": "Proximity-Based Methods",
+    "definition": "Outlier detection comparing local density of a point to the densities of its neighbors.",
+    "description": "Low-density points relative to nearby points are considered outliers; LOF is a common example.",
+    "properties": {
+      "examples": ["Local Outlier Factor (LOF)"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Proximity-Based Methods"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Clustering-Based Outlier Detection",
+    "type": "method",
+    "domain": "Outlier Detection",
+    "definition": "Outlier detection assuming normal data form large dense clusters and outliers form small, sparse clusters.",
+    "description": "Methods include K-Means and Gaussian Mixture Models.",
+    "properties": {
+      "weakness": ["sensitive to noise"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Clustering Algorithms"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Sparse-Cluster Outliers",
+    "type": "outlier_type",
+    "domain": "Clustering-Based Outlier Detection",
+    "definition": "Outliers that belong to clusters with very low density or membership count.",
+    "description": "Common in clustering-based detection where small clusters are treated as abnormal.",
+    "properties": {
+      "identification": ["cluster size threshold"]
+    },
+    "relations": [
+      {"type": "instance_of", "target": "Clustering-Based Outlier Detection"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Gaussian Mixture Model Outlier Detection",
+    "type": "method",
+    "domain": "Clustering-Based Outlier Detection",
+    "definition": "Outlier detection using mixture models where low-probability points under the model are flagged as outliers.",
+    "description": "Each Gaussian component models a cluster; outliers lie outside high-likelihood areas.",
+    "properties": {
+      "technique": "Expectation-Maximization for model fitting"
+    },
+    "relations": [
+      {"type": "related_to", "target": "Gaussian Outlier Modeling"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "One-Class Classification",
+    "type": "method",
+    "domain": "Classification-Based Outlier Detection",
+    "definition": "A classification method modeling only the normal class, treating deviations as outliers.",
+    "description": "Widely used for anomaly detection when outliers are scarce or unknown.",
+    "properties": {
+      "algorithms": ["One-Class SVM", "Autoencoders"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Supervised Outlier Detection"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Outlier Detection via SVM",
+    "type": "method",
+    "domain": "Classification-Based Outlier Detection",
+    "definition": "Use of Support Vector Machines to identify outliers based on deviation from the learned normal boundary.",
+    "description": "Includes both binary SVM approaches and one-class SVMs for anomaly detection.",
+    "properties": {
+      "advantages": ["robust boundaries", "works in high dimensions"]
+    },
+    "relations": [
+      {"type": "instance_of", "target": "One-Class Classification"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Outlier Detection via Random Forest",
+    "type": "method",
+    "domain": "Classification-Based Outlier Detection",
+    "definition": "Outlier detection using ensemble tree models to identify points poorly represented by learned structure.",
+    "description": "Random forests can identify unusual patterns based on path length or leaf rarity.",
+    "properties": {
+      "mechanism": ["rare-leaf detection"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Supervised Outlier Detection"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Predictive Outlier Detection",
+    "type": "method",
+    "domain": "Time-Series Outlier Detection",
+    "definition": "Outlier detection in streaming data using predictive models such as autoregressive or multivariate regressors.",
+    "description": "Points are anomalous when observed values deviate significantly from predictions.",
+    "properties": {
+      "models": ["AR models", "regression models"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Streaming Data Analysis"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Streaming Outlier Detection",
+    "type": "method",
+    "domain": "Time-Series Outlier Detection",
+    "definition": "Methods for detecting outliers in continuous data streams where time-order and latency constraints apply.",
+    "description": "Includes monitoring individual points, shape irregularities, and aggregated change points.",
+    "properties": {
+      "challenges": ["real-time constraints", "concept drift"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Predictive Outlier Detection"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Unusual-Shape Outlier Detection",
+    "type": "method",
+    "domain": "Time-Series Outlier Detection",
+    "definition": "Identification of anomalous temporal patterns based on shape irregularities rather than pointwise deviations.",
+    "description": "Useful in detecting unusual motion patterns or abnormal physiological waveforms.",
+    "properties": {
+      "techniques": ["transform-based", "distance-based"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Streaming Outlier Detection"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Multidimensional Streaming Outlier Detection",
+    "type": "method",
+    "domain": "Time-Series Outlier Detection",
+    "definition": "Outlier detection extended to multivariate streaming systems, considering correlations across multiple dimensions.",
+    "description": "Detects single-point anomalies or aggregated shifts across sensors or modalities.",
+    "properties": {
+      "outputs": ["point anomalies", "change points", "rare classes"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Streaming Outlier Detection"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Change-Point Outlier Detection",
+    "type": "method",
+    "domain": "Time-Series Outlier Detection",
+    "definition": "Detection of abrupt shifts in the mean, variance, or structural properties of a time series.",
+    "description": "Change points indicate transitions to abnormal system states.",
+    "properties": {
+      "effects": ["distributional shift", "anomaly onset"]
+    },
+    "relations": [
+      {"type": "instance_of", "target": "Time-Series Outlier Detection"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Rare-Class Detection in Time Series",
+    "type": "method",
+    "domain": "Time-Series Outlier Detection",
+    "definition": "Detection of rare or unusual event types in time-series streams.",
+    "description": "Targets low-frequency events that have significant domain relevance, such as faults or intrusions.",
+    "properties": {
+      "challenges": ["class imbalance", "concept drift"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Multidimensional Streaming Outlier Detection"}
+    ],
+    "metadata": {"source_pdf": true}
+  }
+]

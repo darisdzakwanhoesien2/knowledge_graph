@@ -1,0 +1,511 @@
+[
+  {
+    "entity": "Machine Learning",
+    "type": "field",
+    "domain": "Machine Learning",
+    "definition": "A field of study and practice focused on algorithms that improve performance at tasks through experience (data).",
+    "description": "Encompasses supervised, unsupervised, and reinforcement approaches and emphasizes predictive performance and automation.",
+    "properties": {
+      "subfields": ["Supervised Learning", "Unsupervised Learning", "Deep Learning"],
+      "typical_outputs": ["classifiers", "regressors", "clusterings"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Predictive Modeling"},
+      {"type": "parent_of", "target": "Machine Learning Models"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Machine Learning Models",
+    "type": "category",
+    "domain": "Machine Learning",
+    "definition": "Parametric or non-parametric algorithm instantiations (models) learned from data to perform tasks such as classification or regression.",
+    "description": "Examples include decision trees, SVMs, neural networks, ensemble models and one-class models used for anomaly detection.",
+    "properties": {"examples": ["SVM", "Random Forest", "Neural Network", "One-Class Classification"]},
+    "relations": [
+      {"type": "instance_of", "target": "Machine Learning"},
+      {"type": "related_to", "target": "Model Selection"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Supervised Learning",
+    "type": "method_category",
+    "domain": "Machine Learning",
+    "definition": "Learning where models are trained on input–output pairs (X, Y) to predict outputs from new inputs.",
+    "description": "Requires labelled data and is sensitive to label noise and class imbalance.",
+    "properties": {"common_algorithms": ["Logistic Regression", "SVM", "Random Forest", "Neural Networks"]},
+    "relations": [
+      {"type": "related_to", "target": "Predictive Modeling"},
+      {"type": "related_to", "target": "Label Noise"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Avoiding Overfitting",
+    "type": "practice",
+    "domain": "Modeling Practice",
+    "definition": "Techniques and design choices intended to reduce overfitting and improve model generalization.",
+    "description": "Includes cross-validation, regularization, simpler models, early stopping, and appropriate data partitioning.",
+    "properties": {"techniques": ["cross-validation", "regularization", "feature selection"]},
+    "relations": [
+      {"type": "mitigates", "target": "Overfitting"},
+      {"type": "related_to", "target": "Hyperparameter Selection"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Bias-Variance Tradeoff",
+    "type": "concept",
+    "domain": "Modeling Theory",
+    "definition": "A conceptual decomposition of prediction error into bias (systematic error) and variance (estimation variability).",
+    "description": "Guides model complexity choices: higher complexity reduces bias but increases variance and vice versa.",
+    "properties": {"components": ["bias", "variance", "irreducible error"]},
+    "relations": [
+      {"type": "related_to", "target": "Model Complexity\u2013Generalization Tradeoff"},
+      {"type": "affects", "target": "Generalization Error"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Regularization",
+    "type": "method",
+    "domain": "Modeling Practice",
+    "definition": "Techniques that penalize model complexity during training to prevent overfitting (e.g., L1/L2 penalties, dropout).",
+    "description": "Reduces variance at the cost of potentially increasing bias, improving generalization when tuned properly.",
+    "properties": {"examples": ["L1 (lasso)", "L2 (ridge)", "dropout", "early stopping"]},
+    "relations": [
+      {"type": "mitigates", "target": "Overfitting"},
+      {"type": "related_to", "target": "Hyperparameter Selection"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Model Bias",
+    "type": "issue",
+    "domain": "Modeling",
+    "definition": "Systematic errors in model outputs caused by incorrect model assumptions, biased training data, or simplistic model structures.",
+    "description": "Closely related to societal bias: biased training data or labels can propagate harmful outcomes.",
+    "properties": {"sources": ["sampling bias", "label bias", "feature omission"]},
+    "relations": [
+      {"type": "related_to", "target": "Bias"},
+      {"type": "affects", "target": "Model Evaluation"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Accuracy",
+    "type": "metric",
+    "domain": "Performance Metrics",
+    "definition": "Proportion of correct predictions over all predictions for classification tasks.",
+    "description": "Simple metric but can be misleading with imbalanced classes (see Balanced Accuracy, F1 Score).",
+    "properties": {"formula": "accuracy = (TP + TN) / (TP + TN + FP + FN)"},
+    "relations": [
+      {"type": "alternative_to", "target": "Balanced Accuracy"},
+      {"type": "related_to", "target": "Performance Metrics"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Training Error",
+    "type": "metric",
+    "domain": "Model Evaluation",
+    "definition": "Error measured on the training dataset after model fitting.",
+    "description": "Used together with test error to compute the generalization gap; overly low training error may signal overfitting.",
+    "properties": {"used_for": ["monitoring fit", "early stopping"]},
+    "relations": [
+      {"type": "contrast_with", "target": "Generalization Error"},
+      {"type": "component_of", "target": "Generalization Gap"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Statistical Methods",
+    "type": "category",
+    "domain": "Statistics",
+    "definition": "Formal techniques for describing data and drawing inferences about populations from samples.",
+    "description": "Encompasses hypothesis testing, estimation, regression, likelihood methods and nonparametric alternatives.",
+    "properties": {"families": ["parametric", "nonparametric", "Bayesian", "frequentist"]},
+    "relations": [
+      {"type": "includes", "target": "Maximum Likelihood Estimation (MLE)"},
+      {"type": "related_to", "target": "Statistical Power"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Specialized Statistical Modeling",
+    "type": "category",
+    "domain": "Statistics",
+    "definition": "Domain-specific statistical models (e.g., survival models, mixed-effects models, time-series models) used when standard models are inadequate.",
+    "description": "Often required for hierarchical data, longitudinal measurements, or nonstandard error structures.",
+    "properties": {"examples": ["mixed-effects", "survival analysis", "state-space models"]},
+    "relations": [
+      {"type": "related_to", "target": "Parameterized Models"},
+      {"type": "related_to", "target": "Time Series Analysis"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Regression Modeling",
+    "type": "method",
+    "domain": "Statistics",
+    "definition": "Models that estimate relationships between dependent variables and one or more explanatory variables (linear and nonlinear forms).",
+    "description": "Includes linear regression, generalized linear models, and specialized regression variants for complex data.",
+    "properties": {"variants": ["linear", "logistic", "Poisson", "survival"]},
+    "relations": [
+      {"type": "related_to", "target": "Regression Imputation"},
+      {"type": "related_to", "target": "Statistical Methods"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Causal Hypothesis",
+    "type": "concept",
+    "domain": "Inference",
+    "definition": "A proposed causal relationship between variables that is typically tested using explanatory models and experimental design.",
+    "description": "Causal claims require careful design, confounding control and sometimes randomized interventions.",
+    "properties": {"requires": ["counterfactual reasoning", "control of confounders"]},
+    "relations": [
+      {"type": "related_to", "target": "Explanatory Modeling"},
+      {"type": "related_to", "target": "Randomized Controlled Trial (RCT)"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Statistical Power",
+    "type": "metric",
+    "domain": "Statistics",
+    "definition": "The probability that a test will correctly reject a false null hypothesis (1 - type II error rate).",
+    "description": "Determines required sample sizes for hypothesis-driven (explanatory) studies.",
+    "properties": {"depends_on": ["effect_size", "sample_size", "alpha"]},
+    "relations": [
+      {"type": "related_to", "target": "Minimum Sample Size for Statistical Inference"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Statistical Significance",
+    "type": "concept",
+    "domain": "Statistics",
+    "definition": "A conclusion that an observed effect is unlikely to be due to chance under a specified null model, typically operationalized by p-values.",
+    "description": "Statistical significance does not imply practical importance.",
+    "properties": {"common_thresholds": ["p < 0.05", "p < 0.01"]},
+    "relations": [
+      {"type": "related_to", "target": "Statistical Methods"},
+      {"type": "related_to", "target": "Statistical Power"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Nonlinear PCA",
+    "type": "method",
+    "domain": "Dimensionality Reduction",
+    "definition": "Extensions of PCA that capture nonlinear relationships (e.g., kernel PCA, autoencoder-based approaches).",
+    "description": "Useful when principal directions of variation are curved or manifold-structured.",
+    "properties": {"examples": ["kernel PCA", "autoencoder PCA", "Isomap variants"]},
+    "relations": [
+      {"type": "related_to", "target": "Principal Component Analysis (PCA)"},
+      {"type": "related_to", "target": "Principal Component Analysis (PCA)"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Statistical Outlier Detection",
+    "type": "category",
+    "domain": "Outlier Detection",
+    "definition": "Methods that identify outliers using statistical modelling — either parametric (distributional) or nonparametric (density estimation).",
+    "description": "Serves as a parent for Parametric Outlier Detection and Nonparametric Outlier Detection.",
+    "properties": {"subtypes": ["parametric", "nonparametric"]},
+    "relations": [
+      {"type": "parent_of", "target": "Parametric Outlier Detection"},
+      {"type": "parent_of", "target": "Nonparametric Outlier Detection"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Experimental Design",
+    "type": "field",
+    "domain": "Research Methods",
+    "definition": "The process of planning experiments to ensure that data collection answers the research question while controlling confounders.",
+    "description": "Includes design choices such as RCTs, crossover designs, sample size planning, randomization, and blocking.",
+    "properties": {"elements": ["randomization", "control groups", "replication", "blocking"]},
+    "relations": [
+      {"type": "related_to", "target": "Randomized Controlled Trial (RCT)"},
+      {"type": "related_to", "target": "Sample Size"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Poor Experimental Design",
+    "type": "issue",
+    "domain": "Research Methods",
+    "definition": "Design flaws that reduce validity, such as lack of controls, small sample sizes, biased sampling, or inadequate blinding.",
+    "description": "Leads to biased or non-generalizable results and may render data unusable for inference.",
+    "properties": {"consequences": ["bias", "low power", "confounding"]},
+    "relations": [
+      {"type": "related_to", "target": "Human Data Collection"},
+      {"type": "contrasts_with", "target": "Experimental Design"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Sampling Rate Adjustment",
+    "type": "method",
+    "domain": "Sampling",
+    "definition": "Practices for harmonizing or adjusting sampling frequencies (e.g., resampling, interpolation, downsampling) when merging data from multiple sources.",
+    "description": "Addresses issues documented under Sampling Rate Mismatch and Sampling Synchronization.",
+    "properties": {"techniques": ["interpolation", "GCD-based downsampling", "LCM-based oversampling"]},
+    "relations": [
+      {"type": "related_to", "target": "Sampling Rate Mismatch"},
+      {"type": "related_to", "target": "Timestamp Synchronization"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Data Augmentation",
+    "type": "method",
+    "domain": "Data Preprocessing",
+    "definition": "Techniques for synthetically increasing dataset size or diversity (e.g., rotations, noise, synthetic samples) to improve model robustness.",
+    "description": "Widely used in vision, audio and time-series to reduce overfitting and address class imbalance.",
+    "properties": {"examples": ["noise injection", "time-warping", "synthetic sample generation"]},
+    "relations": [
+      {"type": "related_to", "target": "Synthetic Minority Oversampling Technique (SMOTE)"},
+      {"type": "mitigates", "target": "Overfitting"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Research Data Management",
+    "type": "practice",
+    "domain": "Data Management",
+    "definition": "Policies and processes for storing, documenting, preserving and sharing research data (metadata, provenance, access control).",
+    "description": "Enables reproducibility and FAIR compliance; overlaps with Data Documentation and Metadata.",
+    "properties": {"components": ["storage", "metadata", "access", "preservation"]},
+    "relations": [
+      {"type": "related_to", "target": "Metadata"},
+      {"type": "related_to", "target": "FAIR Principles"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Documentation",
+    "type": "artifact",
+    "domain": "Data Management",
+    "definition": "Written records describing dataset contents, methods, versioning, provenance, and usage constraints.",
+    "description": "Broader than 'Data Documentation'—applies to code, protocols, experiment logs and data pipelines.",
+    "properties": {"includes": ["data dictionaries", "readme", "protocol descriptions"]},
+    "relations": [
+      {"type": "related_to", "target": "Data Documentation"},
+      {"type": "supports", "target": "Reproducibility"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Design Relational Database Schemas",
+    "type": "process",
+    "domain": "Database Management",
+    "definition": "The activity of translating conceptual domain models into normalized relational table structures.",
+    "description": "Uses ER modeling and considerations such as keys, constraints and normalization to avoid redundancy.",
+    "properties": {"outputs": ["table definitions", "keys", "constraints"]},
+    "relations": [
+      {"type": "related_to", "target": "Entity-Relationship Modeling"},
+      {"type": "supports", "target": "Relational Database"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Tabular Data",
+    "type": "datatype",
+    "domain": "Data Structures",
+    "definition": "Data organized in rows and columns (records and fields), typical for spreadsheets and relational database tables.",
+    "description": "The primary input format for many classical machine learning and statistical methods.",
+    "properties": {"representations": ["CSV", "SQL tables", "dataframes"]},
+    "relations": [
+      {"type": "related_to", "target": "Relational Database"},
+      {"type": "used_in", "target": "Predictive Modeling"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Data Protection Laws",
+    "type": "category",
+    "domain": "Governance",
+    "definition": "Legal frameworks that govern the collection, storage and processing of personal data (e.g., GDPR).",
+    "description": "Includes regional and sectoral regulations that shape research design and data sharing.",
+    "properties": {"examples": ["GDPR", "national data protection acts"]},
+    "relations": [
+      {"type": "includes", "target": "General Data Protection Regulation (GDPR)"},
+      {"type": "related_to", "target": "Pseudonymisation"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "GO FAIR Initiative",
+    "type": "initiative",
+    "domain": "Open Science",
+    "definition": "An international initiative promoting the FAIR principles for data (Findable, Accessible, Interoperable, Reusable).",
+    "description": "Supports infrastructure, community practices and policies to make research data reusable.",
+    "properties": {"goals": ["promote FAIR", "build infrastructure"]},
+    "relations": [
+      {"type": "related_to", "target": "FAIR Principles"},
+      {"type": "related_to", "target": "Open Data"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Human Research Ethics",
+    "type": "domain",
+    "domain": "Ethics",
+    "definition": "Ethical principles and regulatory requirements governing research involving human participants.",
+    "description": "Encompasses Respect for Persons, Beneficence, Justice, informed consent, confidentiality, and protections for vulnerable groups.",
+    "properties": {"components": ["informed consent", "risk assessment", "ethical approval"]},
+    "relations": [
+      {"type": "related_to", "target": "Respect for Persons"},
+      {"type": "supports", "target": "Ethical Data Mining"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Ethical Approval",
+    "type": "process",
+    "domain": "Ethics",
+    "definition": "The institutional review and permission process required before conducting research involving human participants.",
+    "description": "Evaluates risk, consent procedures, data protection and participant recruitment strategies.",
+    "properties": {"outputs": ["ethics approval letter", "conditions"]},
+    "relations": [
+      {"type": "required_for", "target": "Human Data Collection"},
+      {"type": "related_to", "target": "Informed Consent"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Privacy Preservation",
+    "type": "concept",
+    "domain": "Governance",
+    "definition": "Technical and policy measures intended to protect personal data and prevent re-identification.",
+    "description": "Includes de-identification, k-anonymity, pseudonymisation and access controls.",
+    "properties": {"techniques": ["k-Anonymity", "Pseudonymisation", "access controls"]},
+    "relations": [
+      {"type": "related_to", "target": "k-Anonymity"},
+      {"type": "related_to", "target": "Pseudonymisation"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Time Series Analysis",
+    "type": "field",
+    "domain": "Time Series",
+    "definition": "Methods for modelling, forecasting and understanding temporally ordered data and their dynamics.",
+    "description": "Includes ARIMA, state-space models, spectral analysis and change-point detection.",
+    "properties": {"tasks": ["forecasting", "anomaly detection", "seasonal decomposition"]},
+    "relations": [
+      {"type": "related_to", "target": "Time Series Data Collection"},
+      {"type": "related_to", "target": "Temporal Drift"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Streaming Data Analysis",
+    "type": "field",
+    "domain": "Time Series",
+    "definition": "Techniques for real-time ingestion, processing and analysis of continuous data streams.",
+    "description": "Requires low-latency algorithms and often online/incremental learning approaches.",
+    "properties": {"challenges": ["concept drift", "throughput", "latency"]},
+    "relations": [
+      {"type": "related_to", "target": "Streaming Outlier Detection"},
+      {"type": "related_to", "target": "Multidimensional Streaming Outlier Detection"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Time-Series Missing Data Handling",
+    "type": "category",
+    "domain": "Missing Data",
+    "definition": "Specialized methods for imputing or otherwise handling missingness in temporally-correlated data (e.g., LOCF, interpolation, state-space approaches).",
+    "description": "Must account for autocorrelation; naive imputation can distort temporal dependencies.",
+    "properties": {"techniques": ["LOCF", "BOCF", "interpolation", "state-space imputation"]},
+    "relations": [
+      {"type": "related_to", "target": "Last Observation Carried Forward"},
+      {"type": "related_to", "target": "Baseline Observation Carried Forward"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Temporal Alignment",
+    "type": "process",
+    "domain": "Time Series",
+    "definition": "Aligning time stamps and synchronizing signals from different sources to a common temporal reference.",
+    "description": "Includes timestamp synchronization, resampling, and offset correction.",
+    "properties": {"methods": ["clock alignment", "interpolation", "offset correction"]},
+    "relations": [
+      {"type": "related_to", "target": "Timestamp Synchronization"},
+      {"type": "related_to", "target": "Timestamp Mismatch"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Data Completeness",
+    "type": "quality_metric",
+    "domain": "Data Quality",
+    "definition": "The degree to which required data are present in a dataset (low missingness and full records).",
+    "description": "Impacts analytic choices and validity; related to dropout rate and missing-data mechanisms.",
+    "properties": {"measures": ["proportion complete records", "feature-level completeness"]},
+    "relations": [
+      {"type": "related_to", "target": "Missing Data"},
+      {"type": "affects", "target": "Reproducibility"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Scaling",
+    "type": "operation",
+    "domain": "Data Transformation",
+    "definition": "Generic term for rescaling numeric variables to comparable ranges, including min-max, standardization and arbitrary-range mapping.",
+    "description": "Completed nodes include Min-Max Normalization and Z-score Standardization; this node links to those concrete methods.",
+    "properties": {"examples": ["Min-Max Normalization", "Z-score Standardization", "Scaling to Arbitrary Range"]},
+    "relations": [
+      {"type": "related_to", "target": "Min-Max Normalization"},
+      {"type": "related_to", "target": "Z-score Standardization"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Sensor Calibration",
+    "type": "process",
+    "domain": "Data Quality",
+    "definition": "Procedures to ensure sensor readings are accurate and comparable by adjusting for device-specific biases or drifts.",
+    "description": "Reduces equipment error and calibration differences across devices.",
+    "properties": {"outcomes": ["reduced bias", "improved comparability"]},
+    "relations": [
+      {"type": "related_to", "target": "Calibration Differences"},
+      {"type": "mitigates", "target": "Equipment Error"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Signal Quality",
+    "type": "quality_metric",
+    "domain": "Data Quality",
+    "definition": "A measure of how usable a signal is for analysis, considering noise, saturation, dropouts and artifacts.",
+    "description": "High signal quality facilitates reliable feature extraction and detection tasks.",
+    "properties": {"components": ["SNR", "dropout_rate", "saturation_rate"]},
+    "relations": [
+      {"type": "related_to", "target": "Noise"},
+      {"type": "related_to", "target": "Signal Saturation"}
+    ],
+    "metadata": {"source_pdf": false}
+  },
+  {
+    "entity": "Data Completeness",
+    "type": "quality_metric",
+    "domain": "Data Quality",
+    "definition": "The degree to which required data are present in a dataset (low missingness and full records).",
+    "description": "Impacts analytic choices and validity; related to dropout rate and missing-data mechanisms.",
+    "properties": {"measures": ["proportion complete records", "feature-level completeness"]},
+    "relations": [
+      {"type": "related_to", "target": "Missing Data"},
+      {"type": "affects", "target": "Reproducibility"}
+    ],
+    "metadata": {"source_pdf": false}
+  }
+]

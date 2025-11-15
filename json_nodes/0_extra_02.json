@@ -1,0 +1,283 @@
+[
+  {
+    "entity": "Data Collection Procedure",
+    "type": "process",
+    "domain": "Data Collection",
+    "definition": "A structured sequence of steps used to design, execute, and refine the process of gathering data for research or analysis.",
+    "description": "Includes planning, initial pilot collection, iteration, and final data collection, followed by problem reporting.",
+    "properties": {
+      "steps": ["planning", "pilot collection", "iteration", "final collection", "problem reporting"]
+    },
+    "relations": [
+      {"type": "supports", "target": "Data Collection"},
+      {"type": "related_to", "target": "Repeatability"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Data Collection Failure Modes",
+    "type": "concept",
+    "domain": "Data Collection",
+    "definition": "Common ways in which data collection systems or processes fail, producing incomplete, biased, or invalid data.",
+    "description": "Includes sensor errors, unit conversion errors, device malfunction, filtering errors, and human mistakes.",
+    "properties": {
+      "examples": ["sensor placement error", "incorrect filtering", "signal saturation", "unit mismatch"]
+    },
+    "relations": [
+      {"type": "affects", "target": "Data Quality"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Signal Filtering Errors",
+    "type": "error_type",
+    "domain": "Data Collection",
+    "definition": "Errors caused by incorrect or overly aggressive filtering that removes legitimate data patterns.",
+    "description": "A famous example is the ozone-hole data being removed due to filters discarding large drops as errors.",
+    "properties": {
+      "common_causes": ["thresholding errors", "misconfigured filters", "incorrect assumptions"]
+    },
+    "relations": [
+      {"type": "instance_of", "target": "Data Collection Failure Modes"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Sensor Placement Error",
+    "type": "error_type",
+    "domain": "Sensor Data",
+    "definition": "Incorrect attachment or orientation of sensors leading to inaccurate or unusable data.",
+    "description": "Examples include reversing coils in welding studies or misplacing wearable devices.",
+    "properties": {
+      "effects": ["signal distortion", "activity mislabeling"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Human Data Collection"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Battery Failure",
+    "type": "error_type",
+    "domain": "Data Collection",
+    "definition": "Data loss caused by device power depletion during recording sessions.",
+    "description": "A common cause of missing data in field sensors, wearable devices, and mobile data collection.",
+    "properties": {
+      "impact": ["incomplete sessions", "loss of temporal continuity"]
+    },
+    "relations": [
+      {"type": "affects", "target": "Data Completeness"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Repeatability",
+    "type": "quality_criterion",
+    "domain": "Data Quality",
+    "definition": "The ability to repeat a data collection procedure under identical conditions and obtain similar results.",
+    "description": "A key criterion in experimental design and sensor-based studies.",
+    "properties": {
+      "requirements": ["controlled conditions", "stable instruments"]
+    },
+    "relations": [
+      {"type": "supports", "target": "Reproducibility"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Reproducibility",
+    "type": "quality_criterion",
+    "domain": "Data Quality",
+    "definition": "The ability for independent researchers to reproduce results using the same methodology and data.",
+    "description": "Requires documentation, transparent procedures, and stable data collection methods.",
+    "properties": {
+      "dependencies": ["documentation", "metadata", "repeatability"]
+    },
+    "relations": [
+      {"type": "requires", "target": "Documentation"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Stability",
+    "type": "property",
+    "domain": "Data Quality",
+    "definition": "The extent to which measurement systems remain consistent over time.",
+    "description": "Sensitive to environmental changes, sensor degradation, drift, and human behavior.",
+    "properties": {
+      "related_factors": ["drift", "non-stationarity", "sensor aging"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Non-Stationary Elements"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Margin of Error",
+    "type": "statistical_measure",
+    "domain": "Statistics",
+    "definition": "An expression of the amount of random sampling error in a survey's results.",
+    "description": "Often expressed as a percentage and tied to confidence intervals.",
+    "properties": {
+      "inputs": ["sample size", "confidence level"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Confidence Interval"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Confidence Interval",
+    "type": "statistical_concept",
+    "domain": "Statistics",
+    "definition": "A range of values derived from sample data that is likely to contain the true population value.",
+    "description": "Determined using margin of error and Z-scores.",
+    "properties": {
+      "components": ["sample statistic", "margin of error"]
+    },
+    "relations": [
+      {"type": "requires", "target": "Z-Score"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Z-Score (Statistical)",
+    "type": "statistical_measure",
+    "domain": "Statistics",
+    "definition": "A normalized value expressing how many standard deviations a measurement is from the mean.",
+    "description": "Used to compute confidence intervals and determine significance.",
+    "properties": {
+      "formula": "z = (x - μ) / σ"
+    },
+    "relations": [
+      {"type": "used_in", "target": "Confidence Interval"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Dropout Rate",
+    "type": "statistical_measure",
+    "domain": "Sampling",
+    "definition": "The proportion of participants who fail to complete a study or data collection procedure.",
+    "description": "Critical for determining effective sample size.",
+    "properties": {
+      "applications": ["study planning", "survey design"]
+    },
+    "relations": [
+      {"type": "affects", "target": "Sample Size"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Stationary Elements",
+    "type": "concept",
+    "domain": "Time Series",
+    "definition": "Entities or systems whose properties do not change significantly over time.",
+    "description": "Examples include stable mechanical components or controlled environments.",
+    "properties": {
+      "characteristics": ["constant mean", "constant variance"]
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Non-Stationary Elements"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Non-Stationary Elements",
+    "type": "concept",
+    "domain": "Time Series",
+    "definition": "Entities whose statistical properties change over time.",
+    "description": "Typical for environmental data, human behavior, sensor drift, or seasonal changes.",
+    "properties": {
+      "examples": ["humans", "ecosystems", "aging machinery"]
+    },
+    "relations": [
+      {"type": "causes", "target": "Temporal Drift"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Temporal Drift",
+    "type": "phenomenon",
+    "domain": "Time Series",
+    "definition": "A gradual change in system behavior or measurement statistics over time.",
+    "description": "One of the main challenges when gathering long-term sensor or human data.",
+    "properties": {
+      "types": ["sensor drift", "behavioral drift"]
+    },
+    "relations": [
+      {"type": "derived_from", "target": "Non-Stationary Elements"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Seasonal Variability",
+    "type": "phenomenon",
+    "domain": "Time Series",
+    "definition": "Regular periodic fluctuations associated with seasons or cyclic processes.",
+    "description": "A non-stationary factor influencing environmental and human measurements.",
+    "properties": {
+      "cycle_length": "annual or periodic"
+    },
+    "relations": [
+      {"type": "instance_of", "target": "Non-Stationary Elements"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Time Series Data Collection",
+    "type": "method",
+    "domain": "Time Series",
+    "definition": "Collecting data at successive time intervals to observe changes or patterns.",
+    "description": "Important for avoiding leakage between training and testing windows.",
+    "properties": {
+      "design_features": ["distinct time windows", "sampling frequency"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Model Generalization"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Respect for Persons",
+    "type": "ethical_principle",
+    "domain": "Human Research Ethics",
+    "definition": "An ethical principle requiring that individuals be treated as autonomous agents.",
+    "description": "Includes additional protections for individuals with diminished autonomy.",
+    "properties": {
+      "components": ["autonomy", "protection of vulnerable groups"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Human Research Ethics"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Beneficence",
+    "type": "ethical_principle",
+    "domain": "Human Research Ethics",
+    "definition": "An obligation to maximize possible benefits and minimize possible harms to participants.",
+    "description": "A foundational principle in ethical human-subject research.",
+    "properties": {
+      "requirements": ["risk-benefit analysis", "avoidance of harm"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Human Research Ethics"}
+    ],
+    "metadata": {"source_pdf": true}
+  },
+  {
+    "entity": "Justice",
+    "type": "ethical_principle",
+    "domain": "Human Research Ethics",
+    "definition": "The fair and equitable distribution of the burdens and benefits of research.",
+    "description": "Ensures vulnerable or marginalized groups are not exploited.",
+    "properties": {
+      "considerations": ["equity", "fair selection of subjects"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Human Research Ethics"}
+    ],
+    "metadata": {"source_pdf": true}
+  }
+]

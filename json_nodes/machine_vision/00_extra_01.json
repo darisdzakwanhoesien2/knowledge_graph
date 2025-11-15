@@ -1,0 +1,109 @@
+[
+  {
+    "entity": "Mahalanobis Distance",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Mahalanobis distance is a statistical distance measure that quantifies the separation between a data point and a distribution by accounting for the covariance structure of the features.",
+    "description": "It generalizes Euclidean distance by incorporating the inverse covariance matrix, effectively normalizing the feature space according to the data's natural spread and correlations. This makes it robust to scale differences and correlated dimensions, unlike raw Euclidean distance.",
+    "properties": {
+      "Goal": "Measure similarity in multivariate feature spaces with correlated dimensions",
+      "Applications": ["Outlier detection", "Template matching", "Robust feature comparison", "Anomaly detection in texture"],
+      "Methods": ["Covariance estimation", "Matrix inversion", "Whitening transformation"],
+      "Examples": ["Comparing image patches using learned texture covariance", "Detecting defective regions in industrial inspection"]
+    },
+    "relations": [
+      {"type": "generalizes", "target": "Euclidean Distance"},
+      {"type": "used_in", "target": "k-Nearest Neighbor Classification"},
+      {"type": "used_in", "target": "Gaussian Mixture Models"},
+      {"type": "related_to", "target": "Covariance Matrix"},
+      {"type": "supports", "target": "Feature Normalization"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "texture_features.pdf",
+      "created_at": "2025-11-12",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "K-Nearest Neighbor Classification",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "K-Nearest Neighbor (k-NN) classification is a non-parametric, instance-based learning algorithm that assigns a test sample to the majority class among its k closest training examples in feature space.",
+    "description": "It requires no explicit training phase; instead, it stores the entire training set and performs classification at query time using a distance metric. The decision boundary is locally adaptive and can model complex, non-linear patterns, but computational cost grows with dataset size.",
+    "properties": {
+      "Goal": "Classify unknown samples based on proximity to labeled data",
+      "Applications": ["Texture classification", "Image retrieval", "Face recognition", "Medical image diagnosis"],
+      "Methods": ["Distance computation", "Majority voting", "Weighted voting"],
+      "Examples": ["Classifying fabric types using GLCM features", "Retrieving visually similar images from a database"]
+    },
+    "relations": [
+      {"type": "uses", "target": "Mahalanobis Distance"},
+      {"type": "uses", "target": "Euclidean Distance"},
+      {"type": "uses", "target": "Chi-Square Distance"},
+      {"type": "part_of", "target": "Pattern Recognition"},
+      {"type": "alternative_to", "target": "Support Vector Machine"},
+      {"type": "requires", "target": "Feature Extraction"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "classification_methods.pdf",
+      "created_at": "2025-11-12",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Gabor Filters",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Gabor filters are linear bandpass filters defined as the product of a Gaussian envelope and a complex sinusoid, used to model orientation- and frequency-selective responses similar to those in the human visual cortex.",
+    "description": "They are widely used for texture analysis because they can be tuned to specific spatial frequencies and orientations. A filter bank of Gabor filters at multiple scales and orientations extracts rich local texture descriptors that are robust to small translations and distortions.",
+    "properties": {
+      "Goal": "Extract multi-scale, multi-orientation texture features",
+      "Applications": ["Texture segmentation", "Fingerprint enhancement", "Iris recognition", "Face detection"],
+      "Methods": ["Convolution with 2D Gabor kernel", "Filter bank construction", "Energy or magnitude response"],
+      "Examples": ["Segmenting wood grain patterns", "Enhancing ridge structures in fingerprints"]
+    },
+    "relations": [
+      {"type": "inspired_by", "target": "Human Visual System"},
+      {"type": "used_in", "target": "Texture Analysis"},
+      {"type": "alternative_to", "target": "Gray-Level Co-occurrence Matrix"},
+      {"type": "part_of", "target": "Filter Banks"},
+      {"type": "supports", "target": "Local Binary Patterns"},
+      {"type": "related_to", "target": "Wavelet Transform"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "texture_analysis.pdf",
+      "created_at": "2025-11-12",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Gray-Level Co-occurrence Matrix",
+    "type": "Method",
+    "domain": "Computer Vision",
+    "definition": "Gray-Level Co-occurrence Matrix (GLCM) is a second-order statistical method that characterizes texture by computing how often pairs of pixel intensity values occur at a given spatial offset in an image.",
+    "description": "It captures spatial relationships between pixel intensities, enabling the extraction of texture features such as contrast, homogeneity, and correlation. GLCM is rotation-sensitive unless averaged over multiple angles and is commonly computed on quantized gray-level images to reduce dimensionality.",
+    "properties": {
+      "Goal": "Quantify spatial distribution of intensity pairs for texture description",
+      "Applications": ["Material classification", "Medical image analysis", "Remote sensing", "Defect detection"],
+      "Methods": ["Matrix construction over offset (d, θ)", "Normalization", "Haralick feature extraction"],
+      "Examples": ["Classifying rock types in geological imaging", "Detecting tumors via tissue texture"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Texture Classification"},
+      {"type": "used_with", "target": "K-Nearest Neighbor Classification"},
+      {"type": "used_with", "target": "Support Vector Machine"},
+      {"type": "alternative_to", "target": "Gabor Filters"},
+      {"type": "precedes", "target": "Haralick Features"},
+      {"type": "requires", "target": "Image Quantization"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "texture_analysis.pdf",
+      "created_at": "2025-11-12",
+      "version": "1.0"
+    }
+  }
+]

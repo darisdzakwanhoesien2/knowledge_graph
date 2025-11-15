@@ -790,6 +790,200 @@
         "version": "1.0"
       }
     },
+    "Sparsity Structure": {
+      "type": "Concept",
+      "domain": "Matrix Computations",
+      "definition": "The sparsity structure of a matrix or matrix subspace specifies the pattern of entries that may be nonzero, independent of the actual numerical values.",
+      "description": "Sparsity structures capture the combinatorial pattern of allowed nonzeros in matrices, enabling algorithms that exploit memory efficiency and reduce computational cost. They are essential in large-scale problems such as PDE discretizations, graph Laplacians, and structured matrix factorizations.",
+      "properties": {
+        "Goal": "Identify and exploit zero-patterns for efficient computation.",
+        "Applications": [
+          "Sparse LU factorization",
+          "Finite difference discretizations",
+          "Graph-based matrix algorithms"
+        ],
+        "Methods": [
+          "Pattern analysis",
+          "Fill-in minimization",
+          "Graph reordering"
+        ],
+        "Examples": [
+          "Tridiagonal pattern",
+          "Band matrix structure"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "LectureNotes_Section2.pdf",
+        "created_at": "2025-11-14",
+        "version": "1.0"
+      }
+    },
+    "Standard Matrix Subspace": {
+      "type": "Concept",
+      "domain": "Matrix Computations",
+      "definition": "A standard matrix subspace is a subspace that admits a basis consisting of standard matrices, each with exactly one entry equal to 1 and all other entries equal to 0.",
+      "description": "Standard matrix subspaces represent matrix sets defined purely by sparsity patterns, without structural constraints such as symmetry. Orthogonal projection onto these subspaces is straightforward—simply zero out entries outside the allowed pattern.",
+      "properties": {
+        "Goal": "Model matrix sets defined solely by sparsity constraints.",
+        "Applications": [
+          "Sparse matrix approximations",
+          "Projection methods",
+          "Structured LU factorization"
+        ],
+        "Methods": [
+          "Entrywise projection",
+          "Basis construction from standard matrices"
+        ],
+        "Examples": [
+          "Diagonal matrices",
+          "Strictly lower triangular matrices"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "LectureNotes_Section2.3.pdf",
+        "created_at": "2025-11-14",
+        "version": "1.0"
+      }
+    },
+    "Orthogonal Projector (Matrix Subspace)": {
+      "type": "Operator",
+      "domain": "Numerical Analysis",
+      "definition": "An orthogonal projector onto a matrix subspace V is a linear operator P such that P² = P and the range of P is orthogonal to the nullspace of P.",
+      "description": "Orthogonal projectors provide optimal approximations in least-squares and matrix approximation problems. Projection onto matrix subspaces is fundamental in algorithmic factoring, dimension reduction, and solving underdetermined systems.",
+      "properties": {
+        "Goal": "Project matrices onto a subspace with minimal error under the Frobenius inner product.",
+        "Applications": [
+          "Approximate factoring",
+          "Subspace splitting",
+          "Sylvester-type equations"
+        ],
+        "Methods": [
+          "Construction via orthonormal basis",
+          "Symmetrization operators"
+        ],
+        "Examples": [
+          "P(A) = (A + A*)/2 for Hermitian matrices"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "LectureNotes_ProjectionTheory.pdf",
+        "created_at": "2025-11-14",
+        "version": "1.0"
+      }
+    },
+    "Invertible Matrix Subspace": {
+      "type": "Concept",
+      "domain": "Matrix Theory",
+      "definition": "A matrix subspace V is invertible if the set of inverses of its nonsingular elements forms another matrix subspace V⁻¹.",
+      "description": "Invertible matrix subspaces allow algorithmic factorization because their inverses preserve linear structure. Classical examples include triangular matrices and Hermitian matrices, which maintain structure under inversion.",
+      "properties": {
+        "Goal": "Support structured factorization where both A and its factors belong to linear matrix families.",
+        "Applications": [
+          "LU factorization",
+          "Symmetric factorizations",
+          "Matrix subspace factoring"
+        ],
+        "Methods": [
+          "Closure under inversion",
+          "Polynomial relations"
+        ],
+        "Examples": [
+          "Lower triangular matrices",
+          "Hermitian matrices"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "LectureNotes_MatrixSubspaces.pdf",
+        "created_at": "2025-11-14",
+        "version": "1.0"
+      }
+    },
+    "Singular Matrix Subspace": {
+      "type": "Concept",
+      "domain": "Matrix Theory",
+      "definition": "A matrix subspace is singular if every matrix within it is singular, i.e., no element has a nonzero determinant.",
+      "description": "Singular matrix subspaces arise in low-rank approximations, special matrix pencils, and structured operator families. They often encode degenerate behavior and limit the applicability of classical factorizations.",
+      "properties": {
+        "Goal": "Characterize spaces where invertibility is impossible.",
+        "Applications": [
+          "Rank-k matrix sets",
+          "SVD truncation analysis",
+          "Generalized eigenvalue pencils"
+        ],
+        "Methods": [
+          "Nullspace analysis",
+          "Subspace closure"
+        ],
+        "Examples": [
+          "Rank-k matrices for k < n"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "LectureNotes_Section2.pdf",
+        "created_at": "2025-11-14",
+        "version": "1.0"
+      }
+    },
+    "Polynomially Closed Matrix Subspace": {
+      "type": "Concept",
+      "domain": "Matrix Theory",
+      "definition": "A matrix subspace V is polynomially closed if p(A) ∈ V for every A ∈ V and every polynomial p with scalar coefficients.",
+      "description": "Polynomial closure ensures that structural properties of matrices are preserved under algebraic operations such as exponentiation, inversion, or functional calculus. This property is essential when applying iterative or polynomial-based algorithms within the subspace.",
+      "properties": {
+        "Goal": "Guarantee closure under matrix polynomial transformations.",
+        "Applications": [
+          "Iterative methods",
+          "Matrix functions",
+          "Structured inversion"
+        ],
+        "Methods": [
+          "Polynomial evaluation",
+          "Minimal polynomial arguments"
+        ],
+        "Examples": [
+          "Hermitian matrices",
+          "Complex symmetric matrices"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "LectureNotes_MinimalPolynomials.pdf",
+        "created_at": "2025-11-14",
+        "version": "1.0"
+      }
+    },
+    "Closure of V₁V₂": {
+      "type": "Concept",
+      "domain": "Matrix Subspaces",
+      "definition": "The closure of the product set V₁V₂ consists of all matrices that can be approximated arbitrarily well by products of matrices from subspaces V₁ and V₂.",
+      "description": "The closure of V₁V₂ determines whether approximate factorizations exist even when exact ones do not. This concept plays a central role in understanding numerical stability, perturbation behavior, and feasibility of approximate matrix factorizations.",
+      "properties": {
+        "Goal": "Characterize attainable approximate factorizations.",
+        "Applications": [
+          "Approximate LU",
+          "Low-rank approximations",
+          "Structured matrix decompositions"
+        ],
+        "Methods": [
+          "Topology of matrix spaces",
+          "Perturbation analysis"
+        ],
+        "Examples": [
+          "Every matrix is arbitrarily close to one with an LU factorization"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "LectureNotes_Factoring.pdf",
+        "created_at": "2025-11-14",
+        "version": "1.0"
+      }
+    },
     "Preconditioning": {
       "type": "Method",
       "domain": "Numerical Linear Algebra",
@@ -2511,6 +2705,111 @@
       "target": "Oblique Projection"
     },
     {
+      "source": "Sparsity Structure",
+      "type": "defines",
+      "target": "Standard Matrix Subspace"
+    },
+    {
+      "source": "Sparsity Structure",
+      "type": "used_in",
+      "target": "Incomplete LU Factorization"
+    },
+    {
+      "source": "Sparsity Structure",
+      "type": "related_to",
+      "target": "Product of Matrix Subspaces"
+    },
+    {
+      "source": "Standard Matrix Subspace",
+      "type": "based_on",
+      "target": "Sparsity Structure"
+    },
+    {
+      "source": "Standard Matrix Subspace",
+      "type": "used_in",
+      "target": "LU Factorization within Subspace"
+    },
+    {
+      "source": "Standard Matrix Subspace",
+      "type": "related_to",
+      "target": "Product of Matrix Subspaces"
+    },
+    {
+      "source": "Orthogonal Projector (Matrix Subspace)",
+      "type": "projects_onto",
+      "target": "Matrix Subspace"
+    },
+    {
+      "source": "Orthogonal Projector (Matrix Subspace)",
+      "type": "used_in",
+      "target": "Algorithmic Factoring"
+    },
+    {
+      "source": "Orthogonal Projector (Matrix Subspace)",
+      "type": "related_to",
+      "target": "Projection Operator"
+    },
+    {
+      "source": "Invertible Matrix Subspace",
+      "type": "opposes",
+      "target": "Singular Matrix Subspace"
+    },
+    {
+      "source": "Invertible Matrix Subspace",
+      "type": "related_to",
+      "target": "Nonsingular Matrix Subspace"
+    },
+    {
+      "source": "Invertible Matrix Subspace",
+      "type": "enables",
+      "target": "Algorithmic Factoring"
+    },
+    {
+      "source": "Singular Matrix Subspace",
+      "type": "opposes",
+      "target": "Invertible Matrix Subspace"
+    },
+    {
+      "source": "Singular Matrix Subspace",
+      "type": "subset_of",
+      "target": "Matrix Subspace"
+    },
+    {
+      "source": "Singular Matrix Subspace",
+      "type": "related_to",
+      "target": "Low Rank Approximation"
+    },
+    {
+      "source": "Polynomially Closed Matrix Subspace",
+      "type": "supports",
+      "target": "Invertible Matrix Subspace"
+    },
+    {
+      "source": "Polynomially Closed Matrix Subspace",
+      "type": "related_to",
+      "target": "Matrix Polynomials"
+    },
+    {
+      "source": "Polynomially Closed Matrix Subspace",
+      "type": "enables",
+      "target": "Algorithmic Factoring"
+    },
+    {
+      "source": "Closure of V₁V₂",
+      "type": "extends",
+      "target": "Product of Matrix Subspaces"
+    },
+    {
+      "source": "Closure of V₁V₂",
+      "type": "used_in",
+      "target": "Algorithmic Factoring"
+    },
+    {
+      "source": "Closure of V₁V₂",
+      "type": "related_to",
+      "target": "Matrix Approximation Problem"
+    },
+    {
       "source": "Preconditioning",
       "type": "improves",
       "target": "Conjugate Gradient Method"
@@ -3437,8 +3736,8 @@
     }
   ],
   "metadata": {
-    "last_built": "2025-11-10 14:54:22",
-    "node_count": 68,
-    "edge_count": 309
+    "last_built": "2025-11-14 08:31:53",
+    "node_count": 75,
+    "edge_count": 330
   }
 }

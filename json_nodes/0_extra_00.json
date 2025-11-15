@@ -1,0 +1,189 @@
+[
+  {
+    "entity": "Numerosity Reduction",
+    "type": "Technique",
+    "domain": "Data Pre-processing",
+    "definition": "A data reduction technique that reduces the volume of data by choosing smaller, more compact representations without significantly sacrificing the integrity of analytical results.",
+    "description": "Numerosity reduction aims to improve computational efficiency by replacing the original data with smaller parametric or non-parametric representations. Instead of storing the full dataset, only the model parameters or simplified summaries are kept. This enables faster querying, analysis, and modeling while preserving most essential patterns.",
+    "properties": {
+      "Goal": "Reduce data volume while maintaining the ability to perform accurate analysis.",
+      "Categories": [
+        "Parametric methods",
+        "Non-parametric methods"
+      ],
+      "Parametric Methods": [
+        "Regression models",
+        "Log-linear models",
+        "Other statistical modeling approaches where only model parameters are stored"
+      ],
+      "Non-parametric Methods": [
+        "Histograms",
+        "Clustering",
+        "Sampling"
+      ],
+      "Advantages": [
+        "Reduces storage space",
+        "Improves algorithm performance",
+        "Enables faster data processing"
+      ],
+      "Limitations": [
+        "Potential loss of detail",
+        "Quality depends on model or sampling assumptions"
+      ]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Data Reduction"},
+      {"type": "related_to", "target": "Sampling"},
+      {"type": "related_to", "target": "Clustering"},
+      {"type": "related_to", "target": "Histograms"},
+      {"type": "contrasts_with", "target": "Dimensionality Reduction"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_7_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+  {
+    "entity": "Accuracy Paradox",
+    "type": "Concept",
+    "domain": "Model Evaluation",
+    "definition": "A phenomenon where a model with high accuracy performs poorly on the actual predictive task, especially when the dataset is imbalanced.",
+    "description": "Accuracy can give a misleading impression of model performance because it does not account for class imbalance. In problems where one class dominates, models can achieve high accuracy by simply predicting the majority class, despite having little real predictive power. Therefore, additional evaluation metrics such as balanced accuracy, precision, recall, F1 score, or Cohen’s kappa should be used to correctly assess performance.",
+    "properties": {
+      "Problem": "Accuracy ignores the relative distribution of classes.",
+      "Occurs_When": [
+        "The dataset is imbalanced",
+        "The majority class dominates predictions",
+        "Accuracy does not reflect predictive power"
+      ],
+      "Better_Metrics": [
+        "Balanced accuracy",
+        "Precision",
+        "Recall",
+        "F1 score",
+        "Cohen's kappa"
+      ],
+      "Example": "In a dataset with 275 healthy and 25 cancer patients, predicting everyone as healthy yields 91.7% accuracy but 0% predictive power for detecting cancer."
+    },
+    "relations": [
+      {"type": "contrasts_with", "target": "Balanced Accuracy"},
+      {"type": "related_to", "target": "Imbalanced Data"},
+      {"type": "related_to", "target": "Model Evaluation Metrics"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_4_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+
+  {
+    "entity": "Validation Set",
+    "type": "Dataset Partition",
+    "domain": "Model Evaluation",
+    "definition": "A subset of data used to tune model hyperparameters or select among competing models before final evaluation on the test set.",
+    "description": "The validation set is used during model selection to ensure that the chosen model is not overfitting the training data. After models are compared based on validation performance, the final selected model is evaluated on a separate test set for unbiased performance estimation. This partitioning improves generalizability and prevents overly optimistic results.",
+    "properties": {
+      "Purpose": "Model selection, hyperparameter tuning, preventing overfitting.",
+      "Process": [
+        "Train model on training set",
+        "Validate model and compare candidates",
+        "Select optimal model before final testing"
+      ],
+      "When_Used": [
+        "Neural network iteration selection",
+        "Hyperparameter optimization",
+        "Model comparison"
+      ],
+      "Related_Concepts": ["Training Set", "Test Set", "Cross-validation"]
+    },
+    "relations": [
+      {"type": "part_of", "target": "Data Partitioning"},
+      {"type": "related_to", "target": "Model Selection"},
+      {"type": "used_in", "target": "Avoiding Overfitting"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_8_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+
+  {
+    "entity": "Artificial Data Generation",
+    "type": "Technique",
+    "domain": "Data Pre-processing",
+    "definition": "A set of methods used to create additional synthetic samples when insufficient data is available, helping balance datasets or increase training coverage.",
+    "description": "Artificial data generation expands a dataset by creating new synthetic samples derived from observed data properties. It includes multiple methods such as noise injection, distribution-based artificial data creation, and SMOTE. These approaches are useful especially when some classes lack sufficient samples or when expanding feature coverage is required.",
+    "properties": {
+      "Goal": "Increase dataset size, improve class balance, expand training coverage.",
+      "Methods": [
+        "Artificial data (distribution-based sampling)",
+        "Noise injection",
+        "SMOTE"
+      ],
+      "Advantages": [
+        "Improves model generalization",
+        "Addresses class imbalance",
+        "Expands data in a controlled manner"
+      ],
+      "Limitations": [
+        "Can introduce unrealistic samples if assumptions are incorrect",
+        "May increase risk of overfitting if not applied carefully"
+      ]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Artificial Data"},
+      {"type": "related_to", "target": "SMOTE"},
+      {"type": "related_to", "target": "Imbalanced Data"},
+      {"type": "used_in", "target": "Data Augmentation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_4_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  },
+
+  {
+    "entity": "Artificial Data",
+    "type": "Data Type",
+    "domain": "Data Pre-processing",
+    "definition": "Synthetic data generated by sampling from a statistical distribution that approximates the original dataset.",
+    "description": "Artificial data is created by modeling the original dataset using parameters such as mean (μ) and standard deviation (σ). Each class is modeled separately, and the distribution must be known or estimated. New samples are then drawn from these distributions to form a larger dataset. This method is especially useful when the original dataset is too small for effective model training.",
+    "properties": {
+      "Goal": "Create a larger dataset based on estimated population characteristics.",
+      "Process": [
+        "Estimate distribution parameters for each class",
+        "Model the population",
+        "Draw m synthetic samples where m > N"
+      ],
+      "Advantages": [
+        "Helpful for rare classes",
+        "Simple to generate if distribution is known",
+        "Supports better model generalization"
+      ],
+      "Limitations": [
+        "Requires known or well-estimated distributions",
+        "May oversimplify real-world complexity"
+      ]
+    },
+    "relations": [
+      {"type": "instance_of", "target": "Artificial Data Generation"},
+      {"type": "related_to", "target": "Noise Injection"},
+      {"type": "related_to", "target": "SMOTE"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "towards_data_mining_lecture_4_2024.pdf",
+      "created_at": "2025-11-06",
+      "version": "1.0"
+    }
+  }
+]
+
