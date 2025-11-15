@@ -1,0 +1,1162 @@
+[
+  {
+    "front": "🧩 Attribute Noise\n📘 Domain: Data Quality",
+    "back": "**Definition:** Noise arising from erroneous, missing, or corrupted feature values in data.\n\n**Description:** Attribute noise distorts the representation of instances and can weaken classifiers by shifting feature distributions.\n\n**examples:** typos, invalid numeric values, sensor failures\n**effects:** class boundary distortion, small erroneous clusters"
+  },
+  {
+    "front": "🧩 Label Noise\n📘 Domain: Data Quality",
+    "back": "**Definition:** Noise caused by incorrect, inconsistent, or subjective class labels.\n\n**Description:** Label noise is particularly harmful for supervised learning, as it directly corrupts ground truth.\n\n**sources:** human mistakes, ambiguous labeling, subjective judgments"
+  },
+  {
+    "front": "🧩 Noise Frequency Filtering\n📘 Domain: Signal Processing",
+    "back": "**Definition:** The removal of specific high- or low-frequency noise components from continuous signals.\n\n**Description:** Includes removing characteristic electrical interference, such as 50 Hz noise from power lines.\n\n**examples:** notch filter, band-pass filter\n**risks:** loss of useful information"
+  },
+  {
+    "front": "🧩 Equipment Error\n📘 Domain: Data Quality",
+    "back": "**Definition:** Noise or erroneous values caused by malfunctioning or poorly calibrated measurement devices.\n\n**Description:** Common in sensor-based data collection, producing sudden spikes or unrealistic readings.\n\n**causes:** device failure, poor calibration\n**effects:** outliers, attribute noise"
+  },
+  {
+    "front": "🧩 Garbage Values\n📘 Domain: Data Pollution",
+    "back": "**Definition:** Invalid or meaningless values inserted into data fields due to errors, incompatibilities, or manual mistakes.\n\n**Description:** Garbage values may originate from free text fields, broken encodings, or copy-paste errors.\n\n**examples:** nonsense strings, unexpected tokens"
+  },
+  {
+    "front": "🧩 Delimiter Contamination\n📘 Domain: Data Pollution",
+    "back": "**Definition:** A data corruption issue where field values include delimiter characters, causing misalignment in structured formats.\n\n**Description:** Occurs in CSV or TSV files when text fields contain commas, tabs, or semicolons.\n\n**effects:** row fragmentation, column shifts"
+  },
+  {
+    "front": "🧩 Free-Text Field Contamination\n📘 Domain: Data Pollution",
+    "back": "**Definition:** Contamination caused by unstructured free-text fields containing unexpected patterns that break parsing.\n\n**Description:** Includes unescaped punctuation, symbols, or embedded delimiters.\n\n**sources:** manual entry, copy-paste"
+  },
+  {
+    "front": "🧩 Thousand-Separator Contamination\n📘 Domain: Data Pollution",
+    "back": "**Definition:** The presence of thousands separators in numeric fields causing parsing issues or incorrect numerical conversion.\n\n**Description:** Common when merging data across locales with different numeric conventions.\n\n**examples:** 1,000.50, 1.000,50"
+  },
+  {
+    "front": "🧩 Domain Drift\n📘 Domain: Data Quality",
+    "back": "**Definition:** A mismatch between the original data schema design and current data usage, leading to invalid category values.\n\n**Description:** Occurs when systems are repurposed, such as a 'Gender' field receiving business-related labels.\n\n**effects:** category misalignment, data pollution"
+  },
+  {
+    "front": "🧩 Global Outliers\n📘 Domain: Outlier Detection",
+    "back": "**Definition:** Data points that deviate significantly from the overall distribution of the dataset.\n\n**Description:** Most classical outlier detection methods target global outliers.\n\n**examples:** extreme sensor readings"
+  },
+  {
+    "front": "🧩 Contextual Outliers\n📘 Domain: Outlier Detection",
+    "back": "**Definition:** Values that are only outliers within a specific contextual setting or subset of conditions.\n\n**Description:** A temperature of +25°C is an outlier in Oulu in January but not in July.\n\n**requires:** contextual attributes"
+  },
+  {
+    "front": "🧩 Collective Outliers\n📘 Domain: Outlier Detection",
+    "back": "**Definition:** Groups of observations that together deviate significantly from the dataset’s normal behavior.\n\n**Description:** Individually normal points form an abnormal cluster, such as suspicious block transactions.\n\n**examples:** market manipulation patterns"
+  },
+  {
+    "front": "🧩 Outlier Score\n📘 Domain: Outlier Detection",
+    "back": "**Definition:** A continuous measure estimating how strongly an instance differs from expected normal behavior.\n\n**Description:** Used by many unsupervised and distance-based outlier detection models.\n\n**scale:** continuous"
+  },
+  {
+    "front": "🧩 Binary Outlier Classification\n📘 Domain: Outlier Detection",
+    "back": "**Definition:** A binary decision mechanism indicating whether an instance is labeled as outlier or normal.\n\n**Description:** Often derived from thresholding outlier scores.\n\n**outputs:** outlier, non-outlier"
+  },
+  {
+    "front": "🧩 Subjective Outlier Thresholding\n📘 Domain: Outlier Detection",
+    "back": "**Definition:** Human-defined thresholding used to determine whether deviation magnitude is sufficient to consider a point an outlier.\n\n**Description:** Cutoff values depend on domain knowledge and application-specific tolerances.\n\n**difficulty:** non-universal thresholds"
+  },
+  {
+    "front": "🧩 Supervised Outlier Detection\n📘 Domain: Outlier Detection",
+    "back": "**Definition:** Outlier detection using labeled datasets, typically training classifiers to distinguish normal and abnormal instances.\n\n**Description:** Challenges include extreme class imbalance and insufficient outlier examples.\n\n**models:** binary classifier, one-class models"
+  },
+  {
+    "front": "🧩 Semi-Supervised Outlier Detection\n📘 Domain: Outlier Detection",
+    "back": "**Definition:** A hybrid outlier detection method using both labeled and unlabeled data.\n\n**Description:** Most useful for modeling normal behavior rather than rare anomalies.\n\n**strength:** leverages unlabeled data"
+  },
+  {
+    "front": "🧩 Unsupervised Outlier Detection\n📘 Domain: Outlier Detection",
+    "back": "**Definition:** Outlier detection assuming that normal instances form clusters, while outliers lie far from these clusters.\n\n**Description:** Useful when labels are unavailable; many clustering and density-based techniques apply.\n\n**assumptions:** normal data clustered"
+  },
+  {
+    "front": "🧩 Parametric Outlier Detection\n📘 Domain: Statistical Outlier Detection",
+    "back": "**Definition:** Outlier detection assuming that normal data follow a known parametric distribution.\n\n**Description:** Includes Gaussian modeling, where low-probability instances are flagged as outliers.\n\n**examples:** Gaussian distribution"
+  },
+  {
+    "front": "🧩 Nonparametric Outlier Detection\n📘 Domain: Statistical Outlier Detection",
+    "back": "**Definition:** Outlier detection without assuming any prior data distribution, relying instead on data-driven density estimation.\n\n**Description:** Often uses kernel density estimation to identify low-density regions.\n\n**examples:** kernel density estimation"
+  },
+  {
+    "front": "🧩 Gaussian Outlier Modeling\n📘 Domain: Statistical Outlier Detection",
+    "back": "**Definition:** A parametric approach modeling normal data using a Gaussian distribution and identifying low-likelihood instances as outliers.\n\n**Description:** Effective when data approximately follow normal distributions.\n\n**requirements:** mean and covariance estimation"
+  },
+  {
+    "front": "🧩 Kernel Density Estimation for Outlier Detection\n📘 Domain: Statistical Outlier Detection",
+    "back": "**Definition:** Outlier detection using a nonparametric density estimate of the normal data distribution.\n\n**Description:** Instances in low-density areas under the estimated kernel distribution are considered outliers.\n\n**techniques:** Gaussian kernels, Epanechnikov kernels"
+  },
+  {
+    "front": "🧩 Distance-Based Outlier Detection\n📘 Domain: Proximity-Based Methods",
+    "back": "**Definition:** Outlier detection based on distances to neighbors using global parameters such as radius and neighbor threshold.\n\n**Description:** Points with too few neighbors within a specified distance are flagged as outliers.\n\n**parameters:** radius r, threshold t"
+  },
+  {
+    "front": "🧩 Density-Based Outlier Detection\n📘 Domain: Proximity-Based Methods",
+    "back": "**Definition:** Outlier detection comparing local density of a point to the densities of its neighbors.\n\n**Description:** Low-density points relative to nearby points are considered outliers; LOF is a common example.\n\n**examples:** Local Outlier Factor (LOF)"
+  },
+  {
+    "front": "🧩 Clustering-Based Outlier Detection\n📘 Domain: Outlier Detection",
+    "back": "**Definition:** Outlier detection assuming normal data form large dense clusters and outliers form small, sparse clusters.\n\n**Description:** Methods include K-Means and Gaussian Mixture Models.\n\n**weakness:** sensitive to noise"
+  },
+  {
+    "front": "🧩 Sparse-Cluster Outliers\n📘 Domain: Clustering-Based Outlier Detection",
+    "back": "**Definition:** Outliers that belong to clusters with very low density or membership count.\n\n**Description:** Common in clustering-based detection where small clusters are treated as abnormal.\n\n**identification:** cluster size threshold"
+  },
+  {
+    "front": "🧩 Gaussian Mixture Model Outlier Detection\n📘 Domain: Clustering-Based Outlier Detection",
+    "back": "**Definition:** Outlier detection using mixture models where low-probability points under the model are flagged as outliers.\n\n**Description:** Each Gaussian component models a cluster; outliers lie outside high-likelihood areas.\n\n**technique:** Expectation-Maximization for model fitting"
+  },
+  {
+    "front": "🧩 One-Class Classification\n📘 Domain: Classification-Based Outlier Detection",
+    "back": "**Definition:** A classification method modeling only the normal class, treating deviations as outliers.\n\n**Description:** Widely used for anomaly detection when outliers are scarce or unknown.\n\n**algorithms:** One-Class SVM, Autoencoders"
+  },
+  {
+    "front": "🧩 Outlier Detection via SVM\n📘 Domain: Classification-Based Outlier Detection",
+    "back": "**Definition:** Use of Support Vector Machines to identify outliers based on deviation from the learned normal boundary.\n\n**Description:** Includes both binary SVM approaches and one-class SVMs for anomaly detection.\n\n**advantages:** robust boundaries, works in high dimensions"
+  },
+  {
+    "front": "🧩 Outlier Detection via Random Forest\n📘 Domain: Classification-Based Outlier Detection",
+    "back": "**Definition:** Outlier detection using ensemble tree models to identify points poorly represented by learned structure.\n\n**Description:** Random forests can identify unusual patterns based on path length or leaf rarity.\n\n**mechanism:** rare-leaf detection"
+  },
+  {
+    "front": "🧩 Predictive Outlier Detection\n📘 Domain: Time-Series Outlier Detection",
+    "back": "**Definition:** Outlier detection in streaming data using predictive models such as autoregressive or multivariate regressors.\n\n**Description:** Points are anomalous when observed values deviate significantly from predictions.\n\n**models:** AR models, regression models"
+  },
+  {
+    "front": "🧩 Streaming Outlier Detection\n📘 Domain: Time-Series Outlier Detection",
+    "back": "**Definition:** Methods for detecting outliers in continuous data streams where time-order and latency constraints apply.\n\n**Description:** Includes monitoring individual points, shape irregularities, and aggregated change points.\n\n**challenges:** real-time constraints, concept drift"
+  },
+  {
+    "front": "🧩 Unusual-Shape Outlier Detection\n📘 Domain: Time-Series Outlier Detection",
+    "back": "**Definition:** Identification of anomalous temporal patterns based on shape irregularities rather than pointwise deviations.\n\n**Description:** Useful in detecting unusual motion patterns or abnormal physiological waveforms.\n\n**techniques:** transform-based, distance-based"
+  },
+  {
+    "front": "🧩 Multidimensional Streaming Outlier Detection\n📘 Domain: Time-Series Outlier Detection",
+    "back": "**Definition:** Outlier detection extended to multivariate streaming systems, considering correlations across multiple dimensions.\n\n**Description:** Detects single-point anomalies or aggregated shifts across sensors or modalities.\n\n**outputs:** point anomalies, change points, rare classes"
+  },
+  {
+    "front": "🧩 Change-Point Outlier Detection\n📘 Domain: Time-Series Outlier Detection",
+    "back": "**Definition:** Detection of abrupt shifts in the mean, variance, or structural properties of a time series.\n\n**Description:** Change points indicate transitions to abnormal system states.\n\n**effects:** distributional shift, anomaly onset"
+  },
+  {
+    "front": "🧩 Rare-Class Detection in Time Series\n📘 Domain: Time-Series Outlier Detection",
+    "back": "**Definition:** Detection of rare or unusual event types in time-series streams.\n\n**Description:** Targets low-frequency events that have significant domain relevance, such as faults or intrusions.\n\n**challenges:** class imbalance, concept drift"
+  },
+  {
+    "front": "🧩 Data Ethics\n📘 Domain: Data Science",
+    "back": "**Definition:** A set of moral guidelines and practices governing responsible collection, analysis, and use of data, ensuring respect for privacy, transparency, and fairness.\n\n**Description:** Data ethics involves acting responsibly with the data entrusted to you. It acknowledges that data often represent people, and therefore, misuse can harm individuals or groups. Ethical data mining requires accountability, honesty, and consideration of the potential consequences of analysis outcomes.\n\n**Motives:** Ensure positive social impact, Avoid manipulation, Promote fairness\n**Methods:** Transparency, Accountability, Consent\n**Consequences:** Respect privacy, Prevent harm, Foster trust"
+  },
+  {
+    "front": "🧩 Ethical Data Mining\n📘 Domain: Data Science",
+    "back": "**Definition:** The practice of conducting data mining in a way that is fair, transparent, and respects privacy and consent.\n\n**Description:** Ethical data mining balances the potential benefits of insights gained from data with the responsibility to protect subjects from harm. It considers ownership, consent, data sensitivity, and the possible implications of findings.\n\n**Key Principles:** Honesty, Transparency, Responsibility, Non-maleficence\n**Challenges:** Unintended harm, Biased data, Lack of consent"
+  },
+  {
+    "front": "🧩 Informed Consent\n📘 Domain: Research Ethics",
+    "back": "**Definition:** The process of obtaining voluntary, informed permission from individuals whose data will be collected or used.\n\n**Description:** Informed consent ensures individuals understand what data is collected, how it will be used, and have the freedom to withdraw at any time. It is fundamental in research involving personal or sensitive data.\n\n**Requirements:** Clear explanation of purpose, Freedom to deny or withdraw, Comprehensible to the participant\n**Constraints:** Use only for stated purpose, Respect withdrawal, Maintain anonymity"
+  },
+  {
+    "front": "🧩 General Data Protection Regulation (GDPR)\n📘 Domain: European Data Protection",
+    "back": "**Definition:** A European Union regulation that governs data protection and privacy for individuals within the EU and EEA.\n\n**Description:** GDPR defines the lawful basis for data processing, grants rights to data subjects, and imposes obligations on data controllers and processors. It aims to give individuals control over their personal data and harmonize regulations across the EU.\n\n**Principles:** Lawfulness, Fairness, Transparency, Data minimisation, Accountability\n**Rights:** Access, Erasure, Portability, Restriction\n**Sanctions:** Fines for breaches, Data protection impact assessments"
+  },
+  {
+    "front": "🧩 Information Security\n📘 Domain: Data Management",
+    "back": "**Definition:** The practice of protecting information from unauthorized access, modification, or destruction to ensure confidentiality, integrity, and availability.\n\n**Description:** Information security ensures that data remains accurate, private, and accessible only to authorized users. The CIA triad—Confidentiality, Integrity, Availability—summarizes its key principles.\n\n**Core Principles:** Confidentiality, Integrity, Availability\n**Threats:** Hardware failure, Malware, Human error, Unauthorized access\n**Practices:** Encryption, Backups, Access control, Authentication"
+  },
+  {
+    "front": "🧩 Information Privacy\n📘 Domain: Data Protection",
+    "back": "**Definition:** The right and ability of individuals to control the collection, use, and dissemination of information about themselves.\n\n**Description:** Information privacy goes beyond the absence of surveillance—it concerns individuals’ control over personal information traces in digital society. Data mining poses unique challenges to privacy preservation.\n\n**Threats:** Data theft, Unethical use, Government surveillance, Lack of awareness\n**Protective Measures:** Anonymisation, Pseudonymisation, Access control"
+  },
+  {
+    "front": "🧩 Anonymisation\n📘 Domain: Data Privacy",
+    "back": "**Definition:** The process of removing personally identifiable information from data to prevent the identification of individuals.\n\n**Description:** Anonymisation ensures that personal data cannot be traced back to individuals, even when combined with external data. It is critical in ethical data mining and required for many research use cases.\n\n**Methods:** Suppression, Generalisation, K-anonymity, Randomization\n**Challenges:** Re-identification risk, Data utility loss"
+  },
+  {
+    "front": "🧩 Open Data\n📘 Domain: Data Management",
+    "back": "**Definition:** Data that anyone can freely access, use, modify, and share for any purpose, subject at most to minimal conditions such as attribution.\n\n**Description:** Open data promotes transparency, innovation, and collaboration. It must be findable, accessible, interoperable, and reusable according to the FAIR principles.\n\n**Principles:** Findable, Accessible, Interoperable, Reusable\n**Licenses:** CC0, CC BY, ODbL\n**Challenges:** Loss of control, Licensing complexity, Data misuse"
+  },
+  {
+    "front": "🧩 FAIR Principles\n📘 Domain: Open Science",
+    "back": "**Definition:** A set of guidelines to make data Findable, Accessible, Interoperable, and Reusable.\n\n**Description:** The FAIR principles ensure data can be easily located, accessed, integrated, and reused by others, supporting open science and reproducibility.\n\n**Components:** Findable, Accessible, Interoperable, Reusable\n**Benefits:** Transparency, Data sharing, Reproducibility"
+  },
+  {
+    "front": "🧩 Data Management\n📘 Domain: Data Science",
+    "back": "**Definition:** The set of practices that ensure data is properly stored, maintained, and accessible for processing and analysis.\n\n**Description:** Data management encompasses persistent storage, security, metadata curation, and accessibility. Proper management ensures reliability and longevity of data for research and applications.\n\n**Aspects:** Storage, Curation, Security, Metadata\n**Tools:** Relational Databases, NoSQL Systems"
+  },
+  {
+    "front": "🧩 Machine Learning\n📘 Domain: Machine Learning",
+    "back": "**Definition:** A field of study and practice focused on algorithms that improve performance at tasks through experience (data).\n\n**Description:** Encompasses supervised, unsupervised, and reinforcement approaches and emphasizes predictive performance and automation.\n\n**subfields:** Supervised Learning, Unsupervised Learning, Deep Learning\n**typical_outputs:** classifiers, regressors, clusterings"
+  },
+  {
+    "front": "🧩 Machine Learning Models\n📘 Domain: Machine Learning",
+    "back": "**Definition:** Parametric or non-parametric algorithm instantiations (models) learned from data to perform tasks such as classification or regression.\n\n**Description:** Examples include decision trees, SVMs, neural networks, ensemble models and one-class models used for anomaly detection.\n\n**examples:** SVM, Random Forest, Neural Network, One-Class Classification"
+  },
+  {
+    "front": "🧩 Supervised Learning\n📘 Domain: Machine Learning",
+    "back": "**Definition:** Learning where models are trained on input–output pairs (X, Y) to predict outputs from new inputs.\n\n**Description:** Requires labelled data and is sensitive to label noise and class imbalance.\n\n**common_algorithms:** Logistic Regression, SVM, Random Forest, Neural Networks"
+  },
+  {
+    "front": "🧩 Avoiding Overfitting\n📘 Domain: Modeling Practice",
+    "back": "**Definition:** Techniques and design choices intended to reduce overfitting and improve model generalization.\n\n**Description:** Includes cross-validation, regularization, simpler models, early stopping, and appropriate data partitioning.\n\n**techniques:** cross-validation, regularization, feature selection"
+  },
+  {
+    "front": "🧩 Bias-Variance Tradeoff\n📘 Domain: Modeling Theory",
+    "back": "**Definition:** A conceptual decomposition of prediction error into bias (systematic error) and variance (estimation variability).\n\n**Description:** Guides model complexity choices: higher complexity reduces bias but increases variance and vice versa.\n\n**components:** bias, variance, irreducible error"
+  },
+  {
+    "front": "🧩 Regularization\n📘 Domain: Modeling Practice",
+    "back": "**Definition:** Techniques that penalize model complexity during training to prevent overfitting (e.g., L1/L2 penalties, dropout).\n\n**Description:** Reduces variance at the cost of potentially increasing bias, improving generalization when tuned properly.\n\n**examples:** L1 (lasso), L2 (ridge), dropout, early stopping"
+  },
+  {
+    "front": "🧩 Model Bias\n📘 Domain: Modeling",
+    "back": "**Definition:** Systematic errors in model outputs caused by incorrect model assumptions, biased training data, or simplistic model structures.\n\n**Description:** Closely related to societal bias: biased training data or labels can propagate harmful outcomes.\n\n**sources:** sampling bias, label bias, feature omission"
+  },
+  {
+    "front": "🧩 Accuracy\n📘 Domain: Performance Metrics",
+    "back": "**Definition:** Proportion of correct predictions over all predictions for classification tasks.\n\n**Description:** Simple metric but can be misleading with imbalanced classes (see Balanced Accuracy, F1 Score).\n\n**formula:** accuracy = (TP + TN) / (TP + TN + FP + FN)"
+  },
+  {
+    "front": "🧩 Training Error\n📘 Domain: Model Evaluation",
+    "back": "**Definition:** Error measured on the training dataset after model fitting.\n\n**Description:** Used together with test error to compute the generalization gap; overly low training error may signal overfitting.\n\n**used_for:** monitoring fit, early stopping"
+  },
+  {
+    "front": "🧩 Statistical Methods\n📘 Domain: Statistics",
+    "back": "**Definition:** Formal techniques for describing data and drawing inferences about populations from samples.\n\n**Description:** Encompasses hypothesis testing, estimation, regression, likelihood methods and nonparametric alternatives.\n\n**families:** parametric, nonparametric, Bayesian, frequentist"
+  },
+  {
+    "front": "🧩 Specialized Statistical Modeling\n📘 Domain: Statistics",
+    "back": "**Definition:** Domain-specific statistical models (e.g., survival models, mixed-effects models, time-series models) used when standard models are inadequate.\n\n**Description:** Often required for hierarchical data, longitudinal measurements, or nonstandard error structures.\n\n**examples:** mixed-effects, survival analysis, state-space models"
+  },
+  {
+    "front": "🧩 Regression Modeling\n📘 Domain: Statistics",
+    "back": "**Definition:** Models that estimate relationships between dependent variables and one or more explanatory variables (linear and nonlinear forms).\n\n**Description:** Includes linear regression, generalized linear models, and specialized regression variants for complex data.\n\n**variants:** linear, logistic, Poisson, survival"
+  },
+  {
+    "front": "🧩 Causal Hypothesis\n📘 Domain: Inference",
+    "back": "**Definition:** A proposed causal relationship between variables that is typically tested using explanatory models and experimental design.\n\n**Description:** Causal claims require careful design, confounding control and sometimes randomized interventions.\n\n**requires:** counterfactual reasoning, control of confounders"
+  },
+  {
+    "front": "🧩 Statistical Power\n📘 Domain: Statistics",
+    "back": "**Definition:** The probability that a test will correctly reject a false null hypothesis (1 - type II error rate).\n\n**Description:** Determines required sample sizes for hypothesis-driven (explanatory) studies.\n\n**depends_on:** effect_size, sample_size, alpha"
+  },
+  {
+    "front": "🧩 Statistical Significance\n📘 Domain: Statistics",
+    "back": "**Definition:** A conclusion that an observed effect is unlikely to be due to chance under a specified null model, typically operationalized by p-values.\n\n**Description:** Statistical significance does not imply practical importance.\n\n**common_thresholds:** p < 0.05, p < 0.01"
+  },
+  {
+    "front": "🧩 Nonlinear PCA\n📘 Domain: Dimensionality Reduction",
+    "back": "**Definition:** Extensions of PCA that capture nonlinear relationships (e.g., kernel PCA, autoencoder-based approaches).\n\n**Description:** Useful when principal directions of variation are curved or manifold-structured.\n\n**examples:** kernel PCA, autoencoder PCA, Isomap variants"
+  },
+  {
+    "front": "🧩 Statistical Outlier Detection\n📘 Domain: Outlier Detection",
+    "back": "**Definition:** Methods that identify outliers using statistical modelling — either parametric (distributional) or nonparametric (density estimation).\n\n**Description:** Serves as a parent for Parametric Outlier Detection and Nonparametric Outlier Detection.\n\n**subtypes:** parametric, nonparametric"
+  },
+  {
+    "front": "🧩 Experimental Design\n📘 Domain: Research Methods",
+    "back": "**Definition:** The process of planning experiments to ensure that data collection answers the research question while controlling confounders.\n\n**Description:** Includes design choices such as RCTs, crossover designs, sample size planning, randomization, and blocking.\n\n**elements:** randomization, control groups, replication, blocking"
+  },
+  {
+    "front": "🧩 Poor Experimental Design\n📘 Domain: Research Methods",
+    "back": "**Definition:** Design flaws that reduce validity, such as lack of controls, small sample sizes, biased sampling, or inadequate blinding.\n\n**Description:** Leads to biased or non-generalizable results and may render data unusable for inference.\n\n**consequences:** bias, low power, confounding"
+  },
+  {
+    "front": "🧩 Sampling Rate Adjustment\n📘 Domain: Sampling",
+    "back": "**Definition:** Practices for harmonizing or adjusting sampling frequencies (e.g., resampling, interpolation, downsampling) when merging data from multiple sources.\n\n**Description:** Addresses issues documented under Sampling Rate Mismatch and Sampling Synchronization.\n\n**techniques:** interpolation, GCD-based downsampling, LCM-based oversampling"
+  },
+  {
+    "front": "🧩 Data Augmentation\n📘 Domain: Data Preprocessing",
+    "back": "**Definition:** Techniques for synthetically increasing dataset size or diversity (e.g., rotations, noise, synthetic samples) to improve model robustness.\n\n**Description:** Widely used in vision, audio and time-series to reduce overfitting and address class imbalance.\n\n**examples:** noise injection, time-warping, synthetic sample generation"
+  },
+  {
+    "front": "🧩 Research Data Management\n📘 Domain: Data Management",
+    "back": "**Definition:** Policies and processes for storing, documenting, preserving and sharing research data (metadata, provenance, access control).\n\n**Description:** Enables reproducibility and FAIR compliance; overlaps with Data Documentation and Metadata.\n\n**components:** storage, metadata, access, preservation"
+  },
+  {
+    "front": "🧩 Documentation\n📘 Domain: Data Management",
+    "back": "**Definition:** Written records describing dataset contents, methods, versioning, provenance, and usage constraints.\n\n**Description:** Broader than 'Data Documentation'—applies to code, protocols, experiment logs and data pipelines.\n\n**includes:** data dictionaries, readme, protocol descriptions"
+  },
+  {
+    "front": "🧩 Design Relational Database Schemas\n📘 Domain: Database Management",
+    "back": "**Definition:** The activity of translating conceptual domain models into normalized relational table structures.\n\n**Description:** Uses ER modeling and considerations such as keys, constraints and normalization to avoid redundancy.\n\n**outputs:** table definitions, keys, constraints"
+  },
+  {
+    "front": "🧩 Tabular Data\n📘 Domain: Data Structures",
+    "back": "**Definition:** Data organized in rows and columns (records and fields), typical for spreadsheets and relational database tables.\n\n**Description:** The primary input format for many classical machine learning and statistical methods.\n\n**representations:** CSV, SQL tables, dataframes"
+  },
+  {
+    "front": "🧩 Data Protection Laws\n📘 Domain: Governance",
+    "back": "**Definition:** Legal frameworks that govern the collection, storage and processing of personal data (e.g., GDPR).\n\n**Description:** Includes regional and sectoral regulations that shape research design and data sharing.\n\n**examples:** GDPR, national data protection acts"
+  },
+  {
+    "front": "🧩 GO FAIR Initiative\n📘 Domain: Open Science",
+    "back": "**Definition:** An international initiative promoting the FAIR principles for data (Findable, Accessible, Interoperable, Reusable).\n\n**Description:** Supports infrastructure, community practices and policies to make research data reusable.\n\n**goals:** promote FAIR, build infrastructure"
+  },
+  {
+    "front": "🧩 Human Research Ethics\n📘 Domain: Ethics",
+    "back": "**Definition:** Ethical principles and regulatory requirements governing research involving human participants.\n\n**Description:** Encompasses Respect for Persons, Beneficence, Justice, informed consent, confidentiality, and protections for vulnerable groups.\n\n**components:** informed consent, risk assessment, ethical approval"
+  },
+  {
+    "front": "🧩 Ethical Approval\n📘 Domain: Ethics",
+    "back": "**Definition:** The institutional review and permission process required before conducting research involving human participants.\n\n**Description:** Evaluates risk, consent procedures, data protection and participant recruitment strategies.\n\n**outputs:** ethics approval letter, conditions"
+  },
+  {
+    "front": "🧩 Privacy Preservation\n📘 Domain: Governance",
+    "back": "**Definition:** Technical and policy measures intended to protect personal data and prevent re-identification.\n\n**Description:** Includes de-identification, k-anonymity, pseudonymisation and access controls.\n\n**techniques:** k-Anonymity, Pseudonymisation, access controls"
+  },
+  {
+    "front": "🧩 Time Series Analysis\n📘 Domain: Time Series",
+    "back": "**Definition:** Methods for modelling, forecasting and understanding temporally ordered data and their dynamics.\n\n**Description:** Includes ARIMA, state-space models, spectral analysis and change-point detection.\n\n**tasks:** forecasting, anomaly detection, seasonal decomposition"
+  },
+  {
+    "front": "🧩 Streaming Data Analysis\n📘 Domain: Time Series",
+    "back": "**Definition:** Techniques for real-time ingestion, processing and analysis of continuous data streams.\n\n**Description:** Requires low-latency algorithms and often online/incremental learning approaches.\n\n**challenges:** concept drift, throughput, latency"
+  },
+  {
+    "front": "🧩 Time-Series Missing Data Handling\n📘 Domain: Missing Data",
+    "back": "**Definition:** Specialized methods for imputing or otherwise handling missingness in temporally-correlated data (e.g., LOCF, interpolation, state-space approaches).\n\n**Description:** Must account for autocorrelation; naive imputation can distort temporal dependencies.\n\n**techniques:** LOCF, BOCF, interpolation, state-space imputation"
+  },
+  {
+    "front": "🧩 Temporal Alignment\n📘 Domain: Time Series",
+    "back": "**Definition:** Aligning time stamps and synchronizing signals from different sources to a common temporal reference.\n\n**Description:** Includes timestamp synchronization, resampling, and offset correction.\n\n**methods:** clock alignment, interpolation, offset correction"
+  },
+  {
+    "front": "🧩 Data Completeness\n📘 Domain: Data Quality",
+    "back": "**Definition:** The degree to which required data are present in a dataset (low missingness and full records).\n\n**Description:** Impacts analytic choices and validity; related to dropout rate and missing-data mechanisms.\n\n**measures:** proportion complete records, feature-level completeness"
+  },
+  {
+    "front": "🧩 Scaling\n📘 Domain: Data Transformation",
+    "back": "**Definition:** Generic term for rescaling numeric variables to comparable ranges, including min-max, standardization and arbitrary-range mapping.\n\n**Description:** Completed nodes include Min-Max Normalization and Z-score Standardization; this node links to those concrete methods.\n\n**examples:** Min-Max Normalization, Z-score Standardization, Scaling to Arbitrary Range"
+  },
+  {
+    "front": "🧩 Sensor Calibration\n📘 Domain: Data Quality",
+    "back": "**Definition:** Procedures to ensure sensor readings are accurate and comparable by adjusting for device-specific biases or drifts.\n\n**Description:** Reduces equipment error and calibration differences across devices.\n\n**outcomes:** reduced bias, improved comparability"
+  },
+  {
+    "front": "🧩 Signal Quality\n📘 Domain: Data Quality",
+    "back": "**Definition:** A measure of how usable a signal is for analysis, considering noise, saturation, dropouts and artifacts.\n\n**Description:** High signal quality facilitates reliable feature extraction and detection tasks.\n\n**components:** SNR, dropout_rate, saturation_rate"
+  },
+  {
+    "front": "🧩 Available-Case Analysis\n📘 Domain: Missing Data Handling",
+    "back": "**Definition:** A deletion method where all available observations for each variable or pair of variables are used without requiring complete records.\n\n**Description:** Also known as pairwise deletion. It uses all observed values for each statistical computation, enabling retention of more data than listwise deletion.\n\n**advantages:** retains more data, useful for covariance estimation\n**disadvantages:** inconsistent sample sizes, may bias associations under MAR or MNAR"
+  },
+  {
+    "front": "🧩 Complete-Case Analysis\n📘 Domain: Missing Data Handling",
+    "back": "**Definition:** A deletion method where entire rows containing any missing values are removed from analysis.\n\n**Description:** Also known as listwise deletion. Many tools do this automatically, which may reduce sample size and introduce bias.\n\n**advantages:** simple to implement\n**disadvantages:** loss of data, biased estimates unless MCAR"
+  },
+  {
+    "front": "🧩 Hot Deck Imputation\n📘 Domain: Missing Data Handling",
+    "back": "**Definition:** An imputation technique where missing values are replaced with values drawn from similar cases within the same dataset.\n\n**Description:** Values are selected from cases that are most similar to the incomplete record; appropriate when missingness is rare.\n\n**source:** same dataset\n**requirements:** sufficient similar donors"
+  },
+  {
+    "front": "🧩 Cold Deck Imputation\n📘 Domain: Missing Data Handling",
+    "back": "**Definition:** An imputation technique where missing values are replaced with values drawn from an external but similar dataset.\n\n**Description:** Used when in-dataset donor values are insufficient or not representative.\n\n**source:** external dataset\n**risk:** dataset mismatch bias"
+  },
+  {
+    "front": "🧩 Last Observation Carried Forward\n📘 Domain: Time-Series Missing Data",
+    "back": "**Definition:** A method that fills missing time-series values using the last observed measurement in the sequence.\n\n**Description:** Often used in clinical trials; can introduce bias even under MCAR.\n\n**assumption:** stability of observation over time\n**problems:** bias, distorted autocorrelation"
+  },
+  {
+    "front": "🧩 Baseline Observation Carried Forward\n📘 Domain: Time-Series Missing Data",
+    "back": "**Definition:** A method where all missing values are replaced with the baseline measurement.\n\n**Description:** Simplifies analysis but can severely distort temporal trends.\n\n**strength:** preserves baseline values\n**weakness:** bias, underestimates change"
+  },
+  {
+    "front": "🧩 Full Information Maximum Likelihood\n📘 Domain: Missing Data Modeling",
+    "back": "**Definition:** A maximum likelihood estimation approach that uses all available data to estimate parameters without explicitly imputing missing values.\n\n**Description:** Relies on likelihood contributions from incomplete cases; improves overall parameter accuracy.\n\n**advantages:** uses all available data, works under MAR\n**limitations:** underestimates standard errors, requires correct model specification"
+  },
+  {
+    "front": "🧩 Expectation-Maximization Algorithm\n📘 Domain: Statistical Estimation",
+    "back": "**Definition:** An iterative algorithm for maximum likelihood estimation in the presence of missing or latent variables.\n\n**Description:** Alternates between estimating expected log-likelihood (E-step) and maximizing it (M-step) until convergence.\n\n**steps:** E-step, M-step\n**requirements:** numerical data, convergence criteria"
+  },
+  {
+    "front": "🧩 Imputation Pile-Up\n📘 Domain: Imputation Issues",
+    "back": "**Definition:** The tendency of imputed values to cluster around central tendencies such as the mean.\n\n**Description:** Common in mean imputation, reducing variability and distorting distributions.\n\n**effects:** loss of variance, biased correlations"
+  },
+  {
+    "front": "🧩 Loss of Variability in Imputed Data\n📘 Domain: Imputation Issues",
+    "back": "**Definition:** Reduction in variance of the dataset caused by imputation methods that fail to incorporate uncertainty.\n\n**Description:** Occurs in mean and regression imputation, affecting model estimates.\n\n**consequences:** biased standard errors, overconfident estimates"
+  },
+  {
+    "front": "🧩 Impossible Imputation Values\n📘 Domain: Imputation Issues",
+    "back": "**Definition:** Imputed values that are logically or physically impossible within the domain of the variable.\n\n**Description:** Examples include negative ozone values or impossible categorical combinations.\n\n**causes:** regression imputation, improper model constraints"
+  },
+  {
+    "front": "🧩 Within-Imputation Variance\n📘 Domain: Multiple Imputation",
+    "back": "**Definition:** The component of variance resulting from sampling uncertainty within each imputed dataset.\n\n**Description:** Represents traditional sampling variance from standard complete-data analyses.\n\n**symbol:** Ū"
+  },
+  {
+    "front": "🧩 Between-Imputation Variance\n📘 Domain: Multiple Imputation",
+    "back": "**Definition:** The variance arising from differences among the multiple imputed datasets.\n\n**Description:** Reflects uncertainty about the correct value to impute.\n\n**symbol:** B"
+  },
+  {
+    "front": "🧩 Total Variance in Multiple Imputation\n📘 Domain: Multiple Imputation",
+    "back": "**Definition:** The combined variance estimate incorporating both within- and between-imputation variance.\n\n**Description:** Ensures correct standard errors and confidence intervals under MI.\n\n**formula:** T = Ū + (1 + 1/M) * B"
+  },
+  {
+    "front": "🧩 Data Merging\n📘 Domain: Data Science",
+    "back": "**Definition:** The process of combining data from multiple sources, sensors, or studies into a single unified dataset for analysis.\n\n**Description:** Data merging integrates data collected from different sources to improve completeness and richness. It requires alignment of formats, timestamps, sampling rates, and units to ensure compatibility. Poorly merged data can lead to inconsistent or misleading conclusions.\n\n**Motivation:** Combine complementary data from multiple sensors or datasets, Enhance context and completeness of analysis, Support multi-modal data understanding\n**Challenges:** Different formats (CSV, TXT, JSON), Different timestamps or units, Sensor calibration differences, Incompatible sampling frequencies\n**Requirements:** Synchronized timestamps, Uniform sampling rate, Compatible data structure"
+  },
+  {
+    "front": "🧩 Sampling Synchronization\n📘 Domain: Signal Processing",
+    "back": "**Definition:** The process of aligning data collected at different sampling frequencies to a common rate to allow joint analysis.\n\n**Description:** When data are collected from sensors with different sampling rates, synchronization ensures time alignment by either downsampling or oversampling. This process balances information preservation and computational efficiency.\n\n**Methods:** Downsampling, Oversampling\n**Problems:** Data loss during downsampling, Increased processing cost during oversampling\n**Examples:** Combining 50Hz and 100Hz signals using a common rate of 50Hz or 100Hz"
+  },
+  {
+    "front": "🧩 Downsampling\n📘 Domain: Signal Processing",
+    "back": "**Definition:** Reducing the sampling rate of signals to a lower frequency to match other data sources or to decrease data volume.\n\n**Description:** Downsampling is typically done using the greatest common divisor (GCD) of sampling rates. It reduces data volume and computation cost but may lead to information loss.\n\n**Technique:** Use GCD of sampling rates, Select every nth sample\n**Benefits:** Simplified synchronization, Reduced processing load\n**Drawbacks:** Information loss, Potential aliasing"
+  },
+  {
+    "front": "🧩 Oversampling\n📘 Domain: Signal Processing",
+    "back": "**Definition:** Increasing the sampling rate of a dataset to match a higher-frequency source, typically by interpolation or replication.\n\n**Description:** Oversampling is performed using the least common multiple (LCM) of sampling rates. It allows finer temporal alignment across datasets but increases data volume and processing requirements.\n\n**Technique:** Interpolate missing samples, Use LCM of sampling rates\n**Benefits:** Improved time alignment, Preserved signal fidelity\n**Drawbacks:** Increased computation time, Possible overfitting or redundancy"
+  },
+  {
+    "front": "🧩 Sampling Methods\n📘 Domain: Data Science",
+    "back": "**Definition:** Techniques for selecting a subset of data points from a larger dataset to make statistical analysis feasible.\n\n**Description:** Sampling allows researchers to handle large datasets efficiently or generate artificial data when limited samples are available. Sampling can be with or without replacement, or balanced across classes.\n\n**Main Types:** SRSWR, SRSWOR, Balanced Sampling\n**Use Cases:** Too much data, Imbalanced datasets, Computational constraints"
+  },
+  {
+    "front": "🧩 Simple Random Sampling Without Replacement (SRSWOR)\n📘 Domain: Statistics",
+    "back": "**Definition:** A sampling technique where each element of the dataset has an equal chance of being selected, and once selected, it is not replaced.\n\n**Description:** SRSWOR ensures unique samples by preventing duplicate selections. It is suitable when data volume is high, and balanced representation is needed without redundancy.\n\n**Formula:** Probability of selection = 1/N\n**Benefits:** No duplicates, Representative sample\n**Drawbacks:** Limited sample diversity if dataset is small"
+  },
+  {
+    "front": "🧩 Simple Random Sampling With Replacement (SRSWR)\n📘 Domain: Statistics",
+    "back": "**Definition:** A sampling technique where each element can be selected more than once, as it is replaced back into the dataset after being drawn.\n\n**Description:** SRSWR allows multiple instances of the same data point. It is often used in bootstrapping and data augmentation where variability is desired despite small datasets.\n\n**Formula:** Each element has equal probability in every draw.\n**Benefits:** Allows bootstrapping, Useful for small datasets\n**Drawbacks:** Potential bias if duplicates dominate"
+  },
+  {
+    "front": "🧩 Balanced Sampling\n📘 Domain: Machine Learning",
+    "back": "**Definition:** A sampling approach designed to achieve a predefined class distribution within a dataset, typically used to mitigate imbalance.\n\n**Description:** Balanced sampling ensures that each class is proportionally represented in the training set. It can be implemented using random sampling or synthetic techniques.\n\n**Applications:** Imbalanced classification, Fair evaluation, Data balancing\n**Techniques:** Stratified sampling, SMOTE, Resampling"
+  },
+  {
+    "front": "🧩 Synthetic Minority Oversampling Technique (SMOTE)\n📘 Domain: Machine Learning",
+    "back": "**Definition:** A synthetic data generation method that creates new samples for minority classes by interpolating between existing samples and their nearest neighbors.\n\n**Description:** SMOTE addresses data imbalance by generating synthetic instances instead of duplicating existing ones. It improves classifier performance in minority classes without distorting feature space distributions.\n\n**Process:** Find k nearest neighbors, Compute vector between sample and neighbor, Multiply by random factor, Add to sample to form synthetic data\n**Benefits:** Improves class balance, Avoids overfitting on minority classes\n**Challenges:** Possible noise introduction, Boundary overlapping"
+  },
+  {
+    "front": "🧩 Performance Metrics\n📘 Domain: Model Evaluation",
+    "back": "**Definition:** Quantitative measures used to evaluate the predictive performance and quality of machine learning models.\n\n**Description:** Performance metrics assess how well a model predicts or classifies data. In imbalanced datasets, traditional accuracy can be misleading; thus, alternative metrics such as F1-score, recall, and balanced accuracy are preferred.\n\n**Common Metrics:** Accuracy, Precision, Recall, F1-score, Cohen’s Kappa, Balanced Accuracy\n**Problem:** Accuracy paradox—high accuracy may not indicate true model quality when class imbalance exists."
+  },
+  {
+    "front": "🧩 Data Collection\n📘 Domain: Data Science",
+    "back": "**Definition:** The process of systematically gathering and measuring information from a variety of sources to answer research questions, test hypotheses, and evaluate outcomes.\n\n**Description:** Effective data collection requires careful planning, proper methodology, and awareness of ethical and technical constraints. Poorly designed collection can result in bias, errors, or data loss. Documentation and reproducibility are crucial for trustworthiness.\n\n**Steps:** Define problem, goals, and objectives, Plan methodology and instruments, Conduct pilot collection, Perform final collection, Report and analyze problems\n**Considerations:** Repeatability, Accuracy, Stability, Reproducibility"
+  },
+  {
+    "front": "🧩 Data Planning\n📘 Domain: Data Science",
+    "back": "**Definition:** The preparatory phase of data collection that involves defining the purpose, method, timing, and logistics of gathering data.\n\n**Description:** Proper planning ensures that the data collected answers the research question, avoids unnecessary costs, and minimizes errors. It includes defining data types, intervals, devices, and storage procedures.\n\n**Elements:** Problem definition, Method selection, Sample size determination, Measurement intervals, Documentation strategy\n**Best Practices:** Iterate procedures, Pilot small samples, Keep methods simple"
+  },
+  {
+    "front": "🧩 Sampling\n📘 Domain: Statistics",
+    "back": "**Definition:** The process of selecting a subset of individuals or observations from a population to estimate characteristics of the whole population.\n\n**Description:** Proper sampling ensures statistical significance and reduces bias. It requires defining population size, margin of error, confidence interval, and expected dropout rate.\n\n**Parameters:** Population size, Confidence interval (Z-score), Margin of error, Standard deviation (σ)\n**Challenges:** Dropout rate, Selection bias, Underrepresentation"
+  },
+  {
+    "front": "🧩 Stationary Data\n📘 Domain: Signal Processing",
+    "back": "**Definition:** Data whose statistical properties such as mean and variance do not change over time.\n\n**Description:** Stationary elements remain stable during observation and are easier to model. Examples include controlled mechanical systems and constant environmental measurements.\n\n**Examples:** Temperature-controlled experiments, Static sensors\n**Characteristics:** Constant mean, Constant variance, Time-invariant"
+  },
+  {
+    "front": "🧩 Non-Stationary Data\n📘 Domain: Signal Processing",
+    "back": "**Definition:** Data whose statistical properties such as mean, variance, or correlations change over time.\n\n**Description:** Non-stationary data comes from systems or subjects that evolve, such as humans, biological processes, or changing environments. Proper modeling requires segmentation and adaptive methods.\n\n**Sources:** Human behavior, Environmental change, Mechanical wear, Seasonal variation\n**Techniques:** Windowing, Adaptive filtering, Time normalization"
+  },
+  {
+    "front": "🧩 Human Data Collection\n📘 Domain: Human-Centered Data Science",
+    "back": "**Definition:** The collection of data involving human participants, requiring special ethical, methodological, and technical considerations.\n\n**Description:** Humans are non-stationary, complex systems that change over time. Data collection involving humans requires respect for autonomy, informed consent, privacy protection, and avoidance of harm. It also involves practical challenges like device failure, signal blocking, or behavioral variability.\n\n**Challenges:** Device malfunction, Human variability, Consent management, Sensor connectivity, Instruction adherence\n**Ethical Requirements:** Respect for persons, Beneficence, Justice, Confidentiality"
+  },
+  {
+    "front": "🧩 Bias\n📘 Domain: Research Methodology",
+    "back": "**Definition:** A systematic deviation or error in data collection, analysis, or interpretation that leads to incorrect conclusions.\n\n**Description:** Bias may arise from researchers, respondents, or sampling design. Recognizing and mitigating bias ensures fairness, accuracy, and generalizability of findings.\n\n**Types:** Researcher bias, Respondent bias, Human data bias\n**Examples:** Selective reporting, Overrepresentation of certain groups, Unit conversion errors (e.g., Mars Climate Orbiter case)"
+  },
+  {
+    "front": "🧩 Randomized Controlled Trial (RCT)\n📘 Domain: Experimental Research",
+    "back": "**Definition:** A type of scientific experiment designed to minimize bias by randomly assigning participants to experimental and control groups.\n\n**Description:** RCTs are widely used in medical and behavioral studies to establish causal relationships. Variants include parallel, crossover, cluster, and factorial designs. Randomization ensures comparability between groups.\n\n**Design Types:** Parallel, Crossover, Cluster, Factorial\n**Strengths:** Bias reduction, Causal inference, Reproducibility\n**Weaknesses:** Cost, Complexity, Ethical constraints"
+  },
+  {
+    "front": "🧩 Data Documentation\n📘 Domain: Data Management",
+    "back": "**Definition:** The process of recording all relevant details about data collection, methods, devices, and issues to ensure reproducibility and traceability.\n\n**Description:** Documentation is an essential part of the data lifecycle. It ensures that datasets are interpretable and that future researchers can understand, reuse, and validate results. It includes metadata, logs, and notes on problems.\n\n**Benefits:** Reproducibility, Transparency, Error tracking\n**Common Tools:** CSV logs, Version control, Metadata repositories"
+  },
+  {
+    "front": "🧩 Data Format Differences\n📘 Domain: Data Integration",
+    "back": "**Definition:** Differences in structural or syntactic representation of data originating from multiple sources.\n\n**Description:** Common variations include CSV vs TXT, comma vs tab separators, and presence or absence of header rows.\n\n**examples:** csv, txt, tab-separated, comma-separated\n**challenges:** inconsistent parsing, schema mismatch"
+  },
+  {
+    "front": "🧩 Cultural Formatting Differences\n📘 Domain: Data Integration",
+    "back": "**Definition:** Variations in numeric and textual conventions across regions that affect data interpretation.\n\n**Description:** Typical issues include decimal comma versus decimal point and different date formats.\n\n**examples:** 1,23 vs 1.23, DD/MM/YYYY vs MM/DD/YYYY"
+  },
+  {
+    "front": "🧩 Unit Mismatch\n📘 Domain: Data Integration",
+    "back": "**Definition:** A discrepancy where multiple data sources represent the same measurement using different units.\n\n**Description:** Examples include centimeters vs inches or acceleration measured in g versus m/s^2.\n\n**consequences:** incorrect model inputs, distorted feature magnitudes"
+  },
+  {
+    "front": "🧩 Timestamp Mismatch\n📘 Domain: Temporal Data",
+    "back": "**Definition:** Differences in the timestamp formats or reference scales used by multiple sensors or data sources.\n\n**Description:** Examples include Unix timestamps versus human-readable dates.\n\n**examples:** Unix epoch, ISO date strings"
+  },
+  {
+    "front": "🧩 Timestamp Synchronization\n📘 Domain: Temporal Data",
+    "back": "**Definition:** The process of aligning timestamps from multiple sources to a common reference scale.\n\n**Description:** Necessary when merging data from different devices or modalities.\n\n**methods:** clock alignment, interpolation, offset correction"
+  },
+  {
+    "front": "🧩 Label Inconsistency\n📘 Domain: Data Integration",
+    "back": "**Definition:** A mismatch in semantic meaning or granularity of labels across datasets.\n\n**Description:** Example: one dataset defines 'walking' as flat-ground walking while another includes stairs.\n\n**effects:** ambiguity, inconsistent supervision"
+  },
+  {
+    "front": "🧩 Sensor Placement Variability\n📘 Domain: Sensor Data",
+    "back": "**Definition:** Differences in sensor orientation or placement on the body or environment.\n\n**Description:** Placement differences significantly alter the recorded signals even for identical activities.\n\n**examples:** upper arm vs wrist, left vs right side"
+  },
+  {
+    "front": "🧩 Environmental Condition Variability\n📘 Domain: Data Collection",
+    "back": "**Definition:** Changes in external conditions that affect the comparability of collected data.\n\n**Description:** Examples include season, terrain, indoor versus outdoor conditions, and environmental noise.\n\n**variables:** temperature, surface gradient, lighting"
+  },
+  {
+    "front": "🧩 Calibration Differences\n📘 Domain: Sensor Data",
+    "back": "**Definition:** Variability in sensor output caused by imperfect or inconsistent calibration between devices.\n\n**Description:** Occurs even when sensors are of the same model and manufacturer.\n\n**causes:** manufacturing tolerance, wear, environmental effects"
+  },
+  {
+    "front": "🧩 Incompatible Data Collection Protocols\n📘 Domain: Data Collection",
+    "back": "**Definition:** A situation where datasets cannot be merged due to incompatible procedures, sampling rates, or measurement rules.\n\n**Description:** Arises when two studies follow fundamentally different data-collection methodologies.\n\n**reasons:** different sampling rates, non-matching units, inconsistent label definitions"
+  },
+  {
+    "front": "🧩 Sampling Rate Mismatch\n📘 Domain: Sampling",
+    "back": "**Definition:** A discrepancy in sampling frequencies across sensors or data sources.\n\n**Description:** Makes direct merging difficult without resampling.\n\n**examples:** 50 Hz vs 100 Hz"
+  },
+  {
+    "front": "🧩 Battery–Sampling Trade-Off\n📘 Domain: Sensor Data",
+    "back": "**Definition:** A trade-off between sampling rate and device battery consumption.\n\n**Description:** Higher sampling frequencies drain battery faster, limiting experiment duration.\n\n**factors:** sampling rate, battery capacity"
+  },
+  {
+    "front": "🧩 GCD-Based Downsampling\n📘 Domain: Sampling",
+    "back": "**Definition:** Downsampling multiple signals to a shared sampling frequency derived from their greatest common divisor.\n\n**Description:** Can reduce data quantity but aligns signals to a common time base.\n\n**effect:** information loss"
+  },
+  {
+    "front": "🧩 LCM-Based Oversampling\n📘 Domain: Sampling",
+    "back": "**Definition:** Oversampling multiple signals to a shared sampling frequency derived from their least common multiple.\n\n**Description:** Increases data size but avoids discarding information.\n\n**effect:** increased computational cost"
+  },
+  {
+    "front": "🧩 Confusion Matrix\n📘 Domain: Performance Metrics",
+    "back": "**Definition:** A contingency table summarizing prediction results in classification tasks.\n\n**Description:** Captures true positives, false positives, true negatives, and false negatives.\n\n**entries:** TP, FP, TN, FN"
+  },
+  {
+    "front": "🧩 Balanced Accuracy\n📘 Domain: Performance Metrics",
+    "back": "**Definition:** The average of recall obtained on each class.\n\n**Description:** Designed for imbalanced datasets where standard accuracy is misleading.\n\n**formula:** (TP/(TP+FN) + TN/(TN+FP)) / 2"
+  },
+  {
+    "front": "🧩 Precision\n📘 Domain: Performance Metrics",
+    "back": "**Definition:** The proportion of predicted positives that are true positives.\n\n**Description:** Indicates how many positive predictions are correct.\n\n**formula:** TP / (TP + FP)"
+  },
+  {
+    "front": "🧩 Recall\n📘 Domain: Performance Metrics",
+    "back": "**Definition:** The proportion of actual positives that are correctly identified.\n\n**Description:** Also called sensitivity; important in medical and anomaly detection tasks.\n\n**formula:** TP / (TP + FN)"
+  },
+  {
+    "front": "🧩 Specificity\n📘 Domain: Performance Metrics",
+    "back": "**Definition:** The proportion of actual negatives that are correctly identified.\n\n**Description:** Complementary to recall, especially important for false-positive control.\n\n**formula:** TN / (TN + FP)"
+  },
+  {
+    "front": "🧩 F1 Score\n📘 Domain: Performance Metrics",
+    "back": "**Definition:** The harmonic mean of precision and recall.\n\n**Description:** Balances false positives and false negatives and is robust to imbalance.\n\n**formula:** 2 * (precision * recall) / (precision + recall)"
+  },
+  {
+    "front": "🧩 Cohen’s Kappa\n📘 Domain: Performance Metrics",
+    "back": "**Definition:** A statistic measuring inter-rater or model–true-label agreement adjusted for chance.\n\n**Description:** Useful for assessing classifier reliability beyond simple accuracy.\n\n**formula:** kappa = (p0 - pe) / (1 - pe)"
+  },
+  {
+    "front": "🧩 Model Generalization\n📘 Domain: Machine Learning",
+    "back": "**Definition:** The ability of a model to perform well on new, unseen data rather than merely on the data used for training.\n\n**Description:** Model generalization measures how effectively a model captures the underlying data distribution and applies learned patterns to new observations. High generalization indicates robustness and low overfitting. Poor generalization often results from excessive model complexity or insufficient training data.\n\n**Importance:** Ensures model performance on real-world data, Prevents overfitting to training data, Improves reliability and interpretability\n**Indicators:** Low gap between training and testing error, Stable performance across datasets"
+  },
+  {
+    "front": "🧩 Descriptive Modeling\n📘 Domain: Data Mining",
+    "back": "**Definition:** A modeling approach focused on summarizing or representing data structure in a compact form without making predictions.\n\n**Description:** Descriptive models aim to find inherent patterns or relationships in data, such as grouping or correlations, rather than making future predictions. Common techniques include clustering, association rule mining, and dimensionality reduction.\n\n**Goal:** Describe structure and relationships within data\n**Examples:** Cluster Analysis, Association Rules, Principal Component Analysis (PCA)"
+  },
+  {
+    "front": "🧩 Explanatory Modeling\n📘 Domain: Statistics",
+    "back": "**Definition:** A modeling approach used to test causal hypotheses by analyzing relationships between variables.\n\n**Description:** Explanatory models are designed to confirm theoretical relationships, such as cause-and-effect, and are commonly applied in medical, social, and behavioral sciences. They focus on inference rather than prediction.\n\n**Examples:** Linear Regression, Logistic Regression, Structural Equation Modeling\n**Goals:** Understand relationships, Test scientific hypotheses\n**Approach:** Retrospective and confirmatory"
+  },
+  {
+    "front": "🧩 Predictive Modeling\n📘 Domain: Machine Learning",
+    "back": "**Definition:** A modeling approach that uses historical data to predict future or unseen observations.\n\n**Description:** Predictive models estimate output variables (Y) based on input variables (X). They are data-driven, focusing on accuracy and generalization rather than inference. Examples include decision trees, neural networks, and support vector machines.\n\n**Goal:** Predict outcomes for new data\n**Characteristics:** Exploratory, Prospective, Accuracy-driven\n**Examples:** Random Forest, SVM, Neural Network Classifier"
+  },
+  {
+    "front": "🧩 Overfitting\n📘 Domain: Machine Learning",
+    "back": "**Definition:** A modeling error that occurs when a model learns noise or random fluctuations in the training data instead of the underlying pattern.\n\n**Description:** Overfitting leads to low training error but high testing error. It occurs when models are overly complex relative to the amount of available data, reducing generalization performance.\n\n**Symptoms:** Low training error, high test error, Unstable predictions on new data\n**Causes:** Small dataset, Excessive model complexity, Insufficient regularization"
+  },
+  {
+    "front": "🧩 Underfitting\n📘 Domain: Machine Learning",
+    "back": "**Definition:** A modeling condition where the model is too simple to capture the underlying structure of the data, resulting in poor performance on both training and test data.\n\n**Description:** Underfitting occurs when a model fails to learn the essential relationships between input and output variables. It usually happens when the model lacks sufficient complexity or training iterations.\n\n**Symptoms:** High bias, Low variance, Poor performance on all datasets\n**Causes:** Too simple model, Inadequate training, High regularization"
+  },
+  {
+    "front": "🧩 Sample Size\n📘 Domain: Statistical Modeling",
+    "back": "**Definition:** The number of observations or data points used to train and evaluate a model.\n\n**Description:** Sample size affects both the bias and variance of a model. Small datasets may cause overfitting, while large ones improve generalizability but increase computational costs. Predictive models generally require larger samples than explanatory models.\n\n**Effects:** Small sample size → overfitting and poor generalization, Large sample size → reduced variance and improved precision, Beyond certain size → diminishing returns\n**Guidelines:** Larger data for prediction, Smaller for inference"
+  },
+  {
+    "front": "🧩 Cross-Validation\n📘 Domain: Model Evaluation",
+    "back": "**Definition:** A resampling technique used to assess the performance and generalization of a model by partitioning the dataset into subsets.\n\n**Description:** Cross-validation divides the data into multiple folds, training the model on some while testing on others. It provides a more reliable estimate of model performance than a single train-test split, especially with small datasets.\n\n**Variants:** k-fold cross-validation, Leave-one-out validation\n**Benefits:** Reduces variance of performance estimates, Detects overfitting, Efficient use of data"
+  },
+  {
+    "front": "🧩 Model Selection\n📘 Domain: Machine Learning",
+    "back": "**Definition:** The process of choosing the best-performing model or configuration among multiple candidates based on validation metrics.\n\n**Description:** Model selection involves comparing model performance, complexity, and interpretability to find the optimal balance between bias and variance. Simpler models are often more generalizable and interpretable.\n\n**Criteria:** Low validation error, High interpretability, Minimal overfitting\n**Factors:** Model type, Hyperparameters, Feature selection"
+  },
+  {
+    "front": "🧩 Data Collection Procedure\n📘 Domain: Data Collection",
+    "back": "**Definition:** A structured sequence of steps used to design, execute, and refine the process of gathering data for research or analysis.\n\n**Description:** Includes planning, initial pilot collection, iteration, and final data collection, followed by problem reporting.\n\n**steps:** planning, pilot collection, iteration, final collection, problem reporting"
+  },
+  {
+    "front": "🧩 Data Collection Failure Modes\n📘 Domain: Data Collection",
+    "back": "**Definition:** Common ways in which data collection systems or processes fail, producing incomplete, biased, or invalid data.\n\n**Description:** Includes sensor errors, unit conversion errors, device malfunction, filtering errors, and human mistakes.\n\n**examples:** sensor placement error, incorrect filtering, signal saturation, unit mismatch"
+  },
+  {
+    "front": "🧩 Signal Filtering Errors\n📘 Domain: Data Collection",
+    "back": "**Definition:** Errors caused by incorrect or overly aggressive filtering that removes legitimate data patterns.\n\n**Description:** A famous example is the ozone-hole data being removed due to filters discarding large drops as errors.\n\n**common_causes:** thresholding errors, misconfigured filters, incorrect assumptions"
+  },
+  {
+    "front": "🧩 Sensor Placement Error\n📘 Domain: Sensor Data",
+    "back": "**Definition:** Incorrect attachment or orientation of sensors leading to inaccurate or unusable data.\n\n**Description:** Examples include reversing coils in welding studies or misplacing wearable devices.\n\n**effects:** signal distortion, activity mislabeling"
+  },
+  {
+    "front": "🧩 Battery Failure\n📘 Domain: Data Collection",
+    "back": "**Definition:** Data loss caused by device power depletion during recording sessions.\n\n**Description:** A common cause of missing data in field sensors, wearable devices, and mobile data collection.\n\n**impact:** incomplete sessions, loss of temporal continuity"
+  },
+  {
+    "front": "🧩 Repeatability\n📘 Domain: Data Quality",
+    "back": "**Definition:** The ability to repeat a data collection procedure under identical conditions and obtain similar results.\n\n**Description:** A key criterion in experimental design and sensor-based studies.\n\n**requirements:** controlled conditions, stable instruments"
+  },
+  {
+    "front": "🧩 Reproducibility\n📘 Domain: Data Quality",
+    "back": "**Definition:** The ability for independent researchers to reproduce results using the same methodology and data.\n\n**Description:** Requires documentation, transparent procedures, and stable data collection methods.\n\n**dependencies:** documentation, metadata, repeatability"
+  },
+  {
+    "front": "🧩 Stability\n📘 Domain: Data Quality",
+    "back": "**Definition:** The extent to which measurement systems remain consistent over time.\n\n**Description:** Sensitive to environmental changes, sensor degradation, drift, and human behavior.\n\n**related_factors:** drift, non-stationarity, sensor aging"
+  },
+  {
+    "front": "🧩 Margin of Error\n📘 Domain: Statistics",
+    "back": "**Definition:** An expression of the amount of random sampling error in a survey's results.\n\n**Description:** Often expressed as a percentage and tied to confidence intervals.\n\n**inputs:** sample size, confidence level"
+  },
+  {
+    "front": "🧩 Confidence Interval\n📘 Domain: Statistics",
+    "back": "**Definition:** A range of values derived from sample data that is likely to contain the true population value.\n\n**Description:** Determined using margin of error and Z-scores.\n\n**components:** sample statistic, margin of error"
+  },
+  {
+    "front": "🧩 Z-Score (Statistical)\n📘 Domain: Statistics",
+    "back": "**Definition:** A normalized value expressing how many standard deviations a measurement is from the mean.\n\n**Description:** Used to compute confidence intervals and determine significance.\n\n**formula:** z = (x - μ) / σ"
+  },
+  {
+    "front": "🧩 Dropout Rate\n📘 Domain: Sampling",
+    "back": "**Definition:** The proportion of participants who fail to complete a study or data collection procedure.\n\n**Description:** Critical for determining effective sample size.\n\n**applications:** study planning, survey design"
+  },
+  {
+    "front": "🧩 Stationary Elements\n📘 Domain: Time Series",
+    "back": "**Definition:** Entities or systems whose properties do not change significantly over time.\n\n**Description:** Examples include stable mechanical components or controlled environments.\n\n**characteristics:** constant mean, constant variance"
+  },
+  {
+    "front": "🧩 Non-Stationary Elements\n📘 Domain: Time Series",
+    "back": "**Definition:** Entities whose statistical properties change over time.\n\n**Description:** Typical for environmental data, human behavior, sensor drift, or seasonal changes.\n\n**examples:** humans, ecosystems, aging machinery"
+  },
+  {
+    "front": "🧩 Temporal Drift\n📘 Domain: Time Series",
+    "back": "**Definition:** A gradual change in system behavior or measurement statistics over time.\n\n**Description:** One of the main challenges when gathering long-term sensor or human data.\n\n**types:** sensor drift, behavioral drift"
+  },
+  {
+    "front": "🧩 Seasonal Variability\n📘 Domain: Time Series",
+    "back": "**Definition:** Regular periodic fluctuations associated with seasons or cyclic processes.\n\n**Description:** A non-stationary factor influencing environmental and human measurements.\n\n**cycle_length:** annual or periodic"
+  },
+  {
+    "front": "🧩 Time Series Data Collection\n📘 Domain: Time Series",
+    "back": "**Definition:** Collecting data at successive time intervals to observe changes or patterns.\n\n**Description:** Important for avoiding leakage between training and testing windows.\n\n**design_features:** distinct time windows, sampling frequency"
+  },
+  {
+    "front": "🧩 Respect for Persons\n📘 Domain: Human Research Ethics",
+    "back": "**Definition:** An ethical principle requiring that individuals be treated as autonomous agents.\n\n**Description:** Includes additional protections for individuals with diminished autonomy.\n\n**components:** autonomy, protection of vulnerable groups"
+  },
+  {
+    "front": "🧩 Beneficence\n📘 Domain: Human Research Ethics",
+    "back": "**Definition:** An obligation to maximize possible benefits and minimize possible harms to participants.\n\n**Description:** A foundational principle in ethical human-subject research.\n\n**requirements:** risk-benefit analysis, avoidance of harm"
+  },
+  {
+    "front": "🧩 Justice\n📘 Domain: Human Research Ethics",
+    "back": "**Definition:** The fair and equitable distribution of the burdens and benefits of research.\n\n**Description:** Ensures vulnerable or marginalized groups are not exploited.\n\n**considerations:** equity, fair selection of subjects"
+  },
+  {
+    "front": "🧩 Missing Data\n📘 Domain: Data Science",
+    "back": "**Definition:** Data values that are absent or undefined in a dataset due to various reasons such as measurement errors, data integration issues, or survey non-response.\n\n**Description:** Missing data are common in real-world datasets and can lead to biased estimates, invalid conclusions, and limited generalizability if not properly handled. Understanding the mechanism of missingness is critical for choosing the right imputation or estimation method.\n\n**Causes:** Equipment malfunction or sensor errors, Manual data entry mistakes, Out-of-range measurements, Survey non-response, Combining datasets with incompatible schemas\n**Consequences:** Biased results, Reduced statistical power, Invalid modeling outcomes"
+  },
+  {
+    "front": "🧩 Missing Completely at Random (MCAR)\n📘 Domain: Statistics",
+    "back": "**Definition:** A missingness mechanism where the probability that data are missing is independent of both observed and unobserved data.\n\n**Description:** In MCAR, missing values occur purely by chance and are unrelated to any variables in the dataset. Analyses on MCAR data remain unbiased, although statistical power decreases due to data loss.\n\n**Example:** Random equipment failure or random sampling exclusion.\n**Implication:** Deleting missing data under MCAR does not bias results but reduces dataset size."
+  },
+  {
+    "front": "🧩 Missing at Random (MAR)\n📘 Domain: Statistics",
+    "back": "**Definition:** A missingness mechanism where the probability that data are missing depends on observed data but not on the missing data itself.\n\n**Description:** In MAR, the reason for missingness can be explained by other known variables in the dataset, such as a particular sensor brand failing more often. Many modern imputation and maximum likelihood methods assume MAR.\n\n**Example:** A certain device model frequently fails to record measurements.\n**Implication:** Bias can be reduced if the imputation model includes the variables related to the missingness mechanism."
+  },
+  {
+    "front": "🧩 Missing Not at Random (MNAR)\n📘 Domain: Statistics",
+    "back": "**Definition:** A missingness mechanism where the probability of missing data depends on the missing value itself or on unobserved factors.\n\n**Description:** MNAR occurs when the reason for missingness is related to the actual missing values, such as patients with severe illness skipping health surveys. MNAR models are complex and often difficult to fit correctly.\n\n**Example:** A sensor fails more often at high temperature readings.\n**Implication:** Analyses assuming MAR may be biased when data are MNAR."
+  },
+  {
+    "front": "🧩 Deletion\n📘 Domain: Data Pre-processing",
+    "back": "**Definition:** A method for handling missing data by removing incomplete records or variables from analysis.\n\n**Description:** Deletion is the simplest way to deal with missing data but often reduces dataset size and statistical power. It can lead to bias if missingness is not completely random.\n\n**Variants:** Listwise Deletion, Pairwise Deletion\n**Pros:** Easy to implement, No imputation needed\n**Cons:** Loss of data, Possible bias under MAR or MNAR"
+  },
+  {
+    "front": "🧩 Imputation\n📘 Domain: Data Science",
+    "back": "**Definition:** The process of replacing missing data with substituted values based on statistical or machine learning methods.\n\n**Description:** Imputation creates complete datasets by estimating missing values from observed data. It helps maintain sample size and reduce bias, provided the missingness mechanism is appropriately modeled.\n\n**Types:** Mean Imputation, Regression Imputation, Stochastic Regression Imputation, Hot Deck Imputation, Cold Deck Imputation, Multiple Imputation, Machine Learning-Based Imputation\n**Advantages:** Preserves data volume, Can reduce bias\n**Limitations:** Can distort variability, Dependent on assumptions"
+  },
+  {
+    "front": "🧩 Mean Imputation\n📘 Domain: Statistics",
+    "back": "**Definition:** A simple imputation method where missing numerical values are replaced by the mean of the observed values.\n\n**Description:** Mean imputation is widely used but can reduce variance, distort correlations, and bias relationships between variables. It is only valid under MCAR assumptions.\n\n**Benefits:** Easy to implement, Restores dataset completeness\n**Drawbacks:** Underestimates variability, Biases covariance and regression coefficients"
+  },
+  {
+    "front": "🧩 Regression Imputation\n📘 Domain: Statistics",
+    "back": "**Definition:** An imputation technique that predicts missing values using regression models based on other observed variables.\n\n**Description:** Regression imputation can preserve relationships between variables but reduces variance in the dataset. It assumes that missingness can be modeled using observed predictors.\n\n**Assumptions:** Data is MAR, Predictor variables are complete\n**Challenges:** May produce perfect fits, Biased estimates if model misspecified"
+  },
+  {
+    "front": "🧩 Stochastic Regression Imputation\n📘 Domain: Statistics",
+    "back": "**Definition:** An extension of regression imputation that adds random noise to restore natural variability to the imputed values.\n\n**Description:** This method adds random residuals to regression predictions, maintaining relationships between variables while accounting for uncertainty. It avoids perfectly predicted values and better reflects true data variability.\n\n**Benefits:** Restores variance, Preserves relationships between variables\n**Limitations:** Still underestimates uncertainty, Possible impossible values"
+  },
+  {
+    "front": "🧩 Multiple Imputation\n📘 Domain: Statistics",
+    "back": "**Definition:** A comprehensive imputation framework that replaces missing data with multiple plausible values, generating several complete datasets that are analyzed and combined.\n\n**Description:** Multiple imputation captures the uncertainty inherent in missing data by creating multiple imputed datasets, analyzing them separately, and pooling results. It provides unbiased parameter estimates and valid standard errors under MAR assumptions.\n\n**Phases:** Imputation phase, Analysis phase, Pooling phase\n**Advantages:** Preserves variance, Handles uncertainty, Suitable for classification\n**Metrics:** Within-imputation variance (U), Between-imputation variance (B), Total variance (T)"
+  },
+  {
+    "front": "🧩 Maximum Likelihood Estimation (MLE)\n📘 Domain: Statistics",
+    "back": "**Definition:** A statistical estimation technique that finds parameter values maximizing the likelihood of observed data, including cases with missing values.\n\n**Description:** MLE utilizes all available data to estimate model parameters without directly imputing missing values. It works by optimizing a log-likelihood function based on the observed data. Expectation-Maximization (EM) is a common iterative algorithm for this purpose.\n\n**Steps:** Define likelihood function, Compute log-likelihood, Optimize via EM or Newton-Raphson\n**Benefits:** Uses all available data, Produces unbiased estimates under MAR\n**Limitations:** Underestimates standard errors, Requires numerical data"
+  },
+  {
+    "front": "🧩 Personal Data\n📘 Domain: Privacy",
+    "back": "**Definition:** Any information relating to an identified or identifiable natural person.\n\n**Description:** Covers both direct identifiers and quasi-identifiers that can re-identify individuals when combined.\n\n**examples:** names, addresses, location traces, online identifiers\n**legal_status:** Protected under GDPR"
+  },
+  {
+    "front": "🧩 Pseudonymisation\n📘 Domain: Privacy",
+    "back": "**Definition:** Replacing identifying attributes with artificial identifiers while keeping a mapping for re-identification.\n\n**Description:** Provides partial privacy but is reversible when the mapping is available.\n\n**characteristics:** mapping retained separately, reversible\n**use_cases:** research follow-ups, risk-controlled data release"
+  },
+  {
+    "front": "🧩 k-Anonymity\n📘 Domain: Privacy",
+    "back": "**Definition:** A property ensuring each record is indistinguishable from at least k-1 others based on quasi-identifiers.\n\n**Description:** Achieved through generalisation or suppression; vulnerable to attribute disclosure attacks.\n\n**parameter:** k\n**methods:** suppression, generalisation"
+  },
+  {
+    "front": "🧩 Advanced Data Modification\n📘 Domain: Privacy",
+    "back": "**Definition:** Heuristic or algorithmic methods for modifying datasets to reduce privacy risk while retaining analytical value.\n\n**Description:** Includes perturbation, synthetic data generation, and suppression heuristics.\n\n**approaches:** perturbation, synthetic data, attribute suppression heuristics"
+  },
+  {
+    "front": "🧩 Relational Database\n📘 Domain: Databases",
+    "back": "**Definition:** A structured collection of relations (tables) organized according to the relational model.\n\n**Description:** Implements schemas, supports SQL, and typically enforces ACID properties.\n\n**features:** tables, schemas, ACID transactions\n**examples:** PostgreSQL, MySQL, Oracle"
+  },
+  {
+    "front": "🧩 NoSQL Databases\n📘 Domain: Databases",
+    "back": "**Definition:** A broad category of database systems that do not use the relational model.\n\n**Description:** Includes document stores, key-value stores, columnar stores, and graph databases.\n\n**advantages:** schema flexibility, horizontal scaling\n**examples:** MongoDB"
+  },
+  {
+    "front": "🧩 MongoDB\n📘 Domain: Databases",
+    "back": "**Definition:** A document-oriented NoSQL database storing data in BSON format.\n\n**Description:** Allows flexible schema design and uses a hierarchical document model.\n\n**storage_format:** BSON\n**model:** Document Store"
+  },
+  {
+    "front": "🧩 Entity-Relationship Modeling\n📘 Domain: Databases",
+    "back": "**Definition:** A conceptual modeling method describing entities, attributes, and relationships.\n\n**Description:** Used to design relational schemas and understand domain structure.\n\n**components:** entities, attributes, relationships"
+  },
+  {
+    "front": "🧩 Relational Algebra\n📘 Domain: Databases",
+    "back": "**Definition:** A formal set of operations on relations forming the foundation of SQL.\n\n**Description:** Core operators include projection, selection, and natural join.\n\n**operators:** projection, selection, join"
+  },
+  {
+    "front": "🧩 SQL\n📘 Domain: Databases",
+    "back": "**Definition:** A declarative language for managing and querying relational databases.\n\n**Description:** Supports SELECT, JOIN, INSERT, UPDATE, DELETE, and schema definition.\n\n**categories:** DDL, DML, DQL"
+  },
+  {
+    "front": "🧩 CIA Triad\n📘 Domain: Security",
+    "back": "**Definition:** A model defining three core principles of information security: Confidentiality, Integrity, Availability.\n\n**Description:** Used to categorize threats and security controls.\n\n**principles:** Confidentiality, Integrity, Availability"
+  },
+  {
+    "front": "🧩 Open Data Licences\n📘 Domain: Licensing",
+    "back": "**Definition:** Licenses governing how datasets may be used, shared, and modified.\n\n**Description:** Includes CC0, CC BY, and ODbL with differing attribution and sharing requirements.\n\n**examples:** CC0, CC BY, ODbL"
+  },
+  {
+    "front": "🧩 Metadata\n📘 Domain: Data Management",
+    "back": "**Definition:** Structured information describing a dataset’s content, structure, provenance, and semantics.\n\n**Description:** Supports FAIR principles by enabling discovery and reuse.\n\n**components:** variable descriptions, units, provenance, versioning"
+  },
+  {
+    "front": "🧩 ActivityMeasurement\n📘 Domain: Example Schema",
+    "back": "**Definition:** An example entity representing individual activity measurements.\n\n**Description:** Used to illustrate relational and document database modeling.\n\n**attributes:** measurementId, personId, monitorId, measurementDate, activeMinutes, steps, calories"
+  },
+  {
+    "front": "🧩 Numerosity Reduction\n📘 Domain: Data Pre-processing",
+    "back": "**Definition:** A data reduction technique that reduces the volume of data by choosing smaller, more compact representations without significantly sacrificing the integrity of analytical results.\n\n**Description:** Numerosity reduction aims to improve computational efficiency by replacing the original data with smaller parametric or non-parametric representations. Instead of storing the full dataset, only the model parameters or simplified summaries are kept. This enables faster querying, analysis, and modeling while preserving most essential patterns.\n\n**Goal:** Reduce data volume while maintaining the ability to perform accurate analysis.\n**Categories:** Parametric methods, Non-parametric methods\n**Parametric Methods:** Regression models, Log-linear models, Other statistical modeling approaches where only model parameters are stored\n**Non-parametric Methods:** Histograms, Clustering, Sampling\n**Advantages:** Reduces storage space, Improves algorithm performance, Enables faster data processing\n**Limitations:** Potential loss of detail, Quality depends on model or sampling assumptions"
+  },
+  {
+    "front": "🧩 Accuracy Paradox\n📘 Domain: Model Evaluation",
+    "back": "**Definition:** A phenomenon where a model with high accuracy performs poorly on the actual predictive task, especially when the dataset is imbalanced.\n\n**Description:** Accuracy can give a misleading impression of model performance because it does not account for class imbalance. In problems where one class dominates, models can achieve high accuracy by simply predicting the majority class, despite having little real predictive power. Therefore, additional evaluation metrics such as balanced accuracy, precision, recall, F1 score, or Cohen’s kappa should be used to correctly assess performance.\n\n**Problem:** Accuracy ignores the relative distribution of classes.\n**Occurs_When:** The dataset is imbalanced, The majority class dominates predictions, Accuracy does not reflect predictive power\n**Better_Metrics:** Balanced accuracy, Precision, Recall, F1 score, Cohen's kappa\n**Example:** In a dataset with 275 healthy and 25 cancer patients, predicting everyone as healthy yields 91.7% accuracy but 0% predictive power for detecting cancer."
+  },
+  {
+    "front": "🧩 Validation Set\n📘 Domain: Model Evaluation",
+    "back": "**Definition:** A subset of data used to tune model hyperparameters or select among competing models before final evaluation on the test set.\n\n**Description:** The validation set is used during model selection to ensure that the chosen model is not overfitting the training data. After models are compared based on validation performance, the final selected model is evaluated on a separate test set for unbiased performance estimation. This partitioning improves generalizability and prevents overly optimistic results.\n\n**Purpose:** Model selection, hyperparameter tuning, preventing overfitting.\n**Process:** Train model on training set, Validate model and compare candidates, Select optimal model before final testing\n**When_Used:** Neural network iteration selection, Hyperparameter optimization, Model comparison\n**Related_Concepts:** Training Set, Test Set, Cross-validation"
+  },
+  {
+    "front": "🧩 Artificial Data Generation\n📘 Domain: Data Pre-processing",
+    "back": "**Definition:** A set of methods used to create additional synthetic samples when insufficient data is available, helping balance datasets or increase training coverage.\n\n**Description:** Artificial data generation expands a dataset by creating new synthetic samples derived from observed data properties. It includes multiple methods such as noise injection, distribution-based artificial data creation, and SMOTE. These approaches are useful especially when some classes lack sufficient samples or when expanding feature coverage is required.\n\n**Goal:** Increase dataset size, improve class balance, expand training coverage.\n**Methods:** Artificial data (distribution-based sampling), Noise injection, SMOTE\n**Advantages:** Improves model generalization, Addresses class imbalance, Expands data in a controlled manner\n**Limitations:** Can introduce unrealistic samples if assumptions are incorrect, May increase risk of overfitting if not applied carefully"
+  },
+  {
+    "front": "🧩 Artificial Data\n📘 Domain: Data Pre-processing",
+    "back": "**Definition:** Synthetic data generated by sampling from a statistical distribution that approximates the original dataset.\n\n**Description:** Artificial data is created by modeling the original dataset using parameters such as mean (μ) and standard deviation (σ). Each class is modeled separately, and the distribution must be known or estimated. New samples are then drawn from these distributions to form a larger dataset. This method is especially useful when the original dataset is too small for effective model training.\n\n**Goal:** Create a larger dataset based on estimated population characteristics.\n**Process:** Estimate distribution parameters for each class, Model the population, Draw m synthetic samples where m > N\n**Advantages:** Helpful for rare classes, Simple to generate if distribution is known, Supports better model generalization\n**Limitations:** Requires known or well-estimated distributions, May oversimplify real-world complexity"
+  },
+  {
+    "front": "🧩 Noise\n📘 Domain: Data Quality",
+    "back": "**Definition:** Random or systematic errors in data that obscure the true underlying signal or pattern.\n\n**Description:** Noise can originate from measurement errors, equipment malfunctions, environmental factors, or data entry mistakes. It can distort models, reduce performance, and create false patterns during analysis, especially in supervised learning.\n\n**Types:** Attribute noise, Label noise\n**Sources:** Sensor malfunction, Human error, Data transmission issues\n**Impact:** Increased error rate, Overfitting risk, Reduced generalization"
+  },
+  {
+    "front": "🧩 Robust Learning Algorithms\n📘 Domain: Machine Learning",
+    "back": "**Definition:** Algorithms capable of learning accurate models even when training data contains noise, outliers, or errors.\n\n**Description:** Robust learners are designed to minimize the impact of corrupted or noisy instances. They produce models similar to those obtained from clean data, often using regularization, pruning, or robust loss functions.\n\n**Examples:** C4.5 Decision Tree with pruning, Support Vector Machines, Random Forests\n**Techniques:** Pruning, Regularization, Robust loss functions"
+  },
+  {
+    "front": "🧩 Data Polishing\n📘 Domain: Data Cleaning",
+    "back": "**Definition:** The process of identifying and correcting noisy or corrupted data before building predictive models.\n\n**Description:** Data polishing focuses on improving data quality by removing or correcting noise manually or through algorithms. It is particularly useful for small datasets where noisy samples can be easily isolated.\n\n**Steps:** Detect noise, Correct corrupted instances, Validate polished data\n**Use Cases:** Small datasets, Low noise frequency\n**Limitations:** Inefficient for large-scale data, Risk of removing valid samples"
+  },
+  {
+    "front": "🧩 Noise Filters\n📘 Domain: Signal Processing",
+    "back": "**Definition:** Techniques for identifying and removing noise from data, including specific frequency interference or corrupted samples.\n\n**Description:** Noise filters aim to isolate and eliminate unwanted variations in the data, such as electrical interference or measurement errors. Over-filtering can remove meaningful information.\n\n**Examples:** Low-pass filter, Notch filter, Spectral filtering\n**Sources of Noise:** 50 Hz power line, Infrared absorbance errors, Equipment malfunction\n**Risks:** Loss of valuable signal components"
+  },
+  {
+    "front": "🧩 Data Pollution\n📘 Domain: Data Quality",
+    "back": "**Definition:** The presence of incorrect, inconsistent, or irrelevant data values that do not conform to intended formats or meanings.\n\n**Description:** Data pollution occurs when datasets contain invalid entries, such as incorrect category values, formatting errors, or corrupted text fields. These issues often result from system repurposing or manual entry errors.\n\n**Examples:** Gender field containing 'male', 'female', and 'business', Free text with delimiters, Misplaced decimal points\n**Causes:** Software misuse, Copy-paste errors, CSV formatting issues"
+  },
+  {
+    "front": "🧩 Signal Saturation\n📘 Domain: Signal Processing",
+    "back": "**Definition:** A condition where sensor readings reach their upper or lower limit and cannot record values beyond that threshold.\n\n**Description:** Signal saturation leads to repeated minimum or maximum values, reducing variability and masking true signal dynamics. It often occurs when sensors exceed their operational range.\n\n**Symptoms:** Repeated min/max values, Clipped signals, Loss of detail\n**Causes:** Sensor range limits, Hardware constraints\n**Handling:** Mark corrupted sections, Exclude extreme sequences"
+  },
+  {
+    "front": "🧩 Outliers\n📘 Domain: Statistics",
+    "back": "**Definition:** Data points that significantly deviate from the expected pattern or distribution of a dataset.\n\n**Description:** Outliers can result from noise, measurement errors, or genuine rare events. They may distort statistical summaries and machine learning models. Outlier analysis involves detecting, interpreting, and deciding whether to correct or retain them.\n\n**Types:** Global, Contextual, Collective\n**Causes:** Calibration errors, External disruptions, Rare phenomena\n**Impact:** Model distortion, Misleading correlations"
+  },
+  {
+    "front": "🧩 Anomalies\n📘 Domain: Data Mining",
+    "back": "**Definition:** Rare and valid instances that deviate from normal behavior but carry valuable information rather than being errors.\n\n**Description:** Anomalies differ from outliers in that they often represent meaningful or significant deviations, such as fraudulent activity, medical conditions, or rare events. Detecting anomalies helps in security, finance, and environmental monitoring.\n\n**Applications:** Intrusion detection, Credit card fraud detection, Medical diagnostics, Climate and environmental monitoring\n**Difference from Outliers:** Outliers may be noise or errors; anomalies are often valid and informative."
+  },
+  {
+    "front": "🧩 Outlier Detection Methods\n📘 Domain: Machine Learning",
+    "back": "**Definition:** Algorithms and approaches designed to identify data points that deviate significantly from expected normal patterns.\n\n**Description:** Outlier detection methods vary based on whether labels exist (supervised), partial labels (semi-supervised), or no labels (unsupervised). They aim to separate normal behavior from abnormal instances using distance, density, or statistical assumptions.\n\n**Categories:** Supervised, Semi-supervised, Unsupervised\n**Examples:** k-Nearest Neighbors (distance-based), Local Outlier Factor (density-based), Gaussian Distribution (parametric), Kernel Density Estimation (nonparametric), K-Means or GMM (clustering-based), SVM or Random Forest (classification-based)"
+  },
+  {
+    "front": "🧩 Proximity-Based Methods\n📘 Domain: Outlier Detection",
+    "back": "**Definition:** Methods that define outliers as data points distant from their nearest neighbors in feature space.\n\n**Description:** These methods rely on distance metrics such as Euclidean or Mahalanobis distance to detect isolated instances. Variants include distance-based and density-based approaches.\n\n**Examples:** k-Nearest Neighbors, Local Outlier Factor (LOF)\n**Strengths:** Effective for global and local outliers\n**Weaknesses:** Sensitive to distance metric choice, Poor scalability on large data"
+  },
+  {
+    "front": "🧩 Generalizability\n📘 Domain: Model Evaluation",
+    "back": "**Definition:** The degree to which a model's findings or predictions apply beyond the data on which it was trained.\n\n**Description:** Generalizability reflects how well a model captures patterns that extend to new individuals, settings, or datasets.\n\n**aspects:** population generalizability, dataset generalizability"
+  },
+  {
+    "front": "🧩 Generalization Error\n📘 Domain: Model Evaluation",
+    "back": "**Definition:** The expected error of a model when applied to new, unseen data.\n\n**Description:** It captures the discrepancy between training performance and real-world prediction accuracy.\n\n**components:** bias, variance"
+  },
+  {
+    "front": "🧩 Generalization Gap\n📘 Domain: Model Evaluation",
+    "back": "**Definition:** The difference between training error and test error for a model.\n\n**Description:** A large gap indicates overfitting, while a small gap suggests good generalizability.\n\n**formula:** generalization_gap = test_error - training_error"
+  },
+  {
+    "front": "🧩 Dataset Generalization\n📘 Domain: Model Evaluation",
+    "back": "**Definition:** The ability of a model to perform well on datasets collected under conditions different from the training dataset.\n\n**Description:** Important for real-world deployment, where data collection conditions vary.\n\n**sources_of_variation:** different populations, different sensors, different contexts"
+  },
+  {
+    "front": "🧩 Retrospective Models\n📘 Domain: Descriptive Modeling",
+    "back": "**Definition:** Models that analyze past data to understand patterns, associations, or structures.\n\n**Description:** Used for insight generation and explanation rather than future prediction.\n\n**primary_goal:** understanding past phenomena"
+  },
+  {
+    "front": "🧩 Prospective Models\n📘 Domain: Predictive Modeling",
+    "back": "**Definition:** Models designed to predict future outcomes based on current or historical data.\n\n**Description:** Used in forecasting, risk assessment, and decision automation.\n\n**primary_goal:** predicting future events"
+  },
+  {
+    "front": "🧩 Theory-Driven Models\n📘 Domain: Modeling Approaches",
+    "back": "**Definition:** Models constructed primarily from theoretical principles rather than empirical patterns.\n\n**Description:** Often focuses on causal explanation and interpretable structures.\n\n**advantages:** interpretability, causal validity"
+  },
+  {
+    "front": "🧩 Data-Driven Models\n📘 Domain: Modeling Approaches",
+    "back": "**Definition:** Models built primarily from observed data, with minimal theoretical assumptions.\n\n**Description:** Typical in machine learning, where predictive accuracy is prioritized.\n\n**advantages:** high predictive power\n**risks:** overfitting"
+  },
+  {
+    "front": "🧩 Explanatory Power\n📘 Domain: Model Interpretation",
+    "back": "**Definition:** The ability of a model to explain underlying relationships and mechanisms within data.\n\n**Description:** Prioritized in scientific modeling where interpretability and causal understanding are necessary.\n\n**factors:** model structure, variable relationships"
+  },
+  {
+    "front": "🧩 Predictive Power\n📘 Domain: Model Performance",
+    "back": "**Definition:** The ability of a model to accurately predict new observations.\n\n**Description:** Often maximized using data-driven machine learning approaches.\n\n**metrics:** RMSE, accuracy, AUC"
+  },
+  {
+    "front": "🧩 Minimum Sample Size for Statistical Inference\n📘 Domain: Sampling",
+    "back": "**Definition:** The smallest number of observations needed to perform statistically valid inference.\n\n**Description:** Depends on model complexity, effect sizes, and desired confidence levels.\n\n**influenced_by:** variance, population size, test type"
+  },
+  {
+    "front": "🧩 Sample Size for Predictive Modeling\n📘 Domain: Sampling",
+    "back": "**Definition:** The amount of data required for building predictive models that generalize well.\n\n**Description:** Larger sample sizes reduce variance and improve generalization.\n\n**depends_on:** model complexity, noise level, feature dimensionality"
+  },
+  {
+    "front": "🧩 Precision of Parameter Estimation\n📘 Domain: Statistical Inference",
+    "back": "**Definition:** The degree of certainty in estimated model parameters.\n\n**Description:** Higher sample sizes typically increase precision and reduce standard errors.\n\n**improved_by:** larger datasets"
+  },
+  {
+    "front": "🧩 Population Representativeness\n📘 Domain: Sampling",
+    "back": "**Definition:** The extent to which a sample reflects the target population.\n\n**Description:** Critical for valid generalization of study results.\n\n**risks_of_failure:** sampling bias, non-response bias"
+  },
+  {
+    "front": "🧩 Access to Data\n📘 Domain: Data Collection",
+    "back": "**Definition:** The availability of suitable and sufficient data for training and evaluating models.\n\n**Description:** Practical and ethical challenges may restrict data collection and usage.\n\n**limitations:** privacy, cost, logistics"
+  },
+  {
+    "front": "🧩 Training Set\n📘 Domain: Model Evaluation",
+    "back": "**Definition:** The subset of data used to estimate model parameters.\n\n**Description:** Forms the basis of the model's learned patterns.\n\n**purpose:** parameter estimation"
+  },
+  {
+    "front": "🧩 Test Set\n📘 Domain: Model Evaluation",
+    "back": "**Definition:** The subset of data reserved for evaluating a model's predictive performance.\n\n**Description:** Used only after model training and selection.\n\n**purpose:** generalization assessment"
+  },
+  {
+    "front": "🧩 Hold-Out Method\n📘 Domain: Model Evaluation",
+    "back": "**Definition:** A data partitioning approach where the dataset is split into training and testing subsets.\n\n**Description:** Common simple method for estimating predictive performance.\n\n**common_splits:** 80-20, 2/3-1/3"
+  },
+  {
+    "front": "🧩 Eighty-Twenty Split\n📘 Domain: Model Evaluation",
+    "back": "**Definition:** A partitioning approach where 80% of data is used for training and 20% for testing.\n\n**Description:** A common default in machine learning experiments.\n\n**ratio:** 80-20"
+  },
+  {
+    "front": "🧩 Two-Thirds One-Third Split\n📘 Domain: Model Evaluation",
+    "back": "**Definition:** A data partitioning scheme where two-thirds of the data is used for training and one-third for testing.\n\n**Description:** Alternative to the 80-20 split.\n\n**ratio:** 2/3-1/3"
+  },
+  {
+    "front": "🧩 Training-Validation-Test Split\n📘 Domain: Model Evaluation",
+    "back": "**Definition:** A three-way data split used to train, tune, and evaluate machine learning models.\n\n**Description:** Enables both hyperparameter tuning and final unbiased model evaluation.\n\n**components:** training, validation, test"
+  },
+  {
+    "front": "🧩 Participant-Wise Cross-Validation\n📘 Domain: Model Evaluation",
+    "back": "**Definition:** A cross-validation technique where data from each participant forms a separate fold.\n\n**Description:** Used when data from the same participant is highly correlated.\n\n**use_case:** sensor-based human activity recognition"
+  },
+  {
+    "front": "🧩 Leave-One-Out Validation\n📘 Domain: Model Evaluation",
+    "back": "**Definition:** A cross-validation technique where each instance is used as its own test set.\n\n**Description:** Computationally expensive but maximally uses available data.\n\n**folds:** n"
+  },
+  {
+    "front": "🧩 Temporal Dependency in Data\n📘 Domain: Time-Series Data",
+    "back": "**Definition:** The property that observations close in time are correlated rather than independent.\n\n**Description:** Invalidates random sampling and certain cross-validation methods.\n\n**causes:** sliding windows, sensor signals"
+  },
+  {
+    "front": "🧩 No Random Sampling Under Temporal Dependence\n📘 Domain: Time-Series Data",
+    "back": "**Definition:** A restriction that prevents using random train-test splits when data points are temporally correlated.\n\n**Description:** Random splits cause leakage because training and test sets contain nearly identical patterns.\n\n**effects:** data leakage, inflated accuracy"
+  },
+  {
+    "front": "🧩 Day-Based Partitioning\n📘 Domain: Time-Series Data",
+    "back": "**Definition:** A data-splitting strategy where entire days are used as units to avoid temporal leakage.\n\n**Description:** Ensures that temporally adjacent observations are not split across training and test sets.\n\n**unit:** day"
+  },
+  {
+    "front": "🧩 Temporal Leakage\n📘 Domain: Model Evaluation",
+    "back": "**Definition:** Inadvertent inclusion of temporally correlated information in both training and test sets.\n\n**Description:** Causes overestimation of model performance.\n\n**sources:** random splitting, overlapping windows"
+  },
+  {
+    "front": "🧩 Sliding Windows\n📘 Domain: Feature Extraction",
+    "back": "**Definition:** A method for extracting features from sequential data by moving a fixed-size window across time.\n\n**Description:** Used in time-series classification and signal processing.\n\n**parameters:** window size, step size"
+  },
+  {
+    "front": "🧩 Overlapping Windows\n📘 Domain: Feature Extraction",
+    "back": "**Definition:** Sliding windows that partially overlap to create highly correlated feature vectors.\n\n**Description:** Leads to temporal dependency between training instances.\n\n**effect:** induces correlation"
+  },
+  {
+    "front": "🧩 Window-Based Feature Extraction\n📘 Domain: Feature Extraction",
+    "back": "**Definition:** Feature extraction performed on short, fixed-length windows of time-series data.\n\n**Description:** Generates feature vectors for classification tasks such as activity recognition.\n\n**common_features:** mean, variance, energy"
+  },
+  {
+    "front": "🧩 Individual Models\n📘 Domain: Modeling Approaches",
+    "back": "**Definition:** Models trained on data from a single individual for personalized prediction.\n\n**Description:** Performs well on the specific individual but generalizes poorly to others.\n\n**strength:** high personalization\n**weakness:** poor population generalization"
+  },
+  {
+    "front": "🧩 Population Models\n📘 Domain: Modeling Approaches",
+    "back": "**Definition:** Models trained on data from multiple individuals to generalize across users.\n\n**Description:** More robust in diverse real-world applications.\n\n**strength:** better generalization"
+  },
+  {
+    "front": "🧩 Activity Recognition\n📘 Domain: Machine Learning Applications",
+    "back": "**Definition:** The task of identifying human activities from sensor or contextual data.\n\n**Description:** Commonly involves using wearable sensor data like accelerometers and temperature sensors.\n\n**typical_inputs:** accelerometer, gyroscope, temperature"
+  },
+  {
+    "front": "🧩 Sensor-Based Activity Detection\n📘 Domain: Machine Learning Applications",
+    "back": "**Definition:** Detecting human activities using sensor data collected from wearable or ambient devices.\n\n**Description:** Depends heavily on feature extraction and handling temporal correlations.\n\n**sensors:** accelerometers, temperature sensors"
+  },
+  {
+    "front": "🧩 Multi-Modal Feature Inputs\n📘 Domain: Feature Engineering",
+    "back": "**Definition:** Combining features from multiple sensor modalities for improved model performance.\n\n**Description:** For example, integrating accelerometer features with body temperature signals.\n\n**modalities:** accelerometer, temperature"
+  },
+  {
+    "front": "🧩 Model Complexity–Generalization Tradeoff\n📘 Domain: Model Selection",
+    "back": "**Definition:** The tradeoff in which more complex models fit training data better but often generalize worse.\n\n**Description:** Central to selecting models that balance expressiveness with robustness.\n\n**risk:** overfitting"
+  },
+  {
+    "front": "🧩 Simpler Models Generalize Better\n📘 Domain: Model Selection",
+    "back": "**Definition:** The principle that models with lower complexity often perform better on new data.\n\n**Description:** Reflects Occam's razor in predictive modeling.\n\n**benefits:** robustness, lower variance"
+  },
+  {
+    "front": "🧩 Overcomplex Models\n📘 Domain: Model Selection",
+    "back": "**Definition:** Models that are excessively flexible and overfit training data.\n\n**Description:** Characterized by small training error and large generalization error.\n\n**symptom:** large generalization gap"
+  },
+  {
+    "front": "🧩 Hyperparameter Selection\n📘 Domain: Model Selection",
+    "back": "**Definition:** The process of choosing optimal hyperparameters for a learning algorithm.\n\n**Description:** Typically done using validation sets or cross-validation.\n\n**examples:** regularization strength, learning rate, tree depth"
+  },
+  {
+    "front": "🧩 Feature Selection\n📘 Domain: Model Selection",
+    "back": "**Definition:** The process of identifying the most relevant features for a predictive model.\n\n**Description:** Reduces overfitting, improves generalization, and simplifies models.\n\n**methods:** filter methods, wrapper methods, embedded methods"
+  },
+  {
+    "front": "🧩 Data Mining\n📘 Domain: Data Science",
+    "back": "**Definition:** The process of finding previously unknown and potentially interesting patterns and relationships in large databases through statistical and algorithmic methods.\n\n**Description:** Data mining automates the extraction of knowledge from data and involves descriptive, predictive, and explanatory modeling. It simplifies and automates the statistical process from data sources to model application, supporting manual and automated methods.\n\n**Goal:** Discover patterns, relationships, and insights from large datasets.\n**Applications:** Customer segmentation, Fraud detection, Recommendation systems\n**Methods:** Classification, Clustering, Regression, Association analysis\n**Challenges:** Data quality, Scalability, Interpretability"
+  },
+  {
+    "front": "🧩 Knowledge Discovery in Databases\n📘 Domain: Data Science",
+    "back": "**Definition:** The overall process of discovering useful knowledge from data, including data selection, cleaning, transformation, mining, and interpretation.\n\n**Description:** KDD integrates data mining as a core step and emphasizes interpretation, prior knowledge, and iterative improvement. It transforms raw data into actionable knowledge through systematic analysis.\n\n**Steps:** Data selection, Data cleaning, Data transformation, Data mining, Pattern evaluation, Knowledge representation\n**Applications:** Scientific discovery, Business intelligence, Engineering analytics"
+  },
+  {
+    "front": "🧩 Data Pre-processing\n📘 Domain: Data Science",
+    "back": "**Definition:** The step of preparing raw data for mining by cleaning, transforming, integrating, and reducing it to improve quality and usability.\n\n**Description:** Data pre-processing deals with incomplete, noisy, or inconsistent data, improving accuracy and ensuring that models are built correctly. It converts raw data into suitable forms for mining and analysis.\n\n**Tasks:** Data cleaning, Data integration, Data transformation, Data reduction, Data discretization\n**Benefits:** Improved data quality, Reduced noise, Higher model accuracy\n**Problems addressed:** Missing values, Outliers, Inconsistencies, Bias"
+  },
+  {
+    "front": "🧩 Data Quality\n📘 Domain: Data Management",
+    "back": "**Definition:** A measure of the condition of data based on factors such as accuracy, completeness, reliability, and relevance.\n\n**Description:** High-quality data ensures valid and actionable analysis. Characteristics include accuracy, precision, completeness, timeliness, consistency, and reliability.\n\n**Characteristics:** Accuracy and precision, Completeness, Availability and accessibility, Timeliness and relevance, Granularity, Reliability and consistency\n**Risks:** Inaccurate models, Faulty decision-making, Unreliable analytics"
+  },
+  {
+    "front": "🧩 Data Cleaning\n📘 Domain: Data Science",
+    "back": "**Definition:** The process of detecting and correcting inaccurate or corrupt data to improve data quality.\n\n**Description:** Data cleaning involves handling missing values, removing noise, identifying outliers, and correcting inconsistencies using statistical or algorithmic methods.\n\n**Methods:** Imputation, Binning, Clustering-based outlier removal, Regression smoothing\n**Goals:** Ensure data accuracy, Reduce noise, Improve model performance"
+  },
+  {
+    "front": "🧩 Big Data\n📘 Domain: Data Science",
+    "back": "**Definition:** Extremely large data sets that can be analyzed computationally to reveal patterns, trends, and associations, especially relating to human behavior and interactions.\n\n**Description:** Big Data is characterized by the 5Vs: Volume, Velocity, Variety, Veracity, and Value. It requires specialized tools and techniques for storage, processing, and analysis.\n\n**Characteristics:** Volume, Velocity, Variety, Veracity, Value\n**Challenges:** Scalability, Quality assurance, Privacy"
+  },
+  {
+    "front": "🧩 Data Literacy\n📘 Domain: Education",
+    "back": "**Definition:** The ability to read, understand, create, and communicate data as information.\n\n**Description:** Data literacy enables individuals and organizations to use data effectively, supporting evidence-based decision making and fostering a data-driven culture.\n\n**Components:** Reading and interpreting data, Communicating insights, Applying statistical reasoning, Understanding data ethics\n**Relevance:** Data science, Business analytics, Policy making"
+  },
+  {
+    "front": "🧩 Data Transformation\n📘 Domain: Data Science",
+    "back": "**Definition:** The process of converting data into a suitable format for analysis or mining.\n\n**Description:** Transformation includes normalization, aggregation, generalization, and feature extraction, making the data compatible with mining algorithms.\n\n**Techniques:** Normalization, Standardization, Feature extraction, Aggregation\n**Goals:** Ensure consistency, Enhance interpretability, Prepare for modeling"
+  },
+  {
+    "front": "🧩 Data Reduction\n📘 Domain: Data Science",
+    "back": "**Definition:** The process of reducing the volume of data while maintaining its analytical value.\n\n**Description:** Data reduction techniques simplify data without losing critical information, enabling efficient analysis and storage.\n\n**Methods:** Sampling, Aggregation, Principal Component Analysis, Clustering\n**Purpose:** Reduce computational cost, Improve scalability\n**Techniques:** Attribute reduction (feature selection), Data aggregation and generalization, Variable construction, Numerosity reduction, Principal Component Analysis (PCA), Discrete Wavelet Transform (DWT)\n**Goals:** Efficiency, Simplicity, Improved interpretability"
+  },
+  {
+    "front": "🧩 Normalization\n📘 Domain: Data Pre-processing",
+    "back": "**Definition:** The process of adjusting values measured on different scales to a notionally common scale without distorting differences in the ranges of values.\n\n**Description:** Normalization helps learning algorithms converge faster and ensures that attributes with large numerical ranges do not dominate those with smaller ranges. It is a core data preprocessing step required by many distance-based or gradient-based learning models.\n\n**Reasons:** Improves model convergence and training stability, Prevents attributes with large ranges from dominating smaller ones, Required for certain algorithms (e.g., neural networks, k-NN, PCA)\n**Considerations:** Store scaling parameters for later use (e.g., for inference data), Choose normalization technique based on variable characteristics"
+  },
+  {
+    "front": "🧩 Min-Max Normalization\n📘 Domain: Data Pre-processing",
+    "back": "**Definition:** A normalization method that scales data to a fixed range, typically [0, 1], based on the minimum and maximum values of each variable.\n\n**Description:** This linear transformation maps the minimum value to 0 and the maximum to 1 (or another defined interval [a, b]). It preserves relationships between data points but is sensitive to outliers.\n\n**Formula:** v' = (v - v_min) / (v_max - v_min)\n**Range:** [0, 1] or [a, b]\n**Advantages:** Simple to compute, Preserves shape of distribution\n**Disadvantages:** Sensitive to outliers"
+  },
+  {
+    "front": "🧩 Z-score Standardization\n📘 Domain: Data Pre-processing",
+    "back": "**Definition:** A normalization technique that rescales data to have a mean of 0 and a standard deviation of 1.\n\n**Description:** Z-score standardization centers data by removing the mean and scales it by dividing by the standard deviation. It is especially useful when min and max values are unknown or when data contains outliers.\n\n**Formula:** v' = (v - mean(v)) / sd(v)\n**Advantages:** Handles outliers better than min-max scaling, Useful when ranges are unknown\n**Use Cases:** Regression, PCA, Outlier detection under Gaussian assumption"
+  },
+  {
+    "front": "🧩 Decimal Scaling\n📘 Domain: Data Pre-processing",
+    "back": "**Definition:** A normalization method that scales data by moving the decimal point of values based on the maximum absolute value of the variable.\n\n**Description:** Decimal scaling divides each value by a power of 10 such that all transformed values fall within the range [-1, 1]. The power is determined by the largest absolute value in the dataset.\n\n**Formula:** v' = v / 10^j where j = smallest integer such that max(|v'|) < 1\n**Advantages:** Simple to compute, Effective when values vary by powers of ten\n**Disadvantages:** Less flexible for distributions with small variance"
+  },
+  {
+    "front": "🧩 Discretization\n📘 Domain: Data Transformation",
+    "back": "**Definition:** The process of converting continuous variables into categorical ones by dividing their range into intervals or groups.\n\n**Description:** Discretization is used when models or analyses require categorical data, or when researchers want to study group-level differences instead of individual variations. However, it often reduces information and statistical power.\n\n**Methods:** Median split, Equal width binning, Equal frequency binning, Domain-based grouping\n**Advantages:** Simplifies analysis, Enables categorical modeling\n**Disadvantages:** Loss of information, Reduced precision, Incompatibility across studies due to arbitrary cutoffs"
+  },
+  {
+    "front": "🧩 Dummy Coding\n📘 Domain: Data Transformation",
+    "back": "**Definition:** A method for encoding categorical variables as binary numeric features for use in regression and machine learning models.\n\n**Description:** Dummy coding represents K categories with K-1 binary variables. It allows categorical data to be incorporated into models that require numerical inputs.\n\n**Example:** {'Variable': ['Red', 'Blue', 'Green', 'Yellow'], 'Encoded': ['Dummy_Red', 'Dummy_Blue', 'Dummy_Green']}\n**Advantages:** Enables inclusion of categorical variables in regression models\n**Limitations:** Increases dimensionality, Risk of multicollinearity if not handled properly"
+  },
+  {
+    "front": "🧩 Principal Component Analysis (PCA)\n📘 Domain: Dimensionality Reduction",
+    "back": "**Definition:** A statistical technique that transforms correlated variables into a smaller number of uncorrelated variables called principal components.\n\n**Description:** PCA reduces the dimensionality of data by finding orthogonal directions that capture the most variance. It is commonly used for visualization, compression, and to handle multicollinearity.\n\n**Steps:** Compute covariance matrix, Find eigenvalues and eigenvectors, Project data onto principal components\n**Advantages:** Removes multicollinearity, Improves computation efficiency\n**Limitations:** Loss of interpretability, Assumes linearity"
+  },
+  {
+    "front": "🧩 Discrete Wavelet Transform (DWT)\n📘 Domain: Signal Processing",
+    "back": "**Definition:** A linear signal processing technique used to decompose data into different frequency components and analyze each component with a resolution matched to its scale.\n\n**Description:** DWT is effective for dimensionality reduction in high-dimensional data, especially when the number of variables exceeds the number of samples. It preserves both frequency and location information, unlike Fourier transform.\n\n**Applications:** Image compression, Feature extraction, Time-series analysis\n**Advantages:** Handles non-stationary data, Reduces dimensionality efficiently"
+  },
+  {
+    "front": "🧩 Box-Cox Transformation\n📘 Domain: Statistical Transformation",
+    "back": "**Definition:** A family of power transformations that aim to stabilize variance and make data more normally distributed.\n\n**Description:** Box-Cox transformation improves normality assumptions for statistical models. It only applies to positive data but can handle skewed distributions effectively.\n\n**Formula:** T(Y) = (Y^λ - 1) / λ for λ ≠ 0; T(Y) = ln(Y) for λ = 0\n**Limitations:** Only works with positive values, No guarantee of perfect normality"
+  },
+  {
+    "front": "🧩 Scaling to Arbitrary Range\n📘 Domain: Data Transformation",
+    "back": "**Definition:** A normalization technique that linearly maps values to any target interval [a, b].\n\n**Description:** Generalization of min–max normalization where the target range is not limited to [0, 1], enabling flexible rescaling.\n\n**formula:** x' = (x - min) / (max - min) * (b - a) + a\n**requirements:** known min, known max"
+  },
+  {
+    "front": "🧩 Storing Normalization Parameters\n📘 Domain: Data Transformation",
+    "back": "**Definition:** The practice of saving transformation parameters such as means, standard deviations, and min–max values for use in future data preprocessing.\n\n**Description:** Essential to avoid data leakage and ensure consistent scaling between training and test sets.\n\n**parameters:** mean, standard deviation, min, max\n**purpose:** reproducibility, consistency"
+  },
+  {
+    "front": "🧩 Extreme Z-Score Threshold Rule\n📘 Domain: Outlier Detection",
+    "back": "**Definition:** A method for identifying extreme values using high absolute Z-score cutoffs, typically 6–7, instead of the conventional 3.\n\n**Description:** Used to avoid misclassifying valid but rare signals as outliers, particularly in highly variable datasets.\n\n**thresholds:** |z| > 6, |z| > 7\n**purpose:** avoid over-removal of valid extreme values"
+  },
+  {
+    "front": "🧩 Measurement Error Visualization\n📘 Domain: Data Quality",
+    "back": "**Definition:** Visualization techniques used to detect measurement errors through plots and distribution analysis.\n\n**Description:** Includes visual detection of extreme Z-scores, artifacts, or sudden jumps in sensor data.\n\n**tools:** histograms, box plots, time-series plots"
+  },
+  {
+    "front": "🧩 Median Split\n📘 Domain: Discretization",
+    "back": "**Definition:** A discretization method that divides a continuous variable into two groups using the median value as the threshold.\n\n**Description:** Commonly used for creating binary categories but may lead to information loss.\n\n**output:** two categories\n**risk:** loss of variance, misclassification"
+  },
+  {
+    "front": "🧩 Distinctive Grouping\n📘 Domain: Discretization",
+    "back": "**Definition:** A discretization method that forms groups based on meaningful or domain-specific distinctions rather than uniform intervals.\n\n**Description:** Useful when natural categories exist, such as age groups or educational stages.\n\n**basis:** domain knowledge, semantic categories"
+  },
+  {
+    "front": "🧩 Equal-Length Binning\n📘 Domain: Discretization",
+    "back": "**Definition:** A discretization method dividing the range of a variable into intervals of equal width.\n\n**Description:** Bin boundaries are uniformly spaced, which may result in uneven sample counts per bin in skewed distributions.\n\n**bin_type:** fixed-width\n**risks:** unbalanced bins"
+  },
+  {
+    "front": "🧩 Equal-Size Binning\n📘 Domain: Discretization",
+    "back": "**Definition:** A discretization method dividing data into bins containing approximately equal numbers of observations.\n\n**Description:** Also known as equal-frequency binning; adjusts bin boundaries based on data distribution.\n\n**bin_type:** equal-frequency\n**risks:** variable bin widths"
+  },
+  {
+    "front": "🧩 Natural Cut Points\n📘 Domain: Discretization",
+    "back": "**Definition:** A discretization approach that chooses cut points based on evident gaps or changes in the data distribution.\n\n**Description:** Often identified visually or via distribution-based heuristics.\n\n**identification:** visual inspection, distribution jumps"
+  },
+  {
+    "front": "🧩 Concept Hierarchies\n📘 Domain: Discretization",
+    "back": "**Definition:** Hierarchical structures that represent data from low-level granular categories to increasingly general abstractions.\n\n**Description:** Used for discretization and data generalization, enabling multi-level analysis.\n\n**levels:** fine-grained, intermediate, coarse"
+  },
+  {
+    "front": "🧩 Dichotomization\n📘 Domain: Discretization",
+    "back": "**Definition:** A method that converts a continuous variable into two groups based on a threshold.\n\n**Description:** Simplifies analysis but leads to substantial information loss.\n\n**risks:** information loss, increased misclassification"
+  },
+  {
+    "front": "🧩 Problems of Discretization\n📘 Domain: Discretization",
+    "back": "**Definition:** The set of issues created when transforming continuous variables into discrete categories.\n\n**Description:** Includes information loss, artificial boundaries, and increased risk of misclassification.\n\n**effects:** reduced statistical power, loss of granularity"
+  },
+  {
+    "front": "🧩 Information Loss Through Dichotomization\n📘 Domain: Discretization",
+    "back": "**Definition:** The reduction of statistical information caused by collapsing continuous variables into binary categories.\n\n**Description:** Leads to loss of variability and weaker associations.\n\n**causes:** thresholding, binary splitting"
+  },
+  {
+    "front": "🧩 Misclassification Risk at Cut Points\n📘 Domain: Discretization",
+    "back": "**Definition:** The risk of mislabeling cases that fall near bin boundaries when discretizing continuous variables.\n\n**Description:** Boundary decisions may not reflect underlying data continuity.\n\n**causes:** abrupt thresholds\n**effects:** noisy categorical labels"
+  },
+  {
+    "front": "🧩 Factor Variables\n📘 Domain: Categorical Data",
+    "back": "**Definition:** Variables that represent categories encoded as discrete levels rather than numeric values.\n\n**Description:** Used in statistical modeling to encode nominal or ordinal categories.\n\n**levels:** categorical labels"
+  },
+  {
+    "front": "🧩 Frequency Tables\n📘 Domain: Categorical Data",
+    "back": "**Definition:** Tabular summaries of categorical variables showing counts per category.\n\n**Description:** Useful for summarizing distributions of factor variables.\n\n**outputs:** counts, proportions"
+  },
+  {
+    "front": "🧩 Correspondence Tests\n📘 Domain: Categorical Data",
+    "back": "**Definition:** Statistical tests evaluating the association between two categorical variables.\n\n**Description:** Includes chi-square–type methods applicable to contingency tables.\n\n**inputs:** contingency table"
+  },
+  {
+    "front": "🧩 Categorical vs Continuous Visualization\n📘 Domain: Categorical Data",
+    "back": "**Definition:** Visualization techniques that compare categorical groups against continuous measurements.\n\n**Description:** Examples include grouped boxplots for continuous outcomes across category levels.\n\n**tools:** boxplots, violin plots"
+  },
+  {
+    "front": "🧩 Data Aggregation\n📘 Domain: Data Reduction",
+    "back": "**Definition:** A data reduction method that summarizes groups of data points into aggregate values.\n\n**Description:** Common aggregates include mean, sum, and group-level statistics.\n\n**aggregates:** mean, sum, count"
+  },
+  {
+    "front": "🧩 Data Generalization\n📘 Domain: Data Reduction",
+    "back": "**Definition:** A reduction method where data is replaced by more general forms using hierarchical abstraction.\n\n**Description:** Often implemented using concept hierarchies to reduce granularity.\n\n**approach:** hierarchical abstraction"
+  },
+  {
+    "front": "🧩 Variable Construction\n📘 Domain: Data Reduction",
+    "back": "**Definition:** Constructing new variables from existing ones to improve predictive performance or simplify data representation.\n\n**Description:** Includes building composite indicators or derived attributes.\n\n**examples:** interaction terms, index scores"
+  },
+  {
+    "front": "🧩 Nonparametric Data Reduction Methods\n📘 Domain: Data Reduction",
+    "back": "**Definition:** Reduction methods that do not assume specific parametric forms and rely on data-driven transformations.\n\n**Description:** Useful when normality or linearity assumptions do not hold.\n\n**examples:** binning, wavelet transforms"
+  },
+  {
+    "front": "🧩 Transformation to Normality\n📘 Domain: Data Transformation",
+    "back": "**Definition:** Techniques aimed at making a variable's distribution more Gaussian.\n\n**Description:** Used to satisfy model assumptions; includes Box–Cox and other power transformations.\n\n**goal:** approximate normality"
+  },
+  {
+    "front": "🧩 Normality Tests\n📘 Domain: Statistical Diagnostics",
+    "back": "**Definition:** Statistical methods used to evaluate whether data follow a normal distribution.\n\n**Description:** Although not named explicitly, includes families of tests such as Shapiro–Wilk and KS tests.\n\n**outputs:** p-value, decision on normality"
+  },
+  {
+    "front": "🧩 Solutions for Non-Normality\n📘 Domain: Statistical Diagnostics",
+    "back": "**Definition:** Approaches to address non-normal data, including transformations or use of nonparametric models.\n\n**Description:** Ensures suitability of statistical models when assumptions fail.\n\n**strategies:** transform variables, apply nonparametric models"
+  }
+]

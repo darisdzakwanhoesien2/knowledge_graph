@@ -1,1162 +1,302 @@
 [
   {
-    "front": "🧩 Attribute Noise\n📘 Domain: Data Quality",
-    "back": "**Definition:** Noise arising from erroneous, missing, or corrupted feature values in data.\n\n**Description:** Attribute noise distorts the representation of instances and can weaken classifiers by shifting feature distributions.\n\n**examples:** typos, invalid numeric values, sensor failures\n**effects:** class boundary distortion, small erroneous clusters"
+    "front": "🧩 Singular Value Decomposition\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** The Singular Value Decomposition (SVD) of a matrix A ∈ ℂ^{m×n} is a factorization A = U Σ V^*, where U and V are unitary matrices with orthonormal columns, and Σ is a diagonal matrix with non-negative singular values σ₁ ≥ σ₂ ≥ ⋯ ≥ σ_n ≥ 0 on the diagonal.\n\n**Description:** SVD provides the best low-rank approximation of a matrix in both spectral and Frobenius norms, enabling optimal matrix compression, dimensionality reduction, and solving least squares problems. It decomposes any matrix into orthogonal bases that capture the principal directions of variation.\n\n**Goal:** Provide orthogonal factorization and low-rank approximations.\n**Applications:** Data compression, Principal component analysis, Pseudo-inverse\n**Methods:** Golub-Reinsch algorithm, Divide-and-conquer, Iterative methods\n**Examples:** A ≈ U_k Σ_k V_k^* for rank-k approximation"
   },
   {
-    "front": "🧩 Label Noise\n📘 Domain: Data Quality",
-    "back": "**Definition:** Noise caused by incorrect, inconsistent, or subjective class labels.\n\n**Description:** Label noise is particularly harmful for supervised learning, as it directly corrupts ground truth.\n\n**sources:** human mistakes, ambiguous labeling, subjective judgments"
+    "front": "🧩 Singular Value\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** The singular values of a matrix A are the non-negative square roots of the eigenvalues of A^*A (or AA^*), ordered as σ₁ ≥ σ₂ ≥ ⋯ ≥ σ_r > 0, where r is the rank of A.\n\n**Description:** Singular values measure the 'importance' or 'strength' of each principal direction in the matrix. The largest singular value σ₁ equals the operator norm ||A||, and they uniquely determine the best low-rank approximations.\n\n**Goal:** Quantify the magnitude of principal components in matrix decomposition.\n**Applications:** Rank determination, Condition number computation (σ₁/σ_r), Numerical stability analysis\n**Methods:** Eigenvalue decomposition of A^*A, Square root of eigenvalues\n**Examples:** σ₁ = ||A|| = max_{||x||=1} ||Ax|| represents maximum stretch"
   },
   {
-    "front": "🧩 Noise Frequency Filtering\n📘 Domain: Signal Processing",
-    "back": "**Definition:** The removal of specific high- or low-frequency noise components from continuous signals.\n\n**Description:** Includes removing characteristic electrical interference, such as 50 Hz noise from power lines.\n\n**examples:** notch filter, band-pass filter\n**risks:** loss of useful information"
+    "front": "🧩 Unitary Matrix\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** A unitary matrix Q ∈ ℂ^{n×n} satisfies Q^*Q = I, meaning its columns (and rows) form an orthonormal basis that preserves the Euclidean norm: ||Qx|| = ||x|| for all x ∈ ℂ^n.\n\n**Description:** Unitary matrices represent rotations and reflections in complex space. They appear in QR decomposition, SVD, and eigenvalue problems, preserving distances and angles during transformations.\n\n**Goal:** Preserve norms and inner products in linear transformations.\n**Applications:** QR decomposition, Singular Value Decomposition, Numerical linear algebra algorithms, Quantum computing gates\n**Methods:** Gram-Schmidt process, Householder reflections\n**Examples:** Q = [q₁ ⋯ qₙ] where {qⱼ} are orthonormal vectors"
   },
   {
-    "front": "🧩 Equipment Error\n📘 Domain: Data Quality",
-    "back": "**Definition:** Noise or erroneous values caused by malfunctioning or poorly calibrated measurement devices.\n\n**Description:** Common in sensor-based data collection, producing sudden spikes or unrealistic readings.\n\n**causes:** device failure, poor calibration\n**effects:** outliers, attribute noise"
+    "front": "🧩 Low Rank Approximation\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** The low-rank approximation problem finds a rank-k matrix F_k that minimizes ||A - F_k||_F among all rank-k matrices, solved uniquely by SVD: F_k = ∑_{j=1}^k σⱼ uⱼ vⱼ^*.\n\n**Description:** SVD provides the optimal rank-k approximation in Frobenius norm, equivalent to keeping the k largest singular values. This compresses data while minimizing reconstruction error.\n\n**Goal:** Approximate high-dimensional matrix with lower-rank version minimizing ||A - F_k||_F.\n**Applications:** Data compression, Dimensionality reduction, Image denoising, Recommendation systems\n**Methods:** Truncated SVD, Eckart-Young theorem\n**Examples:** F_k = U_k Σ_k V_k^* where error = ∑_{j=k+1}^r σⱼ²"
   },
   {
-    "front": "🧩 Garbage Values\n📘 Domain: Data Pollution",
-    "back": "**Definition:** Invalid or meaningless values inserted into data fields due to errors, incompatibilities, or manual mistakes.\n\n**Description:** Garbage values may originate from free text fields, broken encodings, or copy-paste errors.\n\n**examples:** nonsense strings, unexpected tokens"
+    "front": "🧩 Frobenius Norm\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** The Frobenius norm of A ∈ ℂ^{m×n} is ||A||_F = √(∑_{j=1}^m ∑_{k=1}^n |a_{jk}|²) = √trace(A^*A), measuring the Euclidean norm of the matrix treated as a vector in ℂ^{mn}.\n\n**Description:** Widely used in matrix approximation problems due to computational convenience and equivalence to SVD error. It's unitarily invariant: ||Q₁AQ₂||_F = ||A||_F for unitary Q₁, Q₂.\n\n**Goal:** Measure matrix 'size' as vector in high-dimensional space.\n**Applications:** Low-rank approximation error, Matrix compression, Least squares problems\n**Methods:** √(sum of squared entries), √trace(A^*A)\n**Examples:** ||A||_F² = ∑ σⱼ² where σⱼ are singular values"
   },
   {
-    "front": "🧩 Delimiter Contamination\n📘 Domain: Data Pollution",
-    "back": "**Definition:** A data corruption issue where field values include delimiter characters, causing misalignment in structured formats.\n\n**Description:** Occurs in CSV or TSV files when text fields contain commas, tabs, or semicolons.\n\n**effects:** row fragmentation, column shifts"
+    "front": "🧩 Operator Norm\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** The operator norm ||A|| = max_{||x||=1} ||Ax|| measures the maximum stretch factor of the linear transformation A: ℂ^n → ℂ^m.\n\n**Description:** For SVD, ||A|| = σ₁, the largest singular value. It quantifies how much A can amplify unit vectors and determines numerical stability.\n\n**Goal:** Measure maximum amplification by linear transformation.\n**Applications:** Condition number (||A|| ⋅ ||A⁻¹||), Stability analysis, Spectral radius bounds\n**Methods:** Largest singular value σ₁, max_{||x||=1} ||Ax||"
   },
   {
-    "front": "🧩 Free-Text Field Contamination\n📘 Domain: Data Pollution",
-    "back": "**Definition:** Contamination caused by unstructured free-text fields containing unexpected patterns that break parsing.\n\n**Description:** Includes unescaped punctuation, symbols, or embedded delimiters.\n\n**sources:** manual entry, copy-paste"
+    "front": "🧩 Matrix Function\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** A matrix function f(A) extends scalar functions to matrices A, defined via Jordan form, power series, or other representations, enabling operations like exponentials or square roots on matrices.\n\n**Description:** Matrix functions are computed iteratively for large matrices, used in differential equations, control theory, and eigenvalue problems.\n\n**Goal:** Extend scalar functions to matrices while preserving algebraic structure.\n**Applications:** Matrix exponential in ODEs, Matrix logarithm in geometry, Sign function in control\n**Methods:** Schur-Parlett, Scaling-and-squaring, Padé approximation, Contour integral\n**Examples:** exp(A), A^{1/2}, sign(A)"
   },
   {
-    "front": "🧩 Thousand-Separator Contamination\n📘 Domain: Data Pollution",
-    "back": "**Definition:** The presence of thousands separators in numeric fields causing parsing issues or incorrect numerical conversion.\n\n**Description:** Common when merging data across locales with different numeric conventions.\n\n**examples:** 1,000.50, 1.000,50"
+    "front": "🧩 Matrix Square Root\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** The matrix square root X satisfies X^2 = A for a matrix A, with the principal square root being positive definite if A is.\n\n**Description:** It is computed iteratively, e.g., via Newton's method, for applications in statistics, control, and geometry.\n\n**Goal:** Find X such that X^2 = A.\n**Applications:** Covariance matrices, Riemannian metrics, Polar decomposition\n**Methods:** Newton iteration, Denman-Beavers, Schur method\n**Examples:** X = sqrt(A) for SPD A"
   },
   {
-    "front": "🧩 Domain Drift\n📘 Domain: Data Quality",
-    "back": "**Definition:** A mismatch between the original data schema design and current data usage, leading to invalid category values.\n\n**Description:** Occurs when systems are repurposed, such as a 'Gender' field receiving business-related labels.\n\n**effects:** category misalignment, data pollution"
+    "front": "🧩 Newton's Iteration for Square Root\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** Newton's iteration for the matrix square root updates X_{k+1} = (X_k + A X_k^{-1}) / 2, starting from X_0 = I or other, converging quadratically to sqrt(A).\n\n**Description:** It is stable for positive definite A, with safeguards for convergence, used in large-scale computations via iterative solvers.\n\n**Goal:** Compute sqrt(A) iteratively.\n**Applications:** Matrix sign function, Algebraic Riccati equations\n**Methods:** Matrix inversion at each step, Quadratic convergence\n**Examples:** X_{k+1} = (X_k + A X_k^{-1}) / 2"
   },
   {
-    "front": "🧩 Global Outliers\n📘 Domain: Outlier Detection",
-    "back": "**Definition:** Data points that deviate significantly from the overall distribution of the dataset.\n\n**Description:** Most classical outlier detection methods target global outliers.\n\n**examples:** extreme sensor readings"
+    "front": "🧩 Eigenvalue Problem\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** The eigenvalue problem seeks scalars λ and vectors x ≠ 0 such that A x = λ x for matrix A.\n\n**Description:** Iterative methods like power iteration or Lanczos are used for large sparse matrices, shifting spectrum for better conditioning.\n\n**Goal:** Compute spectrum and invariant subspaces for analysis and transformation of linear operators.\n**Applications:** Vibration analysis, Stability of dynamical systems, Google PageRank, Quantum mechanics\n**Methods:** Power iteration, QR algorithm, Arnoldi iteration, Jacobi-Davidson\n**Examples:** Ax = λx, det(A−λI)=0 (characteristic equation)"
   },
   {
-    "front": "🧩 Contextual Outliers\n📘 Domain: Outlier Detection",
-    "back": "**Definition:** Values that are only outliers within a specific contextual setting or subset of conditions.\n\n**Description:** A temperature of +25°C is an outlier in Oulu in January but not in July.\n\n**requires:** contextual attributes"
+    "front": "🧩 Spectral Shift\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** Spectral shift transforms the eigenvalue problem to (A - μ I) x = (λ - μ) x, shifting eigenvalues by μ to target specific parts of the spectrum or improve conditioning.\n\n**Description:** Choosing μ near a target eigenvalue accelerates convergence in iterative methods; for real μ, it can make the matrix positive definite.\n\n**Goal:** Adjust spectrum for better numerical properties.\n**Applications:** Interior eigenvalues, Deflation, Preconditioning\n**Methods:** μ close to target λ, μ = (λ_min + λ_max)/2\n**Examples:** Λ(A - μ I) = Λ(A) - μ"
   },
   {
-    "front": "🧩 Collective Outliers\n📘 Domain: Outlier Detection",
-    "back": "**Definition:** Groups of observations that together deviate significantly from the dataset’s normal behavior.\n\n**Description:** Individually normal points form an abnormal cluster, such as suspicious block transactions.\n\n**examples:** market manipulation patterns"
+    "front": "🧩 Positive Definite Shift\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** Positive definite shift chooses μ such that A - μ I is positive definite, e.g., μ < λ_min(A) for symmetric A, enabling use of CG or other SPD methods.\n\n**Description:** It stabilizes iterations and bounds condition number; for estimated ˆμ ≈ λ_min, adjust with a > 0 to ensure positivity.\n\n**Goal:** Make shifted matrix SPD for efficient solving.\n**Applications:** Shift-and-invert, Preconditioned eigensolvers\n**Methods:** μ = ˆμ - a, a > 0, Rayleigh quotient estimate\n**Examples:** A - μ I with μ = ˆμ - a"
   },
   {
-    "front": "🧩 Outlier Score\n📘 Domain: Outlier Detection",
-    "back": "**Definition:** A continuous measure estimating how strongly an instance differs from expected normal behavior.\n\n**Description:** Used by many unsupervised and distance-based outlier detection models.\n\n**scale:** continuous"
+    "front": "🧩 Spectrum Λ(A)\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** The spectrum Λ(A) is the set of all eigenvalues of matrix A.\n\n**Description:** Shifting modifies the spectrum as Λ(A - μ I) = Λ(A) - μ, used to isolate eigenvalues or improve numerical properties.\n\n**Goal:** Characterize matrix via its eigenvalues.\n**Applications:** Spectral radius, Conditioning, Stability\n**Methods:** Eigen decomposition, Characteristic polynomial\n**Examples:** Λ(A) subset C for A in C^{n x n}"
   },
   {
-    "front": "🧩 Binary Outlier Classification\n📘 Domain: Outlier Detection",
-    "back": "**Definition:** A binary decision mechanism indicating whether an instance is labeled as outlier or normal.\n\n**Description:** Often derived from thresholding outlier scores.\n\n**outputs:** outlier, non-outlier"
+    "front": "🧩 Matrix Computations\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** The study and development of algorithms for performing operations on matrices, including addition, multiplication, inversion, decomposition, and solving linear systems.\n\n**Description:** Matrix computations are central to numerical analysis, scientific computing, and computational science. They underpin applications in physics simulations, data analysis, machine learning, and computer graphics. The computational complexity of classical algorithms for matrix multiplication is O(n³), while storage is typically O(n²).\n\n**Goal:** Solve matrix-related problems efficiently in numerical contexts.\n**Applications:** Scientific computing, Data analysis, PDE solving, Linear algebra problems\n**Methods:** Factorizations (LU, SVD), Eigenvalue computations, Iterative solvers, Subspace approximations\n**Examples:** Solving Ax = b, Approximating large matrices"
   },
   {
-    "front": "🧩 Subjective Outlier Thresholding\n📘 Domain: Outlier Detection",
-    "back": "**Definition:** Human-defined thresholding used to determine whether deviation magnitude is sufficient to consider a point an outlier.\n\n**Description:** Cutoff values depend on domain knowledge and application-specific tolerances.\n\n**difficulty:** non-universal thresholds"
+    "front": "🧩 Inner Product\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** A binary operation on two vectors in ℂⁿ that produces a scalar, defined as ⟨x, y⟩ = yᵀx̄ = ∑ⱼ xⱼȳⱼ, where x, y ∈ ℂⁿ.\n\n**Description:** The inner product (also known as dot product in real vector spaces) measures similarity between vectors and forms the foundation of orthogonality, norms, and projections. In complex spaces, it involves conjugation to ensure positive definiteness of the induced norm.\n\n**Goal:** Quantify angle and similarity between vectors; enable orthogonal decomposition\n**Applications:** Gram-Schmidt orthogonalization, Least squares, Signal processing, Quantum mechanics\n**Methods:** N/A\n**Examples:** ⟨x, y⟩ = ∑ xⱼȳⱼ over j=1 to n"
   },
   {
-    "front": "🧩 Supervised Outlier Detection\n📘 Domain: Outlier Detection",
-    "back": "**Definition:** Outlier detection using labeled datasets, typically training classifiers to distinguish normal and abnormal instances.\n\n**Description:** Challenges include extreme class imbalance and insufficient outlier examples.\n\n**models:** binary classifier, one-class models"
+    "front": "🧩 Computational Complexity (Matrix Multiplication)\n📘 Domain: Algorithm Analysis",
+    "back": "**Definition:** The asymptotic resource requirement for matrix multiplication and related operations, classically O(n³) time and O(n²) space for n×n matrices.\n\n**Description:** Standard matrix multiplication of two n×n matrices requires O(n³) arithmetic operations using the naive algorithm. While theoretical improvements exist (e.g., Strassen’s O(n².⁸⁰⁷)), practical methods remain close to O(n³). Storage scales quadratically as O(n²).\n\n**Goal:** Assess efficiency and scalability of matrix algorithms\n**Applications:** Performance prediction, Algorithm selection, Hardware design\n**Methods:** Big-O notation, Arithmetic circuit complexity\n**Examples:** O(n³) time, O(n²) space"
   },
   {
-    "front": "🧩 Semi-Supervised Outlier Detection\n📘 Domain: Outlier Detection",
-    "back": "**Definition:** A hybrid outlier detection method using both labeled and unlabeled data.\n\n**Description:** Most useful for modeling normal behavior rather than rare anomalies.\n\n**strength:** leverages unlabeled data"
+    "front": "🧩 LU Factorization\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** LU factorization decomposes a matrix A into a lower triangular matrix L and an upper triangular matrix U such that A = LU, or with pivoting PA = LU, enabling efficient solution of linear systems.\n\n**Description:** It is a fundamental algorithm with O(n^3) complexity, used for solving Ax = b by forward and backward substitution, and approximated for large matrices using subspace products.\n\n**Goal:** Decompose matrices for efficient linear system solving.\n**Applications:** Numerical linear algebra, PDE discretization, Data processing\n**Methods:** Gaussian elimination, Pivoting for stability, Partial pivoting\n**Examples:** A = LU for square matrices, PA = LU with permutation P"
   },
   {
-    "front": "🧩 Unsupervised Outlier Detection\n📘 Domain: Outlier Detection",
-    "back": "**Definition:** Outlier detection assuming that normal instances form clusters, while outliers lie far from these clusters.\n\n**Description:** Useful when labels are unavailable; many clustering and density-based techniques apply.\n\n**assumptions:** normal data clustered"
+    "front": "🧩 Product of Matrix Subspaces\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** The product of matrix subspaces V1 V2 is defined as {V1 V2 : V1 ∈ V1, V2 ∈ V2}, providing a framework for approximating matrices with fewer parameters than full rank.\n\n**Description:** It allows factoring matrices into low-complexity forms like sum of outer products, useful for large n with small k, achieving 2nk parameters and potential for lower computational costs.\n\n**Goal:** Approximate matrices efficiently using subspace products.\n**Applications:** Large matrix factorization, PDE discretization, Data storage\n**Methods:** Subspace multiplication, Rank-k approximation, Norm minimization\n**Examples:** A ≈ sum_{j=1}^k u_j v_j^*, I + V1 V2 inversion"
   },
   {
-    "front": "🧩 Parametric Outlier Detection\n📘 Domain: Statistical Outlier Detection",
-    "back": "**Definition:** Outlier detection assuming that normal data follow a known parametric distribution.\n\n**Description:** Includes Gaussian modeling, where low-probability instances are flagged as outliers.\n\n**examples:** Gaussian distribution"
+    "front": "🧩 Gram-Schmidt Orthogonalization\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** Gram-Schmidt orthogonalization transforms a set of linearly independent vectors into an orthonormal set using projections and normalization.\n\n**Description:** It is used in QR factorization and subspace computations, with classical and modified variants for numerical stability.\n\n**Goal:** Produce orthonormal bases from vector sets.\n**Applications:** QR decomposition, Subspace orthogonalization, Least squares\n**Methods:** Classical Gram-Schmidt, Modified Gram-Schmidt, Householder reflections\n**Examples:** Orthogonalizing columns of A"
   },
   {
-    "front": "🧩 Nonparametric Outlier Detection\n📘 Domain: Statistical Outlier Detection",
-    "back": "**Definition:** Outlier detection without assuming any prior data distribution, relying instead on data-driven density estimation.\n\n**Description:** Often uses kernel density estimation to identify low-density regions.\n\n**examples:** kernel density estimation"
+    "front": "🧩 Low-Rank Approximation\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** Low-rank approximation finds a matrix Fk of rank k that minimizes ||A - Fk|| for a given norm, often using SVD or subspace products for efficiency.\n\n**Description:** It reduces storage and computation for large matrices, with subspace products offering 2nk parameters for rank-k approximations.\n\n**Goal:** Approximate high-dimensional matrices with lower rank.\n**Applications:** Data compression, Noise reduction, Machine learning\n**Methods:** SVD truncation, Subspace product, Randomized algorithms\n**Examples:** Fk = sum u_j v_j^*, min_{rank(F)=k} ||A - F||"
   },
   {
-    "front": "🧩 Gaussian Outlier Modeling\n📘 Domain: Statistical Outlier Detection",
-    "back": "**Definition:** A parametric approach modeling normal data using a Gaussian distribution and identifying low-likelihood instances as outliers.\n\n**Description:** Effective when data approximately follow normal distributions.\n\n**requirements:** mean and covariance estimation"
+    "front": "🧩 Hermitian Matrix\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** A Hermitian matrix M satisfies M^* = M, where * denotes conjugate transpose, with real eigenvalues and orthogonal eigenvectors.\n\n**Description:** It requires n^2 real parameters for storage, or fewer in subspace approximations, used in quantum mechanics and signal processing.\n\n**Goal:** Model self-adjoint operators in complex spaces.\n**Applications:** Quantum computing, Covariance matrices, Spectral analysis\n**Methods:** Eigen decomposition, Cholesky factorization (positive definite)\n**Examples:** M with real diagonal and conjugate symmetric off-diagonals"
   },
   {
-    "front": "🧩 Kernel Density Estimation for Outlier Detection\n📘 Domain: Statistical Outlier Detection",
-    "back": "**Definition:** Outlier detection using a nonparametric density estimate of the normal data distribution.\n\n**Description:** Instances in low-density areas under the estimated kernel distribution are considered outliers.\n\n**techniques:** Gaussian kernels, Epanechnikov kernels"
+    "front": "🧩 Matrix Subspace\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** A subset V ⊆ ℂ^{n×n} of matrices closed under addition and scalar multiplication, forming a vector space over ℂ.\n\n**Description:** Matrix subspaces are used to model families of matrices sharing structural properties (e.g., invertibility, symmetry, triangularity). They enable low-rank approximations, invariant subspaces in eigenvalue problems, and structured matrix factorizations such as LU or SVD within constrained sets.\n\n**Goal:** Group matrices with common algebraic or analytic traits to simplify computations and preserve structure in factorizations.\n**Applications:** Structured matrix factorization, Low-rank approximation, Krylov methods, Invariant subspace computation\n**Methods:** Span construction, Closure under operations, Equivalence via similarity\n**Examples:** span{I, A}, span{A, B}, upper triangular matrices"
   },
   {
-    "front": "🧩 Distance-Based Outlier Detection\n📘 Domain: Proximity-Based Methods",
-    "back": "**Definition:** Outlier detection based on distances to neighbors using global parameters such as radius and neighbor threshold.\n\n**Description:** Points with too few neighbors within a specified distance are flagged as outliers.\n\n**parameters:** radius r, threshold t"
+    "front": "🧩 Nonsingular Matrix Subspace\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** A matrix subspace V ⊆ ℂ^{n×n} that contains at least one invertible matrix (det V ≠ 0 for some V ∈ V).\n\n**Description:** Nonsingular subspaces guarantee the existence of invertible elements, enabling the definition of the set of inverses Inv(V) = {V⁻¹ : V ∈ V, det V ≠ 0}. Such subspaces are crucial for ensuring well-defined inverse-based factorizations (e.g., LU within V).\n\n**Goal:** Ensure invertibility within a structured family of matrices to support factorization algorithms.\n**Applications:** LU factorization, Generalized inverse, Structured preconditioning\n**Methods:** Perturbation arguments, Open-dense property in finite dimensions\n**Examples:** V = span{I, A} for nonsingular A, Upper triangular matrices with nonzero diagonals"
   },
   {
-    "front": "🧩 Density-Based Outlier Detection\n📘 Domain: Proximity-Based Methods",
-    "back": "**Definition:** Outlier detection comparing local density of a point to the densities of its neighbors.\n\n**Description:** Low-density points relative to nearby points are considered outliers; LOF is a common example.\n\n**examples:** Local Outlier Factor (LOF)"
+    "front": "🧩 Inv(V)\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** The set of inverses of all invertible matrices in a matrix subspace V: Inv(V) = {W : W = V⁻¹, V ∈ V, det V ≠ 0}.\n\n**Description:** For nonsingular matrix subspaces, Inv(V) is itself a matrix subspace under mild conditions. This enables dual-space factorizations and ensures closure under inversion within structured sets, vital for algorithmic stability in LU-type methods.\n\n**Goal:** Construct a subspace of inverses to maintain structure across factorization steps.\n**Applications:** LU within subspace, Preconditioner design, Group-inverse problems\n**Methods:** Similarity transformation, Closure proof via nonsingularity\n**Examples:** Inv(upper triangular) = lower triangular, Inv(Hermitian) = Hermitian"
   },
   {
-    "front": "🧩 Clustering-Based Outlier Detection\n📘 Domain: Outlier Detection",
-    "back": "**Definition:** Outlier detection assuming normal data form large dense clusters and outliers form small, sparse clusters.\n\n**Description:** Methods include K-Means and Gaussian Mixture Models.\n\n**weakness:** sensitive to noise"
+    "front": "🧩 LU Factorization within Subspace\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** Decomposition of a matrix A ∈ V into A = LU where L is lower triangular and U is upper triangular, both belonging to predefined matrix subspaces derived from V.\n\n**Description:** By identifying nonsingular matrix subspaces V and W = Inv(V), LU factorization can be confined within V × W, ensuring all intermediate matrices remain structured. This supports specialized algorithms for banded, symmetric positive-definite, or approximate low-rank problems.\n\n**Goal:** Perform Gaussian elimination while preserving membership in designated matrix subspaces.\n**Applications:** Banded LU, SPD factorization, Low-rank updates, Krylov-based solvers\n**Methods:** Schur complement, Pivot-free elimination, Subspace projection\n**Examples:** A ∈ upper triangular → L = I, U = A, A ∈ V, L ∈ V, U ∈ Inv(V)"
   },
   {
-    "front": "🧩 Sparse-Cluster Outliers\n📘 Domain: Clustering-Based Outlier Detection",
-    "back": "**Definition:** Outliers that belong to clusters with very low density or membership count.\n\n**Description:** Common in clustering-based detection where small clusters are treated as abnormal.\n\n**identification:** cluster size threshold"
+    "front": "🧩 Krylov Subspace\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** The matrix subspace K_j(A; I) = span{I, A, A², ..., A^{j-1}} generated by powers of a matrix A starting from the identity.\n\n**Description:** Krylov subspaces lie at the core of iterative methods for large-scale eigenvalue and linear system problems (GMRES, Lanczos, Arnoldi). Their dimension grows linearly until saturation at the degree of the minimal polynomial of A.\n\n**Goal:** Generate subspaces for iterative numerical methods.\n**Applications:** Eigenvalue computation, Linear solvers, Matrix exponentiation\n**Methods:** Arnoldi iteration, Lanczos algorithm, GMRES\n**Examples:** K_1(A; I) = span{I}, K_2(A; I) = span{I, A}"
   },
   {
-    "front": "🧩 Gaussian Mixture Model Outlier Detection\n📘 Domain: Clustering-Based Outlier Detection",
-    "back": "**Definition:** Outlier detection using mixture models where low-probability points under the model are flagged as outliers.\n\n**Description:** Each Gaussian component models a cluster; outliers lie outside high-likelihood areas.\n\n**technique:** Expectation-Maximization for model fitting"
+    "front": "🧩 Matrix Polynomials\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** Functions p(z) = ∑_{k=0}^m c_k z^k evaluated at matrices: p(A) = ∑_{k=0}^m c_k A^k for A ∈ ℂ^{n×n}.\n\n**Description:** Matrix polynomials map matrix subspaces to themselves if V is closed under powers of its members. They define minimal and characteristic polynomials, enable Cayley-Hamilton applications, and support function-based iterative methods.\n\n**Goal:** Extend scalar polynomial theory to matrices for spectral analysis and function approximation.\n**Applications:** Cayley-Hamilton theorem, Matrix exponential,  preconditioning, Spectral projectors\n**Methods:** Horner scheme, Paterson-Stockmeyer, Jordan form evaluation\n**Examples:** p(z) = z²−2z+1 → p(A) = A²−2A+I = 0, q(z) = det(A−zI) → q(A)=0"
   },
   {
-    "front": "🧩 One-Class Classification\n📘 Domain: Classification-Based Outlier Detection",
-    "back": "**Definition:** A classification method modeling only the normal class, treating deviations as outliers.\n\n**Description:** Widely used for anomaly detection when outliers are scarce or unknown.\n\n**algorithms:** One-Class SVM, Autoencoders"
+    "front": "🧩 Projection Operator\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** A linear operator P on ℂ^n such that P² = P, projecting vectors onto a subspace R(P) with kernel R(I−P).\n\n**Description:** Projections decompose spaces into direct sums and are building blocks for oblique and orthogonal projections in iterative solvers. Orthogonal projections minimize least-squares error and appear in GMRES and conjugate gradients.\n\n**Goal:** Project vectors onto subspaces.\n**Applications:** Least squares, Subspace methods, Decomposition\n**Methods:** Orthogonal projection, Oblique projection\n**Examples:** P with P^2 = P, I - P as complement projection"
   },
   {
-    "front": "🧩 Outlier Detection via SVM\n📘 Domain: Classification-Based Outlier Detection",
-    "back": "**Definition:** Use of Support Vector Machines to identify outliers based on deviation from the learned normal boundary.\n\n**Description:** Includes both binary SVM approaches and one-class SVMs for anomaly detection.\n\n**advantages:** robust boundaries, works in high dimensions"
+    "front": "🧩 Sparsity Structure\n📘 Domain: Matrix Computations",
+    "back": "**Definition:** The sparsity structure of a matrix or matrix subspace specifies the pattern of entries that may be nonzero, independent of the actual numerical values.\n\n**Description:** Sparsity structures capture the combinatorial pattern of allowed nonzeros in matrices, enabling algorithms that exploit memory efficiency and reduce computational cost. They are essential in large-scale problems such as PDE discretizations, graph Laplacians, and structured matrix factorizations.\n\n**Goal:** Identify and exploit zero-patterns for efficient computation.\n**Applications:** Sparse LU factorization, Finite difference discretizations, Graph-based matrix algorithms\n**Methods:** Pattern analysis, Fill-in minimization, Graph reordering\n**Examples:** Tridiagonal pattern, Band matrix structure"
   },
   {
-    "front": "🧩 Outlier Detection via Random Forest\n📘 Domain: Classification-Based Outlier Detection",
-    "back": "**Definition:** Outlier detection using ensemble tree models to identify points poorly represented by learned structure.\n\n**Description:** Random forests can identify unusual patterns based on path length or leaf rarity.\n\n**mechanism:** rare-leaf detection"
+    "front": "🧩 Standard Matrix Subspace\n📘 Domain: Matrix Computations",
+    "back": "**Definition:** A standard matrix subspace is a subspace that admits a basis consisting of standard matrices, each with exactly one entry equal to 1 and all other entries equal to 0.\n\n**Description:** Standard matrix subspaces represent matrix sets defined purely by sparsity patterns, without structural constraints such as symmetry. Orthogonal projection onto these subspaces is straightforward—simply zero out entries outside the allowed pattern.\n\n**Goal:** Model matrix sets defined solely by sparsity constraints.\n**Applications:** Sparse matrix approximations, Projection methods, Structured LU factorization\n**Methods:** Entrywise projection, Basis construction from standard matrices\n**Examples:** Diagonal matrices, Strictly lower triangular matrices"
   },
   {
-    "front": "🧩 Predictive Outlier Detection\n📘 Domain: Time-Series Outlier Detection",
-    "back": "**Definition:** Outlier detection in streaming data using predictive models such as autoregressive or multivariate regressors.\n\n**Description:** Points are anomalous when observed values deviate significantly from predictions.\n\n**models:** AR models, regression models"
+    "front": "🧩 Orthogonal Projector (Matrix Subspace)\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** An orthogonal projector onto a matrix subspace V is a linear operator P such that P² = P and the range of P is orthogonal to the nullspace of P.\n\n**Description:** Orthogonal projectors provide optimal approximations in least-squares and matrix approximation problems. Projection onto matrix subspaces is fundamental in algorithmic factoring, dimension reduction, and solving underdetermined systems.\n\n**Goal:** Project matrices onto a subspace with minimal error under the Frobenius inner product.\n**Applications:** Approximate factoring, Subspace splitting, Sylvester-type equations\n**Methods:** Construction via orthonormal basis, Symmetrization operators\n**Examples:** P(A) = (A + A*)/2 for Hermitian matrices"
   },
   {
-    "front": "🧩 Streaming Outlier Detection\n📘 Domain: Time-Series Outlier Detection",
-    "back": "**Definition:** Methods for detecting outliers in continuous data streams where time-order and latency constraints apply.\n\n**Description:** Includes monitoring individual points, shape irregularities, and aggregated change points.\n\n**challenges:** real-time constraints, concept drift"
+    "front": "🧩 Invertible Matrix Subspace\n📘 Domain: Matrix Theory",
+    "back": "**Definition:** A matrix subspace V is invertible if the set of inverses of its nonsingular elements forms another matrix subspace V⁻¹.\n\n**Description:** Invertible matrix subspaces allow algorithmic factorization because their inverses preserve linear structure. Classical examples include triangular matrices and Hermitian matrices, which maintain structure under inversion.\n\n**Goal:** Support structured factorization where both A and its factors belong to linear matrix families.\n**Applications:** LU factorization, Symmetric factorizations, Matrix subspace factoring\n**Methods:** Closure under inversion, Polynomial relations\n**Examples:** Lower triangular matrices, Hermitian matrices"
   },
   {
-    "front": "🧩 Unusual-Shape Outlier Detection\n📘 Domain: Time-Series Outlier Detection",
-    "back": "**Definition:** Identification of anomalous temporal patterns based on shape irregularities rather than pointwise deviations.\n\n**Description:** Useful in detecting unusual motion patterns or abnormal physiological waveforms.\n\n**techniques:** transform-based, distance-based"
+    "front": "🧩 Singular Matrix Subspace\n📘 Domain: Matrix Theory",
+    "back": "**Definition:** A matrix subspace is singular if every matrix within it is singular, i.e., no element has a nonzero determinant.\n\n**Description:** Singular matrix subspaces arise in low-rank approximations, special matrix pencils, and structured operator families. They often encode degenerate behavior and limit the applicability of classical factorizations.\n\n**Goal:** Characterize spaces where invertibility is impossible.\n**Applications:** Rank-k matrix sets, SVD truncation analysis, Generalized eigenvalue pencils\n**Methods:** Nullspace analysis, Subspace closure\n**Examples:** Rank-k matrices for k < n"
   },
   {
-    "front": "🧩 Multidimensional Streaming Outlier Detection\n📘 Domain: Time-Series Outlier Detection",
-    "back": "**Definition:** Outlier detection extended to multivariate streaming systems, considering correlations across multiple dimensions.\n\n**Description:** Detects single-point anomalies or aggregated shifts across sensors or modalities.\n\n**outputs:** point anomalies, change points, rare classes"
+    "front": "🧩 Polynomially Closed Matrix Subspace\n📘 Domain: Matrix Theory",
+    "back": "**Definition:** A matrix subspace V is polynomially closed if p(A) ∈ V for every A ∈ V and every polynomial p with scalar coefficients.\n\n**Description:** Polynomial closure ensures that structural properties of matrices are preserved under algebraic operations such as exponentiation, inversion, or functional calculus. This property is essential when applying iterative or polynomial-based algorithms within the subspace.\n\n**Goal:** Guarantee closure under matrix polynomial transformations.\n**Applications:** Iterative methods, Matrix functions, Structured inversion\n**Methods:** Polynomial evaluation, Minimal polynomial arguments\n**Examples:** Hermitian matrices, Complex symmetric matrices"
   },
   {
-    "front": "🧩 Change-Point Outlier Detection\n📘 Domain: Time-Series Outlier Detection",
-    "back": "**Definition:** Detection of abrupt shifts in the mean, variance, or structural properties of a time series.\n\n**Description:** Change points indicate transitions to abnormal system states.\n\n**effects:** distributional shift, anomaly onset"
+    "front": "🧩 Closure of V₁V₂\n📘 Domain: Matrix Subspaces",
+    "back": "**Definition:** The closure of the product set V₁V₂ consists of all matrices that can be approximated arbitrarily well by products of matrices from subspaces V₁ and V₂.\n\n**Description:** The closure of V₁V₂ determines whether approximate factorizations exist even when exact ones do not. This concept plays a central role in understanding numerical stability, perturbation behavior, and feasibility of approximate matrix factorizations.\n\n**Goal:** Characterize attainable approximate factorizations.\n**Applications:** Approximate LU, Low-rank approximations, Structured matrix decompositions\n**Methods:** Topology of matrix spaces, Perturbation analysis\n**Examples:** Every matrix is arbitrarily close to one with an LU factorization"
   },
   {
-    "front": "🧩 Rare-Class Detection in Time Series\n📘 Domain: Time-Series Outlier Detection",
-    "back": "**Definition:** Detection of rare or unusual event types in time-series streams.\n\n**Description:** Targets low-frequency events that have significant domain relevance, such as faults or intrusions.\n\n**challenges:** class imbalance, concept drift"
+    "front": "🧩 Preconditioning\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** Preconditioning is the transformation of a linear system Ax = b into an equivalent system M^{-1}Ax = M^{-1}b (left preconditioning) or AM^{-1}y = b with x = M^{-1}y (right), where M ≈ A is a nonsingular matrix that is inexpensive to invert or solve with, designed to improve the convergence rate of iterative methods.\n\n**Description:** The goal is to cluster the eigenvalues of the preconditioned matrix away from zero, making Krylov subspace methods like CG, GMRES, or MINRES converge in significantly fewer iterations. Effective preconditioners balance accuracy (M close to A) with computational cost (O(n) or O(n log n) per application).\n\n**Goal:** Accelerate iterative solver convergence.\n**Applications:** Large sparse systems, PDE solvers\n**Methods:** Incomplete LU, Jacobi, Multigrid, Domain decomposition\n**Examples:** Left preconditioning: solve M y = c then A x = M y"
   },
   {
-    "front": "🧩 Data Ethics\n📘 Domain: Data Science",
-    "back": "**Definition:** A set of moral guidelines and practices governing responsible collection, analysis, and use of data, ensuring respect for privacy, transparency, and fairness.\n\n**Description:** Data ethics involves acting responsibly with the data entrusted to you. It acknowledges that data often represent people, and therefore, misuse can harm individuals or groups. Ethical data mining requires accountability, honesty, and consideration of the potential consequences of analysis outcomes.\n\n**Motives:** Ensure positive social impact, Avoid manipulation, Promote fairness\n**Methods:** Transparency, Accountability, Consent\n**Consequences:** Respect privacy, Prevent harm, Foster trust"
+    "front": "🧩 Jacobi Preconditioner\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** The Jacobi preconditioner is M = diag(A) + ωI, where diag(A) contains the diagonal entries of A and ω ∈ ℂ is an optional damping parameter (often ω = 0). It is the simplest splitting M = D, N = A - D.\n\n**Description:** Extremely cheap to apply (O(n) scaling) and parallelizable. Effective when A is diagonally dominant. Corresponds to the classical Jacobi iterative method. Often used as a baseline or building block in more sophisticated preconditioners.\n\n**Goal:** Damp high-frequency error components using only diagonal information.\n**Applications:** Smooth initial guess for multigrid, Baseline for preconditioner comparison, Diagonally dominant systems\n**Methods:** Extract diagonal, Optional damping ω, Inverse is element-wise division\n**Examples:** M_i = diag(A) + ωI with ω = 0 for standard Jacobi"
   },
   {
-    "front": "🧩 Ethical Data Mining\n📘 Domain: Data Science",
-    "back": "**Definition:** The practice of conducting data mining in a way that is fair, transparent, and respects privacy and consent.\n\n**Description:** Ethical data mining balances the potential benefits of insights gained from data with the responsibility to protect subjects from harm. It considers ownership, consent, data sensitivity, and the possible implications of findings.\n\n**Key Principles:** Honesty, Transparency, Responsibility, Non-maleficence\n**Challenges:** Unintended harm, Biased data, Lack of consent"
+    "front": "🧩 Incomplete LU Factorization\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** Incomplete LU (ILU) computes factors L̂ and Û such that L̂Û ≈ A with the same sparsity pattern as A (or a prescribed superset), dropping fill-in during Gaussian elimination to control memory and cost.\n\n**Description:** Widely used for general sparse matrices. Variants include ILU(0) (no fill), ILU(k) (level-k fill), and ILUT (threshold dropping). Provides a trade-off between robustness and efficiency. Often combined with reordering (e.g., RCM, nested dissection).\n\n**Goal:** Approximate LU factorization while preserving sparsity for use as preconditioner.\n**Applications:** Finite element systems, CFD problems, Circuit simulation\n**Methods:** Modified Gaussian elimination with drop tolerance, Dual-threshold ILUT, Level-of-fill ILU(k)\n**Examples:** ILU(0): drop all fill-in outside original nonzero pattern"
   },
   {
-    "front": "🧩 Informed Consent\n📘 Domain: Research Ethics",
-    "back": "**Definition:** The process of obtaining voluntary, informed permission from individuals whose data will be collected or used.\n\n**Description:** Informed consent ensures individuals understand what data is collected, how it will be used, and have the freedom to withdraw at any time. It is fundamental in research involving personal or sensitive data.\n\n**Requirements:** Clear explanation of purpose, Freedom to deny or withdraw, Comprehensible to the participant\n**Constraints:** Use only for stated purpose, Respect withdrawal, Maintain anonymity"
+    "front": "🧩 Sparse Approximate Inverse\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** A sparse approximate inverse (SAI) preconditioner computes a sparse matrix M such that ||I - MA||_F or ||I - AW||_F is minimized over all matrices W with a prescribed sparsity pattern, effectively approximating A^{-1} directly.\n\n**Description:** Application cost is O(nnz(M)) matrix-vector products. Excellent parallel performance due to explicit form. Often constructed via Frobenius norm minimization on independent columns or using QR factorizations of local submatrices.\n\n**Goal:** Construct explicit sparse approximation to A^{-1} for fast matrix-vector products\n**Applications:** Highly parallel architectures (GPU, many-core), Unstructured grids, High-performance computing\n**Methods:** Frobenius norm minimization per column, SPAID (sparse approximate inverse by distance), FSAI (factorized sparse approximate inverse)\n**Examples:** min_W ||AW - I||_F with W constrained to sparsity pattern of A^k"
   },
   {
-    "front": "🧩 General Data Protection Regulation (GDPR)\n📘 Domain: European Data Protection",
-    "back": "**Definition:** A European Union regulation that governs data protection and privacy for individuals within the EU and EEA.\n\n**Description:** GDPR defines the lawful basis for data processing, grants rights to data subjects, and imposes obligations on data controllers and processors. It aims to give individuals control over their personal data and harmonize regulations across the EU.\n\n**Principles:** Lawfulness, Fairness, Transparency, Data minimisation, Accountability\n**Rights:** Access, Erasure, Portability, Restriction\n**Sanctions:** Fines for breaches, Data protection impact assessments"
+    "front": "🧩 Left Preconditioning\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** Left preconditioning transforms Ax = b into M^{-1}Ax = M^{-1}b, preserving the solution x but altering the residual norm to ||M^{-1}(b - Ax)||.\n\n**Description:** Common in practice because it directly improves the convergence diagnostics used by Krylov methods (residual-based stopping criteria). Does not change the right-hand side in a way that affects eigenvalue clustering as strongly as right preconditioning.\n\n**Goal:** Improve convergence while keeping solution unchanged and monitoring preconditioned residuals.\n**Applications:** Standard choice in most libraries (PETSc, Trilinos), GMRES with ILU\n**Methods:** Apply M^{-1} to system matrix and RHS"
   },
   {
-    "front": "🧩 Information Security\n📘 Domain: Data Management",
-    "back": "**Definition:** The practice of protecting information from unauthorized access, modification, or destruction to ensure confidentiality, integrity, and availability.\n\n**Description:** Information security ensures that data remains accurate, private, and accessible only to authorized users. The CIA triad—Confidentiality, Integrity, Availability—summarizes its key principles.\n\n**Core Principles:** Confidentiality, Integrity, Availability\n**Threats:** Hardware failure, Malware, Human error, Unauthorized access\n**Practices:** Encryption, Backups, Access control, Authentication"
+    "front": "🧩 Right Preconditioning\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** Right preconditioning transforms Ax = b into AM^{-1}y = b with x = M^{-1}y, preserving the residual norm ||b - Ax|| but solving for an intermediate variable y.\n\n**Description:** Often preferred when the preconditioner naturally approximates the inverse action from the right. Common in domain decomposition and multigrid methods. Requires extra step to recover x.\n\n**Goal:** Cluster eigenvalues of AM^{-1} while monitoring true residuals.\n**Applications:** Additive Schwarz, Algebraic multigrid (AMG), When M approximates A from the right\n**Methods:** Solve AM^{-1}y = b, then x = M^{-1}y"
   },
   {
-    "front": "🧩 Information Privacy\n📘 Domain: Data Protection",
-    "back": "**Definition:** The right and ability of individuals to control the collection, use, and dissemination of information about themselves.\n\n**Description:** Information privacy goes beyond the absence of surveillance—it concerns individuals’ control over personal information traces in digital society. Data mining poses unique challenges to privacy preservation.\n\n**Threats:** Data theft, Unethical use, Government surveillance, Lack of awareness\n**Protective Measures:** Anonymisation, Pseudonymisation, Access control"
+    "front": "🧩 Splitting Methods\n📘 Domain: Iterative Methods",
+    "back": "**Definition:** A matrix splitting decomposes A = M - N where M is nonsingular and easy to invert. The iteration x^{k+1} = M^{-1}Nx^k + M^{-1}b converges if ρ(M^{-1}N) < 1.\n\n**Description:** Foundation of classical iterative methods (Jacobi, Gauss-Seidel, SOR) and modern preconditioning. The spectral radius of the iteration matrix B = M^{-1}N determines convergence rate.\n\n**Goal:** Construct fixed-point iterations via A = M - N with ρ(M^{-1}N) < 1.\n**Applications:** Stationary iterative methods, Preconditioner design, Convergence theory\n**Methods:** M = D (Jacobi), M = D+L (Gauss-Seidel), M = (D+ωL)/ω (SOR)"
   },
   {
-    "front": "🧩 Anonymisation\n📘 Domain: Data Privacy",
-    "back": "**Definition:** The process of removing personally identifiable information from data to prevent the identification of individuals.\n\n**Description:** Anonymisation ensures that personal data cannot be traced back to individuals, even when combined with external data. It is critical in ethical data mining and required for many research use cases.\n\n**Methods:** Suppression, Generalisation, K-anonymity, Randomization\n**Challenges:** Re-identification risk, Data utility loss"
+    "front": "🧩 Cholesky Factorization\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** A decomposition of a Hermitian positive definite matrix A into A = R*R, where R is an upper triangular matrix with positive diagonal entries.\n\n**Description:** Cholesky factorization exploits symmetry and positive definiteness to reduce computational cost from O(n³) for general LU to approximately n³/3 flops while requiring only n²/2 storage. It is widely used in optimization, Monte Carlo simulations, and solving normal equations.\n\n**Goal:** Efficiently factorize Hermitian positive definite matrices with half the storage and one-third the operations of LU.\n**Applications:** Quadratic programming, Kalman filtering, Covariance decomposition, Monte Carlo methods\n**Methods:** Block elimination, Outer product form, Inner product form\n**Examples:** A = R*R with R upper triangular and diag(R) > 0"
   },
   {
-    "front": "🧩 Open Data\n📘 Domain: Data Management",
-    "back": "**Definition:** Data that anyone can freely access, use, modify, and share for any purpose, subject at most to minimal conditions such as attribution.\n\n**Description:** Open data promotes transparency, innovation, and collaboration. It must be findable, accessible, interoperable, and reusable according to the FAIR principles.\n\n**Principles:** Findable, Accessible, Interoperable, Reusable\n**Licenses:** CC0, CC BY, ODbL\n**Challenges:** Loss of control, Licensing complexity, Data misuse"
+    "front": "🧩 Positive Definite Matrix\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** A Hermitian matrix A ∈ ℂ^{n×n} such that (Ax, x) > 0 for all nonzero x ∈ ℂ^n.\n\n**Description:** Positive definite matrices arise in energy minimization, covariance modeling, and elliptic PDEs. They guarantee unique Cholesky factors, stable inverses, and real positive eigenvalues. The property is preserved under congruence: M*A*M is positive definite if M is invertible.\n\n**Goal:** Model strictly convex quadratic forms and ensure numerical stability in factorizations.\n**Applications:** Optimization, Statistics, Physics simulations, Control theory\n**Methods:** Sylvester's criterion, Cholesky test, Eigenvalue analysis\n**Examples:** Covariance matrices, Hessians of convex functions, A = R*R"
   },
   {
-    "front": "🧩 FAIR Principles\n📘 Domain: Open Science",
-    "back": "**Definition:** A set of guidelines to make data Findable, Accessible, Interoperable, and Reusable.\n\n**Description:** The FAIR principles ensure data can be easily located, accessed, integrated, and reused by others, supporting open science and reproducibility.\n\n**Components:** Findable, Accessible, Interoperable, Reusable\n**Benefits:** Transparency, Data sharing, Reproducibility"
+    "front": "🧩 Sylvester Equation\n📘 Domain: Control Theory",
+    "back": "**Definition:** A matrix equation of the form AX − XB = C, where A, B, C are given matrices and X is unknown.\n\n**Description:** The Sylvester equation models linear system interconnections and appears in control design, model reduction, and eigenvalue assignment. When σ(A) ∩ σ(B) = ∅, it has a unique solution solvable in O(n³) via Schur triangulation or vectorization (kronecker form).\n\n**Goal:** Solve for coupling matrix X in interconnected linear systems or compute Lyapunov functions.\n**Applications:** Stability analysis, Model order reduction, Riccati equations, Pole placement\n**Methods:** Schur method, Hessenberg-Schur algorithm, Bartels-Stewart, Vectorization\n**Examples:** AX − XA* = −BB* (Lyapunov), AX − XB = C with diagonal A, B"
   },
   {
-    "front": "🧩 Data Management\n📘 Domain: Data Science",
-    "back": "**Definition:** The set of practices that ensure data is properly stored, maintained, and accessible for processing and analysis.\n\n**Description:** Data management encompasses persistent storage, security, metadata curation, and accessibility. Proper management ensures reliability and longevity of data for research and applications.\n\n**Aspects:** Storage, Curation, Security, Metadata\n**Tools:** Relational Databases, NoSQL Systems"
+    "front": "🧩 Discrete Fourier Transform (DFT)\n📘 Domain: Signal Processing",
+    "back": "**Definition:** A linear transformation mapping a sequence x₀, ..., x_{n-1} to coefficients cⱼ = ∑ₖ xₖ ω^{jk}, where ω = e^{-2πi/n}, represented by the Vandermonde matrix Fₙ.\n\n**Description:** The DFT diagonalizes circulant matrices and enables fast convolution, filtering, and spectral analysis. The Fast Fourier Transform (FFT) computes it in O(n log n) using divide-and-conquer on power-of-two sizes.\n\n**Goal:** Decompose signals into frequency components and accelerate convolution/correlation\n**Applications:** Audio processing, Image compression, PDE solvers, Polynomial multiplication\n**Methods:** Cooley-Tukey FFT, Radix-2, Split-radix, Bluestein\n**Examples:** F₄ = [[1,1,1,1], [1,-1,1,-1], ...], FFT of length 2^l"
   },
   {
-    "front": "🧩 Machine Learning\n📘 Domain: Machine Learning",
-    "back": "**Definition:** A field of study and practice focused on algorithms that improve performance at tasks through experience (data).\n\n**Description:** Encompasses supervised, unsupervised, and reinforcement approaches and emphasizes predictive performance and automation.\n\n**subfields:** Supervised Learning, Unsupervised Learning, Deep Learning\n**typical_outputs:** classifiers, regressors, clusterings"
+    "front": "🧩 Fast Fourier Transform (FFT)\n📘 Domain: Numerical Algorithms",
+    "back": "**Definition:** An efficient algorithm for computing the DFT in O(n log n) operations by recursively splitting into even/odd indices when n is a power of two.\n\n**Description:** The Cooley-Tukey FFT reduces DFT complexity from O(n²) to O(n log n) using butterfly operations and twiddle factors. It is foundational in digital signal processing and enables real-time spectral analysis.\n\n**Goal:** Compute DFT with minimal arithmetic operations using recursive decomposition\n**Applications:** Spectral methods, FFT-based convolution, MRI reconstruction, Audio synthesis\n**Methods:** Decimation-in-time, Decimation-in-frequency, Bit-reversal, In-place computation\n**Examples:** Radix-2 butterfly: yⱼ = x_{2j} + ω^j x_{2j+1}"
   },
   {
-    "front": "🧩 Machine Learning Models\n📘 Domain: Machine Learning",
-    "back": "**Definition:** Parametric or non-parametric algorithm instantiations (models) learned from data to perform tasks such as classification or regression.\n\n**Description:** Examples include decision trees, SVMs, neural networks, ensemble models and one-class models used for anomaly detection.\n\n**examples:** SVM, Random Forest, Neural Network, One-Class Classification"
+    "front": "🧩 Schur Triangulation\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** A similarity transformation A = Q T Q* where T is upper triangular and Q is unitary, revealing eigenvalues on the diagonal of T.\n\n**Description:** Schur form is the foundation for robust eigenvalue computation and solving Sylvester equations. The QR-based Francis algorithm computes it in O(n³) with high backward stability. Real Schur form handles complex conjugate pairs.\n\n**Goal:** Reduce matrix to triangular form under unitary similarity to expose eigenvalues and enable block algorithms.\n**Applications:** Eigenvalue problems, Sylvester solvers, Matrix functions, Control theory\n**Methods:** Francis QR algorithm, Hessenberg reduction, Double shift\n**Examples:** A = Q T Q* with T upper triangular, diag(T) = eigenvalues"
   },
   {
-    "front": "🧩 Supervised Learning\n📘 Domain: Machine Learning",
-    "back": "**Definition:** Learning where models are trained on input–output pairs (X, Y) to predict outputs from new inputs.\n\n**Description:** Requires labelled data and is sensitive to label noise and class imbalance.\n\n**common_algorithms:** Logistic Regression, SVM, Random Forest, Neural Networks"
+    "front": "🧩 Iterative Methods\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** Iterative methods are algorithms that generate a sequence of approximations x_j to the solution x of a linear system Ax = b, starting from an initial guess and refining it until convergence.\n\n**Description:** They are preferred for large sparse systems where direct methods like Gaussian elimination are O(n^3) and computationally expensive, with per-iteration costs often O(n^2) or less, such as O(n) for sparse or O(n log n) with structured matrices.\n\n**Goal:** Solve large linear systems efficiently without full factorization.\n**Applications:** PDE discretizations, Optimization, Eigenproblems\n**Methods:** Krylov subspace methods, Conjugate gradient, GMRES, Preconditioned iterations\n**Examples:** x_{j+1} = x_j + correction, Convergence when ||r_j|| small"
   },
   {
-    "front": "🧩 Avoiding Overfitting\n📘 Domain: Modeling Practice",
-    "back": "**Definition:** Techniques and design choices intended to reduce overfitting and improve model generalization.\n\n**Description:** Includes cross-validation, regularization, simpler models, early stopping, and appropriate data partitioning.\n\n**techniques:** cross-validation, regularization, feature selection"
+    "front": "🧩 Linear System\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** A linear system is an equation of the form Ax = b where A is an n x n matrix, x is the unknown vector, and b is the right-hand side vector.\n\n**Description:** For large n (e.g., 10^4 to 10^8), iterative methods are used due to high O(n^3) cost of direct solvers, especially when A is sparse or structured.\n\n**Goal:** Find x such that Ax = b.\n**Applications:** Scientific simulations, Machine learning, Engineering\n**Methods:** Direct (LU, QR), Iterative (CG, GMRES)\n**Examples:** A in C^{n x n}, b in C^n"
   },
   {
-    "front": "🧩 Bias-Variance Tradeoff\n📘 Domain: Modeling Theory",
-    "back": "**Definition:** A conceptual decomposition of prediction error into bias (systematic error) and variance (estimation variability).\n\n**Description:** Guides model complexity choices: higher complexity reduces bias but increases variance and vice versa.\n\n**components:** bias, variance, irreducible error"
+    "front": "🧩 Arnoldi Process\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** The Arnoldi process builds an orthonormal basis Qⱼ for the Krylov subspace Kⱼ(A; b) and a Hessenberg matrix Hⱼ such that A Qⱼ = Qⱼ₊₁ Ĥⱼ.\n\n**Description:** It uses Gram–Schmidt-like orthogonalisation to compute basis vectors qₖ recursively, enabling reduced-order projections for solving systems or eigenvalues.\n\n**Goal:** Orthogonalise Krylov basis for stable computations.\n**Applications:** GMRES, Eigenvalue solvers, Matrix functions\n**Methods:** Recursive computation: hₖ,ₖ₋₁ qₖ = A qₖ₋₁ − Σ hₗ,ₖ₋₁ qₗ\n**Examples:** Qⱼ₊₁ Ĥⱼ = A Qⱼ"
   },
   {
-    "front": "🧩 Regularization\n📘 Domain: Modeling Practice",
-    "back": "**Definition:** Techniques that penalize model complexity during training to prevent overfitting (e.g., L1/L2 penalties, dropout).\n\n**Description:** Reduces variance at the cost of potentially increasing bias, improving generalization when tuned properly.\n\n**examples:** L1 (lasso), L2 (ridge), dropout, early stopping"
+    "front": "🧩 GMRES\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** Generalised Minimal Residual (GMRES) is an iterative method that finds xⱼ in x₀ + Kⱼ(A; r₀) minimising ‖b − A xⱼ‖₂ for nonsymmetric systems.\n\n**Description:** It uses Arnoldi to build the basis and solves a least-squares problem with the Hessenberg matrix at each step, restarting when j is large.\n\n**Goal:** Minimise residual norm over Krylov subspace.\n**Applications:** Nonsymmetric linear systems, PDE solvers\n**Methods:** Arnoldi orthogonalisation, Least squares on Ĥⱼ y − α e₁\n**Examples:** xⱼ = Qⱼ yⱼ where yⱼ minimises ‖Ĥⱼ y − α e₁‖"
   },
   {
-    "front": "🧩 Model Bias\n📘 Domain: Modeling",
-    "back": "**Definition:** Systematic errors in model outputs caused by incorrect model assumptions, biased training data, or simplistic model structures.\n\n**Description:** Closely related to societal bias: biased training data or labels can propagate harmful outcomes.\n\n**sources:** sampling bias, label bias, feature omission"
+    "front": "🧩 Conjugate Gradient Method\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** The Conjugate Gradient (CG) method solves symmetric positive definite systems Ax = b by minimising the A-norm error ‖x − xⱼ‖ₐ over the Krylov subspace.\n\n**Description:** It generates A-conjugate search directions implicitly via a three-term recurrence, equivalent to Lanczos for symmetric matrices, with optimal polynomial approximation properties.\n\n**Goal:** Minimise quadratic form (x, A x)/2 − (b, x).\n**Applications:** SPD linear systems, Optimisation (Newton-CG)\n**Methods:** Conjugate directions, Residual orthogonalisation\n**Examples:** xⱼ₊₁ = xⱼ + αⱼ pⱼ with pⱼ₊₁ = rⱼ₊₁ + βⱼ pⱼ"
   },
   {
-    "front": "🧩 Accuracy\n📘 Domain: Performance Metrics",
-    "back": "**Definition:** Proportion of correct predictions over all predictions for classification tasks.\n\n**Description:** Simple metric but can be misleading with imbalanced classes (see Balanced Accuracy, F1 Score).\n\n**formula:** accuracy = (TP + TN) / (TP + TN + FP + FN)"
+    "front": "🧩 Residual Norm\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** The residual norm ‖rⱼ‖ = ‖b − A xⱼ‖ measures how well the approximate solution xⱼ satisfies the system Ax = b.\n\n**Description:** In iterative methods, residuals decrease monotonically in GMRES, and are used to test convergence.\n\n**Goal:** Quantify approximation error in equation satisfaction.\n**Applications:** Convergence testing, Stopping criteria\n**Methods:** Euclidean norm, Relative residual\n**Examples:** ‖rⱼ₊₁‖ ≤ ‖rⱼ‖ in GMRES"
   },
   {
-    "front": "🧩 Training Error\n📘 Domain: Model Evaluation",
-    "back": "**Definition:** Error measured on the training dataset after model fitting.\n\n**Description:** Used together with test error to compute the generalization gap; overly low training error may signal overfitting.\n\n**used_for:** monitoring fit, early stopping"
+    "front": "🧩 A-Norm Error\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** The A-norm error ‖x − xⱼ‖ₐ = ( (x − xⱼ), A (x − xⱼ) )^{1/2} measures the error in the energy norm for SPD A.\n\n**Description:** CG minimises this norm over the Krylov subspace, relating to the quadratic form minimised in the system.\n\n**Goal:** Quantify solution error in energy sense.\n**Applications:** CG convergence analysis, Variational problems\n**Methods:** Defined via inner product (x, A y)\n**Examples:** Min ‖x − xⱼ‖ₐ in CG"
   },
   {
-    "front": "🧩 Statistical Methods\n📘 Domain: Statistics",
-    "back": "**Definition:** Formal techniques for describing data and drawing inferences about populations from samples.\n\n**Description:** Encompasses hypothesis testing, estimation, regression, likelihood methods and nonparametric alternatives.\n\n**families:** parametric, nonparametric, Bayesian, frequentist"
+    "front": "🧩 Polynomial Approximation\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** Polynomial approximation in iterative methods views xⱼ = pⱼ₋₁(A) b as a polynomial in A applied to b, minimising residuals or errors via min-max problems over polynomials.\n\n**Description:** Convergence bounds use Chebyshev or other polynomials to estimate rates based on eigenvalue distribution.\n\n**Goal:** Approximate A⁻¹ b via polynomials in A.\n**Applications:** Convergence analysis, Accelerated methods\n**Methods:** Min-max over deg ≤ j-1, Chebyshev acceleration\n**Examples:** min_{deg p ≤ j-1, p(0)=1} max_λ |p(λ)|"
   },
   {
-    "front": "🧩 Specialized Statistical Modeling\n📘 Domain: Statistics",
-    "back": "**Definition:** Domain-specific statistical models (e.g., survival models, mixed-effects models, time-series models) used when standard models are inadequate.\n\n**Description:** Often required for hierarchical data, longitudinal measurements, or nonstandard error structures.\n\n**examples:** mixed-effects, survival analysis, state-space models"
+    "front": "🧩 Hessenberg Matrix\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** A Hessenberg matrix H is upper triangular except for the subdiagonal, arising in Arnoldi as the projection of A onto the Krylov basis.\n\n**Description:** It simplifies least-squares solves in GMRES and eigenvalue computations.\n\n**Goal:** Reduce matrix for efficient projections.\n**Applications:** GMRES minimisation, QR algorithm\n**Methods:** From Arnoldi: Ĥⱼ with subdiagonal\n**Examples:** Hⱼ tridiagonal in Lanczos"
   },
   {
-    "front": "🧩 Regression Modeling\n📘 Domain: Statistics",
-    "back": "**Definition:** Models that estimate relationships between dependent variables and one or more explanatory variables (linear and nonlinear forms).\n\n**Description:** Includes linear regression, generalized linear models, and specialized regression variants for complex data.\n\n**variants:** linear, logistic, Poisson, survival"
+    "front": "🧩 Orthogonal Complement\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** The orthogonal complement of a subspace V is the set of vectors perpendicular to all elements in V, denoted V^⊥.\n\n**Description:** For projections, if P is orthogonal, then R(P) ⊥ R(I - P), ensuring the decomposition is orthogonal.\n\n**Goal:** Decompose space into perpendicular subspaces.\n**Applications:** Gram-Schmidt, Least squares, Spectral methods\n**Methods:** Dot product zero condition, Null space of transpose\n**Examples:** R(I - P) as complement of R(P)"
   },
   {
-    "front": "🧩 Causal Hypothesis\n📘 Domain: Inference",
-    "back": "**Definition:** A proposed causal relationship between variables that is typically tested using explanatory models and experimental design.\n\n**Description:** Causal claims require careful design, confounding control and sometimes randomized interventions.\n\n**requires:** counterfactual reasoning, control of confounders"
+    "front": "🧩 Gershgorin Circle Theorem\n📘 Domain: Matrix Analysis",
+    "back": "**Definition:** Every eigenvalue of A ∈ ℂ^{n×n} lies in at least one disk Dⱼ = {z : |z − aⱼⱼ| ≤ Rⱼ}, where Rⱼ = Σ_{l≠j} |aⱼₗ|}.\n\n**Description:** Provides eigenvalue localization without computation. Disks are centered at diagonal entries with radii equal to off-diagonal row sums. Useful for bounding spectral radius and detecting diagonal dominance.\n\n**Goal:** Locate eigenvalues in complex plane using only matrix entries.\n**Applications:** Convergence analysis, Error bounding, Preconditioning design\n**Methods:** Row-sum computation, Union of disks, Refinement via similarity\n**Examples:** Strictly diagonally dominant → eigenvalues in disjoint disks"
   },
   {
-    "front": "🧩 Statistical Power\n📘 Domain: Statistics",
-    "back": "**Definition:** The probability that a test will correctly reject a false null hypothesis (1 - type II error rate).\n\n**Description:** Determines required sample sizes for hypothesis-driven (explanatory) studies.\n\n**depends_on:** effect_size, sample_size, alpha"
+    "front": "🧩 Power Iteration\n📘 Domain: Eigenvalue Algorithms",
+    "back": "**Definition:** An iterative method that computes the dominant eigenvalue and eigenvector by repeatedly applying A to a vector and normalizing: q^{(k)} = A q^{(k-1)} / ||A q^{(k-1)}||, λ^{(k)} = (A q^{(k)}, q^{(k)}).\n\n**Description:** Converges linearly to the eigenvector corresponding to the largest-magnitude eigenvalue if |λ₁| > |λ₂| ≥ ... ≥ |λₙ|. Convergence rate is |λ₂/λ₁|. Inverse iteration targets smallest or shifted eigenvalues.\n\n**Goal:** Find dominant eigenpair with minimal storage and simple operations.\n**Applications:** PageRank, Principal Component Analysis, Vibration modes\n**Methods:** Rayleigh quotient, Normalization, Deflation, Shift-and-invert\n**Examples:** q^{(k)} ≈ x₁ + O((λ₂/λ₁)^k)"
   },
   {
-    "front": "🧩 Statistical Significance\n📘 Domain: Statistics",
-    "back": "**Definition:** A conclusion that an observed effect is unlikely to be due to chance under a specified null model, typically operationalized by p-values.\n\n**Description:** Statistical significance does not imply practical importance.\n\n**common_thresholds:** p < 0.05, p < 0.01"
+    "front": "🧩 Householder Reflection\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** A unitary matrix H = I − 2vv*/(v*v) that reflects a vector x across the hyperplane perpendicular to v, mapping x to σe₁.\n\n**Description:** Used in QR factorization and Hessenberg reduction to introduce zeros below the subdiagonal. Numerically stable and requires O(n) operations per reflection. Essential for implicit QR algorithm.\n\n**Goal:** Zero out selected entries via unitary similarity while preserving eigenvalues.\n**Applications:** QR decomposition, Hessenberg form, Tridiagonalization\n**Methods:** Sign choice for stability, WY representation, Blocked Householder\n**Examples:** H x = −sign(x₁) ||x|| e₁"
   },
   {
-    "front": "🧩 Nonlinear PCA\n📘 Domain: Dimensionality Reduction",
-    "back": "**Definition:** Extensions of PCA that capture nonlinear relationships (e.g., kernel PCA, autoencoder-based approaches).\n\n**Description:** Useful when principal directions of variation are curved or manifold-structured.\n\n**examples:** kernel PCA, autoencoder PCA, Isomap variants"
+    "front": "🧩 QR Algorithm\n📘 Domain: Eigenvalue Computation",
+    "back": "**Definition:** An iterative method that computes the Schur form via repeated QR decompositions: A_{k+1} = R_k Q_k, with A_0 = A. With shifts, converges cubically to upper triangular form.\n\n**Description:** The de facto standard for dense eigenvalue problems. Implicit version uses Householder/Bulge chasing to reduce cost from O(n³) per iteration to O(n). Francis shift accelerates convergence.\n\n**Goal:** Compute all eigenvalues (and optionally eigenvectors) via unitary similarity to triangular form.\n**Applications:** MATLAB eig, LAPACK, Control theory, PDE solvers\n**Methods:** Hessenberg reduction, Francis double shift, Deflation, Balancing\n**Examples:** A_{k+1} = Q_k* A_k Q_k"
   },
   {
-    "front": "🧩 Statistical Outlier Detection\n📘 Domain: Outlier Detection",
-    "back": "**Definition:** Methods that identify outliers using statistical modelling — either parametric (distributional) or nonparametric (density estimation).\n\n**Description:** Serves as a parent for Parametric Outlier Detection and Nonparametric Outlier Detection.\n\n**subtypes:** parametric, nonparametric"
+    "front": "🧩 Generalized Eigenvalue Problem\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** Find λ ∈ ℂ and nonzero x ∈ ℂⁿ such that Ax = λBx, with A, B ∈ ℂ^{n×n}.\n\n**Description:** Arises in structural dynamics, control, and Markov chains. Reduced to standard form if B invertible (M = B⁻¹A). QZ algorithm generalizes QR using unitary transformations to triangularize both matrices.\n\n**Goal:** Solve coupled systems or weighted eigenvalue problems.\n**Applications:** Vibration with constraints, Markov chain stationary distribution, Optimal control\n**Methods:** QZ algorithm, Cholesky + standard EVP, Shift-and-invert\n**Examples:** Ax = λBx with B positive definite"
   },
   {
-    "front": "🧩 Experimental Design\n📘 Domain: Research Methods",
-    "back": "**Definition:** The process of planning experiments to ensure that data collection answers the research question while controlling confounders.\n\n**Description:** Includes design choices such as RCTs, crossover designs, sample size planning, randomization, and blocking.\n\n**elements:** randomization, control groups, replication, blocking"
+    "front": "🧩 Field of Values\n📘 Domain: Matrix Analysis",
+    "back": "**Definition:** The set F(A) = {x*Ax : x ∈ ℂⁿ, ||x||=1}, also known as the numerical range.\n\n**Description:** Convex, compact set containing all eigenvalues. Bounds spectral radius and condition number. For normal matrices, F(A) is the convex hull of eigenvalues.\n\n**Goal:** Characterize operator behavior beyond eigenvalues.\n**Applications:** Stability analysis, Convergence of iterations, Pseudospectrum approximation\n**Methods:** Rayleigh quotient, Hausdorff-Toeplitz theorem, Discretization\n**Examples:** F(A) = conv(σ(A)) if A normal"
   },
   {
-    "front": "🧩 Poor Experimental Design\n📘 Domain: Research Methods",
-    "back": "**Definition:** Design flaws that reduce validity, such as lack of controls, small sample sizes, biased sampling, or inadequate blinding.\n\n**Description:** Leads to biased or non-generalizable results and may render data unusable for inference.\n\n**consequences:** bias, low power, confounding"
+    "front": "🧩 LU Factorization with Partial Pivoting\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** LU factorization with partial pivoting decomposes a matrix A ∈ ℂ^{n×n} into PA = LU, where P is a permutation matrix, L is unit lower triangular with |l_{ij}| ≤ 1 for i > j, and U is upper triangular. Partial pivoting selects the largest absolute entry in the current column as the pivot to minimize numerical instability.\n\n**Description:** This algorithm enhances the stability of Gaussian elimination by row permutations to avoid small pivots. It is the standard method for solving linear systems Ax = b in practice, balancing computational cost (O(n³)) with robustness against round-off errors in floating-point arithmetic.\n\n**Goal:** Stable triangular factorization of a matrix for solving linear systems and computing inverses.\n**Applications:** Solving Ax = b, Matrix inversion, Determinant computation, Condition number estimation\n**Methods:** Gaussian elimination with row pivoting, In-place storage using single array, Compact WY representation for L\n**Examples:** 4×4 matrix example with pivots 8, 17/4, -6/7, 2 showing growth control"
   },
   {
-    "front": "🧩 Sampling Rate Adjustment\n📘 Domain: Sampling",
-    "back": "**Definition:** Practices for harmonizing or adjusting sampling frequencies (e.g., resampling, interpolation, downsampling) when merging data from multiple sources.\n\n**Description:** Addresses issues documented under Sampling Rate Mismatch and Sampling Synchronization.\n\n**techniques:** interpolation, GCD-based downsampling, LCM-based oversampling"
+    "front": "🧩 Partial Pivoting\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** A pivoting strategy in Gaussian elimination that, at step k, permutes rows so that the entry of largest magnitude in column k (from row k to n) becomes the pivot, ensuring |pivot| = max_{i≥k} |a_{ik}|.\n\n**Description:** Partial pivoting prevents division by small pivots, reducing amplification of round-off errors. It guarantees that all subdiagonal entries in L satisfy |l_{ij}| ≤ 1, bounding the growth factor ρ ≤ 2^{n-1} in theory, though typically much smaller in practice.\n\n**Goal:** Minimize numerical error propagation during elimination by choosing largest available pivot.\n**Applications:** LU factorization, Linear system solving, Matrix decomposition in finite precision\n**Methods:** Row interchange before elimination step, Column scanning for max absolute value\n**Examples:** P1 swaps rows to bring largest entry to diagonal position"
   },
   {
-    "front": "🧩 Data Augmentation\n📘 Domain: Data Preprocessing",
-    "back": "**Definition:** Techniques for synthetically increasing dataset size or diversity (e.g., rotations, noise, synthetic samples) to improve model robustness.\n\n**Description:** Widely used in vision, audio and time-series to reduce overfitting and address class imbalance.\n\n**examples:** noise injection, time-warping, synthetic sample generation"
+    "front": "🧩 Permutation Matrix\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** A permutation matrix P is a square matrix with exactly one 1 in each row and column and 0s elsewhere. Multiplying PA permutes the rows of A; AP permutes columns.\n\n**Description:** In LU with partial pivoting, P represents the cumulative row interchanges. Since P^{-1} = P^T = P^*, it preserves norms: ||Px|| = ||x||. The final factorization is PA = LU.\n\n**Goal:** Represent row or column reordering in matrix factorizations.\n**Applications:** Pivoting in LU, Reordering for sparsity, Graph relabeling\n**Methods:** Identity with swapped rows, Product of elementary permutation matrices\n**Examples:** P = [0 1; 1 0] swaps rows 1 and 2"
   },
   {
-    "front": "🧩 Research Data Management\n📘 Domain: Data Management",
-    "back": "**Definition:** Policies and processes for storing, documenting, preserving and sharing research data (metadata, provenance, access control).\n\n**Description:** Enables reproducibility and FAIR compliance; overlaps with Data Documentation and Metadata.\n\n**components:** storage, metadata, access, preservation"
+    "front": "🧩 Growth Factor\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** The growth factor rho in LU factorization with partial pivoting is defined as rho = max_{i,j} |u_{ij}| / max_{i,j} |a_{ij}|, measuring the largest entry in U relative to the original matrix A.\n\n**Description:** Controls backward stability: computed factors satisfy L_hat U_hat = P A + delta A with ||delta A|| / ||A|| = O(rho epsilon_machine). Partial pivoting keeps rho moderate in practice, though worst-case rho = 2^{n-1} is possible.\n\n**Goal:** Quantify element growth during Gaussian elimination to assess numerical stability.\n**Applications:** Backward error analysis, Condition estimation, Pivoting strategy evaluation\n**Methods:** Ratio of max |u_{ij}| to max |a_{ij}|, Monitored during factorization\n**Examples:** Wilkinson's matrix gives rho approx 2^{n-1}"
   },
   {
-    "front": "🧩 Documentation\n📘 Domain: Data Management",
-    "back": "**Definition:** Written records describing dataset contents, methods, versioning, provenance, and usage constraints.\n\n**Description:** Broader than 'Data Documentation'—applies to code, protocols, experiment logs and data pipelines.\n\n**includes:** data dictionaries, readme, protocol descriptions"
+    "front": "🧩 Condition Number\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** The condition number κ(W) of a nonsingular matrix W is κ(W) = ||W|| ⋅ ||W^{-1}||, with respect to any consistent matrix norm. For the 1-norm or ∞-norm, κ₁(W) = σ₁/σₙ where σ are singular values.\n\n**Description:** Measures sensitivity of linear system solution to perturbations. Large κ implies ill-conditioned system: small changes in input cause large output changes. In LU context, related to pivot size and growth.\n\n**Goal:** Quantify sensitivity of Ax = b to perturbations in A or b.\n**Applications:** Error bounds in linear solvers, Preconditioning design, Numerical stability analysis\n**Methods:** SVD-based: κ₂ = σ_max / σ_min, 1-norm estimation via Hager's method\n**Examples:** κ(A) ≈ 10^k ⇒ lose k digits of accuracy"
   },
   {
-    "front": "🧩 Design Relational Database Schemas\n📘 Domain: Database Management",
-    "back": "**Definition:** The activity of translating conceptual domain models into normalized relational table structures.\n\n**Description:** Uses ER modeling and considerations such as keys, constraints and normalization to avoid redundancy.\n\n**outputs:** table definitions, keys, constraints"
+    "front": "🧩 Gaussian Elimination\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** Gaussian elimination transforms a linear system Ax = b into upper triangular form Ux = c via row operations: adding multiples of one row to another. With pivoting, it forms the basis of LU factorization.\n\n**Description:** Core algorithm for solving linear systems. Without pivoting, unstable for small pivots. With partial pivoting, becomes robust standard method. Can be expressed as sequence of rank-1 updates or multiplier storage in L.\n\n**Goal:** Reduce system to triangular form for back substitution.\n**Applications:** Linear system solving, Matrix factorization, Determinant via product of diagonals\n**Methods:** Forward elimination, Back substitution, Pivoting variants\n**Examples:** 4×4 system reduced step-by-step with P, L, U shown"
   },
   {
-    "front": "🧩 Tabular Data\n📘 Domain: Data Structures",
-    "back": "**Definition:** Data organized in rows and columns (records and fields), typical for spreadsheets and relational database tables.\n\n**Description:** The primary input format for many classical machine learning and statistical methods.\n\n**representations:** CSV, SQL tables, dataframes"
+    "front": "🧩 Matrix Product V1 V2\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** The matrix product V1 V2 represents the set of all matrices formed by multiplying elements from subspaces V1 and V2, i.e., {V1 V2 : V1 ∈ V1, V2 ∈ V2}.\n\n**Description:** This construct is used to approximate or factor large matrices A by finding subspaces such that A lies in V1 V2, enabling low-parameter representations.\n\n**Goal:** Represent matrices as products of subspace elements for factorization.\n**Applications:** Matrix approximation, Low-rank factoring, Compression\n**Methods:** Subspace identification, Optimization over subspaces\n**Examples:** A ≈ V1 V2 for V1, V2 low-dimensional"
   },
   {
-    "front": "🧩 Data Protection Laws\n📘 Domain: Governance",
-    "back": "**Definition:** Legal frameworks that govern the collection, storage and processing of personal data (e.g., GDPR).\n\n**Description:** Includes regional and sectoral regulations that shape research design and data sharing.\n\n**examples:** GDPR, national data protection acts"
+    "front": "🧩 Range of Projection\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** The range R(P) of a projection P is the set {y : y = Px for some x}, representing the subspace onto which P projects.\n\n**Description:** For orthogonal projections, R(P) is perpendicular to R(I - P), forming an orthogonal decomposition of the space.\n\n**Goal:** Define the projected subspace.\n**Applications:** Subspace identification, Dimensionality reduction\n**Methods:** Column span of P, Fixed points of P\n**Examples:** R(P) = span{columns of P}"
   },
   {
-    "front": "🧩 GO FAIR Initiative\n📘 Domain: Open Science",
-    "back": "**Definition:** An international initiative promoting the FAIR principles for data (Findable, Accessible, Interoperable, Reusable).\n\n**Description:** Supports infrastructure, community practices and policies to make research data reusable.\n\n**goals:** promote FAIR, build infrastructure"
+    "front": "🧩 Algorithmic Factoring\n📘 Domain: Numerical Analysis",
+    "back": "**Definition:** Algorithmic factoring refers to computational methods for decomposing matrices into structured forms like products of subspaces or triangular factors.\n\n**Description:** It leverages Krylov subspaces and projections to factor matrices efficiently, especially for large-scale problems.\n\n**Goal:** Factor matrices using algorithmic techniques.\n**Applications:** Large linear systems, Eigenproblems, Approximations\n**Methods:** Subspace iteration, Projection-based factoring\n**Examples:** A = V1 W^{-1} using subspaces"
   },
   {
-    "front": "🧩 Human Research Ethics\n📘 Domain: Ethics",
-    "back": "**Definition:** Ethical principles and regulatory requirements governing research involving human participants.\n\n**Description:** Encompasses Respect for Persons, Beneficence, Justice, informed consent, confidentiality, and protections for vulnerable groups.\n\n**components:** informed consent, risk assessment, ethical approval"
+    "front": "🧩 Invariant Subspace\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** An invariant subspace W for matrix A satisfies A W ⊆ W, meaning A maps W into itself.\n\n**Description:** Invariant subspaces are key in spectral theory and factoring, often identified via Krylov methods or projections.\n\n**Goal:** Find subspaces stable under matrix action.\n**Applications:** Eigen decomposition, Schur form, Model reduction\n**Methods:** Subspace iteration, Arnoldi process\n**Examples:** Eigenvector spans 1D invariant subspace"
   },
   {
-    "front": "🧩 Ethical Approval\n📘 Domain: Ethics",
-    "back": "**Definition:** The institutional review and permission process required before conducting research involving human participants.\n\n**Description:** Evaluates risk, consent procedures, data protection and participant recruitment strategies.\n\n**outputs:** ethics approval letter, conditions"
-  },
-  {
-    "front": "🧩 Privacy Preservation\n📘 Domain: Governance",
-    "back": "**Definition:** Technical and policy measures intended to protect personal data and prevent re-identification.\n\n**Description:** Includes de-identification, k-anonymity, pseudonymisation and access controls.\n\n**techniques:** k-Anonymity, Pseudonymisation, access controls"
-  },
-  {
-    "front": "🧩 Time Series Analysis\n📘 Domain: Time Series",
-    "back": "**Definition:** Methods for modelling, forecasting and understanding temporally ordered data and their dynamics.\n\n**Description:** Includes ARIMA, state-space models, spectral analysis and change-point detection.\n\n**tasks:** forecasting, anomaly detection, seasonal decomposition"
-  },
-  {
-    "front": "🧩 Streaming Data Analysis\n📘 Domain: Time Series",
-    "back": "**Definition:** Techniques for real-time ingestion, processing and analysis of continuous data streams.\n\n**Description:** Requires low-latency algorithms and often online/incremental learning approaches.\n\n**challenges:** concept drift, throughput, latency"
-  },
-  {
-    "front": "🧩 Time-Series Missing Data Handling\n📘 Domain: Missing Data",
-    "back": "**Definition:** Specialized methods for imputing or otherwise handling missingness in temporally-correlated data (e.g., LOCF, interpolation, state-space approaches).\n\n**Description:** Must account for autocorrelation; naive imputation can distort temporal dependencies.\n\n**techniques:** LOCF, BOCF, interpolation, state-space imputation"
-  },
-  {
-    "front": "🧩 Temporal Alignment\n📘 Domain: Time Series",
-    "back": "**Definition:** Aligning time stamps and synchronizing signals from different sources to a common temporal reference.\n\n**Description:** Includes timestamp synchronization, resampling, and offset correction.\n\n**methods:** clock alignment, interpolation, offset correction"
-  },
-  {
-    "front": "🧩 Data Completeness\n📘 Domain: Data Quality",
-    "back": "**Definition:** The degree to which required data are present in a dataset (low missingness and full records).\n\n**Description:** Impacts analytic choices and validity; related to dropout rate and missing-data mechanisms.\n\n**measures:** proportion complete records, feature-level completeness"
-  },
-  {
-    "front": "🧩 Scaling\n📘 Domain: Data Transformation",
-    "back": "**Definition:** Generic term for rescaling numeric variables to comparable ranges, including min-max, standardization and arbitrary-range mapping.\n\n**Description:** Completed nodes include Min-Max Normalization and Z-score Standardization; this node links to those concrete methods.\n\n**examples:** Min-Max Normalization, Z-score Standardization, Scaling to Arbitrary Range"
-  },
-  {
-    "front": "🧩 Sensor Calibration\n📘 Domain: Data Quality",
-    "back": "**Definition:** Procedures to ensure sensor readings are accurate and comparable by adjusting for device-specific biases or drifts.\n\n**Description:** Reduces equipment error and calibration differences across devices.\n\n**outcomes:** reduced bias, improved comparability"
-  },
-  {
-    "front": "🧩 Signal Quality\n📘 Domain: Data Quality",
-    "back": "**Definition:** A measure of how usable a signal is for analysis, considering noise, saturation, dropouts and artifacts.\n\n**Description:** High signal quality facilitates reliable feature extraction and detection tasks.\n\n**components:** SNR, dropout_rate, saturation_rate"
-  },
-  {
-    "front": "🧩 Available-Case Analysis\n📘 Domain: Missing Data Handling",
-    "back": "**Definition:** A deletion method where all available observations for each variable or pair of variables are used without requiring complete records.\n\n**Description:** Also known as pairwise deletion. It uses all observed values for each statistical computation, enabling retention of more data than listwise deletion.\n\n**advantages:** retains more data, useful for covariance estimation\n**disadvantages:** inconsistent sample sizes, may bias associations under MAR or MNAR"
-  },
-  {
-    "front": "🧩 Complete-Case Analysis\n📘 Domain: Missing Data Handling",
-    "back": "**Definition:** A deletion method where entire rows containing any missing values are removed from analysis.\n\n**Description:** Also known as listwise deletion. Many tools do this automatically, which may reduce sample size and introduce bias.\n\n**advantages:** simple to implement\n**disadvantages:** loss of data, biased estimates unless MCAR"
-  },
-  {
-    "front": "🧩 Hot Deck Imputation\n📘 Domain: Missing Data Handling",
-    "back": "**Definition:** An imputation technique where missing values are replaced with values drawn from similar cases within the same dataset.\n\n**Description:** Values are selected from cases that are most similar to the incomplete record; appropriate when missingness is rare.\n\n**source:** same dataset\n**requirements:** sufficient similar donors"
-  },
-  {
-    "front": "🧩 Cold Deck Imputation\n📘 Domain: Missing Data Handling",
-    "back": "**Definition:** An imputation technique where missing values are replaced with values drawn from an external but similar dataset.\n\n**Description:** Used when in-dataset donor values are insufficient or not representative.\n\n**source:** external dataset\n**risk:** dataset mismatch bias"
-  },
-  {
-    "front": "🧩 Last Observation Carried Forward\n📘 Domain: Time-Series Missing Data",
-    "back": "**Definition:** A method that fills missing time-series values using the last observed measurement in the sequence.\n\n**Description:** Often used in clinical trials; can introduce bias even under MCAR.\n\n**assumption:** stability of observation over time\n**problems:** bias, distorted autocorrelation"
-  },
-  {
-    "front": "🧩 Baseline Observation Carried Forward\n📘 Domain: Time-Series Missing Data",
-    "back": "**Definition:** A method where all missing values are replaced with the baseline measurement.\n\n**Description:** Simplifies analysis but can severely distort temporal trends.\n\n**strength:** preserves baseline values\n**weakness:** bias, underestimates change"
-  },
-  {
-    "front": "🧩 Full Information Maximum Likelihood\n📘 Domain: Missing Data Modeling",
-    "back": "**Definition:** A maximum likelihood estimation approach that uses all available data to estimate parameters without explicitly imputing missing values.\n\n**Description:** Relies on likelihood contributions from incomplete cases; improves overall parameter accuracy.\n\n**advantages:** uses all available data, works under MAR\n**limitations:** underestimates standard errors, requires correct model specification"
-  },
-  {
-    "front": "🧩 Expectation-Maximization Algorithm\n📘 Domain: Statistical Estimation",
-    "back": "**Definition:** An iterative algorithm for maximum likelihood estimation in the presence of missing or latent variables.\n\n**Description:** Alternates between estimating expected log-likelihood (E-step) and maximizing it (M-step) until convergence.\n\n**steps:** E-step, M-step\n**requirements:** numerical data, convergence criteria"
-  },
-  {
-    "front": "🧩 Imputation Pile-Up\n📘 Domain: Imputation Issues",
-    "back": "**Definition:** The tendency of imputed values to cluster around central tendencies such as the mean.\n\n**Description:** Common in mean imputation, reducing variability and distorting distributions.\n\n**effects:** loss of variance, biased correlations"
-  },
-  {
-    "front": "🧩 Loss of Variability in Imputed Data\n📘 Domain: Imputation Issues",
-    "back": "**Definition:** Reduction in variance of the dataset caused by imputation methods that fail to incorporate uncertainty.\n\n**Description:** Occurs in mean and regression imputation, affecting model estimates.\n\n**consequences:** biased standard errors, overconfident estimates"
-  },
-  {
-    "front": "🧩 Impossible Imputation Values\n📘 Domain: Imputation Issues",
-    "back": "**Definition:** Imputed values that are logically or physically impossible within the domain of the variable.\n\n**Description:** Examples include negative ozone values or impossible categorical combinations.\n\n**causes:** regression imputation, improper model constraints"
-  },
-  {
-    "front": "🧩 Within-Imputation Variance\n📘 Domain: Multiple Imputation",
-    "back": "**Definition:** The component of variance resulting from sampling uncertainty within each imputed dataset.\n\n**Description:** Represents traditional sampling variance from standard complete-data analyses.\n\n**symbol:** Ū"
-  },
-  {
-    "front": "🧩 Between-Imputation Variance\n📘 Domain: Multiple Imputation",
-    "back": "**Definition:** The variance arising from differences among the multiple imputed datasets.\n\n**Description:** Reflects uncertainty about the correct value to impute.\n\n**symbol:** B"
-  },
-  {
-    "front": "🧩 Total Variance in Multiple Imputation\n📘 Domain: Multiple Imputation",
-    "back": "**Definition:** The combined variance estimate incorporating both within- and between-imputation variance.\n\n**Description:** Ensures correct standard errors and confidence intervals under MI.\n\n**formula:** T = Ū + (1 + 1/M) * B"
-  },
-  {
-    "front": "🧩 Data Merging\n📘 Domain: Data Science",
-    "back": "**Definition:** The process of combining data from multiple sources, sensors, or studies into a single unified dataset for analysis.\n\n**Description:** Data merging integrates data collected from different sources to improve completeness and richness. It requires alignment of formats, timestamps, sampling rates, and units to ensure compatibility. Poorly merged data can lead to inconsistent or misleading conclusions.\n\n**Motivation:** Combine complementary data from multiple sensors or datasets, Enhance context and completeness of analysis, Support multi-modal data understanding\n**Challenges:** Different formats (CSV, TXT, JSON), Different timestamps or units, Sensor calibration differences, Incompatible sampling frequencies\n**Requirements:** Synchronized timestamps, Uniform sampling rate, Compatible data structure"
-  },
-  {
-    "front": "🧩 Sampling Synchronization\n📘 Domain: Signal Processing",
-    "back": "**Definition:** The process of aligning data collected at different sampling frequencies to a common rate to allow joint analysis.\n\n**Description:** When data are collected from sensors with different sampling rates, synchronization ensures time alignment by either downsampling or oversampling. This process balances information preservation and computational efficiency.\n\n**Methods:** Downsampling, Oversampling\n**Problems:** Data loss during downsampling, Increased processing cost during oversampling\n**Examples:** Combining 50Hz and 100Hz signals using a common rate of 50Hz or 100Hz"
-  },
-  {
-    "front": "🧩 Downsampling\n📘 Domain: Signal Processing",
-    "back": "**Definition:** Reducing the sampling rate of signals to a lower frequency to match other data sources or to decrease data volume.\n\n**Description:** Downsampling is typically done using the greatest common divisor (GCD) of sampling rates. It reduces data volume and computation cost but may lead to information loss.\n\n**Technique:** Use GCD of sampling rates, Select every nth sample\n**Benefits:** Simplified synchronization, Reduced processing load\n**Drawbacks:** Information loss, Potential aliasing"
-  },
-  {
-    "front": "🧩 Oversampling\n📘 Domain: Signal Processing",
-    "back": "**Definition:** Increasing the sampling rate of a dataset to match a higher-frequency source, typically by interpolation or replication.\n\n**Description:** Oversampling is performed using the least common multiple (LCM) of sampling rates. It allows finer temporal alignment across datasets but increases data volume and processing requirements.\n\n**Technique:** Interpolate missing samples, Use LCM of sampling rates\n**Benefits:** Improved time alignment, Preserved signal fidelity\n**Drawbacks:** Increased computation time, Possible overfitting or redundancy"
-  },
-  {
-    "front": "🧩 Sampling Methods\n📘 Domain: Data Science",
-    "back": "**Definition:** Techniques for selecting a subset of data points from a larger dataset to make statistical analysis feasible.\n\n**Description:** Sampling allows researchers to handle large datasets efficiently or generate artificial data when limited samples are available. Sampling can be with or without replacement, or balanced across classes.\n\n**Main Types:** SRSWR, SRSWOR, Balanced Sampling\n**Use Cases:** Too much data, Imbalanced datasets, Computational constraints"
-  },
-  {
-    "front": "🧩 Simple Random Sampling Without Replacement (SRSWOR)\n📘 Domain: Statistics",
-    "back": "**Definition:** A sampling technique where each element of the dataset has an equal chance of being selected, and once selected, it is not replaced.\n\n**Description:** SRSWOR ensures unique samples by preventing duplicate selections. It is suitable when data volume is high, and balanced representation is needed without redundancy.\n\n**Formula:** Probability of selection = 1/N\n**Benefits:** No duplicates, Representative sample\n**Drawbacks:** Limited sample diversity if dataset is small"
-  },
-  {
-    "front": "🧩 Simple Random Sampling With Replacement (SRSWR)\n📘 Domain: Statistics",
-    "back": "**Definition:** A sampling technique where each element can be selected more than once, as it is replaced back into the dataset after being drawn.\n\n**Description:** SRSWR allows multiple instances of the same data point. It is often used in bootstrapping and data augmentation where variability is desired despite small datasets.\n\n**Formula:** Each element has equal probability in every draw.\n**Benefits:** Allows bootstrapping, Useful for small datasets\n**Drawbacks:** Potential bias if duplicates dominate"
-  },
-  {
-    "front": "🧩 Balanced Sampling\n📘 Domain: Machine Learning",
-    "back": "**Definition:** A sampling approach designed to achieve a predefined class distribution within a dataset, typically used to mitigate imbalance.\n\n**Description:** Balanced sampling ensures that each class is proportionally represented in the training set. It can be implemented using random sampling or synthetic techniques.\n\n**Applications:** Imbalanced classification, Fair evaluation, Data balancing\n**Techniques:** Stratified sampling, SMOTE, Resampling"
-  },
-  {
-    "front": "🧩 Synthetic Minority Oversampling Technique (SMOTE)\n📘 Domain: Machine Learning",
-    "back": "**Definition:** A synthetic data generation method that creates new samples for minority classes by interpolating between existing samples and their nearest neighbors.\n\n**Description:** SMOTE addresses data imbalance by generating synthetic instances instead of duplicating existing ones. It improves classifier performance in minority classes without distorting feature space distributions.\n\n**Process:** Find k nearest neighbors, Compute vector between sample and neighbor, Multiply by random factor, Add to sample to form synthetic data\n**Benefits:** Improves class balance, Avoids overfitting on minority classes\n**Challenges:** Possible noise introduction, Boundary overlapping"
-  },
-  {
-    "front": "🧩 Performance Metrics\n📘 Domain: Model Evaluation",
-    "back": "**Definition:** Quantitative measures used to evaluate the predictive performance and quality of machine learning models.\n\n**Description:** Performance metrics assess how well a model predicts or classifies data. In imbalanced datasets, traditional accuracy can be misleading; thus, alternative metrics such as F1-score, recall, and balanced accuracy are preferred.\n\n**Common Metrics:** Accuracy, Precision, Recall, F1-score, Cohen’s Kappa, Balanced Accuracy\n**Problem:** Accuracy paradox—high accuracy may not indicate true model quality when class imbalance exists."
-  },
-  {
-    "front": "🧩 Data Collection\n📘 Domain: Data Science",
-    "back": "**Definition:** The process of systematically gathering and measuring information from a variety of sources to answer research questions, test hypotheses, and evaluate outcomes.\n\n**Description:** Effective data collection requires careful planning, proper methodology, and awareness of ethical and technical constraints. Poorly designed collection can result in bias, errors, or data loss. Documentation and reproducibility are crucial for trustworthiness.\n\n**Steps:** Define problem, goals, and objectives, Plan methodology and instruments, Conduct pilot collection, Perform final collection, Report and analyze problems\n**Considerations:** Repeatability, Accuracy, Stability, Reproducibility"
-  },
-  {
-    "front": "🧩 Data Planning\n📘 Domain: Data Science",
-    "back": "**Definition:** The preparatory phase of data collection that involves defining the purpose, method, timing, and logistics of gathering data.\n\n**Description:** Proper planning ensures that the data collected answers the research question, avoids unnecessary costs, and minimizes errors. It includes defining data types, intervals, devices, and storage procedures.\n\n**Elements:** Problem definition, Method selection, Sample size determination, Measurement intervals, Documentation strategy\n**Best Practices:** Iterate procedures, Pilot small samples, Keep methods simple"
-  },
-  {
-    "front": "🧩 Sampling\n📘 Domain: Statistics",
-    "back": "**Definition:** The process of selecting a subset of individuals or observations from a population to estimate characteristics of the whole population.\n\n**Description:** Proper sampling ensures statistical significance and reduces bias. It requires defining population size, margin of error, confidence interval, and expected dropout rate.\n\n**Parameters:** Population size, Confidence interval (Z-score), Margin of error, Standard deviation (σ)\n**Challenges:** Dropout rate, Selection bias, Underrepresentation"
-  },
-  {
-    "front": "🧩 Stationary Data\n📘 Domain: Signal Processing",
-    "back": "**Definition:** Data whose statistical properties such as mean and variance do not change over time.\n\n**Description:** Stationary elements remain stable during observation and are easier to model. Examples include controlled mechanical systems and constant environmental measurements.\n\n**Examples:** Temperature-controlled experiments, Static sensors\n**Characteristics:** Constant mean, Constant variance, Time-invariant"
-  },
-  {
-    "front": "🧩 Non-Stationary Data\n📘 Domain: Signal Processing",
-    "back": "**Definition:** Data whose statistical properties such as mean, variance, or correlations change over time.\n\n**Description:** Non-stationary data comes from systems or subjects that evolve, such as humans, biological processes, or changing environments. Proper modeling requires segmentation and adaptive methods.\n\n**Sources:** Human behavior, Environmental change, Mechanical wear, Seasonal variation\n**Techniques:** Windowing, Adaptive filtering, Time normalization"
-  },
-  {
-    "front": "🧩 Human Data Collection\n📘 Domain: Human-Centered Data Science",
-    "back": "**Definition:** The collection of data involving human participants, requiring special ethical, methodological, and technical considerations.\n\n**Description:** Humans are non-stationary, complex systems that change over time. Data collection involving humans requires respect for autonomy, informed consent, privacy protection, and avoidance of harm. It also involves practical challenges like device failure, signal blocking, or behavioral variability.\n\n**Challenges:** Device malfunction, Human variability, Consent management, Sensor connectivity, Instruction adherence\n**Ethical Requirements:** Respect for persons, Beneficence, Justice, Confidentiality"
-  },
-  {
-    "front": "🧩 Bias\n📘 Domain: Research Methodology",
-    "back": "**Definition:** A systematic deviation or error in data collection, analysis, or interpretation that leads to incorrect conclusions.\n\n**Description:** Bias may arise from researchers, respondents, or sampling design. Recognizing and mitigating bias ensures fairness, accuracy, and generalizability of findings.\n\n**Types:** Researcher bias, Respondent bias, Human data bias\n**Examples:** Selective reporting, Overrepresentation of certain groups, Unit conversion errors (e.g., Mars Climate Orbiter case)"
-  },
-  {
-    "front": "🧩 Randomized Controlled Trial (RCT)\n📘 Domain: Experimental Research",
-    "back": "**Definition:** A type of scientific experiment designed to minimize bias by randomly assigning participants to experimental and control groups.\n\n**Description:** RCTs are widely used in medical and behavioral studies to establish causal relationships. Variants include parallel, crossover, cluster, and factorial designs. Randomization ensures comparability between groups.\n\n**Design Types:** Parallel, Crossover, Cluster, Factorial\n**Strengths:** Bias reduction, Causal inference, Reproducibility\n**Weaknesses:** Cost, Complexity, Ethical constraints"
-  },
-  {
-    "front": "🧩 Data Documentation\n📘 Domain: Data Management",
-    "back": "**Definition:** The process of recording all relevant details about data collection, methods, devices, and issues to ensure reproducibility and traceability.\n\n**Description:** Documentation is an essential part of the data lifecycle. It ensures that datasets are interpretable and that future researchers can understand, reuse, and validate results. It includes metadata, logs, and notes on problems.\n\n**Benefits:** Reproducibility, Transparency, Error tracking\n**Common Tools:** CSV logs, Version control, Metadata repositories"
-  },
-  {
-    "front": "🧩 Data Format Differences\n📘 Domain: Data Integration",
-    "back": "**Definition:** Differences in structural or syntactic representation of data originating from multiple sources.\n\n**Description:** Common variations include CSV vs TXT, comma vs tab separators, and presence or absence of header rows.\n\n**examples:** csv, txt, tab-separated, comma-separated\n**challenges:** inconsistent parsing, schema mismatch"
-  },
-  {
-    "front": "🧩 Cultural Formatting Differences\n📘 Domain: Data Integration",
-    "back": "**Definition:** Variations in numeric and textual conventions across regions that affect data interpretation.\n\n**Description:** Typical issues include decimal comma versus decimal point and different date formats.\n\n**examples:** 1,23 vs 1.23, DD/MM/YYYY vs MM/DD/YYYY"
-  },
-  {
-    "front": "🧩 Unit Mismatch\n📘 Domain: Data Integration",
-    "back": "**Definition:** A discrepancy where multiple data sources represent the same measurement using different units.\n\n**Description:** Examples include centimeters vs inches or acceleration measured in g versus m/s^2.\n\n**consequences:** incorrect model inputs, distorted feature magnitudes"
-  },
-  {
-    "front": "🧩 Timestamp Mismatch\n📘 Domain: Temporal Data",
-    "back": "**Definition:** Differences in the timestamp formats or reference scales used by multiple sensors or data sources.\n\n**Description:** Examples include Unix timestamps versus human-readable dates.\n\n**examples:** Unix epoch, ISO date strings"
-  },
-  {
-    "front": "🧩 Timestamp Synchronization\n📘 Domain: Temporal Data",
-    "back": "**Definition:** The process of aligning timestamps from multiple sources to a common reference scale.\n\n**Description:** Necessary when merging data from different devices or modalities.\n\n**methods:** clock alignment, interpolation, offset correction"
-  },
-  {
-    "front": "🧩 Label Inconsistency\n📘 Domain: Data Integration",
-    "back": "**Definition:** A mismatch in semantic meaning or granularity of labels across datasets.\n\n**Description:** Example: one dataset defines 'walking' as flat-ground walking while another includes stairs.\n\n**effects:** ambiguity, inconsistent supervision"
-  },
-  {
-    "front": "🧩 Sensor Placement Variability\n📘 Domain: Sensor Data",
-    "back": "**Definition:** Differences in sensor orientation or placement on the body or environment.\n\n**Description:** Placement differences significantly alter the recorded signals even for identical activities.\n\n**examples:** upper arm vs wrist, left vs right side"
-  },
-  {
-    "front": "🧩 Environmental Condition Variability\n📘 Domain: Data Collection",
-    "back": "**Definition:** Changes in external conditions that affect the comparability of collected data.\n\n**Description:** Examples include season, terrain, indoor versus outdoor conditions, and environmental noise.\n\n**variables:** temperature, surface gradient, lighting"
-  },
-  {
-    "front": "🧩 Calibration Differences\n📘 Domain: Sensor Data",
-    "back": "**Definition:** Variability in sensor output caused by imperfect or inconsistent calibration between devices.\n\n**Description:** Occurs even when sensors are of the same model and manufacturer.\n\n**causes:** manufacturing tolerance, wear, environmental effects"
-  },
-  {
-    "front": "🧩 Incompatible Data Collection Protocols\n📘 Domain: Data Collection",
-    "back": "**Definition:** A situation where datasets cannot be merged due to incompatible procedures, sampling rates, or measurement rules.\n\n**Description:** Arises when two studies follow fundamentally different data-collection methodologies.\n\n**reasons:** different sampling rates, non-matching units, inconsistent label definitions"
-  },
-  {
-    "front": "🧩 Sampling Rate Mismatch\n📘 Domain: Sampling",
-    "back": "**Definition:** A discrepancy in sampling frequencies across sensors or data sources.\n\n**Description:** Makes direct merging difficult without resampling.\n\n**examples:** 50 Hz vs 100 Hz"
-  },
-  {
-    "front": "🧩 Battery–Sampling Trade-Off\n📘 Domain: Sensor Data",
-    "back": "**Definition:** A trade-off between sampling rate and device battery consumption.\n\n**Description:** Higher sampling frequencies drain battery faster, limiting experiment duration.\n\n**factors:** sampling rate, battery capacity"
-  },
-  {
-    "front": "🧩 GCD-Based Downsampling\n📘 Domain: Sampling",
-    "back": "**Definition:** Downsampling multiple signals to a shared sampling frequency derived from their greatest common divisor.\n\n**Description:** Can reduce data quantity but aligns signals to a common time base.\n\n**effect:** information loss"
-  },
-  {
-    "front": "🧩 LCM-Based Oversampling\n📘 Domain: Sampling",
-    "back": "**Definition:** Oversampling multiple signals to a shared sampling frequency derived from their least common multiple.\n\n**Description:** Increases data size but avoids discarding information.\n\n**effect:** increased computational cost"
-  },
-  {
-    "front": "🧩 Confusion Matrix\n📘 Domain: Performance Metrics",
-    "back": "**Definition:** A contingency table summarizing prediction results in classification tasks.\n\n**Description:** Captures true positives, false positives, true negatives, and false negatives.\n\n**entries:** TP, FP, TN, FN"
-  },
-  {
-    "front": "🧩 Balanced Accuracy\n📘 Domain: Performance Metrics",
-    "back": "**Definition:** The average of recall obtained on each class.\n\n**Description:** Designed for imbalanced datasets where standard accuracy is misleading.\n\n**formula:** (TP/(TP+FN) + TN/(TN+FP)) / 2"
-  },
-  {
-    "front": "🧩 Precision\n📘 Domain: Performance Metrics",
-    "back": "**Definition:** The proportion of predicted positives that are true positives.\n\n**Description:** Indicates how many positive predictions are correct.\n\n**formula:** TP / (TP + FP)"
-  },
-  {
-    "front": "🧩 Recall\n📘 Domain: Performance Metrics",
-    "back": "**Definition:** The proportion of actual positives that are correctly identified.\n\n**Description:** Also called sensitivity; important in medical and anomaly detection tasks.\n\n**formula:** TP / (TP + FN)"
-  },
-  {
-    "front": "🧩 Specificity\n📘 Domain: Performance Metrics",
-    "back": "**Definition:** The proportion of actual negatives that are correctly identified.\n\n**Description:** Complementary to recall, especially important for false-positive control.\n\n**formula:** TN / (TN + FP)"
-  },
-  {
-    "front": "🧩 F1 Score\n📘 Domain: Performance Metrics",
-    "back": "**Definition:** The harmonic mean of precision and recall.\n\n**Description:** Balances false positives and false negatives and is robust to imbalance.\n\n**formula:** 2 * (precision * recall) / (precision + recall)"
-  },
-  {
-    "front": "🧩 Cohen’s Kappa\n📘 Domain: Performance Metrics",
-    "back": "**Definition:** A statistic measuring inter-rater or model–true-label agreement adjusted for chance.\n\n**Description:** Useful for assessing classifier reliability beyond simple accuracy.\n\n**formula:** kappa = (p0 - pe) / (1 - pe)"
-  },
-  {
-    "front": "🧩 Model Generalization\n📘 Domain: Machine Learning",
-    "back": "**Definition:** The ability of a model to perform well on new, unseen data rather than merely on the data used for training.\n\n**Description:** Model generalization measures how effectively a model captures the underlying data distribution and applies learned patterns to new observations. High generalization indicates robustness and low overfitting. Poor generalization often results from excessive model complexity or insufficient training data.\n\n**Importance:** Ensures model performance on real-world data, Prevents overfitting to training data, Improves reliability and interpretability\n**Indicators:** Low gap between training and testing error, Stable performance across datasets"
-  },
-  {
-    "front": "🧩 Descriptive Modeling\n📘 Domain: Data Mining",
-    "back": "**Definition:** A modeling approach focused on summarizing or representing data structure in a compact form without making predictions.\n\n**Description:** Descriptive models aim to find inherent patterns or relationships in data, such as grouping or correlations, rather than making future predictions. Common techniques include clustering, association rule mining, and dimensionality reduction.\n\n**Goal:** Describe structure and relationships within data\n**Examples:** Cluster Analysis, Association Rules, Principal Component Analysis (PCA)"
-  },
-  {
-    "front": "🧩 Explanatory Modeling\n📘 Domain: Statistics",
-    "back": "**Definition:** A modeling approach used to test causal hypotheses by analyzing relationships between variables.\n\n**Description:** Explanatory models are designed to confirm theoretical relationships, such as cause-and-effect, and are commonly applied in medical, social, and behavioral sciences. They focus on inference rather than prediction.\n\n**Examples:** Linear Regression, Logistic Regression, Structural Equation Modeling\n**Goals:** Understand relationships, Test scientific hypotheses\n**Approach:** Retrospective and confirmatory"
-  },
-  {
-    "front": "🧩 Predictive Modeling\n📘 Domain: Machine Learning",
-    "back": "**Definition:** A modeling approach that uses historical data to predict future or unseen observations.\n\n**Description:** Predictive models estimate output variables (Y) based on input variables (X). They are data-driven, focusing on accuracy and generalization rather than inference. Examples include decision trees, neural networks, and support vector machines.\n\n**Goal:** Predict outcomes for new data\n**Characteristics:** Exploratory, Prospective, Accuracy-driven\n**Examples:** Random Forest, SVM, Neural Network Classifier"
-  },
-  {
-    "front": "🧩 Overfitting\n📘 Domain: Machine Learning",
-    "back": "**Definition:** A modeling error that occurs when a model learns noise or random fluctuations in the training data instead of the underlying pattern.\n\n**Description:** Overfitting leads to low training error but high testing error. It occurs when models are overly complex relative to the amount of available data, reducing generalization performance.\n\n**Symptoms:** Low training error, high test error, Unstable predictions on new data\n**Causes:** Small dataset, Excessive model complexity, Insufficient regularization"
-  },
-  {
-    "front": "🧩 Underfitting\n📘 Domain: Machine Learning",
-    "back": "**Definition:** A modeling condition where the model is too simple to capture the underlying structure of the data, resulting in poor performance on both training and test data.\n\n**Description:** Underfitting occurs when a model fails to learn the essential relationships between input and output variables. It usually happens when the model lacks sufficient complexity or training iterations.\n\n**Symptoms:** High bias, Low variance, Poor performance on all datasets\n**Causes:** Too simple model, Inadequate training, High regularization"
-  },
-  {
-    "front": "🧩 Sample Size\n📘 Domain: Statistical Modeling",
-    "back": "**Definition:** The number of observations or data points used to train and evaluate a model.\n\n**Description:** Sample size affects both the bias and variance of a model. Small datasets may cause overfitting, while large ones improve generalizability but increase computational costs. Predictive models generally require larger samples than explanatory models.\n\n**Effects:** Small sample size → overfitting and poor generalization, Large sample size → reduced variance and improved precision, Beyond certain size → diminishing returns\n**Guidelines:** Larger data for prediction, Smaller for inference"
-  },
-  {
-    "front": "🧩 Cross-Validation\n📘 Domain: Model Evaluation",
-    "back": "**Definition:** A resampling technique used to assess the performance and generalization of a model by partitioning the dataset into subsets.\n\n**Description:** Cross-validation divides the data into multiple folds, training the model on some while testing on others. It provides a more reliable estimate of model performance than a single train-test split, especially with small datasets.\n\n**Variants:** k-fold cross-validation, Leave-one-out validation\n**Benefits:** Reduces variance of performance estimates, Detects overfitting, Efficient use of data"
-  },
-  {
-    "front": "🧩 Model Selection\n📘 Domain: Machine Learning",
-    "back": "**Definition:** The process of choosing the best-performing model or configuration among multiple candidates based on validation metrics.\n\n**Description:** Model selection involves comparing model performance, complexity, and interpretability to find the optimal balance between bias and variance. Simpler models are often more generalizable and interpretable.\n\n**Criteria:** Low validation error, High interpretability, Minimal overfitting\n**Factors:** Model type, Hyperparameters, Feature selection"
-  },
-  {
-    "front": "🧩 Data Collection Procedure\n📘 Domain: Data Collection",
-    "back": "**Definition:** A structured sequence of steps used to design, execute, and refine the process of gathering data for research or analysis.\n\n**Description:** Includes planning, initial pilot collection, iteration, and final data collection, followed by problem reporting.\n\n**steps:** planning, pilot collection, iteration, final collection, problem reporting"
-  },
-  {
-    "front": "🧩 Data Collection Failure Modes\n📘 Domain: Data Collection",
-    "back": "**Definition:** Common ways in which data collection systems or processes fail, producing incomplete, biased, or invalid data.\n\n**Description:** Includes sensor errors, unit conversion errors, device malfunction, filtering errors, and human mistakes.\n\n**examples:** sensor placement error, incorrect filtering, signal saturation, unit mismatch"
-  },
-  {
-    "front": "🧩 Signal Filtering Errors\n📘 Domain: Data Collection",
-    "back": "**Definition:** Errors caused by incorrect or overly aggressive filtering that removes legitimate data patterns.\n\n**Description:** A famous example is the ozone-hole data being removed due to filters discarding large drops as errors.\n\n**common_causes:** thresholding errors, misconfigured filters, incorrect assumptions"
-  },
-  {
-    "front": "🧩 Sensor Placement Error\n📘 Domain: Sensor Data",
-    "back": "**Definition:** Incorrect attachment or orientation of sensors leading to inaccurate or unusable data.\n\n**Description:** Examples include reversing coils in welding studies or misplacing wearable devices.\n\n**effects:** signal distortion, activity mislabeling"
-  },
-  {
-    "front": "🧩 Battery Failure\n📘 Domain: Data Collection",
-    "back": "**Definition:** Data loss caused by device power depletion during recording sessions.\n\n**Description:** A common cause of missing data in field sensors, wearable devices, and mobile data collection.\n\n**impact:** incomplete sessions, loss of temporal continuity"
-  },
-  {
-    "front": "🧩 Repeatability\n📘 Domain: Data Quality",
-    "back": "**Definition:** The ability to repeat a data collection procedure under identical conditions and obtain similar results.\n\n**Description:** A key criterion in experimental design and sensor-based studies.\n\n**requirements:** controlled conditions, stable instruments"
-  },
-  {
-    "front": "🧩 Reproducibility\n📘 Domain: Data Quality",
-    "back": "**Definition:** The ability for independent researchers to reproduce results using the same methodology and data.\n\n**Description:** Requires documentation, transparent procedures, and stable data collection methods.\n\n**dependencies:** documentation, metadata, repeatability"
-  },
-  {
-    "front": "🧩 Stability\n📘 Domain: Data Quality",
-    "back": "**Definition:** The extent to which measurement systems remain consistent over time.\n\n**Description:** Sensitive to environmental changes, sensor degradation, drift, and human behavior.\n\n**related_factors:** drift, non-stationarity, sensor aging"
-  },
-  {
-    "front": "🧩 Margin of Error\n📘 Domain: Statistics",
-    "back": "**Definition:** An expression of the amount of random sampling error in a survey's results.\n\n**Description:** Often expressed as a percentage and tied to confidence intervals.\n\n**inputs:** sample size, confidence level"
-  },
-  {
-    "front": "🧩 Confidence Interval\n📘 Domain: Statistics",
-    "back": "**Definition:** A range of values derived from sample data that is likely to contain the true population value.\n\n**Description:** Determined using margin of error and Z-scores.\n\n**components:** sample statistic, margin of error"
-  },
-  {
-    "front": "🧩 Z-Score (Statistical)\n📘 Domain: Statistics",
-    "back": "**Definition:** A normalized value expressing how many standard deviations a measurement is from the mean.\n\n**Description:** Used to compute confidence intervals and determine significance.\n\n**formula:** z = (x - μ) / σ"
-  },
-  {
-    "front": "🧩 Dropout Rate\n📘 Domain: Sampling",
-    "back": "**Definition:** The proportion of participants who fail to complete a study or data collection procedure.\n\n**Description:** Critical for determining effective sample size.\n\n**applications:** study planning, survey design"
-  },
-  {
-    "front": "🧩 Stationary Elements\n📘 Domain: Time Series",
-    "back": "**Definition:** Entities or systems whose properties do not change significantly over time.\n\n**Description:** Examples include stable mechanical components or controlled environments.\n\n**characteristics:** constant mean, constant variance"
-  },
-  {
-    "front": "🧩 Non-Stationary Elements\n📘 Domain: Time Series",
-    "back": "**Definition:** Entities whose statistical properties change over time.\n\n**Description:** Typical for environmental data, human behavior, sensor drift, or seasonal changes.\n\n**examples:** humans, ecosystems, aging machinery"
-  },
-  {
-    "front": "🧩 Temporal Drift\n📘 Domain: Time Series",
-    "back": "**Definition:** A gradual change in system behavior or measurement statistics over time.\n\n**Description:** One of the main challenges when gathering long-term sensor or human data.\n\n**types:** sensor drift, behavioral drift"
-  },
-  {
-    "front": "🧩 Seasonal Variability\n📘 Domain: Time Series",
-    "back": "**Definition:** Regular periodic fluctuations associated with seasons or cyclic processes.\n\n**Description:** A non-stationary factor influencing environmental and human measurements.\n\n**cycle_length:** annual or periodic"
-  },
-  {
-    "front": "🧩 Time Series Data Collection\n📘 Domain: Time Series",
-    "back": "**Definition:** Collecting data at successive time intervals to observe changes or patterns.\n\n**Description:** Important for avoiding leakage between training and testing windows.\n\n**design_features:** distinct time windows, sampling frequency"
-  },
-  {
-    "front": "🧩 Respect for Persons\n📘 Domain: Human Research Ethics",
-    "back": "**Definition:** An ethical principle requiring that individuals be treated as autonomous agents.\n\n**Description:** Includes additional protections for individuals with diminished autonomy.\n\n**components:** autonomy, protection of vulnerable groups"
-  },
-  {
-    "front": "🧩 Beneficence\n📘 Domain: Human Research Ethics",
-    "back": "**Definition:** An obligation to maximize possible benefits and minimize possible harms to participants.\n\n**Description:** A foundational principle in ethical human-subject research.\n\n**requirements:** risk-benefit analysis, avoidance of harm"
-  },
-  {
-    "front": "🧩 Justice\n📘 Domain: Human Research Ethics",
-    "back": "**Definition:** The fair and equitable distribution of the burdens and benefits of research.\n\n**Description:** Ensures vulnerable or marginalized groups are not exploited.\n\n**considerations:** equity, fair selection of subjects"
-  },
-  {
-    "front": "🧩 Missing Data\n📘 Domain: Data Science",
-    "back": "**Definition:** Data values that are absent or undefined in a dataset due to various reasons such as measurement errors, data integration issues, or survey non-response.\n\n**Description:** Missing data are common in real-world datasets and can lead to biased estimates, invalid conclusions, and limited generalizability if not properly handled. Understanding the mechanism of missingness is critical for choosing the right imputation or estimation method.\n\n**Causes:** Equipment malfunction or sensor errors, Manual data entry mistakes, Out-of-range measurements, Survey non-response, Combining datasets with incompatible schemas\n**Consequences:** Biased results, Reduced statistical power, Invalid modeling outcomes"
-  },
-  {
-    "front": "🧩 Missing Completely at Random (MCAR)\n📘 Domain: Statistics",
-    "back": "**Definition:** A missingness mechanism where the probability that data are missing is independent of both observed and unobserved data.\n\n**Description:** In MCAR, missing values occur purely by chance and are unrelated to any variables in the dataset. Analyses on MCAR data remain unbiased, although statistical power decreases due to data loss.\n\n**Example:** Random equipment failure or random sampling exclusion.\n**Implication:** Deleting missing data under MCAR does not bias results but reduces dataset size."
-  },
-  {
-    "front": "🧩 Missing at Random (MAR)\n📘 Domain: Statistics",
-    "back": "**Definition:** A missingness mechanism where the probability that data are missing depends on observed data but not on the missing data itself.\n\n**Description:** In MAR, the reason for missingness can be explained by other known variables in the dataset, such as a particular sensor brand failing more often. Many modern imputation and maximum likelihood methods assume MAR.\n\n**Example:** A certain device model frequently fails to record measurements.\n**Implication:** Bias can be reduced if the imputation model includes the variables related to the missingness mechanism."
-  },
-  {
-    "front": "🧩 Missing Not at Random (MNAR)\n📘 Domain: Statistics",
-    "back": "**Definition:** A missingness mechanism where the probability of missing data depends on the missing value itself or on unobserved factors.\n\n**Description:** MNAR occurs when the reason for missingness is related to the actual missing values, such as patients with severe illness skipping health surveys. MNAR models are complex and often difficult to fit correctly.\n\n**Example:** A sensor fails more often at high temperature readings.\n**Implication:** Analyses assuming MAR may be biased when data are MNAR."
-  },
-  {
-    "front": "🧩 Deletion\n📘 Domain: Data Pre-processing",
-    "back": "**Definition:** A method for handling missing data by removing incomplete records or variables from analysis.\n\n**Description:** Deletion is the simplest way to deal with missing data but often reduces dataset size and statistical power. It can lead to bias if missingness is not completely random.\n\n**Variants:** Listwise Deletion, Pairwise Deletion\n**Pros:** Easy to implement, No imputation needed\n**Cons:** Loss of data, Possible bias under MAR or MNAR"
-  },
-  {
-    "front": "🧩 Imputation\n📘 Domain: Data Science",
-    "back": "**Definition:** The process of replacing missing data with substituted values based on statistical or machine learning methods.\n\n**Description:** Imputation creates complete datasets by estimating missing values from observed data. It helps maintain sample size and reduce bias, provided the missingness mechanism is appropriately modeled.\n\n**Types:** Mean Imputation, Regression Imputation, Stochastic Regression Imputation, Hot Deck Imputation, Cold Deck Imputation, Multiple Imputation, Machine Learning-Based Imputation\n**Advantages:** Preserves data volume, Can reduce bias\n**Limitations:** Can distort variability, Dependent on assumptions"
-  },
-  {
-    "front": "🧩 Mean Imputation\n📘 Domain: Statistics",
-    "back": "**Definition:** A simple imputation method where missing numerical values are replaced by the mean of the observed values.\n\n**Description:** Mean imputation is widely used but can reduce variance, distort correlations, and bias relationships between variables. It is only valid under MCAR assumptions.\n\n**Benefits:** Easy to implement, Restores dataset completeness\n**Drawbacks:** Underestimates variability, Biases covariance and regression coefficients"
-  },
-  {
-    "front": "🧩 Regression Imputation\n📘 Domain: Statistics",
-    "back": "**Definition:** An imputation technique that predicts missing values using regression models based on other observed variables.\n\n**Description:** Regression imputation can preserve relationships between variables but reduces variance in the dataset. It assumes that missingness can be modeled using observed predictors.\n\n**Assumptions:** Data is MAR, Predictor variables are complete\n**Challenges:** May produce perfect fits, Biased estimates if model misspecified"
-  },
-  {
-    "front": "🧩 Stochastic Regression Imputation\n📘 Domain: Statistics",
-    "back": "**Definition:** An extension of regression imputation that adds random noise to restore natural variability to the imputed values.\n\n**Description:** This method adds random residuals to regression predictions, maintaining relationships between variables while accounting for uncertainty. It avoids perfectly predicted values and better reflects true data variability.\n\n**Benefits:** Restores variance, Preserves relationships between variables\n**Limitations:** Still underestimates uncertainty, Possible impossible values"
-  },
-  {
-    "front": "🧩 Multiple Imputation\n📘 Domain: Statistics",
-    "back": "**Definition:** A comprehensive imputation framework that replaces missing data with multiple plausible values, generating several complete datasets that are analyzed and combined.\n\n**Description:** Multiple imputation captures the uncertainty inherent in missing data by creating multiple imputed datasets, analyzing them separately, and pooling results. It provides unbiased parameter estimates and valid standard errors under MAR assumptions.\n\n**Phases:** Imputation phase, Analysis phase, Pooling phase\n**Advantages:** Preserves variance, Handles uncertainty, Suitable for classification\n**Metrics:** Within-imputation variance (U), Between-imputation variance (B), Total variance (T)"
-  },
-  {
-    "front": "🧩 Maximum Likelihood Estimation (MLE)\n📘 Domain: Statistics",
-    "back": "**Definition:** A statistical estimation technique that finds parameter values maximizing the likelihood of observed data, including cases with missing values.\n\n**Description:** MLE utilizes all available data to estimate model parameters without directly imputing missing values. It works by optimizing a log-likelihood function based on the observed data. Expectation-Maximization (EM) is a common iterative algorithm for this purpose.\n\n**Steps:** Define likelihood function, Compute log-likelihood, Optimize via EM or Newton-Raphson\n**Benefits:** Uses all available data, Produces unbiased estimates under MAR\n**Limitations:** Underestimates standard errors, Requires numerical data"
-  },
-  {
-    "front": "🧩 Personal Data\n📘 Domain: Privacy",
-    "back": "**Definition:** Any information relating to an identified or identifiable natural person.\n\n**Description:** Covers both direct identifiers and quasi-identifiers that can re-identify individuals when combined.\n\n**examples:** names, addresses, location traces, online identifiers\n**legal_status:** Protected under GDPR"
-  },
-  {
-    "front": "🧩 Pseudonymisation\n📘 Domain: Privacy",
-    "back": "**Definition:** Replacing identifying attributes with artificial identifiers while keeping a mapping for re-identification.\n\n**Description:** Provides partial privacy but is reversible when the mapping is available.\n\n**characteristics:** mapping retained separately, reversible\n**use_cases:** research follow-ups, risk-controlled data release"
-  },
-  {
-    "front": "🧩 k-Anonymity\n📘 Domain: Privacy",
-    "back": "**Definition:** A property ensuring each record is indistinguishable from at least k-1 others based on quasi-identifiers.\n\n**Description:** Achieved through generalisation or suppression; vulnerable to attribute disclosure attacks.\n\n**parameter:** k\n**methods:** suppression, generalisation"
-  },
-  {
-    "front": "🧩 Advanced Data Modification\n📘 Domain: Privacy",
-    "back": "**Definition:** Heuristic or algorithmic methods for modifying datasets to reduce privacy risk while retaining analytical value.\n\n**Description:** Includes perturbation, synthetic data generation, and suppression heuristics.\n\n**approaches:** perturbation, synthetic data, attribute suppression heuristics"
-  },
-  {
-    "front": "🧩 Relational Database\n📘 Domain: Databases",
-    "back": "**Definition:** A structured collection of relations (tables) organized according to the relational model.\n\n**Description:** Implements schemas, supports SQL, and typically enforces ACID properties.\n\n**features:** tables, schemas, ACID transactions\n**examples:** PostgreSQL, MySQL, Oracle"
-  },
-  {
-    "front": "🧩 NoSQL Databases\n📘 Domain: Databases",
-    "back": "**Definition:** A broad category of database systems that do not use the relational model.\n\n**Description:** Includes document stores, key-value stores, columnar stores, and graph databases.\n\n**advantages:** schema flexibility, horizontal scaling\n**examples:** MongoDB"
-  },
-  {
-    "front": "🧩 MongoDB\n📘 Domain: Databases",
-    "back": "**Definition:** A document-oriented NoSQL database storing data in BSON format.\n\n**Description:** Allows flexible schema design and uses a hierarchical document model.\n\n**storage_format:** BSON\n**model:** Document Store"
-  },
-  {
-    "front": "🧩 Entity-Relationship Modeling\n📘 Domain: Databases",
-    "back": "**Definition:** A conceptual modeling method describing entities, attributes, and relationships.\n\n**Description:** Used to design relational schemas and understand domain structure.\n\n**components:** entities, attributes, relationships"
-  },
-  {
-    "front": "🧩 Relational Algebra\n📘 Domain: Databases",
-    "back": "**Definition:** A formal set of operations on relations forming the foundation of SQL.\n\n**Description:** Core operators include projection, selection, and natural join.\n\n**operators:** projection, selection, join"
-  },
-  {
-    "front": "🧩 SQL\n📘 Domain: Databases",
-    "back": "**Definition:** A declarative language for managing and querying relational databases.\n\n**Description:** Supports SELECT, JOIN, INSERT, UPDATE, DELETE, and schema definition.\n\n**categories:** DDL, DML, DQL"
-  },
-  {
-    "front": "🧩 CIA Triad\n📘 Domain: Security",
-    "back": "**Definition:** A model defining three core principles of information security: Confidentiality, Integrity, Availability.\n\n**Description:** Used to categorize threats and security controls.\n\n**principles:** Confidentiality, Integrity, Availability"
-  },
-  {
-    "front": "🧩 Open Data Licences\n📘 Domain: Licensing",
-    "back": "**Definition:** Licenses governing how datasets may be used, shared, and modified.\n\n**Description:** Includes CC0, CC BY, and ODbL with differing attribution and sharing requirements.\n\n**examples:** CC0, CC BY, ODbL"
-  },
-  {
-    "front": "🧩 Metadata\n📘 Domain: Data Management",
-    "back": "**Definition:** Structured information describing a dataset’s content, structure, provenance, and semantics.\n\n**Description:** Supports FAIR principles by enabling discovery and reuse.\n\n**components:** variable descriptions, units, provenance, versioning"
-  },
-  {
-    "front": "🧩 ActivityMeasurement\n📘 Domain: Example Schema",
-    "back": "**Definition:** An example entity representing individual activity measurements.\n\n**Description:** Used to illustrate relational and document database modeling.\n\n**attributes:** measurementId, personId, monitorId, measurementDate, activeMinutes, steps, calories"
-  },
-  {
-    "front": "🧩 Numerosity Reduction\n📘 Domain: Data Pre-processing",
-    "back": "**Definition:** A data reduction technique that reduces the volume of data by choosing smaller, more compact representations without significantly sacrificing the integrity of analytical results.\n\n**Description:** Numerosity reduction aims to improve computational efficiency by replacing the original data with smaller parametric or non-parametric representations. Instead of storing the full dataset, only the model parameters or simplified summaries are kept. This enables faster querying, analysis, and modeling while preserving most essential patterns.\n\n**Goal:** Reduce data volume while maintaining the ability to perform accurate analysis.\n**Categories:** Parametric methods, Non-parametric methods\n**Parametric Methods:** Regression models, Log-linear models, Other statistical modeling approaches where only model parameters are stored\n**Non-parametric Methods:** Histograms, Clustering, Sampling\n**Advantages:** Reduces storage space, Improves algorithm performance, Enables faster data processing\n**Limitations:** Potential loss of detail, Quality depends on model or sampling assumptions"
-  },
-  {
-    "front": "🧩 Accuracy Paradox\n📘 Domain: Model Evaluation",
-    "back": "**Definition:** A phenomenon where a model with high accuracy performs poorly on the actual predictive task, especially when the dataset is imbalanced.\n\n**Description:** Accuracy can give a misleading impression of model performance because it does not account for class imbalance. In problems where one class dominates, models can achieve high accuracy by simply predicting the majority class, despite having little real predictive power. Therefore, additional evaluation metrics such as balanced accuracy, precision, recall, F1 score, or Cohen’s kappa should be used to correctly assess performance.\n\n**Problem:** Accuracy ignores the relative distribution of classes.\n**Occurs_When:** The dataset is imbalanced, The majority class dominates predictions, Accuracy does not reflect predictive power\n**Better_Metrics:** Balanced accuracy, Precision, Recall, F1 score, Cohen's kappa\n**Example:** In a dataset with 275 healthy and 25 cancer patients, predicting everyone as healthy yields 91.7% accuracy but 0% predictive power for detecting cancer."
-  },
-  {
-    "front": "🧩 Validation Set\n📘 Domain: Model Evaluation",
-    "back": "**Definition:** A subset of data used to tune model hyperparameters or select among competing models before final evaluation on the test set.\n\n**Description:** The validation set is used during model selection to ensure that the chosen model is not overfitting the training data. After models are compared based on validation performance, the final selected model is evaluated on a separate test set for unbiased performance estimation. This partitioning improves generalizability and prevents overly optimistic results.\n\n**Purpose:** Model selection, hyperparameter tuning, preventing overfitting.\n**Process:** Train model on training set, Validate model and compare candidates, Select optimal model before final testing\n**When_Used:** Neural network iteration selection, Hyperparameter optimization, Model comparison\n**Related_Concepts:** Training Set, Test Set, Cross-validation"
-  },
-  {
-    "front": "🧩 Artificial Data Generation\n📘 Domain: Data Pre-processing",
-    "back": "**Definition:** A set of methods used to create additional synthetic samples when insufficient data is available, helping balance datasets or increase training coverage.\n\n**Description:** Artificial data generation expands a dataset by creating new synthetic samples derived from observed data properties. It includes multiple methods such as noise injection, distribution-based artificial data creation, and SMOTE. These approaches are useful especially when some classes lack sufficient samples or when expanding feature coverage is required.\n\n**Goal:** Increase dataset size, improve class balance, expand training coverage.\n**Methods:** Artificial data (distribution-based sampling), Noise injection, SMOTE\n**Advantages:** Improves model generalization, Addresses class imbalance, Expands data in a controlled manner\n**Limitations:** Can introduce unrealistic samples if assumptions are incorrect, May increase risk of overfitting if not applied carefully"
-  },
-  {
-    "front": "🧩 Artificial Data\n📘 Domain: Data Pre-processing",
-    "back": "**Definition:** Synthetic data generated by sampling from a statistical distribution that approximates the original dataset.\n\n**Description:** Artificial data is created by modeling the original dataset using parameters such as mean (μ) and standard deviation (σ). Each class is modeled separately, and the distribution must be known or estimated. New samples are then drawn from these distributions to form a larger dataset. This method is especially useful when the original dataset is too small for effective model training.\n\n**Goal:** Create a larger dataset based on estimated population characteristics.\n**Process:** Estimate distribution parameters for each class, Model the population, Draw m synthetic samples where m > N\n**Advantages:** Helpful for rare classes, Simple to generate if distribution is known, Supports better model generalization\n**Limitations:** Requires known or well-estimated distributions, May oversimplify real-world complexity"
-  },
-  {
-    "front": "🧩 Noise\n📘 Domain: Data Quality",
-    "back": "**Definition:** Random or systematic errors in data that obscure the true underlying signal or pattern.\n\n**Description:** Noise can originate from measurement errors, equipment malfunctions, environmental factors, or data entry mistakes. It can distort models, reduce performance, and create false patterns during analysis, especially in supervised learning.\n\n**Types:** Attribute noise, Label noise\n**Sources:** Sensor malfunction, Human error, Data transmission issues\n**Impact:** Increased error rate, Overfitting risk, Reduced generalization"
-  },
-  {
-    "front": "🧩 Robust Learning Algorithms\n📘 Domain: Machine Learning",
-    "back": "**Definition:** Algorithms capable of learning accurate models even when training data contains noise, outliers, or errors.\n\n**Description:** Robust learners are designed to minimize the impact of corrupted or noisy instances. They produce models similar to those obtained from clean data, often using regularization, pruning, or robust loss functions.\n\n**Examples:** C4.5 Decision Tree with pruning, Support Vector Machines, Random Forests\n**Techniques:** Pruning, Regularization, Robust loss functions"
-  },
-  {
-    "front": "🧩 Data Polishing\n📘 Domain: Data Cleaning",
-    "back": "**Definition:** The process of identifying and correcting noisy or corrupted data before building predictive models.\n\n**Description:** Data polishing focuses on improving data quality by removing or correcting noise manually or through algorithms. It is particularly useful for small datasets where noisy samples can be easily isolated.\n\n**Steps:** Detect noise, Correct corrupted instances, Validate polished data\n**Use Cases:** Small datasets, Low noise frequency\n**Limitations:** Inefficient for large-scale data, Risk of removing valid samples"
-  },
-  {
-    "front": "🧩 Noise Filters\n📘 Domain: Signal Processing",
-    "back": "**Definition:** Techniques for identifying and removing noise from data, including specific frequency interference or corrupted samples.\n\n**Description:** Noise filters aim to isolate and eliminate unwanted variations in the data, such as electrical interference or measurement errors. Over-filtering can remove meaningful information.\n\n**Examples:** Low-pass filter, Notch filter, Spectral filtering\n**Sources of Noise:** 50 Hz power line, Infrared absorbance errors, Equipment malfunction\n**Risks:** Loss of valuable signal components"
-  },
-  {
-    "front": "🧩 Data Pollution\n📘 Domain: Data Quality",
-    "back": "**Definition:** The presence of incorrect, inconsistent, or irrelevant data values that do not conform to intended formats or meanings.\n\n**Description:** Data pollution occurs when datasets contain invalid entries, such as incorrect category values, formatting errors, or corrupted text fields. These issues often result from system repurposing or manual entry errors.\n\n**Examples:** Gender field containing 'male', 'female', and 'business', Free text with delimiters, Misplaced decimal points\n**Causes:** Software misuse, Copy-paste errors, CSV formatting issues"
-  },
-  {
-    "front": "🧩 Signal Saturation\n📘 Domain: Signal Processing",
-    "back": "**Definition:** A condition where sensor readings reach their upper or lower limit and cannot record values beyond that threshold.\n\n**Description:** Signal saturation leads to repeated minimum or maximum values, reducing variability and masking true signal dynamics. It often occurs when sensors exceed their operational range.\n\n**Symptoms:** Repeated min/max values, Clipped signals, Loss of detail\n**Causes:** Sensor range limits, Hardware constraints\n**Handling:** Mark corrupted sections, Exclude extreme sequences"
-  },
-  {
-    "front": "🧩 Outliers\n📘 Domain: Statistics",
-    "back": "**Definition:** Data points that significantly deviate from the expected pattern or distribution of a dataset.\n\n**Description:** Outliers can result from noise, measurement errors, or genuine rare events. They may distort statistical summaries and machine learning models. Outlier analysis involves detecting, interpreting, and deciding whether to correct or retain them.\n\n**Types:** Global, Contextual, Collective\n**Causes:** Calibration errors, External disruptions, Rare phenomena\n**Impact:** Model distortion, Misleading correlations"
-  },
-  {
-    "front": "🧩 Anomalies\n📘 Domain: Data Mining",
-    "back": "**Definition:** Rare and valid instances that deviate from normal behavior but carry valuable information rather than being errors.\n\n**Description:** Anomalies differ from outliers in that they often represent meaningful or significant deviations, such as fraudulent activity, medical conditions, or rare events. Detecting anomalies helps in security, finance, and environmental monitoring.\n\n**Applications:** Intrusion detection, Credit card fraud detection, Medical diagnostics, Climate and environmental monitoring\n**Difference from Outliers:** Outliers may be noise or errors; anomalies are often valid and informative."
-  },
-  {
-    "front": "🧩 Outlier Detection Methods\n📘 Domain: Machine Learning",
-    "back": "**Definition:** Algorithms and approaches designed to identify data points that deviate significantly from expected normal patterns.\n\n**Description:** Outlier detection methods vary based on whether labels exist (supervised), partial labels (semi-supervised), or no labels (unsupervised). They aim to separate normal behavior from abnormal instances using distance, density, or statistical assumptions.\n\n**Categories:** Supervised, Semi-supervised, Unsupervised\n**Examples:** k-Nearest Neighbors (distance-based), Local Outlier Factor (density-based), Gaussian Distribution (parametric), Kernel Density Estimation (nonparametric), K-Means or GMM (clustering-based), SVM or Random Forest (classification-based)"
-  },
-  {
-    "front": "🧩 Proximity-Based Methods\n📘 Domain: Outlier Detection",
-    "back": "**Definition:** Methods that define outliers as data points distant from their nearest neighbors in feature space.\n\n**Description:** These methods rely on distance metrics such as Euclidean or Mahalanobis distance to detect isolated instances. Variants include distance-based and density-based approaches.\n\n**Examples:** k-Nearest Neighbors, Local Outlier Factor (LOF)\n**Strengths:** Effective for global and local outliers\n**Weaknesses:** Sensitive to distance metric choice, Poor scalability on large data"
-  },
-  {
-    "front": "🧩 Generalizability\n📘 Domain: Model Evaluation",
-    "back": "**Definition:** The degree to which a model's findings or predictions apply beyond the data on which it was trained.\n\n**Description:** Generalizability reflects how well a model captures patterns that extend to new individuals, settings, or datasets.\n\n**aspects:** population generalizability, dataset generalizability"
-  },
-  {
-    "front": "🧩 Generalization Error\n📘 Domain: Model Evaluation",
-    "back": "**Definition:** The expected error of a model when applied to new, unseen data.\n\n**Description:** It captures the discrepancy between training performance and real-world prediction accuracy.\n\n**components:** bias, variance"
-  },
-  {
-    "front": "🧩 Generalization Gap\n📘 Domain: Model Evaluation",
-    "back": "**Definition:** The difference between training error and test error for a model.\n\n**Description:** A large gap indicates overfitting, while a small gap suggests good generalizability.\n\n**formula:** generalization_gap = test_error - training_error"
-  },
-  {
-    "front": "🧩 Dataset Generalization\n📘 Domain: Model Evaluation",
-    "back": "**Definition:** The ability of a model to perform well on datasets collected under conditions different from the training dataset.\n\n**Description:** Important for real-world deployment, where data collection conditions vary.\n\n**sources_of_variation:** different populations, different sensors, different contexts"
-  },
-  {
-    "front": "🧩 Retrospective Models\n📘 Domain: Descriptive Modeling",
-    "back": "**Definition:** Models that analyze past data to understand patterns, associations, or structures.\n\n**Description:** Used for insight generation and explanation rather than future prediction.\n\n**primary_goal:** understanding past phenomena"
-  },
-  {
-    "front": "🧩 Prospective Models\n📘 Domain: Predictive Modeling",
-    "back": "**Definition:** Models designed to predict future outcomes based on current or historical data.\n\n**Description:** Used in forecasting, risk assessment, and decision automation.\n\n**primary_goal:** predicting future events"
-  },
-  {
-    "front": "🧩 Theory-Driven Models\n📘 Domain: Modeling Approaches",
-    "back": "**Definition:** Models constructed primarily from theoretical principles rather than empirical patterns.\n\n**Description:** Often focuses on causal explanation and interpretable structures.\n\n**advantages:** interpretability, causal validity"
-  },
-  {
-    "front": "🧩 Data-Driven Models\n📘 Domain: Modeling Approaches",
-    "back": "**Definition:** Models built primarily from observed data, with minimal theoretical assumptions.\n\n**Description:** Typical in machine learning, where predictive accuracy is prioritized.\n\n**advantages:** high predictive power\n**risks:** overfitting"
-  },
-  {
-    "front": "🧩 Explanatory Power\n📘 Domain: Model Interpretation",
-    "back": "**Definition:** The ability of a model to explain underlying relationships and mechanisms within data.\n\n**Description:** Prioritized in scientific modeling where interpretability and causal understanding are necessary.\n\n**factors:** model structure, variable relationships"
-  },
-  {
-    "front": "🧩 Predictive Power\n📘 Domain: Model Performance",
-    "back": "**Definition:** The ability of a model to accurately predict new observations.\n\n**Description:** Often maximized using data-driven machine learning approaches.\n\n**metrics:** RMSE, accuracy, AUC"
-  },
-  {
-    "front": "🧩 Minimum Sample Size for Statistical Inference\n📘 Domain: Sampling",
-    "back": "**Definition:** The smallest number of observations needed to perform statistically valid inference.\n\n**Description:** Depends on model complexity, effect sizes, and desired confidence levels.\n\n**influenced_by:** variance, population size, test type"
-  },
-  {
-    "front": "🧩 Sample Size for Predictive Modeling\n📘 Domain: Sampling",
-    "back": "**Definition:** The amount of data required for building predictive models that generalize well.\n\n**Description:** Larger sample sizes reduce variance and improve generalization.\n\n**depends_on:** model complexity, noise level, feature dimensionality"
-  },
-  {
-    "front": "🧩 Precision of Parameter Estimation\n📘 Domain: Statistical Inference",
-    "back": "**Definition:** The degree of certainty in estimated model parameters.\n\n**Description:** Higher sample sizes typically increase precision and reduce standard errors.\n\n**improved_by:** larger datasets"
-  },
-  {
-    "front": "🧩 Population Representativeness\n📘 Domain: Sampling",
-    "back": "**Definition:** The extent to which a sample reflects the target population.\n\n**Description:** Critical for valid generalization of study results.\n\n**risks_of_failure:** sampling bias, non-response bias"
-  },
-  {
-    "front": "🧩 Access to Data\n📘 Domain: Data Collection",
-    "back": "**Definition:** The availability of suitable and sufficient data for training and evaluating models.\n\n**Description:** Practical and ethical challenges may restrict data collection and usage.\n\n**limitations:** privacy, cost, logistics"
-  },
-  {
-    "front": "🧩 Training Set\n📘 Domain: Model Evaluation",
-    "back": "**Definition:** The subset of data used to estimate model parameters.\n\n**Description:** Forms the basis of the model's learned patterns.\n\n**purpose:** parameter estimation"
-  },
-  {
-    "front": "🧩 Test Set\n📘 Domain: Model Evaluation",
-    "back": "**Definition:** The subset of data reserved for evaluating a model's predictive performance.\n\n**Description:** Used only after model training and selection.\n\n**purpose:** generalization assessment"
-  },
-  {
-    "front": "🧩 Hold-Out Method\n📘 Domain: Model Evaluation",
-    "back": "**Definition:** A data partitioning approach where the dataset is split into training and testing subsets.\n\n**Description:** Common simple method for estimating predictive performance.\n\n**common_splits:** 80-20, 2/3-1/3"
-  },
-  {
-    "front": "🧩 Eighty-Twenty Split\n📘 Domain: Model Evaluation",
-    "back": "**Definition:** A partitioning approach where 80% of data is used for training and 20% for testing.\n\n**Description:** A common default in machine learning experiments.\n\n**ratio:** 80-20"
-  },
-  {
-    "front": "🧩 Two-Thirds One-Third Split\n📘 Domain: Model Evaluation",
-    "back": "**Definition:** A data partitioning scheme where two-thirds of the data is used for training and one-third for testing.\n\n**Description:** Alternative to the 80-20 split.\n\n**ratio:** 2/3-1/3"
-  },
-  {
-    "front": "🧩 Training-Validation-Test Split\n📘 Domain: Model Evaluation",
-    "back": "**Definition:** A three-way data split used to train, tune, and evaluate machine learning models.\n\n**Description:** Enables both hyperparameter tuning and final unbiased model evaluation.\n\n**components:** training, validation, test"
-  },
-  {
-    "front": "🧩 Participant-Wise Cross-Validation\n📘 Domain: Model Evaluation",
-    "back": "**Definition:** A cross-validation technique where data from each participant forms a separate fold.\n\n**Description:** Used when data from the same participant is highly correlated.\n\n**use_case:** sensor-based human activity recognition"
-  },
-  {
-    "front": "🧩 Leave-One-Out Validation\n📘 Domain: Model Evaluation",
-    "back": "**Definition:** A cross-validation technique where each instance is used as its own test set.\n\n**Description:** Computationally expensive but maximally uses available data.\n\n**folds:** n"
-  },
-  {
-    "front": "🧩 Temporal Dependency in Data\n📘 Domain: Time-Series Data",
-    "back": "**Definition:** The property that observations close in time are correlated rather than independent.\n\n**Description:** Invalidates random sampling and certain cross-validation methods.\n\n**causes:** sliding windows, sensor signals"
-  },
-  {
-    "front": "🧩 No Random Sampling Under Temporal Dependence\n📘 Domain: Time-Series Data",
-    "back": "**Definition:** A restriction that prevents using random train-test splits when data points are temporally correlated.\n\n**Description:** Random splits cause leakage because training and test sets contain nearly identical patterns.\n\n**effects:** data leakage, inflated accuracy"
-  },
-  {
-    "front": "🧩 Day-Based Partitioning\n📘 Domain: Time-Series Data",
-    "back": "**Definition:** A data-splitting strategy where entire days are used as units to avoid temporal leakage.\n\n**Description:** Ensures that temporally adjacent observations are not split across training and test sets.\n\n**unit:** day"
-  },
-  {
-    "front": "🧩 Temporal Leakage\n📘 Domain: Model Evaluation",
-    "back": "**Definition:** Inadvertent inclusion of temporally correlated information in both training and test sets.\n\n**Description:** Causes overestimation of model performance.\n\n**sources:** random splitting, overlapping windows"
-  },
-  {
-    "front": "🧩 Sliding Windows\n📘 Domain: Feature Extraction",
-    "back": "**Definition:** A method for extracting features from sequential data by moving a fixed-size window across time.\n\n**Description:** Used in time-series classification and signal processing.\n\n**parameters:** window size, step size"
-  },
-  {
-    "front": "🧩 Overlapping Windows\n📘 Domain: Feature Extraction",
-    "back": "**Definition:** Sliding windows that partially overlap to create highly correlated feature vectors.\n\n**Description:** Leads to temporal dependency between training instances.\n\n**effect:** induces correlation"
-  },
-  {
-    "front": "🧩 Window-Based Feature Extraction\n📘 Domain: Feature Extraction",
-    "back": "**Definition:** Feature extraction performed on short, fixed-length windows of time-series data.\n\n**Description:** Generates feature vectors for classification tasks such as activity recognition.\n\n**common_features:** mean, variance, energy"
-  },
-  {
-    "front": "🧩 Individual Models\n📘 Domain: Modeling Approaches",
-    "back": "**Definition:** Models trained on data from a single individual for personalized prediction.\n\n**Description:** Performs well on the specific individual but generalizes poorly to others.\n\n**strength:** high personalization\n**weakness:** poor population generalization"
-  },
-  {
-    "front": "🧩 Population Models\n📘 Domain: Modeling Approaches",
-    "back": "**Definition:** Models trained on data from multiple individuals to generalize across users.\n\n**Description:** More robust in diverse real-world applications.\n\n**strength:** better generalization"
-  },
-  {
-    "front": "🧩 Activity Recognition\n📘 Domain: Machine Learning Applications",
-    "back": "**Definition:** The task of identifying human activities from sensor or contextual data.\n\n**Description:** Commonly involves using wearable sensor data like accelerometers and temperature sensors.\n\n**typical_inputs:** accelerometer, gyroscope, temperature"
-  },
-  {
-    "front": "🧩 Sensor-Based Activity Detection\n📘 Domain: Machine Learning Applications",
-    "back": "**Definition:** Detecting human activities using sensor data collected from wearable or ambient devices.\n\n**Description:** Depends heavily on feature extraction and handling temporal correlations.\n\n**sensors:** accelerometers, temperature sensors"
-  },
-  {
-    "front": "🧩 Multi-Modal Feature Inputs\n📘 Domain: Feature Engineering",
-    "back": "**Definition:** Combining features from multiple sensor modalities for improved model performance.\n\n**Description:** For example, integrating accelerometer features with body temperature signals.\n\n**modalities:** accelerometer, temperature"
-  },
-  {
-    "front": "🧩 Model Complexity–Generalization Tradeoff\n📘 Domain: Model Selection",
-    "back": "**Definition:** The tradeoff in which more complex models fit training data better but often generalize worse.\n\n**Description:** Central to selecting models that balance expressiveness with robustness.\n\n**risk:** overfitting"
-  },
-  {
-    "front": "🧩 Simpler Models Generalize Better\n📘 Domain: Model Selection",
-    "back": "**Definition:** The principle that models with lower complexity often perform better on new data.\n\n**Description:** Reflects Occam's razor in predictive modeling.\n\n**benefits:** robustness, lower variance"
-  },
-  {
-    "front": "🧩 Overcomplex Models\n📘 Domain: Model Selection",
-    "back": "**Definition:** Models that are excessively flexible and overfit training data.\n\n**Description:** Characterized by small training error and large generalization error.\n\n**symptom:** large generalization gap"
-  },
-  {
-    "front": "🧩 Hyperparameter Selection\n📘 Domain: Model Selection",
-    "back": "**Definition:** The process of choosing optimal hyperparameters for a learning algorithm.\n\n**Description:** Typically done using validation sets or cross-validation.\n\n**examples:** regularization strength, learning rate, tree depth"
-  },
-  {
-    "front": "🧩 Feature Selection\n📘 Domain: Model Selection",
-    "back": "**Definition:** The process of identifying the most relevant features for a predictive model.\n\n**Description:** Reduces overfitting, improves generalization, and simplifies models.\n\n**methods:** filter methods, wrapper methods, embedded methods"
-  },
-  {
-    "front": "🧩 Data Mining\n📘 Domain: Data Science",
-    "back": "**Definition:** The process of finding previously unknown and potentially interesting patterns and relationships in large databases through statistical and algorithmic methods.\n\n**Description:** Data mining automates the extraction of knowledge from data and involves descriptive, predictive, and explanatory modeling. It simplifies and automates the statistical process from data sources to model application, supporting manual and automated methods.\n\n**Goal:** Discover patterns, relationships, and insights from large datasets.\n**Applications:** Customer segmentation, Fraud detection, Recommendation systems\n**Methods:** Classification, Clustering, Regression, Association analysis\n**Challenges:** Data quality, Scalability, Interpretability"
-  },
-  {
-    "front": "🧩 Knowledge Discovery in Databases\n📘 Domain: Data Science",
-    "back": "**Definition:** The overall process of discovering useful knowledge from data, including data selection, cleaning, transformation, mining, and interpretation.\n\n**Description:** KDD integrates data mining as a core step and emphasizes interpretation, prior knowledge, and iterative improvement. It transforms raw data into actionable knowledge through systematic analysis.\n\n**Steps:** Data selection, Data cleaning, Data transformation, Data mining, Pattern evaluation, Knowledge representation\n**Applications:** Scientific discovery, Business intelligence, Engineering analytics"
-  },
-  {
-    "front": "🧩 Data Pre-processing\n📘 Domain: Data Science",
-    "back": "**Definition:** The step of preparing raw data for mining by cleaning, transforming, integrating, and reducing it to improve quality and usability.\n\n**Description:** Data pre-processing deals with incomplete, noisy, or inconsistent data, improving accuracy and ensuring that models are built correctly. It converts raw data into suitable forms for mining and analysis.\n\n**Tasks:** Data cleaning, Data integration, Data transformation, Data reduction, Data discretization\n**Benefits:** Improved data quality, Reduced noise, Higher model accuracy\n**Problems addressed:** Missing values, Outliers, Inconsistencies, Bias"
-  },
-  {
-    "front": "🧩 Data Quality\n📘 Domain: Data Management",
-    "back": "**Definition:** A measure of the condition of data based on factors such as accuracy, completeness, reliability, and relevance.\n\n**Description:** High-quality data ensures valid and actionable analysis. Characteristics include accuracy, precision, completeness, timeliness, consistency, and reliability.\n\n**Characteristics:** Accuracy and precision, Completeness, Availability and accessibility, Timeliness and relevance, Granularity, Reliability and consistency\n**Risks:** Inaccurate models, Faulty decision-making, Unreliable analytics"
-  },
-  {
-    "front": "🧩 Data Cleaning\n📘 Domain: Data Science",
-    "back": "**Definition:** The process of detecting and correcting inaccurate or corrupt data to improve data quality.\n\n**Description:** Data cleaning involves handling missing values, removing noise, identifying outliers, and correcting inconsistencies using statistical or algorithmic methods.\n\n**Methods:** Imputation, Binning, Clustering-based outlier removal, Regression smoothing\n**Goals:** Ensure data accuracy, Reduce noise, Improve model performance"
-  },
-  {
-    "front": "🧩 Big Data\n📘 Domain: Data Science",
-    "back": "**Definition:** Extremely large data sets that can be analyzed computationally to reveal patterns, trends, and associations, especially relating to human behavior and interactions.\n\n**Description:** Big Data is characterized by the 5Vs: Volume, Velocity, Variety, Veracity, and Value. It requires specialized tools and techniques for storage, processing, and analysis.\n\n**Characteristics:** Volume, Velocity, Variety, Veracity, Value\n**Challenges:** Scalability, Quality assurance, Privacy"
-  },
-  {
-    "front": "🧩 Data Literacy\n📘 Domain: Education",
-    "back": "**Definition:** The ability to read, understand, create, and communicate data as information.\n\n**Description:** Data literacy enables individuals and organizations to use data effectively, supporting evidence-based decision making and fostering a data-driven culture.\n\n**Components:** Reading and interpreting data, Communicating insights, Applying statistical reasoning, Understanding data ethics\n**Relevance:** Data science, Business analytics, Policy making"
-  },
-  {
-    "front": "🧩 Data Transformation\n📘 Domain: Data Science",
-    "back": "**Definition:** The process of converting data into a suitable format for analysis or mining.\n\n**Description:** Transformation includes normalization, aggregation, generalization, and feature extraction, making the data compatible with mining algorithms.\n\n**Techniques:** Normalization, Standardization, Feature extraction, Aggregation\n**Goals:** Ensure consistency, Enhance interpretability, Prepare for modeling"
-  },
-  {
-    "front": "🧩 Data Reduction\n📘 Domain: Data Science",
-    "back": "**Definition:** The process of reducing the volume of data while maintaining its analytical value.\n\n**Description:** Data reduction techniques simplify data without losing critical information, enabling efficient analysis and storage.\n\n**Methods:** Sampling, Aggregation, Principal Component Analysis, Clustering\n**Purpose:** Reduce computational cost, Improve scalability\n**Techniques:** Attribute reduction (feature selection), Data aggregation and generalization, Variable construction, Numerosity reduction, Principal Component Analysis (PCA), Discrete Wavelet Transform (DWT)\n**Goals:** Efficiency, Simplicity, Improved interpretability"
-  },
-  {
-    "front": "🧩 Normalization\n📘 Domain: Data Pre-processing",
-    "back": "**Definition:** The process of adjusting values measured on different scales to a notionally common scale without distorting differences in the ranges of values.\n\n**Description:** Normalization helps learning algorithms converge faster and ensures that attributes with large numerical ranges do not dominate those with smaller ranges. It is a core data preprocessing step required by many distance-based or gradient-based learning models.\n\n**Reasons:** Improves model convergence and training stability, Prevents attributes with large ranges from dominating smaller ones, Required for certain algorithms (e.g., neural networks, k-NN, PCA)\n**Considerations:** Store scaling parameters for later use (e.g., for inference data), Choose normalization technique based on variable characteristics"
-  },
-  {
-    "front": "🧩 Min-Max Normalization\n📘 Domain: Data Pre-processing",
-    "back": "**Definition:** A normalization method that scales data to a fixed range, typically [0, 1], based on the minimum and maximum values of each variable.\n\n**Description:** This linear transformation maps the minimum value to 0 and the maximum to 1 (or another defined interval [a, b]). It preserves relationships between data points but is sensitive to outliers.\n\n**Formula:** v' = (v - v_min) / (v_max - v_min)\n**Range:** [0, 1] or [a, b]\n**Advantages:** Simple to compute, Preserves shape of distribution\n**Disadvantages:** Sensitive to outliers"
-  },
-  {
-    "front": "🧩 Z-score Standardization\n📘 Domain: Data Pre-processing",
-    "back": "**Definition:** A normalization technique that rescales data to have a mean of 0 and a standard deviation of 1.\n\n**Description:** Z-score standardization centers data by removing the mean and scales it by dividing by the standard deviation. It is especially useful when min and max values are unknown or when data contains outliers.\n\n**Formula:** v' = (v - mean(v)) / sd(v)\n**Advantages:** Handles outliers better than min-max scaling, Useful when ranges are unknown\n**Use Cases:** Regression, PCA, Outlier detection under Gaussian assumption"
-  },
-  {
-    "front": "🧩 Decimal Scaling\n📘 Domain: Data Pre-processing",
-    "back": "**Definition:** A normalization method that scales data by moving the decimal point of values based on the maximum absolute value of the variable.\n\n**Description:** Decimal scaling divides each value by a power of 10 such that all transformed values fall within the range [-1, 1]. The power is determined by the largest absolute value in the dataset.\n\n**Formula:** v' = v / 10^j where j = smallest integer such that max(|v'|) < 1\n**Advantages:** Simple to compute, Effective when values vary by powers of ten\n**Disadvantages:** Less flexible for distributions with small variance"
-  },
-  {
-    "front": "🧩 Discretization\n📘 Domain: Data Transformation",
-    "back": "**Definition:** The process of converting continuous variables into categorical ones by dividing their range into intervals or groups.\n\n**Description:** Discretization is used when models or analyses require categorical data, or when researchers want to study group-level differences instead of individual variations. However, it often reduces information and statistical power.\n\n**Methods:** Median split, Equal width binning, Equal frequency binning, Domain-based grouping\n**Advantages:** Simplifies analysis, Enables categorical modeling\n**Disadvantages:** Loss of information, Reduced precision, Incompatibility across studies due to arbitrary cutoffs"
-  },
-  {
-    "front": "🧩 Dummy Coding\n📘 Domain: Data Transformation",
-    "back": "**Definition:** A method for encoding categorical variables as binary numeric features for use in regression and machine learning models.\n\n**Description:** Dummy coding represents K categories with K-1 binary variables. It allows categorical data to be incorporated into models that require numerical inputs.\n\n**Example:** {'Variable': ['Red', 'Blue', 'Green', 'Yellow'], 'Encoded': ['Dummy_Red', 'Dummy_Blue', 'Dummy_Green']}\n**Advantages:** Enables inclusion of categorical variables in regression models\n**Limitations:** Increases dimensionality, Risk of multicollinearity if not handled properly"
-  },
-  {
-    "front": "🧩 Principal Component Analysis (PCA)\n📘 Domain: Dimensionality Reduction",
-    "back": "**Definition:** A statistical technique that transforms correlated variables into a smaller number of uncorrelated variables called principal components.\n\n**Description:** PCA reduces the dimensionality of data by finding orthogonal directions that capture the most variance. It is commonly used for visualization, compression, and to handle multicollinearity.\n\n**Steps:** Compute covariance matrix, Find eigenvalues and eigenvectors, Project data onto principal components\n**Advantages:** Removes multicollinearity, Improves computation efficiency\n**Limitations:** Loss of interpretability, Assumes linearity"
-  },
-  {
-    "front": "🧩 Discrete Wavelet Transform (DWT)\n📘 Domain: Signal Processing",
-    "back": "**Definition:** A linear signal processing technique used to decompose data into different frequency components and analyze each component with a resolution matched to its scale.\n\n**Description:** DWT is effective for dimensionality reduction in high-dimensional data, especially when the number of variables exceeds the number of samples. It preserves both frequency and location information, unlike Fourier transform.\n\n**Applications:** Image compression, Feature extraction, Time-series analysis\n**Advantages:** Handles non-stationary data, Reduces dimensionality efficiently"
-  },
-  {
-    "front": "🧩 Box-Cox Transformation\n📘 Domain: Statistical Transformation",
-    "back": "**Definition:** A family of power transformations that aim to stabilize variance and make data more normally distributed.\n\n**Description:** Box-Cox transformation improves normality assumptions for statistical models. It only applies to positive data but can handle skewed distributions effectively.\n\n**Formula:** T(Y) = (Y^λ - 1) / λ for λ ≠ 0; T(Y) = ln(Y) for λ = 0\n**Limitations:** Only works with positive values, No guarantee of perfect normality"
-  },
-  {
-    "front": "🧩 Scaling to Arbitrary Range\n📘 Domain: Data Transformation",
-    "back": "**Definition:** A normalization technique that linearly maps values to any target interval [a, b].\n\n**Description:** Generalization of min–max normalization where the target range is not limited to [0, 1], enabling flexible rescaling.\n\n**formula:** x' = (x - min) / (max - min) * (b - a) + a\n**requirements:** known min, known max"
-  },
-  {
-    "front": "🧩 Storing Normalization Parameters\n📘 Domain: Data Transformation",
-    "back": "**Definition:** The practice of saving transformation parameters such as means, standard deviations, and min–max values for use in future data preprocessing.\n\n**Description:** Essential to avoid data leakage and ensure consistent scaling between training and test sets.\n\n**parameters:** mean, standard deviation, min, max\n**purpose:** reproducibility, consistency"
-  },
-  {
-    "front": "🧩 Extreme Z-Score Threshold Rule\n📘 Domain: Outlier Detection",
-    "back": "**Definition:** A method for identifying extreme values using high absolute Z-score cutoffs, typically 6–7, instead of the conventional 3.\n\n**Description:** Used to avoid misclassifying valid but rare signals as outliers, particularly in highly variable datasets.\n\n**thresholds:** |z| > 6, |z| > 7\n**purpose:** avoid over-removal of valid extreme values"
-  },
-  {
-    "front": "🧩 Measurement Error Visualization\n📘 Domain: Data Quality",
-    "back": "**Definition:** Visualization techniques used to detect measurement errors through plots and distribution analysis.\n\n**Description:** Includes visual detection of extreme Z-scores, artifacts, or sudden jumps in sensor data.\n\n**tools:** histograms, box plots, time-series plots"
-  },
-  {
-    "front": "🧩 Median Split\n📘 Domain: Discretization",
-    "back": "**Definition:** A discretization method that divides a continuous variable into two groups using the median value as the threshold.\n\n**Description:** Commonly used for creating binary categories but may lead to information loss.\n\n**output:** two categories\n**risk:** loss of variance, misclassification"
-  },
-  {
-    "front": "🧩 Distinctive Grouping\n📘 Domain: Discretization",
-    "back": "**Definition:** A discretization method that forms groups based on meaningful or domain-specific distinctions rather than uniform intervals.\n\n**Description:** Useful when natural categories exist, such as age groups or educational stages.\n\n**basis:** domain knowledge, semantic categories"
-  },
-  {
-    "front": "🧩 Equal-Length Binning\n📘 Domain: Discretization",
-    "back": "**Definition:** A discretization method dividing the range of a variable into intervals of equal width.\n\n**Description:** Bin boundaries are uniformly spaced, which may result in uneven sample counts per bin in skewed distributions.\n\n**bin_type:** fixed-width\n**risks:** unbalanced bins"
-  },
-  {
-    "front": "🧩 Equal-Size Binning\n📘 Domain: Discretization",
-    "back": "**Definition:** A discretization method dividing data into bins containing approximately equal numbers of observations.\n\n**Description:** Also known as equal-frequency binning; adjusts bin boundaries based on data distribution.\n\n**bin_type:** equal-frequency\n**risks:** variable bin widths"
-  },
-  {
-    "front": "🧩 Natural Cut Points\n📘 Domain: Discretization",
-    "back": "**Definition:** A discretization approach that chooses cut points based on evident gaps or changes in the data distribution.\n\n**Description:** Often identified visually or via distribution-based heuristics.\n\n**identification:** visual inspection, distribution jumps"
-  },
-  {
-    "front": "🧩 Concept Hierarchies\n📘 Domain: Discretization",
-    "back": "**Definition:** Hierarchical structures that represent data from low-level granular categories to increasingly general abstractions.\n\n**Description:** Used for discretization and data generalization, enabling multi-level analysis.\n\n**levels:** fine-grained, intermediate, coarse"
-  },
-  {
-    "front": "🧩 Dichotomization\n📘 Domain: Discretization",
-    "back": "**Definition:** A method that converts a continuous variable into two groups based on a threshold.\n\n**Description:** Simplifies analysis but leads to substantial information loss.\n\n**risks:** information loss, increased misclassification"
-  },
-  {
-    "front": "🧩 Problems of Discretization\n📘 Domain: Discretization",
-    "back": "**Definition:** The set of issues created when transforming continuous variables into discrete categories.\n\n**Description:** Includes information loss, artificial boundaries, and increased risk of misclassification.\n\n**effects:** reduced statistical power, loss of granularity"
-  },
-  {
-    "front": "🧩 Information Loss Through Dichotomization\n📘 Domain: Discretization",
-    "back": "**Definition:** The reduction of statistical information caused by collapsing continuous variables into binary categories.\n\n**Description:** Leads to loss of variability and weaker associations.\n\n**causes:** thresholding, binary splitting"
-  },
-  {
-    "front": "🧩 Misclassification Risk at Cut Points\n📘 Domain: Discretization",
-    "back": "**Definition:** The risk of mislabeling cases that fall near bin boundaries when discretizing continuous variables.\n\n**Description:** Boundary decisions may not reflect underlying data continuity.\n\n**causes:** abrupt thresholds\n**effects:** noisy categorical labels"
-  },
-  {
-    "front": "🧩 Factor Variables\n📘 Domain: Categorical Data",
-    "back": "**Definition:** Variables that represent categories encoded as discrete levels rather than numeric values.\n\n**Description:** Used in statistical modeling to encode nominal or ordinal categories.\n\n**levels:** categorical labels"
-  },
-  {
-    "front": "🧩 Frequency Tables\n📘 Domain: Categorical Data",
-    "back": "**Definition:** Tabular summaries of categorical variables showing counts per category.\n\n**Description:** Useful for summarizing distributions of factor variables.\n\n**outputs:** counts, proportions"
-  },
-  {
-    "front": "🧩 Correspondence Tests\n📘 Domain: Categorical Data",
-    "back": "**Definition:** Statistical tests evaluating the association between two categorical variables.\n\n**Description:** Includes chi-square–type methods applicable to contingency tables.\n\n**inputs:** contingency table"
-  },
-  {
-    "front": "🧩 Categorical vs Continuous Visualization\n📘 Domain: Categorical Data",
-    "back": "**Definition:** Visualization techniques that compare categorical groups against continuous measurements.\n\n**Description:** Examples include grouped boxplots for continuous outcomes across category levels.\n\n**tools:** boxplots, violin plots"
-  },
-  {
-    "front": "🧩 Data Aggregation\n📘 Domain: Data Reduction",
-    "back": "**Definition:** A data reduction method that summarizes groups of data points into aggregate values.\n\n**Description:** Common aggregates include mean, sum, and group-level statistics.\n\n**aggregates:** mean, sum, count"
-  },
-  {
-    "front": "🧩 Data Generalization\n📘 Domain: Data Reduction",
-    "back": "**Definition:** A reduction method where data is replaced by more general forms using hierarchical abstraction.\n\n**Description:** Often implemented using concept hierarchies to reduce granularity.\n\n**approach:** hierarchical abstraction"
-  },
-  {
-    "front": "🧩 Variable Construction\n📘 Domain: Data Reduction",
-    "back": "**Definition:** Constructing new variables from existing ones to improve predictive performance or simplify data representation.\n\n**Description:** Includes building composite indicators or derived attributes.\n\n**examples:** interaction terms, index scores"
-  },
-  {
-    "front": "🧩 Nonparametric Data Reduction Methods\n📘 Domain: Data Reduction",
-    "back": "**Definition:** Reduction methods that do not assume specific parametric forms and rely on data-driven transformations.\n\n**Description:** Useful when normality or linearity assumptions do not hold.\n\n**examples:** binning, wavelet transforms"
-  },
-  {
-    "front": "🧩 Transformation to Normality\n📘 Domain: Data Transformation",
-    "back": "**Definition:** Techniques aimed at making a variable's distribution more Gaussian.\n\n**Description:** Used to satisfy model assumptions; includes Box–Cox and other power transformations.\n\n**goal:** approximate normality"
-  },
-  {
-    "front": "🧩 Normality Tests\n📘 Domain: Statistical Diagnostics",
-    "back": "**Definition:** Statistical methods used to evaluate whether data follow a normal distribution.\n\n**Description:** Although not named explicitly, includes families of tests such as Shapiro–Wilk and KS tests.\n\n**outputs:** p-value, decision on normality"
-  },
-  {
-    "front": "🧩 Solutions for Non-Normality\n📘 Domain: Statistical Diagnostics",
-    "back": "**Definition:** Approaches to address non-normal data, including transformations or use of nonparametric models.\n\n**Description:** Ensures suitability of statistical models when assumptions fail.\n\n**strategies:** transform variables, apply nonparametric models"
+    "front": "🧩 Square Matrix A\n📘 Domain: Linear Algebra",
+    "back": "**Definition:** A square matrix A ∈ ℂ^{n×n} is a matrix with equal rows and columns, central to linear transformations and eigenvalue problems.\n\n**Description:** In factoring contexts, A is decomposed using subspaces, projections, or iterations for computational efficiency.\n\n**Goal:** Represent linear operators on finite-dimensional spaces.\n**Applications:** Systems of equations, Transformations, Spectral analysis\n**Methods:** Factorization, Iteration, Diagonalization\n**Examples:** A with complex entries"
   }
 ]
