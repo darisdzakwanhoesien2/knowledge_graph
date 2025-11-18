@@ -1,0 +1,218 @@
+[
+  {
+    "entity": "Circulant Matrix",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A structured matrix where each row is a cyclic shift of the previous row.",
+    "description": "Circulant matrices are diagonalizable by the discrete Fourier transform (DFT), making them computationally efficient for convolution, filtering, and spectral analysis. Fast multiplication using FFT leads to O(n log n) operations.",
+    "properties": {
+      "Goal": "Exploit cyclic structure for fast computations.",
+      "Applications": ["Signal processing", "Fast convolution", "Spectral graph theory"],
+      "Methods": ["DFT diagonalization", "FFT-based multiplication"],
+      "Examples": ["Toeplitz-circulant approximation", "Convolution as circulant matrix-vector product"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Discrete Fourier Transform (DFT)"},
+      {"type": "related_to", "target": "Fast Fourier Transform (FFT)"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_fft.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Complete Pivoting",
+    "type": "Algorithm",
+    "domain": "Numerical Linear Algebra",
+    "definition": "A pivoting strategy for Gaussian elimination where the largest element in the remaining submatrix is chosen as the pivot.",
+    "description": "Complete pivoting reduces numerical instability by selecting globally maximal pivots. Although more stable than partial pivoting, it is computationally more expensive and therefore rarely used in large-scale problems.",
+    "properties": {
+      "Goal": "Improve numerical stability of Gaussian elimination.",
+      "Applications": ["Gaussian elimination", "LU factorization"],
+      "Methods": ["Global pivot search", "Row and column permutations"],
+      "Examples": ["Used when numerical precision is critical in small matrices"]
+    },
+    "relations": [
+      {"type": "variant_of", "target": "LU Factorization with Partial Pivoting"},
+      {"type": "related_to", "target": "Growth Factor"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_gaussian_elimination.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Congruence Transformation",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A transformation of the form A ↦ PᵀAP where P is nonsingular, often used to analyze symmetric matrices.",
+    "description": "Congruence transformations preserve definiteness properties of matrices. They are commonly used in quadratic forms, inertia theory, and Lyapunov stability analysis.",
+    "properties": {
+      "Goal": "Preserve quadratic form properties while transforming matrices.",
+      "Applications": ["Quadratic forms", "Lyapunov equations", "Symmetric matrix analysis"],
+      "Methods": ["Matrix decomposition", "Equivalence transformations"],
+      "Examples": ["Sylvester’s law of inertia"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Positive Definite Matrix"},
+      {"type": "related_to", "target": "Lyapunov Equation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_matrix_theory.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Control Synthesis",
+    "type": "Concept",
+    "domain": "Control Theory",
+    "definition": "The process of designing controllers that achieve desired system performance using mathematical models.",
+    "description": "Control synthesis includes optimal control, state feedback, LQR design, and H∞ control. Many linear algebraic problems such as Lyapunov and Riccati equations appear in control synthesis.",
+    "properties": {
+      "Goal": "Design controllers that stabilize and optimize dynamic systems.",
+      "Applications": ["Robotics", "Aerospace", "Feedback systems"],
+      "Methods": ["State-space design", "Linear algebraic equations", "Optimization"],
+      "Examples": ["LQR controller synthesis", "Pole placement"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Lyapunov Equation"},
+      {"type": "related_to", "target": "Matrix Pencil"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_control.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Direct Sum",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A decomposition V = U ⊕ W where every vector in V has a unique representation as u + w with u ∈ U and w ∈ W.",
+    "description": "Direct sum decompositions are fundamental in structure theory, invariant subspaces, and block matrix representations. They provide a clean separation of components across orthogonal or complementary subspaces.",
+    "properties": {
+      "Goal": "Split a vector space into independent, non-overlapping components.",
+      "Applications": ["Invariant subspaces", "Block diagonalization", "Decomposing matrix subspaces"],
+      "Methods": ["Projection operators", "Complementary subspaces"],
+      "Examples": ["V = span(e1) ⊕ span(e2,e3)"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Orthogonal Complement"},
+      {"type": "related_to", "target": "Matrix Subspace"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_subspaces.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": ["Direct Sum Decomposition"]
+    }
+  },
+  {
+    "entity": "Domain Decomposition",
+    "type": "Algorithm",
+    "domain": "Numerical PDEs / Scientific Computing",
+    "definition": "A method for solving PDEs by dividing the computational domain into smaller subdomains and solving local problems.",
+    "description": "Domain decomposition improves parallelism, reduces communication, and allows localized problem-solving. It forms the basis for Schwarz methods, additive and multiplicative preconditioners.",
+    "properties": {
+      "Goal": "Solve large PDE systems efficiently using parallel local solves.",
+      "Applications": ["Elliptic PDEs", "Finite element methods", "Parallel solvers"],
+      "Methods": ["Schwarz iteration", "Overlapping and non-overlapping decompositions"],
+      "Examples": ["Additive Schwarz method"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Elliptic PDE"},
+      {"type": "used_in", "target": "Preconditioning"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_domain_decomposition.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Elliptic PDE",
+    "type": "Concept",
+    "domain": "Partial Differential Equations",
+    "definition": "A class of PDEs characterized by positive-definite differential operators, often requiring solution of large sparse systems.",
+    "description": "Elliptic PDEs frequently arise in steady-state physical systems. Their discretizations lead to SPD linear systems that are ideal for conjugate gradients and multigrid solvers.",
+    "properties": {
+      "Goal": "Model steady-state physical processes such as diffusion, elasticity, and electrostatics.",
+      "Applications": ["Finite element analysis", "Heat conduction", "Electrostatics"],
+      "Methods": ["Discretization", "Iterative solvers"],
+      "Examples": ["Poisson equation: −Δu = f"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Conjugate Gradient Method"},
+      {"type": "related_to", "target": "Symmetric Positive Definite Matrices"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_pdes.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Eigenvalue Decomposition",
+    "type": "Concept",
+    "domain": "Spectral Theory",
+    "definition": "A decomposition A = VΛV⁻¹ where Λ is diagonal and V contains eigenvectors of A.",
+    "description": "Eigenvalue decomposition exists for diagonalizable matrices and plays a central role in spectral analysis, diagonalization, and understanding matrix dynamics.",
+    "properties": {
+      "Goal": "Represent a matrix in terms of its eigenvalues and eigenvectors.",
+      "Applications": ["Diagonalization", "Matrix functions", "Stability analysis"],
+      "Methods": ["Similarity transformation"],
+      "Examples": ["A diagonalizable matrix with distinct eigenvalues"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Eigenvalue Problem"},
+      {"type": "subtype_of", "target": "Spectral Decomposition"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_spectral_theory.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Exponential Integrators",
+    "type": "Algorithm",
+    "domain": "Numerical Differential Equations",
+    "definition": "A class of time-stepping methods that use the matrix exponential to solve stiff differential equations.",
+    "description": "By explicitly integrating the linear part of the system, exponential integrators reduce stiffness and enable stable large time steps. They use matrix exponential actions such as exp(A)v.",
+    "properties": {
+      "Goal": "Solve stiff ODEs efficiently with large stable time steps.",
+      "Applications": ["Stiff ODEs", "Schrödinger equation", "Fluid dynamics"],
+      "Methods": ["Krylov subspace exponential actions", "φ-functions"],
+      "Examples": ["Exponential Euler method", "ETD Runge–Kutta"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Matrix Function"},
+      {"type": "related_to", "target": "Krylov Subspace Methods"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_exponential_integrators.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  }
+]

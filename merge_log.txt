@@ -89,3 +89,23 @@ Merged Eigenvalue Problems → Eigenvalue Problem
 Merged Eigenvalue → Eigenvalue Problem
 Merged Dot Product → Inner Product
 Merged Discrete Fourier Transform → Discrete Fourier Transform (DFT)
+Merged PCG → Preconditioned Conjugate Gradient
+Merged Positive Definite A (for principal) → Positive Definite Matrix
+Merged Positive Definiteness → Positive Definite Matrix
+Merged Preconditioner → Preconditioning
+Merged Preconditioning (clustering eigenvalues) → Preconditioning
+Merged Range R(P) → Range of Projection
+Merged SPD Matrices → Positive Definite Matrix
+Merged Schur Decomposition → Schur Triangulation
+Merged Schur Form → Schur Triangulation
+Merged Approximate Inverse → Sparse Approximate Inverse
+Merged A⁻¹ → Inv(V)
+Merged Conjugate Gradient → Conjugate Gradient Method
+Merged Direct Factorization → Matrix Factorization
+Merged Standard Eigenvalue Problem → Eigenvalue Problem
+Merged Matrix Factoring → Matrix Factorization
+Merged Matrix Functions → Matrix Function
+Merged sqrt(A) → Matrix Square Root
+Merged Newton's Iteration → Newton's Iteration for Square Root
+Merged Norm → Operator Norm
+Merged M^{-1} A x = M^{-1} b → Preconditioning

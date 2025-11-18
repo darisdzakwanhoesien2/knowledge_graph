@@ -1,0 +1,122 @@
+[
+  {
+    "entity": "A - μ I",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A shifted matrix operator formed by subtracting a scalar multiple of the identity matrix from A.",
+    "description": "The matrix A - μI is central to spectral shift techniques, inverse iteration, Rayleigh Quotient Iteration, and many eigenvalue algorithms. Shifting by μ changes the eigenvalues to λ_i - μ, allowing selective amplification of eigen-components.",
+    "properties": {
+      "Goal": "Shift the spectrum of A so selected eigenvalues become easier to isolate or invert.",
+      "Applications": ["Inverse Iteration", "Rayleigh Quotient Iteration", "Spectral Shift", "Shift-Invert Methods"],
+      "Methods": ["Shift-and-invert transformation", "Spectral manipulation"],
+      "Examples": ["(A - λ_min I) is used to emphasize smallest eigenvalues"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Spectral Shift"},
+      {"type": "used_in", "target": "Inverse Iteration"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_spectral_methods.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": ["Shifted Matrix", "A minus mu I"]
+    }
+  },
+  {
+    "entity": "Backward Stability",
+    "type": "Concept",
+    "domain": "Numerical Analysis",
+    "definition": "A property of an algorithm where the computed solution is the exact solution to a slightly perturbed input problem.",
+    "description": "Backward stability ensures that numerical errors arise only from small perturbations in the input, making the algorithm robust. LU with partial pivoting, QR factorization, and SVD-based algorithms are typical examples.",
+    "properties": {
+      "Goal": "Guarantee high numerical reliability even under rounding error.",
+      "Applications": ["Linear system solving", "Eigenvalue computations", "Least squares"],
+      "Methods": ["Perturbation analysis", "Stability theory"],
+      "Examples": ["LU with partial pivoting is backward stable for many matrices"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Growth Factor"},
+      {"type": "related_to", "target": "Gaussian Elimination"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_backward_stability.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Brauer Cassini Ovals",
+    "type": "Concept",
+    "domain": "Spectral Theory",
+    "definition": "A set of regions in the complex plane providing eigenvalue inclusion bounds based on a partition of the matrix.",
+    "description": "Brauer’s theorem partitions the matrix into blocks and constructs Cassini ovals that enclose all eigenvalues. They generalize Gershgorin’s disks and often produce tighter bounds.",
+    "properties": {
+      "Goal": "Provide eigenvalue inclusion regions sharper than Gershgorin circles.",
+      "Applications": ["Eigenvalue estimation", "Spectral bounds", "Iterative method convergence analysis"],
+      "Methods": ["Block partitioning", "Cassini oval construction"],
+      "Examples": ["Used to bound eigenvalues of non-normal matrices"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Gershgorin Circle Theorem"},
+      {"type": "generalization_of", "target": "Gershgorin Circle Theorem"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_spectral_inclusion.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Cauchy Integral Formula",
+    "type": "Concept",
+    "domain": "Complex Analysis / Matrix Functions",
+    "definition": "A contour integral formula that represents analytic functions inside a closed curve using boundary values.",
+    "description": "In matrix computations, the Cauchy integral formula is used to define analytic matrix functions such as f(A). It allows representing functions of matrices using contour integrals around the spectrum.",
+    "properties": {
+      "Goal": "Define analytic functions of matrices using contour integration.",
+      "Applications": ["Matrix exponential", "Matrix sign function", "Matrix square root"],
+      "Methods": ["Contour integration", "Residue calculus"],
+      "Examples": ["f(A) = (1/(2πi)) ∮ f(z)(zI - A)⁻¹ dz"]
+    },
+    "relations": [
+      {"type": "foundation_for", "target": "Matrix Function"},
+      {"type": "related_to", "target": "Spectrum Λ(A)"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_matrix_functions.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Chebyshev Polynomials",
+    "type": "Concept",
+    "domain": "Approximation Theory",
+    "definition": "A family of orthogonal polynomials minimizing the maximum error over [-1,1].",
+    "description": "Chebyshev polynomials play a key role in iterative methods, eigenvalue solvers, spectral methods, and approximation theory. They provide optimal polynomial approximants and reduce oscillations.",
+    "properties": {
+      "Goal": "Achieve near-minimax polynomial approximation.",
+      "Applications": ["Polynomial approximation", "Iterative methods acceleration", "Spectral discretization"],
+      "Methods": ["Orthogonal polynomials", "Clenshaw recurrence"],
+      "Examples": ["Chebyshev semi-iterative method"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Polynomial Approximation"},
+      {"type": "used_in", "target": "Iterative Methods"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_approximation.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  }
+]

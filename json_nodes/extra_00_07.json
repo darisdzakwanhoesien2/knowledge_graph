@@ -1,0 +1,337 @@
+[
+  {
+    "entity": "Sylvester Equation Solution",
+    "type": "Algorithm",
+    "domain": "Matrix Equations",
+    "definition": "The process of solving the matrix equation AX + XB = C for X, typically when spectra of A and B do not overlap.",
+    "description": "Sylvester equation solvers rely on Schur decompositions and Bartels–Stewart algorithms. They play a central role in control theory, Lyapunov equations, and model reduction.",
+    "properties": {
+      "Goal": "Compute X efficiently when AX + XB = C.",
+      "Applications": ["Control theory", "Lyapunov equations", "Model reduction"],
+      "Methods": ["Bartels–Stewart algorithm", "Schur decomposition"],
+      "Examples": ["Solving AX + XB = Q for stability analysis"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Sylvester Equation"},
+      {"type": "used_in", "target": "Lyapunov Equation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_matrix_equations.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Symmetric Matrix",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A real matrix satisfying Aᵀ = A.",
+    "description": "Symmetric matrices enjoy real eigenvalues, orthogonal diagonalization, and strong numerical stability. They form the real counterpart of Hermitian matrices.",
+    "properties": {
+      "Goal": "Represent self-adjoint real operators.",
+      "Applications": ["Optimization", "Eigenvalue problems", "PDE discretizations"],
+      "Methods": ["Orthogonal diagonalization"],
+      "Examples": ["Graph Laplacian matrices"]
+    },
+    "relations": [
+      {"type": "generalization_of", "target": "Symmetric Positive Definite Matrices"},
+      {"type": "related_to", "target": "Hermitian Matrix"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_linear_algebra.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": ["Symmetric Matrix (real case)"]
+    }
+  },
+  {
+    "entity": "Symmetric Positive Definite Matrices",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "Real symmetric matrices A for which xᵀAx > 0 for all nonzero x.",
+    "description": "SPD matrices arise in PDEs, covariance analysis, optimization, and CG methods. They guarantee unique Cholesky factorizations and fast iterative convergence.",
+    "properties": {
+      "Goal": "Characterize strictly positive curvature of quadratic forms.",
+      "Applications": ["Conjugate Gradient", "Cholesky factorization", "Machine learning"],
+      "Methods": ["Eigenvalue analysis", "Quadratic forms"],
+      "Examples": ["Graph Laplacian + εI"]
+    },
+    "relations": [
+      {"type": "subtype_of", "target": "Symmetric Matrix"},
+      {"type": "related_to", "target": "Conjugate Gradient Method"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_spd.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Triangular Matrices",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "Matrices that are either upper or lower triangular.",
+    "description": "Triangular matrices form the basis of LU factorization and back/forward substitution. They preserve structure in matrix decompositions and support fast algorithms.",
+    "properties": {
+      "Goal": "Define structured matrices enabling efficient solving.",
+      "Applications": ["LU factorization", "QR reduction", "Matrix decomposition"],
+      "Methods": ["Back substitution", "Forward substitution"],
+      "Examples": ["Upper and lower triangular matrices"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Lower Triangular Matrix"},
+      {"type": "related_to", "target": "Upper Triangular Matrix"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_matrix_structure.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Triangular Solves",
+    "type": "Algorithm",
+    "domain": "Numerical Linear Algebra",
+    "definition": "Algorithms that solve triangular linear systems via forward or backward substitution.",
+    "description": "Triangular solves are low-cost O(n²) operations widely used inside LU, QR, Cholesky, and Krylov methods. They involve recursive elimination without pivoting.",
+    "properties": {
+      "Goal": "Solve triangular systems efficiently.",
+      "Applications": ["LU solve", "QR solve", "Block triangular systems"],
+      "Methods": ["Forward substitution", "Backward substitution"],
+      "Examples": ["Solving Lx = b in O(n²) time"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "LU Factorization"},
+      {"type": "related_to", "target": "Triangular Matrices"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_triangular_solves.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": ["Triangular Solves"]
+    }
+  },
+  {
+    "entity": "Tridiagonal Matrix",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A matrix whose nonzero entries lie on the main diagonal and the two adjacent diagonals.",
+    "description": "Tridiagonal matrices arise in 1D PDE discretizations, eigenvalue algorithms, and Lanczos methods. They enable fast O(n) algorithms for solving linear systems.",
+    "properties": {
+      "Goal": "Represent sparse structured operators with minimal bandwidth.",
+      "Applications": ["Lanczos algorithm", "Thomas algorithm", "Finite differences"],
+      "Methods": ["Specialized LU", "Orthogonal reduction"],
+      "Examples": ["1D Poisson matrix"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "Lanczos Algorithm"},
+      {"type": "related_to", "target": "SPD Matrices"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_tridiagonal.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": ["Tridiagonal Matrix (symmetric case)"]
+    }
+  },
+  {
+    "entity": "Unitary Similarity",
+    "type": "Concept",
+    "domain": "Linear Algebra / Spectral Theory",
+    "definition": "A similarity transformation of the form A → U*AU where U is unitary.",
+    "description": "Unitary similarity preserves norms, eigenvalues, and stability, making it essential in Schur decomposition, unitarily diagonalizable matrices, and spectral algorithms.",
+    "properties": {
+      "Goal": "Transform matrices while preserving numerical stability and eigenvalues.",
+      "Applications": ["Schur decomposition", "Matrix diagonalization"],
+      "Methods": ["Unitary transformations"],
+      "Examples": ["Hessenberg reduction via unitary similarity"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Unitary Matrix"},
+      {"type": "related_to", "target": "Schur Triangulation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_unitary.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Unitary Transformation",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A transformation represented by a unitary matrix U such that U*U = I.",
+    "description": "Unitary transformations preserve norms, orthogonality, and conditioning. They are essential for stable QR factorization, Hessenberg reduction, and SVD.",
+    "properties": {
+      "Goal": "Apply stable norm-preserving transformations.",
+      "Applications": ["QR factorization", "Eigenvalue methods", "Matrix reductions"],
+      "Methods": ["Givens rotations", "Householder reflections"],
+      "Examples": ["Q in QR decomposition"]
+    },
+    "relations": [
+      {"type": "generalization_of", "target": "Givens Rotation"},
+      {"type": "generalization_of", "target": "Householder Reflection"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_orthogonal_transformations.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Upper Triangular Factor",
+    "type": "Concept",
+    "domain": "Numerical Linear Algebra",
+    "definition": "The U matrix in LU decomposition, where all entries below the diagonal are zero.",
+    "description": "The upper triangular factor U stores the result of Gaussian elimination. It is used in backward substitution and forms half of the LU factorization.",
+    "properties": {
+      "Goal": "Store eliminated system structure for solving Ax = b.",
+      "Applications": ["LU factorization", "Backward substitution"],
+      "Methods": ["Gaussian elimination"],
+      "Examples": ["LU = L U with U triangular"]
+    },
+    "relations": [
+      {"type": "subcomponent_of", "target": "LU Factorization"},
+      {"type": "related_to", "target": "Triangular Matrices"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_lu_factorization.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Upper Triangular Matrix",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A matrix whose entries below the diagonal are all zero.",
+    "description": "Upper triangular matrices naturally arise in QR and LU factorizations. They support fast backward substitution and reveal eigenvalues directly on the diagonal.",
+    "properties": {
+      "Goal": "Provide structure for efficient solves and spectral access.",
+      "Applications": ["Schur decomposition", "LU factorization"],
+      "Methods": ["Back substitution"],
+      "Examples": ["R in QR factorization"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Triangular Matrices"},
+      {"type": "related_to", "target": "QR Algorithm"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_triangular_matrices.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Vandermonde Matrix",
+    "type": "Concept",
+    "domain": "Linear Algebra / Approximation Theory",
+    "definition": "A matrix whose rows or columns follow geometric progressions based on input nodes.",
+    "description": "Vandermonde matrices appear in polynomial interpolation, Prony methods, and spectral approximations. They are often ill-conditioned, especially for large degrees.",
+    "properties": {
+      "Goal": "Represent polynomial basis evaluations compactly.",
+      "Applications": ["Interpolation", "Polynomial fitting", "Signal processing"],
+      "Methods": ["Lagrange interpolation", "Basis evaluation"],
+      "Examples": ["V(i,j) = x_i^{j-1}"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Polynomial Approximation"},
+      {"type": "related_to", "target": "Matrix Rank"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_interpolation.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Vector Subspace",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A subset of a vector space closed under addition and scalar multiplication.",
+    "description": "Vector subspaces are foundational structures of linear algebra. They define solution sets, null spaces, ranges, invariant subspaces, and decomposition structures.",
+    "properties": {
+      "Goal": "Define linear structure within a larger vector space.",
+      "Applications": ["Null space", "Range", "Direct sum decompositions"],
+      "Methods": ["Linear span", "Projection operators"],
+      "Examples": ["Null(A)", "Range(A)"]
+    },
+    "relations": [
+      {"type": "foundation_for", "target": "Matrix Subspace"},
+      {"type": "related_to", "target": "Orthogonal Complement"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_vector_spaces.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Residual r = b - Ax",
+    "type": "Concept",
+    "domain": "Iterative Methods",
+    "definition": "The difference between the right-hand side and the current approximation’s predicted value in a linear system.",
+    "description": "Residuals determine convergence, stopping criteria, and direction generation in iterative methods such as CG, GMRES, and Richardson iteration.",
+    "properties": {
+      "Goal": "Measure progress of iterative solvers.",
+      "Applications": ["CG", "GMRES", "Jacobi", "Richardson iteration"],
+      "Methods": ["Residual norm minimization"],
+      "Examples": ["||r_k|| used as stopping criterion"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Residual Norm"},
+      {"type": "used_in", "target": "GMRES"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_iterative_methods.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": ["r = b - A x"]
+    }
+  },
+  {
+    "entity": "Matrix Square Root (Alternative Notation)",
+    "type": "Concept",
+    "domain": "Matrix Functions",
+    "definition": "A matrix X satisfying X² = A. This entry covers the symbol-level term sqrt(A).",
+    "description": "Matrix square roots arise in diffusion processes, covariance models, and analytic matrix functions. Many algorithms compute √A using Newton iterations or spectral decompositions.",
+    "properties": {
+      "Goal": "Compute a matrix whose square equals A.",
+      "Applications": ["Diffusion equations", "Covariance analysis"],
+      "Methods": ["Newton’s iteration", "Schur decomposition"],
+      "Examples": ["Principal square root from spectral decomposition"]
+    },
+    "relations": [
+      {"type": "synonym_of", "target": "Matrix Square Root"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_matrix_functions.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": ["sqrt(A)"]
+    }
+  }
+]

@@ -1,0 +1,267 @@
+[
+  {
+    "entity": "Fast Fourier Transform (FFT)",
+    "type": "Algorithm",
+    "domain": "Numerical Linear Algebra / Signal Processing",
+    "definition": "An O(n log n) algorithm for computing the discrete Fourier transform (DFT) efficiently.",
+    "description": "FFT reduces the computational complexity of DFT by exploiting symmetries and recursively dividing the transform into smaller pieces. FFT is foundational in numerical algorithms, convolution, spectral methods, and circulant matrix diagonalization.",
+    "properties": {
+      "Goal": "Compute the DFT in subquadratic time.",
+      "Applications": ["Signal processing", "Spectral methods", "Convolution", "Circulant matrices"],
+      "Methods": ["Cooley–Tukey algorithm", "Butterfly operations"],
+      "Examples": ["FFT-based convolution", "FFT diagonalization of circulant matrices"]
+    },
+    "relations": [
+      {"type": "generalizes", "target": "Discrete Fourier Transform (DFT)"},
+      {"type": "related_to", "target": "Circulant Matrix"},
+      {"type": "uses", "target": "Twiddle Factors"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_fft.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": ["Fast Fourier Transform"]
+    }
+  },
+  {
+    "entity": "Fill-in",
+    "type": "Concept",
+    "domain": "Sparse Linear Algebra",
+    "definition": "New nonzero entries created during matrix factorizations such as LU, Cholesky, or QR.",
+    "description": "Fill-in affects storage requirements and computational cost. Minimizing fill-in is essential for sparse solvers and preconditioners. Ordering strategies such as minimum degree or nested dissection aim to reduce fill-in.",
+    "properties": {
+      "Goal": "Quantify and manage new nonzeros generated during factorization.",
+      "Applications": ["Sparse LU factorization", "Cholesky factorization", "Preconditioner construction"],
+      "Methods": ["Graph-based ordering", "Approximate minimum degree", "Nested dissection"],
+      "Examples": ["Cholesky of 2D Laplacian grid matrices"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Sparse Approximate Inverse"},
+      {"type": "related_to", "target": "Sparsity Structure"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_sparse.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Francis Shift",
+    "type": "Concept",
+    "domain": "Eigenvalue Algorithms",
+    "definition": "A shift strategy used in the QR algorithm to accelerate convergence to eigenvalues.",
+    "description": "The implicit double-shift QR method introduced by Francis uses complex conjugate shifts to target eigenvalues more rapidly. This is a key technique in modern dense eigenvalue solvers.",
+    "properties": {
+      "Goal": "Accelerate QR eigenvalue algorithm convergence.",
+      "Applications": ["QR algorithm", "Hessenberg QR iteration"],
+      "Methods": ["Implicit double shift", "Bulge-chasing"],
+      "Examples": ["Francis double-shift QR iteration"]
+    },
+    "relations": [
+      {"type": "used_in", "target": "QR Algorithm"},
+      {"type": "related_to", "target": "Hessenberg Matrix"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_qr_algorithm.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Givens Rotation",
+    "type": "Concept",
+    "domain": "Numerical Linear Algebra",
+    "definition": "A plane rotation used to introduce zeros in matrices, especially in QR factorization.",
+    "description": "Givens rotations apply a rotation in a 2D coordinate plane to eliminate specific matrix elements. They are ideal for sparse matrices because they introduce minimal fill-in.",
+    "properties": {
+      "Goal": "Eliminate matrix entries while preserving orthogonality.",
+      "Applications": ["QR factorization", "Least squares", "Hessenberg reduction"],
+      "Methods": ["Orthogonal transformations", "Sparse QR algorithms"],
+      "Examples": ["Givens QR for sparse least-squares problems"]
+    },
+    "relations": [
+      {"type": "variant_of", "target": "QR Factorization"},
+      {"type": "related_to", "target": "Householder Reflection"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_qr_factorization.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "GL(n, ℂ)",
+    "type": "Concept",
+    "domain": "Linear Algebra / Group Theory",
+    "definition": "The group of all invertible n×n matrices over the complex numbers.",
+    "description": "GL(n,ℂ) is the fundamental group representing all linear automorphisms of ℂⁿ. Many matrix algorithms rely on structure and properties preserved under GL(n,ℂ) transformations.",
+    "properties": {
+      "Goal": "Describe the set of all invertible linear transformations.",
+      "Applications": ["Matrix decomposition theory", "Similarity transformations", "Lie groups"],
+      "Methods": ["Determinant analysis", "Group operations"],
+      "Examples": ["A ∈ GL(n,ℂ) iff det(A) ≠ 0"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Invertible Matrix Subspace"},
+      {"type": "related_to", "target": "Matrix Function"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_linear_algebra.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": ["General Linear Group"]
+    }
+  },
+  {
+    "entity": "Hessenberg Form",
+    "type": "Concept",
+    "domain": "Numerical Linear Algebra",
+    "definition": "A nearly triangular matrix where all entries below the first subdiagonal are zero.",
+    "description": "Hessenberg form is the target of reduction prior to running the QR algorithm. Transforming a matrix into Hessenberg form preserves eigenvalues and reduces computational cost.",
+    "properties": {
+      "Goal": "Reduce general matrices to a structured form suitable for eigenvalue algorithms.",
+      "Applications": ["QR algorithm", "Iterative eigenvalue methods"],
+      "Methods": ["Householder transformations"],
+      "Examples": ["Upper Hessenberg reduction of dense matrices"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Hessenberg Matrix"},
+      {"type": "used_in", "target": "QR Algorithm"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_hessenberg.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Hessenberg Reduction",
+    "type": "Algorithm",
+    "domain": "Numerical Linear Algebra",
+    "definition": "An algorithm that transforms a matrix into Hessenberg form using orthogonal transformations.",
+    "description": "Reduction to Hessenberg form is a standard preprocessing step in dense eigenvalue computations. It reduces complexity in subsequent QR iterations while preserving eigenvalues.",
+    "properties": {
+      "Goal": "Efficiently produce a Hessenberg matrix from a general matrix.",
+      "Applications": ["Eigenvalue computations", "QR algorithm initialization"],
+      "Methods": ["Householder reflections"],
+      "Examples": ["MATLAB's hess(A)"]
+    },
+    "relations": [
+      {"type": "produces", "target": "Hessenberg Form"},
+      {"type": "used_in", "target": "QR Algorithm"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_eigenvalue_algorithms.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "High Parallelism",
+    "type": "Concept",
+    "domain": "High-Performance Computing",
+    "definition": "The property of an algorithm being able to exploit many processors simultaneously with minimal communication.",
+    "description": "High parallelism is crucial for modern numerical algorithms on GPUs, clusters, and distributed systems. FFT, matrix multiplication, and multigrid methods often exhibit strong parallel characteristics.",
+    "properties": {
+      "Goal": "Increase performance by reducing sequential bottlenecks.",
+      "Applications": ["FFT", "Multigrid", "Parallel linear solvers"],
+      "Methods": ["Task decomposition", "Domain decomposition"],
+      "Examples": ["FFT butterfly operations executed in parallel"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Fast Fourier Transform (FFT)"},
+      {"type": "related_to", "target": "Matrix Multiplication"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_parallel_computing.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Idempotency",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A property of an operator P satisfying P² = P.",
+    "description": "Idempotent operators correspond to projection operators onto subspaces. They play a central role in matrix subspace theory, direct sum decompositions, and oblique projections.",
+    "properties": {
+      "Goal": "Characterize projection-like operators with stable repeated action.",
+      "Applications": ["Projection operators", "Invariant subspaces"],
+      "Methods": ["Spectral decomposition", "Subspace projections"],
+      "Examples": ["Orthogonal projection matrix"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Projection Operator"},
+      {"type": "related_to", "target": "Oblique Projection"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_projections.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": ["Idempotency P^2 = P"]
+    }
+  },
+  {
+    "entity": "Imaginary Unit j",
+    "type": "Concept",
+    "domain": "Complex Analysis",
+    "definition": "The imaginary unit j satisfying j² = −1, commonly used in electrical engineering notation.",
+    "description": "In many numerical algorithms involving complex arithmetic, j corresponds to the imaginary axis. It is mathematically equivalent to the complex unit i in mathematics.",
+    "properties": {
+      "Goal": "Represent the imaginary axis in complex numbers.",
+      "Applications": ["Fourier analysis", "Complex matrix computations"],
+      "Methods": ["Complex arithmetic"],
+      "Examples": ["e^{jθ} representation in FFT"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Fast Fourier Transform (FFT)"},
+      {"type": "related_to", "target": "Discrete Fourier Transform (DFT)"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_complex_numbers.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": ["j"]
+    }
+  },
+  {
+    "entity": "Inverse Iteration",
+    "type": "Algorithm",
+    "domain": "Eigenvalue Algorithms",
+    "definition": "An iterative method for approximating eigenvectors by repeatedly solving shifted linear systems.",
+    "description": "Inverse iteration computes eigenvectors associated with a selected eigenvalue by repeatedly solving (A - μI)x_{k+1} = x_k. When μ is close to an eigenvalue, convergence is rapid.",
+    "properties": {
+      "Goal": "Compute eigenvectors accurately for a given eigenvalue shift.",
+      "Applications": ["Eigenvalue refinement", "Rayleigh Quotient Iteration"],
+      "Methods": ["Shifted linear solves", "Spectral shift"],
+      "Examples": ["Inverse iteration with Rayleigh quotient shift"]
+    },
+    "relations": [
+      {"type": "uses", "target": "A - μ I"},
+      {"type": "variant_of", "target": "Rayleigh Quotient Iteration"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_eigenvalue_methods.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  }
+]

@@ -1,0 +1,266 @@
+[
+  {
+    "entity": "Jordan Canonical Form",
+    "type": "Concept",
+    "domain": "Linear Algebra / Spectral Theory",
+    "definition": "A block-diagonal matrix consisting of Jordan blocks that represent the structure of a linear operator up to similarity transformations.",
+    "description": "The Jordan Canonical Form reveals eigenvalues, geometric multiplicities, and algebraic multiplicities of a matrix. It classifies matrices up to similarity and provides insight into non-diagonalizable operators.",
+    "properties": {
+      "Goal": "Classify matrices under similarity and reveal spectral structure.",
+      "Applications": ["Differential equations", "Matrix functions", "Control theory"],
+      "Methods": ["Similarity transformations", "Generalized eigenvectors"],
+      "Examples": ["Jordan blocks for repeated eigenvalues"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Eigenvalue Decomposition"},
+      {"type": "related_to", "target": "Minimal Polynomial"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_spectral_theory.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": ["Jordan Form"]
+    }
+  },
+  {
+    "entity": "Kronecker Product",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "An operation on two matrices that produces a block matrix, defined as A ⊗ B = [a_ij B].",
+    "description": "Kronecker products encode tensor product structures and appear in matrix equations, vectorization identities, and discretizations of PDEs. They are a foundation of fast algorithms for large structured systems.",
+    "properties": {
+      "Goal": "Represent tensor products and structured matrix operations.",
+      "Applications": ["Sylvester equations", "Quantum computing", "Tensor calculus"],
+      "Methods": ["Block matrix construction", "Vectorization identities"],
+      "Examples": ["vec(AXB) = (Bᵀ ⊗ A) vec(X)"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Sylvester Equation"},
+      {"type": "related_to", "target": "Matrix Multiplication"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_matrix_operations.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Lower Triangular Matrix",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A matrix whose entries above the main diagonal are all zero.",
+    "description": "Lower triangular matrices appear naturally in LU factorization and recursive matrix algorithms. They support fast forward substitution for solving linear systems.",
+    "properties": {
+      "Goal": "Provide a structured matrix enabling efficient solves.",
+      "Applications": ["LU factorization", "Forward substitution"],
+      "Methods": ["Matrix decomposition"],
+      "Examples": ["L in LU = L U"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "LU Factorization"},
+      {"type": "related_to", "target": "Upper Triangular Matrix"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_factorization.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Matrix Pencil",
+    "type": "Concept",
+    "domain": "Generalized Eigenvalue Theory",
+    "definition": "A parametric family of matrices of the form A - λB representing a generalized eigenvalue problem.",
+    "description": "Matrix pencils are central to generalized eigenvalue problems, QZ algorithms, and control theory. They allow describing systems with singular B or differential-algebraic structure.",
+    "properties": {
+      "Goal": "Represent generalized eigenvalue problems.",
+      "Applications": ["QZ algorithm", "Control synthesis", "DAEs"],
+      "Methods": ["Generalized Schur decomposition"],
+      "Examples": ["det(A - λB) = 0 gives generalized eigenvalues"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Generalized Eigenvalue Problem"},
+      {"type": "used_in", "target": "QZ Algorithm"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_generalized_eigenvalues.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Matrix Rank",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "The number of linearly independent rows or columns of a matrix.",
+    "description": "Matrix rank reveals fundamental properties of a matrix such as invertibility, nullity, and the dimension of its image. Rank plays a core role in solving linear systems, low-rank approximation, and SVD.",
+    "properties": {
+      "Goal": "Quantify the dimension of the range of a matrix.",
+      "Applications": ["Linear systems", "Low-rank approximation", "SVD"],
+      "Methods": ["Row reduction", "Singular value decomposition"],
+      "Examples": ["Rank-deficient least squares problems"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Singular Value"},
+      {"type": "related_to", "target": "Low Rank Approximation"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_matrix_rank.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Minimal Polynomial",
+    "type": "Concept",
+    "domain": "Spectral Theory",
+    "definition": "The monic polynomial of least degree such that p(A) = 0.",
+    "description": "The minimal polynomial characterizes the algebraic structure of a matrix. Its degree determines the size of Jordan blocks and governs convergence of polynomial iterative methods.",
+    "properties": {
+      "Goal": "Capture the smallest polynomial annihilating a matrix.",
+      "Applications": ["Jordan form", "Krylov methods", "Matrix functions"],
+      "Methods": ["Cayley-Hamilton theorem", "Companion matrices"],
+      "Examples": ["Diagonalizable matrices have minimal polynomial with simple roots"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Jordan Canonical Form"},
+      {"type": "related_to", "target": "Eigenvalue Problem"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_spectral_analysis.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Normal Matrix",
+    "type": "Concept",
+    "domain": "Linear Algebra / Spectral Theory",
+    "definition": "A matrix that commutes with its conjugate transpose, satisfying AA* = A*A.",
+    "description": "Normal matrices include Hermitian, unitary, and orthogonal matrices as special cases. They are diagonalizable by a unitary matrix and enjoy well-conditioned eigenvalue problems.",
+    "properties": {
+      "Goal": "Generalize diagonalizable and orthogonally diagonalizable matrices.",
+      "Applications": ["Quantum mechanics", "Spectral analysis", "Matrix functions"],
+      "Methods": ["Unitary diagonalization"],
+      "Examples": ["Unitary matrices, Hermitian matrices"]
+    },
+    "relations": [
+      {"type": "generalization_of", "target": "Hermitian Matrix"},
+      {"type": "generalization_of", "target": "Unitary Matrix"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_spectral_theory.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Numerical Radius",
+    "type": "Concept",
+    "domain": "Spectral Theory",
+    "definition": "The quantity w(A) = max_{‖x‖=1} |x*Ax|, representing the radius of the smallest disk containing the field of values.",
+    "description": "The numerical radius provides a tighter bound than the spectral radius for non-normal matrices. It is related to operator norms and is used in stability analysis.",
+    "properties": {
+      "Goal": "Bound eigenvalues and assess stability.",
+      "Applications": ["Operator theory", "Stability", "Non-normal matrices"],
+      "Methods": ["Field of values analysis"],
+      "Examples": ["w(A) ≤ ‖A‖ ≤ 2 w(A)"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Field of Values"},
+      {"type": "related_to", "target": "Spectral Radius"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_field_of_values.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Pseudospectrum",
+    "type": "Concept",
+    "domain": "Spectral Theory",
+    "definition": "The ε-pseudospectrum of A is the set of complex numbers z for which ‖(A - zI)⁻¹‖ > 1/ε or z is an eigenvalue of a nearby matrix.",
+    "description": "Pseudospectra describe sensitivity of eigenvalues to perturbations and are crucial in understanding non-normal behavior, transient growth, and numerical stability.",
+    "properties": {
+      "Goal": "Assess robustness of eigenvalues under perturbations.",
+      "Applications": ["Non-normal matrices", "Stability analysis", "Control theory"],
+      "Methods": ["Resolvent norm computation"],
+      "Examples": ["Highly non-normal matrices have large pseudospectra"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Spectrum Λ(A)"},
+      {"type": "related_to", "target": "Field of Values"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_pseudospectra.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  },
+  {
+    "entity": "Positive Semidefinite Matrix",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A Hermitian/Symmetric matrix A satisfying xᵀAx ≥ 0 for all x.",
+    "description": "Positive semidefinite (PSD) matrices appear in optimization, covariance matrices, kernel methods, and PDE discretizations. They generalize positive definite matrices.",
+    "properties": {
+      "Goal": "Characterize matrices inducing non-negative quadratic forms.",
+      "Applications": ["Optimization", "Machine learning", "Statistics"],
+      "Methods": ["Cholesky-like factorizations", "Eigenvalue analysis"],
+      "Examples": ["Covariance matrices in statistics"]
+    },
+    "relations": [
+      {"type": "generalization_of", "target": "Positive Definite Matrix"},
+      {"type": "related_to", "target": "Quadratic Form"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_psd.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": ["Positive Semidefinite"]
+    }
+  },
+  {
+    "entity": "Quadratic Form",
+    "type": "Concept",
+    "domain": "Linear Algebra",
+    "definition": "A function of the form q(x) = xᵀAx for a symmetric matrix A.",
+    "description": "Quadratic forms relate directly to eigenvalues, definiteness, and optimization landscapes. They appear in stability theory, energy minimization, and classification of matrices.",
+    "properties": {
+      "Goal": "Model energy-like quantities through symmetric matrices.",
+      "Applications": ["Optimization", "Stability", "Statistics"],
+      "Methods": ["Spectral decomposition"],
+      "Examples": ["Second-order Taylor approximations"]
+    },
+    "relations": [
+      {"type": "related_to", "target": "Positive Definite Matrix"},
+      {"type": "related_to", "target": "Positive Semidefinite Matrix"}
+    ],
+    "metadata": {
+      "created_by": "system",
+      "source": "lecture_notes_quadratic_forms.pdf",
+      "created_at": "2025-11-18",
+      "version": "1.0",
+      "synonyms": []
+    }
+  }
+]
