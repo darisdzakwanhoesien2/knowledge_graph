@@ -49,7 +49,7 @@
   },
   {
     "front": "🧩 Spectrum Λ(A)\n📘 Domain: Linear Algebra",
-    "back": "**Definition:** The spectrum Λ(A) is the set of all eigenvalues of matrix A.\n\n**Description:** Shifting modifies the spectrum as Λ(A - μ I) = Λ(A) - μ, used to isolate eigenvalues or improve numerical properties.\n\n**Goal:** Characterize matrix via its eigenvalues.\n**Applications:** Spectral radius, Conditioning, Stability\n**Methods:** Eigen decomposition, Characteristic polynomial\n**Examples:** Λ(A) subset C for A in C^{n x n}"
+    "back": "**Definition:** The spectrum Λ(A) is the set of all eigenvalues of matrix A.\n\n**Description:** Shifting modifies the spectrum as Λ(A - μ I) = Λ(A) - μ, used to isolate eigenvalues or improve numerical properties.\n\n**Goal:** Describe intrinsic behavior of linear operators.\n**Applications:** Eigenvalue problems, Stability analysis, Iterative method convergence, Spectral decomposition\n**Methods:** Characteristic polynomial, Schur decomposition, Jordan form\n**Examples:** Spectrum of a diagonal matrix, Spectrum of SPD matrices (real, positive)"
   },
   {
     "front": "🧩 Matrix Computations\n📘 Domain: Numerical Linear Algebra",
@@ -112,6 +112,26 @@
     "back": "**Definition:** A linear operator P on ℂ^n such that P² = P, projecting vectors onto a subspace R(P) with kernel R(I−P).\n\n**Description:** Projections decompose spaces into direct sums and are building blocks for oblique and orthogonal projections in iterative solvers. Orthogonal projections minimize least-squares error and appear in GMRES and conjugate gradients.\n\n**Goal:** Project vectors onto subspaces.\n**Applications:** Least squares, Subspace methods, Decomposition\n**Methods:** Orthogonal projection, Oblique projection\n**Examples:** P with P^2 = P, I - P as complement projection"
   },
   {
+    "front": "🧩 Conjugate Gradient Method\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** An iterative Krylov method for solving symmetric positive definite (SPD) linear systems Ax = b by minimizing the A-norm of the error over expanding Krylov subspaces.\n\n**Description:** CG constructs a sequence of search directions that are A-conjugate, guaranteeing error minimization properties and finite termination in exact arithmetic. It is widely used in PDE solvers, scientific computing, and large sparse systems where direct methods are too expensive.\n\n**Goal:** Minimise quadratic form (x, A x)/2 − (b, x).\n**Applications:** SPD linear systems, Optimisation (Newton-CG)\n**Methods:** Conjugate directions, Residual orthogonalisation\n**Examples:** xⱼ₊₁ = xⱼ + αⱼ pⱼ with pⱼ₊₁ = rⱼ₊₁ + βⱼ pⱼ"
+  },
+  {
+    "front": "🧩 Preconditioned Conjugate Gradient\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** A variant of the Conjugate Gradient method that applies a preconditioner M to cluster eigenvalues of A and accelerate convergence.\n\n**Description:** PCG solves M^{-1}Ax = M^{-1}b using CG on the transformed system. Proper preconditioning reduces iteration count and improves numerical stability.\n\n**Goal:** Improve convergence of CG via spectral conditioning.\n**Applications:** PDE solvers, Large-scale sparse systems, Domain decomposition\n**Methods:** Left/right preconditioning, Incomplete factorizations, Spectral clustering\n**Examples:** IC(0) preconditioning, AMG-preconditioned CG"
+  },
+  {
+    "front": "🧩 Krylov Subspace Methods\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** A class of iterative algorithms that approximate solutions to Ax = b or eigenvalue problems by projecting them onto progressively larger Krylov subspaces.\n\n**Description:** Includes CG, GMRES, MINRES, BiCG, QMR, and others. These methods rely on polynomial approximations to A and require only matrix-vector products, making them ideal for large sparse systems.\n\n**Goal:** Solve large-scale problems using matrix-free operations.\n**Applications:** Sparse linear systems, Eigenvalue problems, PDE discretizations\n**Methods:** Arnoldi iteration, Lanczos iteration, Restarting, Preconditioning\n**Examples:** GMRES, CG, MINRES, BiCGSTAB"
+  },
+  {
+    "front": "🧩 Matrix Factorization\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** The process of decomposing a matrix into a product of structured factors such as triangular, orthogonal, or diagonal matrices.\n\n**Description:** Matrix factorizations enable efficient solving of linear systems, eigenvalue problems, and optimization tasks. Examples include LU, QR, Cholesky, Schur, and SVD.\n\n**Goal:** Reduce computational complexity by decomposing matrices into simpler components.\n**Applications:** Solving Ax = b, Eigenvalue algorithms, Least-squares problems, Preconditioning\n**Methods:** Pivoting, Orthogonal transformations, Triangularization\n**Examples:** LU, QR, SVD, Cholesky, Schur"
+  },
+  {
+    "front": "🧩 Incomplete LU Factorization\n📘 Domain: Numerical Linear Algebra",
+    "back": "**Definition:** An approximate LU factorization where fill-in is restricted to preserve sparsity, producing L̂ and Ũ such that A ≈ L̂Ũ.\n\n**Description:** ILU is widely used as a preconditioner in iterative methods, particularly PCG and GMRES. Variants include ILU(0), ILUT, and ILU(k).\n\n**Goal:** Approximate LU factorization while preserving sparsity for use as preconditioner.\n**Applications:** Finite element systems, CFD problems, Circuit simulation\n**Methods:** Modified Gaussian elimination with drop tolerance, Dual-threshold ILUT, Level-of-fill ILU(k)\n**Examples:** ILU(0): drop all fill-in outside original nonzero pattern"
+  },
+  {
     "front": "🧩 Sparsity Structure\n📘 Domain: Matrix Computations",
     "back": "**Definition:** The sparsity structure of a matrix or matrix subspace specifies the pattern of entries that may be nonzero, independent of the actual numerical values.\n\n**Description:** Sparsity structures capture the combinatorial pattern of allowed nonzeros in matrices, enabling algorithms that exploit memory efficiency and reduce computational cost. They are essential in large-scale problems such as PDE discretizations, graph Laplacians, and structured matrix factorizations.\n\n**Goal:** Identify and exploit zero-patterns for efficient computation.\n**Applications:** Sparse LU factorization, Finite difference discretizations, Graph-based matrix algorithms\n**Methods:** Pattern analysis, Fill-in minimization, Graph reordering\n**Examples:** Tridiagonal pattern, Band matrix structure"
   },
@@ -146,10 +166,6 @@
   {
     "front": "🧩 Jacobi Preconditioner\n📘 Domain: Numerical Linear Algebra",
     "back": "**Definition:** The Jacobi preconditioner is M = diag(A) + ωI, where diag(A) contains the diagonal entries of A and ω ∈ ℂ is an optional damping parameter (often ω = 0). It is the simplest splitting M = D, N = A - D.\n\n**Description:** Extremely cheap to apply (O(n) scaling) and parallelizable. Effective when A is diagonally dominant. Corresponds to the classical Jacobi iterative method. Often used as a baseline or building block in more sophisticated preconditioners.\n\n**Goal:** Damp high-frequency error components using only diagonal information.\n**Applications:** Smooth initial guess for multigrid, Baseline for preconditioner comparison, Diagonally dominant systems\n**Methods:** Extract diagonal, Optional damping ω, Inverse is element-wise division\n**Examples:** M_i = diag(A) + ωI with ω = 0 for standard Jacobi"
-  },
-  {
-    "front": "🧩 Incomplete LU Factorization\n📘 Domain: Numerical Linear Algebra",
-    "back": "**Definition:** Incomplete LU (ILU) computes factors L̂ and Û such that L̂Û ≈ A with the same sparsity pattern as A (or a prescribed superset), dropping fill-in during Gaussian elimination to control memory and cost.\n\n**Description:** Widely used for general sparse matrices. Variants include ILU(0) (no fill), ILU(k) (level-k fill), and ILUT (threshold dropping). Provides a trade-off between robustness and efficiency. Often combined with reordering (e.g., RCM, nested dissection).\n\n**Goal:** Approximate LU factorization while preserving sparsity for use as preconditioner.\n**Applications:** Finite element systems, CFD problems, Circuit simulation\n**Methods:** Modified Gaussian elimination with drop tolerance, Dual-threshold ILUT, Level-of-fill ILU(k)\n**Examples:** ILU(0): drop all fill-in outside original nonzero pattern"
   },
   {
     "front": "🧩 Sparse Approximate Inverse\n📘 Domain: Numerical Linear Algebra",
@@ -206,10 +222,6 @@
   {
     "front": "🧩 GMRES\n📘 Domain: Numerical Analysis",
     "back": "**Definition:** Generalised Minimal Residual (GMRES) is an iterative method that finds xⱼ in x₀ + Kⱼ(A; r₀) minimising ‖b − A xⱼ‖₂ for nonsymmetric systems.\n\n**Description:** It uses Arnoldi to build the basis and solves a least-squares problem with the Hessenberg matrix at each step, restarting when j is large.\n\n**Goal:** Minimise residual norm over Krylov subspace.\n**Applications:** Nonsymmetric linear systems, PDE solvers\n**Methods:** Arnoldi orthogonalisation, Least squares on Ĥⱼ y − α e₁\n**Examples:** xⱼ = Qⱼ yⱼ where yⱼ minimises ‖Ĥⱼ y − α e₁‖"
-  },
-  {
-    "front": "🧩 Conjugate Gradient Method\n📘 Domain: Numerical Analysis",
-    "back": "**Definition:** The Conjugate Gradient (CG) method solves symmetric positive definite systems Ax = b by minimising the A-norm error ‖x − xⱼ‖ₐ over the Krylov subspace.\n\n**Description:** It generates A-conjugate search directions implicitly via a three-term recurrence, equivalent to Lanczos for symmetric matrices, with optimal polynomial approximation properties.\n\n**Goal:** Minimise quadratic form (x, A x)/2 − (b, x).\n**Applications:** SPD linear systems, Optimisation (Newton-CG)\n**Methods:** Conjugate directions, Residual orthogonalisation\n**Examples:** xⱼ₊₁ = xⱼ + αⱼ pⱼ with pⱼ₊₁ = rⱼ₊₁ + βⱼ pⱼ"
   },
   {
     "front": "🧩 Residual Norm\n📘 Domain: Numerical Analysis",

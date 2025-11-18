@@ -337,18 +337,21 @@
       "definition": "The spectrum Λ(A) is the set of all eigenvalues of matrix A.",
       "description": "Shifting modifies the spectrum as Λ(A - μ I) = Λ(A) - μ, used to isolate eigenvalues or improve numerical properties.",
       "properties": {
-        "Goal": "Characterize matrix via its eigenvalues.",
+        "Goal": "Describe intrinsic behavior of linear operators.",
         "Applications": [
-          "Spectral radius",
-          "Conditioning",
-          "Stability"
+          "Eigenvalue problems",
+          "Stability analysis",
+          "Iterative method convergence",
+          "Spectral decomposition"
         ],
         "Methods": [
-          "Eigen decomposition",
-          "Characteristic polynomial"
+          "Characteristic polynomial",
+          "Schur decomposition",
+          "Jordan form"
         ],
         "Examples": [
-          "Λ(A) subset C for A in C^{n x n}"
+          "Spectrum of a diagonal matrix",
+          "Spectrum of SPD matrices (real, positive)"
         ]
       },
       "metadata": {
@@ -790,6 +793,168 @@
         "version": "1.0"
       }
     },
+    "Conjugate Gradient Method": {
+      "type": "Algorithm",
+      "domain": "Numerical Linear Algebra",
+      "definition": "An iterative Krylov method for solving symmetric positive definite (SPD) linear systems Ax = b by minimizing the A-norm of the error over expanding Krylov subspaces.",
+      "description": "CG constructs a sequence of search directions that are A-conjugate, guaranteeing error minimization properties and finite termination in exact arithmetic. It is widely used in PDE solvers, scientific computing, and large sparse systems where direct methods are too expensive.",
+      "properties": {
+        "Goal": "Minimise quadratic form (x, A x)/2 − (b, x).",
+        "Applications": [
+          "SPD linear systems",
+          "Optimisation (Newton-CG)"
+        ],
+        "Methods": [
+          "Conjugate directions",
+          "Residual orthogonalisation"
+        ],
+        "Examples": [
+          "xⱼ₊₁ = xⱼ + αⱼ pⱼ with pⱼ₊₁ = rⱼ₊₁ + βⱼ pⱼ"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "lecture_notes_krylov_methods.pdf",
+        "created_at": "2025-11-18",
+        "version": "1.0",
+        "synonyms": [
+          "Conjugate Gradient",
+          "CG"
+        ]
+      }
+    },
+    "Preconditioned Conjugate Gradient": {
+      "type": "Algorithm",
+      "domain": "Numerical Linear Algebra",
+      "definition": "A variant of the Conjugate Gradient method that applies a preconditioner M to cluster eigenvalues of A and accelerate convergence.",
+      "description": "PCG solves M^{-1}Ax = M^{-1}b using CG on the transformed system. Proper preconditioning reduces iteration count and improves numerical stability.",
+      "properties": {
+        "Goal": "Improve convergence of CG via spectral conditioning.",
+        "Applications": [
+          "PDE solvers",
+          "Large-scale sparse systems",
+          "Domain decomposition"
+        ],
+        "Methods": [
+          "Left/right preconditioning",
+          "Incomplete factorizations",
+          "Spectral clustering"
+        ],
+        "Examples": [
+          "IC(0) preconditioning",
+          "AMG-preconditioned CG"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "lecture_notes_krylov_methods.pdf",
+        "created_at": "2025-11-18",
+        "version": "1.0",
+        "synonyms": [
+          "PCG"
+        ]
+      }
+    },
+    "Krylov Subspace Methods": {
+      "type": "Algorithm Family",
+      "domain": "Numerical Linear Algebra",
+      "definition": "A class of iterative algorithms that approximate solutions to Ax = b or eigenvalue problems by projecting them onto progressively larger Krylov subspaces.",
+      "description": "Includes CG, GMRES, MINRES, BiCG, QMR, and others. These methods rely on polynomial approximations to A and require only matrix-vector products, making them ideal for large sparse systems.",
+      "properties": {
+        "Goal": "Solve large-scale problems using matrix-free operations.",
+        "Applications": [
+          "Sparse linear systems",
+          "Eigenvalue problems",
+          "PDE discretizations"
+        ],
+        "Methods": [
+          "Arnoldi iteration",
+          "Lanczos iteration",
+          "Restarting",
+          "Preconditioning"
+        ],
+        "Examples": [
+          "GMRES",
+          "CG",
+          "MINRES",
+          "BiCGSTAB"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "lecture_notes_krylov_methods.pdf",
+        "created_at": "2025-11-18",
+        "version": "1.0"
+      }
+    },
+    "Matrix Factorization": {
+      "type": "Concept",
+      "domain": "Numerical Linear Algebra",
+      "definition": "The process of decomposing a matrix into a product of structured factors such as triangular, orthogonal, or diagonal matrices.",
+      "description": "Matrix factorizations enable efficient solving of linear systems, eigenvalue problems, and optimization tasks. Examples include LU, QR, Cholesky, Schur, and SVD.",
+      "properties": {
+        "Goal": "Reduce computational complexity by decomposing matrices into simpler components.",
+        "Applications": [
+          "Solving Ax = b",
+          "Eigenvalue algorithms",
+          "Least-squares problems",
+          "Preconditioning"
+        ],
+        "Methods": [
+          "Pivoting",
+          "Orthogonal transformations",
+          "Triangularization"
+        ],
+        "Examples": [
+          "LU",
+          "QR",
+          "SVD",
+          "Cholesky",
+          "Schur"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "lecture_notes_factorizations.pdf",
+        "created_at": "2025-11-18",
+        "version": "1.0",
+        "synonyms": [
+          "Matrix Factoring",
+          "Direct Factorization"
+        ]
+      }
+    },
+    "Incomplete LU Factorization": {
+      "type": "Method",
+      "domain": "Numerical Linear Algebra",
+      "definition": "An approximate LU factorization where fill-in is restricted to preserve sparsity, producing L̂ and Ũ such that A ≈ L̂Ũ.",
+      "description": "ILU is widely used as a preconditioner in iterative methods, particularly PCG and GMRES. Variants include ILU(0), ILUT, and ILU(k).",
+      "properties": {
+        "Goal": "Approximate LU factorization while preserving sparsity for use as preconditioner.",
+        "Applications": [
+          "Finite element systems",
+          "CFD problems",
+          "Circuit simulation"
+        ],
+        "Methods": [
+          "Modified Gaussian elimination with drop tolerance",
+          "Dual-threshold ILUT",
+          "Level-of-fill ILU(k)"
+        ],
+        "Examples": [
+          "ILU(0): drop all fill-in outside original nonzero pattern"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "lecture_notes_factorizations.pdf",
+        "created_at": "2025-11-18",
+        "version": "1.0",
+        "synonyms": [
+          "Incomplete LU"
+        ]
+      }
+    },
     "Sparsity Structure": {
       "type": "Concept",
       "domain": "Matrix Computations",
@@ -1031,34 +1196,6 @@
         ],
         "Examples": [
           "M_i = diag(A) + ωI with ω = 0 for standard Jacobi"
-        ]
-      },
-      "metadata": {
-        "created_by": "system",
-        "source": "09_preconditioning.pdf",
-        "created_at": "2025-11-10",
-        "version": "1.0"
-      }
-    },
-    "Incomplete LU Factorization": {
-      "type": "Method",
-      "domain": "Numerical Linear Algebra",
-      "definition": "Incomplete LU (ILU) computes factors L̂ and Û such that L̂Û ≈ A with the same sparsity pattern as A (or a prescribed superset), dropping fill-in during Gaussian elimination to control memory and cost.",
-      "description": "Widely used for general sparse matrices. Variants include ILU(0) (no fill), ILU(k) (level-k fill), and ILUT (threshold dropping). Provides a trade-off between robustness and efficiency. Often combined with reordering (e.g., RCM, nested dissection).",
-      "properties": {
-        "Goal": "Approximate LU factorization while preserving sparsity for use as preconditioner.",
-        "Applications": [
-          "Finite element systems",
-          "CFD problems",
-          "Circuit simulation"
-        ],
-        "Methods": [
-          "Modified Gaussian elimination with drop tolerance",
-          "Dual-threshold ILUT",
-          "Level-of-fill ILU(k)"
-        ],
-        "Examples": [
-          "ILU(0): drop all fill-in outside original nonzero pattern"
         ]
       },
       "metadata": {
@@ -1447,32 +1584,6 @@
         ],
         "Examples": [
           "xⱼ = Qⱼ yⱼ where yⱼ minimises ‖Ĥⱼ y − α e₁‖"
-        ]
-      },
-      "metadata": {
-        "created_by": "system",
-        "source": "08_iterative_methods_for_linear_systems.pdf",
-        "created_at": "2025-11-10",
-        "version": "1.0"
-      }
-    },
-    "Conjugate Gradient Method": {
-      "type": "Method",
-      "domain": "Numerical Analysis",
-      "definition": "The Conjugate Gradient (CG) method solves symmetric positive definite systems Ax = b by minimising the A-norm error ‖x − xⱼ‖ₐ over the Krylov subspace.",
-      "description": "It generates A-conjugate search directions implicitly via a three-term recurrence, equivalent to Lanczos for symmetric matrices, with optimal polynomial approximation properties.",
-      "properties": {
-        "Goal": "Minimise quadratic form (x, A x)/2 − (b, x).",
-        "Applications": [
-          "SPD linear systems",
-          "Optimisation (Newton-CG)"
-        ],
-        "Methods": [
-          "Conjugate directions",
-          "Residual orthogonalisation"
-        ],
-        "Examples": [
-          "xⱼ₊₁ = xⱼ + αⱼ pⱼ with pⱼ₊₁ = rⱼ₊₁ + βⱼ pⱼ"
         ]
       },
       "metadata": {
@@ -2117,7 +2228,7 @@
     {
       "source": "Singular Value",
       "type": "computed_from",
-      "target": "Eigenvalue"
+      "target": "Eigenvalue Problem"
     },
     {
       "source": "Singular Value",
@@ -2137,7 +2248,7 @@
     {
       "source": "Unitary Matrix",
       "type": "preserves",
-      "target": "Euclidean Norm"
+      "target": "Operator Norm"
     },
     {
       "source": "Unitary Matrix",
@@ -2177,7 +2288,7 @@
     {
       "source": "Frobenius Norm",
       "type": "equivalent_to",
-      "target": "Euclidean Norm"
+      "target": "Operator Norm"
     },
     {
       "source": "Frobenius Norm",
@@ -2217,7 +2328,7 @@
     {
       "source": "Matrix Function",
       "type": "used_in",
-      "target": "Eigenvalue Problems"
+      "target": "Eigenvalue Problem"
     },
     {
       "source": "Matrix Function",
@@ -2277,7 +2388,7 @@
     {
       "source": "Eigenvalue Problem",
       "type": "spectrum",
-      "target": "Λ(A)"
+      "target": "Spectrum Λ(A)"
     },
     {
       "source": "Eigenvalue Problem",
@@ -2372,12 +2483,12 @@
     {
       "source": "Inner Product",
       "type": "generalization_of",
-      "target": "Dot Product"
+      "target": "Inner Product"
     },
     {
       "source": "Inner Product",
       "type": "used_in",
-      "target": "Gram-Schmidt Process"
+      "target": "Gram-Schmidt Orthogonalization"
     },
     {
       "source": "Inner Product",
@@ -2705,6 +2816,166 @@
       "target": "Oblique Projection"
     },
     {
+      "source": "Conjugate Gradient Method",
+      "type": "uses",
+      "target": "Krylov Subspace"
+    },
+    {
+      "source": "Conjugate Gradient Method",
+      "type": "variant_of",
+      "target": "Krylov Subspace Methods"
+    },
+    {
+      "source": "Conjugate Gradient Method",
+      "type": "has_variant",
+      "target": "Preconditioned Conjugate Gradient"
+    },
+    {
+      "source": "Conjugate Gradient Method",
+      "type": "requires",
+      "target": "Symmetric Positive Definite Matrices"
+    },
+    {
+      "source": "Preconditioned Conjugate Gradient",
+      "type": "extends",
+      "target": "Conjugate Gradient Method"
+    },
+    {
+      "source": "Preconditioned Conjugate Gradient",
+      "type": "uses",
+      "target": "Preconditioning"
+    },
+    {
+      "source": "Preconditioned Conjugate Gradient",
+      "type": "uses",
+      "target": "Krylov Subspace"
+    },
+    {
+      "source": "Preconditioned Conjugate Gradient",
+      "type": "related_to",
+      "target": "Incomplete LU Factorization"
+    },
+    {
+      "source": "Krylov Subspace",
+      "type": "foundation_for",
+      "target": "Krylov Subspace Methods"
+    },
+    {
+      "source": "Krylov Subspace",
+      "type": "used_in",
+      "target": "Conjugate Gradient Method"
+    },
+    {
+      "source": "Krylov Subspace",
+      "type": "used_in",
+      "target": "GMRES"
+    },
+    {
+      "source": "Krylov Subspace",
+      "type": "related_to",
+      "target": "Polynomial Approximation"
+    },
+    {
+      "source": "Krylov Subspace Methods",
+      "type": "generalization_of",
+      "target": "Conjugate Gradient Method"
+    },
+    {
+      "source": "Krylov Subspace Methods",
+      "type": "generalization_of",
+      "target": "GMRES"
+    },
+    {
+      "source": "Krylov Subspace Methods",
+      "type": "built_on",
+      "target": "Krylov Subspace"
+    },
+    {
+      "source": "Matrix Factorization",
+      "type": "includes",
+      "target": "LU Factorization"
+    },
+    {
+      "source": "Matrix Factorization",
+      "type": "includes",
+      "target": "QR Factorization"
+    },
+    {
+      "source": "Matrix Factorization",
+      "type": "includes",
+      "target": "Cholesky Factorization"
+    },
+    {
+      "source": "Matrix Factorization",
+      "type": "includes",
+      "target": "Singular Value Decomposition"
+    },
+    {
+      "source": "Matrix Factorization",
+      "type": "includes",
+      "target": "Schur Decomposition"
+    },
+    {
+      "source": "Incomplete LU Factorization",
+      "type": "approximation_of",
+      "target": "LU Factorization"
+    },
+    {
+      "source": "Incomplete LU Factorization",
+      "type": "used_in",
+      "target": "Preconditioned Conjugate Gradient"
+    },
+    {
+      "source": "Incomplete LU Factorization",
+      "type": "used_in",
+      "target": "GMRES"
+    },
+    {
+      "source": "Incomplete LU Factorization",
+      "type": "related_to",
+      "target": "Sparsity Structure"
+    },
+    {
+      "source": "Spectrum Λ(A)",
+      "type": "used_in",
+      "target": "Spectral Radius"
+    },
+    {
+      "source": "Spectrum Λ(A)",
+      "type": "used_in",
+      "target": "Gershgorin Circle Theorem"
+    },
+    {
+      "source": "Spectrum Λ(A)",
+      "type": "computed_by",
+      "target": "Schur Decomposition"
+    },
+    {
+      "source": "Projection Operator",
+      "type": "has_property",
+      "target": "Idempotency"
+    },
+    {
+      "source": "Projection Operator",
+      "type": "includes",
+      "target": "Orthogonal Projection"
+    },
+    {
+      "source": "Projection Operator",
+      "type": "includes",
+      "target": "Oblique Projection"
+    },
+    {
+      "source": "Projection Operator",
+      "type": "used_in",
+      "target": "Matrix Subspace"
+    },
+    {
+      "source": "Projection Operator",
+      "type": "used_in",
+      "target": "Matrix Factorization"
+    },
+    {
       "source": "Sparsity Structure",
       "type": "defines",
       "target": "Standard Matrix Subspace"
@@ -2832,7 +3103,7 @@
     {
       "source": "Preconditioning",
       "type": "clusters",
-      "target": "Eigenvalues"
+      "target": "Eigenvalue Problem"
     },
     {
       "source": "Preconditioning",
@@ -2892,7 +3163,7 @@
     {
       "source": "Sparse Approximate Inverse",
       "type": "competes_with",
-      "target": "Incomplete LU"
+      "target": "Incomplete LU Factorization"
     },
     {
       "source": "Sparse Approximate Inverse",
@@ -3022,7 +3293,7 @@
     {
       "source": "Discrete Fourier Transform (DFT)",
       "type": "computed_by",
-      "target": "Fast Fourier Transform"
+      "target": "Fast Fourier Transform (FFT)"
     },
     {
       "source": "Discrete Fourier Transform (DFT)",
@@ -3042,7 +3313,7 @@
     {
       "source": "Fast Fourier Transform (FFT)",
       "type": "implements",
-      "target": "Discrete Fourier Transform"
+      "target": "Discrete Fourier Transform (DFT)"
     },
     {
       "source": "Fast Fourier Transform (FFT)",
@@ -3062,7 +3333,7 @@
     {
       "source": "Schur Triangulation",
       "type": "generalizes",
-      "target": "Hessenberg Form"
+      "target": "Hessenberg Matrix"
     },
     {
       "source": "Schur Triangulation",
@@ -3128,11 +3399,6 @@
       "source": "Krylov Subspace",
       "type": "orthogonalized_by",
       "target": "Arnoldi Process"
-    },
-    {
-      "source": "Krylov Subspace",
-      "type": "used_in",
-      "target": "GMRES"
     },
     {
       "source": "Krylov Subspace",
@@ -3267,7 +3533,7 @@
     {
       "source": "Polynomial Approximation",
       "type": "uses",
-      "target": "Eigenvalue Spectrum"
+      "target": "Spectrum Λ(A)"
     },
     {
       "source": "Polynomial Approximation",
@@ -3322,7 +3588,7 @@
     {
       "source": "Gershgorin Circle Theorem",
       "type": "bounds",
-      "target": "Spectrum"
+      "target": "Spectrum Λ(A)"
     },
     {
       "source": "Gershgorin Circle Theorem",
@@ -3397,7 +3663,7 @@
     {
       "source": "QR Algorithm",
       "type": "related_to",
-      "target": "Hessenberg Form"
+      "target": "Hessenberg Matrix"
     },
     {
       "source": "Generalized Eigenvalue Problem",
@@ -3442,7 +3708,7 @@
     {
       "source": "Field of Values",
       "type": "contains",
-      "target": "Spectrum"
+      "target": "Spectrum Λ(A)"
     },
     {
       "source": "Field of Values",
@@ -3517,7 +3783,7 @@
     {
       "source": "Permutation Matrix",
       "type": "preserves",
-      "target": "Euclidean Norm"
+      "target": "Operator Norm"
     },
     {
       "source": "Permutation Matrix",
@@ -3736,8 +4002,8 @@
     }
   ],
   "metadata": {
-    "last_built": "2025-11-14 08:31:53",
-    "node_count": 75,
-    "edge_count": 330
+    "last_built": "2025-11-18 11:22:51",
+    "node_count": 78,
+    "edge_count": 361
   }
 }

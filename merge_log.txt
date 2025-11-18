@@ -65,3 +65,27 @@ Merged Missing Completely at Random → Missing Completely at Random (MCAR)
 Merged SRSWR → Simple Random Sampling With Replacement (SRSWR)
 Merged SRSWOR → Simple Random Sampling Without Replacement (SRSWOR)
 Merged Discrete Wavelet Transform → Discrete Wavelet Transform (DWT)
+Merged Discrete Fourier Transform → Discrete Fourier Transform (DFT)
+Merged Fast Fourier Transform → Fast Fourier Transform (FFT)
+Merged Conjugate Gradient → Conjugate Gradient Method
+Merged GMRES Least Squares → GMRES
+Merged Inner Product Space → Inner Product
+Merged Dot Product → Inner Product
+Merged Matrix Functions → Matrix Function
+Merged Preconditioner → Preconditioning
+Merged Sylvester Equation Solution → Sylvester Equation
+Merged Incomplete LU → Incomplete LU Factorization
+Merged Λ(A) → Spectrum Λ(A)
+Merged Spectrum → Spectrum Λ(A)
+Merged Eigenvalue Spectrum → Spectrum Λ(A)
+Merged Incomplete LU → Incomplete LU Factorization
+Merged Hessenberg Form → Hessenberg Matrix
+Merged Gram-Schmidt Process → Gram-Schmidt Orthogonalization
+Merged Fast Fourier Transform → Fast Fourier Transform (FFT)
+Merged Factorization Algorithms → Matrix Factorization
+Merged Euclidean Norm → Operator Norm
+Merged Eigenvalues → Eigenvalue Problem
+Merged Eigenvalue Problems → Eigenvalue Problem
+Merged Eigenvalue → Eigenvalue Problem
+Merged Dot Product → Inner Product
+Merged Discrete Fourier Transform → Discrete Fourier Transform (DFT)
