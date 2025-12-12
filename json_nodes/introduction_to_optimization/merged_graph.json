@@ -1,0 +1,2639 @@
+{
+  "nodes": {
+    "Bisection Method": {
+      "type": "Root-Finding Algorithm",
+      "domain": "Numerical Optimization / Line Search",
+      "definition": "A robust bracketing method that locates a root of a continuous function $\\phi(\\alpha)$ by repeatedly halving an interval $[a, b]$ where $\\phi(a) \\le 0 \\le \\phi(b)$ (or vice versa) until the interval length is below a tolerance.",
+      "description": "Used in line search to find a step length $\\alpha_k > 0$ satisfying the Wolfe conditions. Converges **linearly** with rate $C = \\frac{1}{2}$ because the uncertainty interval is halved at each iteration.",
+      "properties": {
+        "Goal": "Find $\\alpha_k$ such that $\\phi(\\alpha_k) \\le \\phi(0) + c_1 \\alpha_k \\phi'(0)$ and $|\\phi'(\\alpha_k)| \\le c_2 |\\phi'(0)|$ (Wolfe conditions).",
+        "Applications": [
+          "Exact line search fallback",
+          "Backtracking line search when Armijo fails"
+        ],
+        "Methods": [
+          "Initialize bracket $[\\alpha_{\\text{low}}, \\alpha_{\\text{high}}]$ with opposite signs or satisfying bounds",
+          "Set midpoint $\\alpha_{\\text{mid}} = \\frac{\\alpha_{\\text{low}} + \\alpha_{\\text{high}}}{2}$",
+          "Shrink interval based on $\\phi(\\alpha_{\\text{mid}})$ sign or Wolfe violation"
+        ],
+        "Examples": [
+          "Solving $\\phi'(\\alpha) = \\alpha^5 - \\alpha - 1 = 0$ in $[1, 2]$"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Least Squares Problems": {
+      "type": "Optimization Problem Type",
+      "domain": "Unconstrained Optimization",
+      "definition": "Minimize $f(x) = \\frac{1}{2} \\| r(x) \\|^2 = \\frac{1}{2} \\sum_{j=1}^m r_j(x)^2$, where $r: \\mathbb{R}^n \\to \\mathbb{R}^m$ is the vector of **residual functions** $r_j(x)$.",
+      "description": "Arises when overdetermined systems $r_j(x) = 0$ ($m \\ge n$) have no exact solution. Transforms root-finding into minimization. Special structure: $\\nabla f(x) = J(x)^T r(x)$, $\\nabla^2 f(x) = J(x)^T J(x) + \\sum r_j(x) \\nabla^2 r_j(x)$.",
+      "properties": {
+        "Goal": "Find best-fit parameters $x^*$ minimizing sum of squared residuals.",
+        "Applications": [
+          "Data fitting",
+          "Machine learning (regression)",
+          "Parameter estimation"
+        ],
+        "Methods": [
+          "Gauss–Newton (ignores second-order residual terms)",
+          "Levenberg–Marquardt (adds damping)",
+          "Full Newton (uses exact Hessian)"
+        ],
+        "Examples": [
+          "Linear regression: $r_j(x) = a_j^T x - b_j$"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Linear Least Squares Problem (Linear Regression)": {
+      "type": "Optimization Problem Type",
+      "domain": "Linear Algebra / Regression",
+      "definition": "Minimize $f(x) = \\frac{1}{2} \\| A x - b \\|^2$, where $A \\in \\mathbb{R}^{m \\times n}$, $b \\in \\mathbb{R}^m$, $m \\ge n$.",
+      "description": "Closed-form solution via **normal equations**: $A^T A x = A^T b$. Numerically stable via **QR factorization**: $A = QR$, solve $R x = Q^T b$.",
+      "properties": {
+        "Goal": "Find $x^*$ minimizing $\\sum (a_j^T x - b_j)^2$.",
+        "Applications": [
+          "Linear regression",
+          "Polynomial fitting"
+        ],
+        "Methods": [
+          "Normal equations (if $A^T A$ well-conditioned)",
+          "QR decomposition (preferred)",
+          "SVD (for rank-deficient cases)"
+        ],
+        "Examples": [
+          "Fit $y = x_1 + x_2 t$: residuals $r_j = x_1 + x_2 t_j - y_j$"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Gauss–Newton Method": {
+      "type": "Quasi-Newton Algorithm",
+      "domain": "Nonlinear Least Squares",
+      "definition": "Iterative method for nonlinear least squares: at $x_k$, solve $J_k^T J_k p_k = -J_k^T r_k$ for step $p_k$, where $J_k = J(x_k)$ is the Jacobian of $r$.",
+      "description": "Approximates Hessian as $B_k = J_k^T J_k$, neglecting $\\sum r_j \\nabla^2 r_j$. Valid when residuals are small at solution. Step satisfies $p_k^T \\nabla f_k = -\\| J_k p_k \\|^2 \\le 0$ (descent unless $J_k p_k = 0$).",
+      "properties": {
+        "Goal": "Efficiently solve nonlinear least squares without computing second derivatives.",
+        "Applications": [
+          "Curve fitting",
+          "Nonlinear regression"
+        ],
+        "Methods": [
+          "Compute $J_k$, $r_k$",
+          "Solve $(J_k^T J_k) p_k = -J_k^T r_k$ (via QR/Cholesky)",
+          "Line search: $x_{k+1} = x_k + \\alpha_k p_k$"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Residual Functions ($r_j(x)$)": {
+      "type": "Model Component",
+      "domain": "Least Squares",
+      "definition": "Scalar functions $r_j: \\mathbb{R}^n \\to \\mathbb{R}$, $j=1,\\dots,m$, representing model misfit: $r_j(x) = \\text{model}_j(x) - \\text{data}_j$.",
+      "description": "Stacked into vector $r(x) = [r_1(x), \\dots, r_m(x)]^T$. Objective: $f(x) = \\frac{1}{2} \\| r(x) \\|^2$. Gradient: $\\nabla f(x) = J(x)^T r(x)$, where $J(x) = \\nabla r(x)$ is $m \\times n$ Jacobian.",
+      "properties": {
+        "Goal": "Quantify error between model and observations.",
+        "Applications": [
+          "Define $f(x)$, $\\nabla f(x)$, $J(x)$"
+        ],
+        "Methods": [],
+        "Examples": [
+          "Linear: $r_j(x) = a_j^T x - b_j$",
+          "Nonlinear: $r_j(x) = e^{x_1 t_j} + x_2 \\cos(x_3 t_j) - y_j$"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Levenberg–Marquardt Method": {
+      "type": "Trust-Region Algorithm",
+      "domain": "Nonlinear Least Squares",
+      "definition": "Trust-region method for nonlinear least squares: solve $\\min_{\\|p\\| \\le \\Delta_k} \\| J_k p + r_k \\|^2$ approximately by solving $(J_k^T J_k + \\mu_k I) p = -J_k^T r_k$, adjusting $\\mu_k > 0$ to control step size.",
+      "description": "Combines Gauss–Newton ($\\mu_k = 0$) and steepest descent ($\\mu_k \\to \\infty$). Robust when $J_k^T J_k$ is singular or residuals are large.",
+      "properties": {
+        "Goal": "Solve nonlinear least squares with global convergence.",
+        "Applications": [
+          "Curve fitting",
+          "Computer vision (bundle adjustment)"
+        ],
+        "Methods": [
+          "Choose $\\mu_k$ via trust-region logic or heuristic",
+          "Solve damped normal equations",
+          "Update $\\Delta_k$ based on $\\rho_k$"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Duality Theory (Convex Optimization)": {
+      "type": "Optimization Concept/Theory",
+      "domain": "Convex Optimization",
+      "definition": "A major concept in optimization focused on the relationship between a primal constrained minimization problem ($\\min~f(x)$ subject to $c(x)\\ge0$) and its corresponding dual problem.",
+      "description": "Duality requires strong assumptions, namely that the objective function $f$ must be convex, and the constraint functions $c_{j}$ must be concave (meaning $-c_{j}$ are convex). This guarantees that the Lagrangian $\\mathcal{L}(x,\\lambda)$ is convex in $x$ for any fixed $\\lambda\\ge0$.",
+      "properties": {
+        "Goal": "Analyze and potentially solve constrained optimization problems using dual variables.",
+        "Applications": [
+          "Linear Programming (LP)",
+          "Quadratic Programming (QP)"
+        ],
+        "Methods": [
+          "Formulating the Lagrangian function $\\mathcal{L}(x,\\lambda)=f(x)-\\lambda^{T}c(x)$"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Dual Objective Function ($q(\\lambda)$)": {
+      "type": "Mathematical Function",
+      "domain": "Duality Theory",
+      "definition": "The infimum of the Lagrangian function over $x$ for a fixed $\\lambda\\ge0$: $q(\\lambda)=\\inf_{x}\\mathcal{L}(x,\\lambda)$ (74).",
+      "description": "This function is defined only for those $\\lambda\\ge0$ for which the infimum is finite ($q(\\lambda)> -\\infty$). The dual function $q$ is always concave (hence $-q$ is convex).",
+      "properties": {
+        "Goal": "Define the objective function for the Dual Problem (76).",
+        "Applications": [
+          "Formulating the Dual Problem (76)"
+        ],
+        "Methods": [
+          "Finding critical points by setting $\\nabla_{x}\\mathcal{L}(x,\\lambda)=0$ (assuming smoothness)"
+        ],
+        "Examples": [
+          "For $\\min\\frac{1}{2}(x_{1}^{2}+x_{2}^{2})$ subject to $x_{1}-1\\ge0$, $q(\\lambda)=-\\frac{1}{2}\\lambda^{2}+\\lambda$."
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Dual Problem (76)": {
+      "type": "Optimization Problem Type",
+      "domain": "Duality Theory",
+      "definition": "The optimization problem defined by maximizing the dual objective function $q(\\lambda)$ subject to the constraint $\\lambda\\ge0$: $\\max~q(\\lambda)$ subject to $\\lambda\\ge0$.",
+      "description": "Solving the dual problem provides information on the original (primal) problem (73). Due to weak duality, the optimal value of (76) is less than or equal to the optimal value of the primal problem.",
+      "properties": {
+        "Goal": "Maximize $q(\\lambda)$ to find the best lower bound for the primal problem's optimal value.",
+        "Applications": [
+          "Solving the Dual LP (79)"
+        ],
+        "Methods": [
+          "Solving the KKT conditions for $x$ once the optimal $\\lambda^*$ is found."
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Weak Duality": {
+      "type": "Theorem/Concept",
+      "domain": "Duality Theory",
+      "definition": "The theorem stating that for any feasible primal solution $x$ and any $\\lambda\\ge0$ such that $q(\\lambda)> -\\infty$, the dual objective function value is always less than or equal to the primal objective value: $q(\\lambda)\\le f(x)$.",
+      "description": "This inequality holds because $c(x)\\ge0$ and $\\lambda\\ge0$ imply $-\\lambda^{T}c(x)\\le0$, so $\\mathcal{L}(x,\\lambda)\\le f(x)$ and thus $q(\\lambda)\\le f(x)$. Weak duality gives a lower bound on the primal optimal value.",
+      "properties": {
+        "Goal": "Provide a simple lower bound for the optimal value of the primal problem.",
+        "Applications": [
+          "Verifying optimality: if $q(\\lambda)=f(x)$ for feasible $x,\\lambda$, then $x$ and $\\lambda$ are optimal"
+        ],
+        "Methods": [],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Strong Duality (Theorem 12.12)": {
+      "type": "Theorem/Concept",
+      "domain": "Duality Theory",
+      "definition": "The property that the optimal values of the primal problem $f(x^*)$ and the dual problem $q(\\lambda^*)$ are equal, i.e., $q(\\lambda^{*})=f(x^{*})$. Under convexity and a constraint qualification (e.g., Slater's condition), strong duality holds.",
+      "description": "Theorem 12.12 states that if $x^{*}$ is a solution to the primal problem (73) and there exists $\\lambda^{*}$ such that $(x^{*},\\lambda^{*})$ satisfies the KKT conditions (under convexity assumptions), then $\\lambda^{*}$ solves the dual problem (76) and $f(x^*)=q(\\lambda^*)$.",
+      "properties": {
+        "Goal": "Confirm that a found pair $(x,\\lambda)$ is globally optimal for both the primal and dual problems.",
+        "Applications": [
+          "Solving optimization problems by finding $\\lambda^*$ first and then $x$"
+        ],
+        "Methods": [
+          "Proof combines convexity of $\\mathcal{L}(x,\\lambda^{*})$ in $x$, KKT conditions, and weak duality"
+        ],
+        "Examples": [
+          "In example (75), the value of both the primal and dual problems is $\\frac{1}{2}$."
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Dual Linear Program (79)": {
+      "type": "Optimization Problem Type",
+      "domain": "Linear Programming/Duality",
+      "definition": "The dual problem corresponding to the primal LP $\\min~c^{T}x$ subject to $Ax\\ge b$ ($Ax-b\\ge0$): $\\max~b^{T}\\lambda$ subject to $A^{T}\\lambda = c$ and $\\lambda\\ge0$.",
+      "description": "The dual objective function $q(\\lambda)$ for this LP is $b^{T}\\lambda$ when the stationarity condition $A^{T}\\lambda = c$ holds (otherwise $q(\\lambda)=-\\infty$). This transformation is useful if the dual problem is easier to solve than the primal.",
+      "properties": {
+        "Goal": "Solve the primal LP (78) indirectly by solving the dual problem.",
+        "Applications": [
+          "Alternative solution method for LP problems"
+        ],
+        "Methods": [
+          "If solved for $\\lambda^{*}$, use $\\lambda^{*}$ to simplify the KKT conditions for $x$"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Interior Point Methods": {
+      "type": "Optimization Algorithm",
+      "domain": "Constrained Optimization",
+      "definition": "A class of algorithms designed to overcome the combinatorial difficulty associated with optimization problems having many inequality constraints.",
+      "description": "These methods are typically required for Quadratic Programming (QP) problems where the inequality constraints lead to $2^{m}$ possible active sets, making direct application of active-set or corner-based methods impractical.",
+      "properties": {
+        "Goal": "Efficiently solve constrained optimization problems with numerous inequality constraints.",
+        "Applications": [
+          "Quadratic Programming (44)"
+        ],
+        "Methods": [],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Simplex Method Worst-Case Complexity": {
+      "type": "Performance Metric/Bound",
+      "domain": "Linear Programming",
+      "definition": "The maximum theoretical number of vertices the Simplex method might have to visit in the worst case, given by the number of feasible basic solutions $\\binom{m}{n}$ (for $m$ constraints and $n$ variables in standard form with $m\\ge n$).",
+      "description": "Although the worst-case scenario is exponential in $n$ (as illustrated by contrived examples like the Klee-Minty cube), the Simplex method is regarded as efficient in practice, typically requiring at most $2m$ to $3m$ pivots.",
+      "properties": {
+        "Goal": "Define the upper bound of computational effort required by the Simplex method in the worst case.",
+        "Applications": [],
+        "Methods": [],
+        "Examples": [
+          "For a problem with $m=6$ equality constraints and $n=2$ non-basic variables (i.e., $6$ choose $2$), there are $\\binom{6}{2}=15$ basic feasible solutions."
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Unconstrained Optimization": {
+      "type": "Concept",
+      "domain": "Optimization",
+      "definition": "A mathematical minimization problem that seeks to find $x \\in \\mathbb{R}^n$ minimizing $f(x)$ with no constraints, so the feasible region $\\Omega$ is the entire space $\\mathbb{R}^n$.",
+      "description": "This structure notably simplifies the optimization problem because the feasible region is $\\mathbb{R}^{n}$. The solution relies primarily on advanced calculus techniques involving the gradient of $f$ and Taylor's theorem, requiring $f$ to be sufficiently smooth.",
+      "properties": {
+        "Goal": "Minimizing the objective function $f(x)$ over $x \\in \\mathbb{R}^{n}$",
+        "Applications": [],
+        "Methods": [
+          "Line Search Methods",
+          "Trust Region Methods",
+          "Application of Taylor's theorem"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_2.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Local Minimizer ($x^*$)": {
+      "type": "Concept",
+      "domain": "Optimization",
+      "definition": "A point $x^{*}\\in\\mathbb{R}^{n}$ that is a global minimizer when restricted to some neighborhood of $x^{*}$ intersected with the feasible region $\\Omega$.",
+      "description": "Algorithms typically find only local minimizers, which may provide a poor estimate of the global solution. However, in convex optimization problems, any local minimizer is guaranteed to be a global minimizer.",
+      "properties": {
+        "Goal": "Identify points satisfying $f(x^{*})\\le f(x)$ locally",
+        "Applications": [],
+        "Methods": [
+          "Checking First-Order Necessary Condition (FONC)",
+          "Checking Second-Order Sufficient Conditions (SOSC)"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_2.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "First-Order Necessary Condition (FONC)": {
+      "type": "Concept",
+      "domain": "Unconstrained Optimization",
+      "definition": "A necessary condition that a local minimizer $x^{*}$ of a smooth function $f$ must satisfy, requiring that the gradient vanishes: $\\nabla f(x^{*})=0$.",
+      "description": "This condition is derived using Taylor's theorem (2.4) and means that the point $x^{*}$ is a stationary or critical point of $f$. If this condition is not met (i.e., $\\nabla f(x^{*})\\ne0$), the function must decrease when moving in the direction $-\\nabla f(x^{*})$.",
+      "properties": {
+        "Goal": "Identify stationary points that are candidates for minimizers",
+        "Applications": [
+          "Finding stationary points by solving the linear system $\\nabla f(x)=0$"
+        ],
+        "Methods": [
+          "Application of Taylor's theorem (2.4)"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_2.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Positive Semidefinite Matrix": {
+      "type": "Concept",
+      "domain": "Linear Algebra, Optimization",
+      "definition": "A symmetric matrix $A\\in\\mathbb{R}^{n\\times n}$ where all its eigenvalues are non-negative, which is mathematically equivalent to the condition $x^{T}Ax\\ge0$ for any vector $x$.",
+      "description": "This matrix concept is crucial for the 'second derivative test' in optimization. For a stationary point to be a local minimizer, its Hessian matrix $\\nabla^{2}f(x^{*})$ must satisfy the positive semidefinite property, which forms the Second-Order Necessary Condition.",
+      "properties": {
+        "Goal": "Determine the curvature behavior (non-negative) of a function in all directions",
+        "Applications": [
+          "Defining Second-Order Necessary Condition (SONC)"
+        ],
+        "Methods": [
+          "Checking eigenvalues"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_2.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Second-Order Sufficient Conditions (SOSC)": {
+      "type": "Concept",
+      "domain": "Unconstrained Optimization",
+      "definition": "Conditions guaranteeing that a point $x^{*}$ is a strict local minimizer, requiring that $x^{*}$ is a stationary point ($\\nabla f(x^{*})=0$) and that the Hessian matrix $\\nabla^{2}f(x^{*})$ is positive definite.",
+      "description": "Derived using Taylor's theorem (2.6), SOSC guarantees that $f$ increases in all directions when moving away from $x^{*}$, thereby confirming a strict local minimum. These conditions are sufficient but not necessary; for instance, $f(x)=x^4$ at $x=0$ is a local minimizer but fails the positive definiteness test.",
+      "properties": {
+        "Goal": "Confirm a strict local minimizer exists at a stationary point",
+        "Applications": [
+          "Higher-dimensional second derivative test"
+        ],
+        "Methods": [
+          "Checking for positive definiteness of $\\nabla^{2}f(x^{*})$"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_2.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Saddle Point": {
+      "type": "Concept",
+      "domain": "Optimization",
+      "definition": "A stationary point $x^*$ where the function $f$ grows in some directions and decreases in other directions when moving away from $x^{*}$.",
+      "description": "Saddle points are critical points where the First-Order Necessary Condition (FONC) holds, but they are neither local minimizers nor maximizers, indicating mixed curvature in the Hessian.",
+      "properties": {
+        "Goal": "Classify stationary points that are not local minimizers.",
+        "Applications": [],
+        "Methods": [
+          "Checking the Hessian matrix $\\nabla^{2}f(x^{*})$ for positive and negative eigenvalues"
+        ],
+        "Examples": [
+          "The point $(\\frac{-1}{\\sqrt{3}},0)$ for the function $f(x)=x_{1}(x_{1}^{2}-1)+x_{2}^{2}$"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_2.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Line Search Methods": {
+      "type": "Method",
+      "domain": "Unconstrained Optimization",
+      "definition": "A family of iterative methods used to solve unconstrained minimization problems by improving the current iterate $x_{k}$ in two sequential steps: choosing a descent direction $p_{k}$ and computing the optimal step length $\\alpha$.",
+      "description": "The second step involves solving a one-dimensional subproblem, $min_{\\alpha>0}f(x_{k}+\\alpha p_{k})$, which finds the optimal distance to move in the chosen direction $p_k$. This subproblem is computationally simpler than the original $n$-dimensional problem.",
+      "properties": {
+        "Goal": "Iteratively find a local minimizer",
+        "Applications": [
+          "Solving unconstrained minimization problems"
+        ],
+        "Methods": [
+          "Choosing $p_k$ (descent direction)",
+          "Solving $min_{\\alpha>0}f(x_{k}+\\alpha p_{k})$ for $\\alpha$"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_2.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Descent Direction ($p_k$)": {
+      "type": "Concept",
+      "domain": "Optimization, Line Search Methods",
+      "definition": "A direction $p_{k}$ chosen in a Line Search Method such that the objective function $f$ decreases when moving from the current iterate $x_{k}$ into that direction.",
+      "description": "Choosing $p_k$ is the first step in Line Search Methods and must precede the determination of the step length $\\alpha$. Since $f$ must decrease, the computed step length $\\alpha$ must be positive.",
+      "properties": {
+        "Goal": "Ensure that the iteration $x_{k+1}$ results in a lower function value than $f(x_k)$",
+        "Applications": [
+          "Used in the first step of Line Search Methods"
+        ],
+        "Methods": [
+          "Cleverly computing $p_k$"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_2.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Constrained Optimization Problem": {
+      "type": "Optimization Problem Type",
+      "domain": "Optimization Theory",
+      "definition": "Minimize an objective function $f(x)$ subject to equality constraints $c_i(x) = 0$ for $i \\in \\mathcal{E}$ and inequality constraints $c_i(x) \\ge 0$ for $i \\in \\mathcal{I}$, defining the feasible set $\\Omega = \\{x \\in \\mathbb{R}^n \\mid c_i(x) = 0, \\, i \\in \\mathcal{E}; \\, c_i(x) \\ge 0, \\, i \\in \\mathcal{I}\\}$.",
+      "description": "Extends unconstrained optimization by restricting the search to $\\Omega$. Most algorithms find only **local** minimizers within a neighborhood intersected with $\\Omega$.",
+      "properties": {
+        "Goal": "Find $x^* \\in \\Omega$ such that $f(x^*) \\le f(x)$ for all $x \\in \\Omega \\cap \\mathcal{N}(x^*)$ (local minimizer).",
+        "Applications": [
+          "Engineering design",
+          "Economics",
+          "Machine learning (e.g., SVM, constrained regression)"
+        ],
+        "Methods": [
+          "KKT conditions for stationarity",
+          "Active-set methods",
+          "Interior-point methods",
+          "Penalty/barrier methods"
+        ],
+        "Examples": [
+          "$\\min x_1 + x_2$ s.t. $x_1^2 + x_2^2 = 2$ (equality)",
+          "$\\min x_1 + x_2$ s.t. $2 - x_1^2 - x_2^2 \\ge 0$ (inequality)",
+          "QP: $\\min \\frac{1}{2} x^T Q x - b^T x$ s.t. $C x \\le d$"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Karush-Kuhn-Tucker (KKT) Conditions": {
+      "type": "First-Order Necessary Conditions",
+      "domain": "Constrained Optimization Theory",
+      "definition": "For a local minimizer $x^* \\in \\Omega$ under a constraint qualification (e.g., LICQ), there exist $\\lambda^*_i$ (Lagrange multipliers) such that:\\n1. **Stationarity**: $\\nabla f(x^*) = \\sum_{i \\in \\mathcal{E} \\cup \\mathcal{I}} \\lambda^*_i \\nabla c_i(x^*)$\\\\\n2. **Primal feasibility**: $c_i(x^*) = 0$ ($i \\in \\mathcal{E}$), $c_i(x^*) \\ge 0$ ($i \\in \\mathcal{I}$)$\\\\\n3. **Dual feasibility**: $\\lambda^*_i \\ge 0$ ($i \\in \\mathcal{I}$)$\\\\\n4. **Complementary slackness**: $\\lambda^*_i c_i(x^*) = 0$ ($i \\in \\mathcal{I}$)$\\\\\n(Theorem 12.1, p. 321)",
+      "description": "Generalizes Lagrange multiplier method to inequalities. First-order necessary conditions for local optimality under CQ. Equivalent to $\\nabla_x \\mathcal{L}(x^*, \\lambda^*) = 0$, feasibility, and complementarity.",
+      "properties": {
+        "Goal": "Characterize candidate local minimizers via a system of equations and inequalities.",
+        "Applications": [
+          "Optimality certification",
+          "Algorithm termination (e.g., SQP, IPM)",
+          "Duality theory"
+        ],
+        "Methods": [
+          "Solve $\\nabla_x \\mathcal{L} = 0$, $\\lambda_i c_i = 0$, $\\lambda_i \\ge 0$, $c_i \\ge 0$",
+          "Newton-type methods on KKT system"
+        ],
+        "Examples": [
+          "QP: solve $Q x - b = C^T \\lambda$, $\\lambda \\ge 0$, $\\lambda \\circ (C x - d) = 0$"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Lagrangian Function ($\\mathcal{L}(x, \\lambda)$)": {
+      "type": "Auxiliary Function",
+      "domain": "Constrained Optimization Theory",
+      "definition": "$\\mathcal{L}(x, \\lambda) = f(x) - \\sum_{i \\in \\mathcal{E}} \\lambda_i c_i(x) - \\sum_{i \\in \\mathcal{I}} \\lambda_i c_i(x)$",
+      "description": "Combines objective and constraints into a single function. KKT stationarity is $\\nabla_x \\mathcal{L}(x^*, \\lambda^*) = 0$. For equality-only: $\\mathcal{L}(x, \\lambda) = f(x) - \\lambda^T c(x)$",
+      "properties": {
+        "Goal": "Convert constrained problem into unconstrained saddle-point problem.",
+        "Applications": [
+          "KKT derivation",
+          "Duality",
+          "SQP methods"
+        ],
+        "Methods": [
+          "Form $\\mathcal{L}$, set $\\nabla_x \\mathcal{L} = 0$",
+          "Dual function: $q(\\lambda) = \\inf_x \\mathcal{L}(x, \\lambda)$"
+        ],
+        "Examples": [
+          "Eigenvalue: $\\mathcal{L}(x, \\lambda) = x^T Q x - \\lambda (x^T x - 1)$"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Tangent Cone ($T_\\Omega(x)$)": {
+      "type": "Geometric Set",
+      "domain": "Constrained Optimization Geometry",
+      "definition": "The set of directions $d$ such that there exists a sequence $x_k \\in \\Omega$, $x_k \\to x$, and $t_k \\downarrow 0$ with $(x_k - x)/t_k \\to d$.",
+      "description": "Limit of feasible directions from $x$. Contains all $d$ for which a feasible path exists in $\\Omega$. Under LICQ, $T_\\Omega(x) = \\mathcal{F}(x)$ (linearized cone).",
+      "properties": {
+        "Goal": "Describe local geometry of feasible set at $x$.",
+        "Applications": [
+          "First-order necessary conditions (Theorem 12.3)",
+          "Convergence analysis"
+        ],
+        "Methods": [],
+        "Examples": [
+          "Equality $c(x)=0$: $T_\\Omega(x) = \\ker \\nabla c(x)^T$",
+          "Inequality at boundary: half-space tangent"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Linear Independence Constraint Qualification (LICQ)": {
+      "type": "Constraint Qualification",
+      "domain": "Constrained Optimization Theory",
+      "definition": "At $x \\in \\Omega$, the gradients $\\{\\nabla c_i(x) \\mid i \\in \\mathcal{A}(x)\\}$ are linearly independent.",
+      "description": "Strong CQ ensuring KKT multipliers are unique and $T_\\Omega(x) = \\mathcal{F}(x)$. Prevents degenerate constraint configurations.",
+      "properties": {
+        "Goal": "Ensure well-posedness of KKT system and geometric regularity.",
+        "Applications": [
+          "Guarantee KKT necessity",
+          "Uniqueness of $\\lambda^*$"
+        ],
+        "Methods": [
+          "Check rank of Jacobian of active constraints = |$\\mathcal{A}(x)$|"
+        ],
+        "Examples": [
+          "Holds for $x^T x = 1$, $x \\ne 0$"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Active Set of Indices ($\\mathcal{A}(x)$)": {
+      "type": "Index Set",
+      "domain": "Constrained Optimization",
+      "definition": "$\\mathcal{A}(x) = \\mathcal{E} \\cup \\{i \\in \\mathcal{I} \\mid c_i(x) = 0\\}$ — indices of binding constraints at $x$.",
+      "description": "Determines which constraints are active (tight). Only these affect local geometry and KKT conditions.",
+      "properties": {
+        "Goal": "Identify binding constraints for local analysis.",
+        "Applications": [
+          "LICQ check",
+          "Active-set algorithms",
+          "Reduced KKT system"
+        ],
+        "Methods": [],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Farkas' Lemma": {
+      "type": "Alternative Theorem",
+      "domain": "Convex Analysis / Linear Algebra",
+      "definition": "For $A \\in \\mathbb{R}^{m \\times n}$, $b \\in \\mathbb{R}^m$, exactly one holds:\\n1. $\\exists x \\ge 0$ s.t. $A x = b$\\\\\n2. $\\exists y$ s.t. $A^T y \\ge 0$, $b^T y < 0$",
+      "description": "Fundamental result in conic duality. Used to prove KKT: if $-\\nabla f(x) \\notin \\mathcal{K}$ (cone of active gradients), then descent direction exists.",
+      "properties": {
+        "Goal": "Prove impossibility of infeasibility via separating hyperplane.",
+        "Applications": [
+          "Proof of KKT (via cone separation)",
+          "LP duality",
+          "Support vector machines"
+        ],
+        "Methods": [
+          "Geometric: separating hyperplane",
+          "Algebraic: Gordan, Motzkin theorems"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Linear Program (LP) in Standard Form (64)": {
+      "type": "Optimization Problem Type",
+      "domain": "Linear Programming",
+      "definition": "The problem of minimizing a cost function $f(x)=c^{T}x$ subject to linear equality constraints $Ax=b$ and non-negativity constraints $x\\ge0$.",
+      "description": "This is the formulation assumed when applying the Simplex method. It requires conversion tricks (e.g., slack variables) if the original problem contains inequalities. Typically assumes $m<n$ and $A$ has full row rank (linearly independent rows).",
+      "properties": {
+        "Goal": "Minimize linear cost over polyhedral feasible set.",
+        "Applications": [
+          "Resource allocation, production planning, logistics"
+        ],
+        "Methods": [
+          "Simplex Method",
+          "Interior Point Methods"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Linear Program (LP) in Canonical Form (65)": {
+      "type": "Optimization Problem Type",
+      "domain": "Linear Programming",
+      "definition": "The problem of minimizing $c^{T}x$ subject to inequality constraints $Ax\\le b$ and non-negativity constraints $x\\ge0$.",
+      "description": "This form represents the feasible region $\\Omega$ as a polyhedron (polygon when $n=2$). It is convertible to standard form (64) using slack variables.",
+      "properties": {
+        "Goal": "Minimize linear objective over inequality-constrained domain.",
+        "Applications": [
+          "Initial formulation of real-world LP problems"
+        ],
+        "Methods": [
+          "Add slack variables: $$ Ax + z = b $$, $$ z \\ge 0 $$ → standard form (66)"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Simplex Method": {
+      "type": "Optimization Algorithm",
+      "domain": "Linear Programming",
+      "definition": "A descent method for solving LP problems in standard form by starting at a vertex of the feasible region and moving along edges to adjacent vertices where the cost strictly decreases.",
+      "description": "The method guarantees convergence to the global minimizer (assuming non-degeneracy) because the cost decreases at each pivot and no vertex is revisited. It was devised by George Dantzig in the 1940s.",
+      "properties": {
+        "Goal": "Find global minimum of linear program.",
+        "Applications": [
+          "Solving LPs in standard form (64)"
+        ],
+        "Methods": [
+          "Phase I: Find initial basic feasible solution",
+          "Phase II: Pivot to reduce cost until optimality ($$ s \\ge 0 $$)",
+          "Use reduced costs $$ s_j = c_j - \\lambda^T A_{:j} $$ to select entering variable"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Basic Feasible Solution (Vertex)": {
+      "type": "Solution Point/Geometric Vertex",
+      "domain": "Linear Programming",
+      "definition": "A solution $x$ to $Ax=b$ in standard form such that $x\\ge0$ and exactly $n-m$ components are zero (assuming full row rank of $A$).",
+      "description": "These points correspond to the vertices of the feasible polyhedron. The Simplex method moves exclusively between such points.",
+      "properties": {
+        "Goal": "Serve as endpoints for descent steps along feasible edges.",
+        "Applications": [
+          "Starting point for Simplex Phase II (if $B^{-1}b \\ge 0$)"
+        ],
+        "Methods": [],
+        "Examples": [
+          "For problem (67), initial vertex: $x_{1}=8$, $x_{2}=9$ (basic), $x_{3}=x_{4}=x_{5}=0$ (non-basic)."
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Minimum Ratio Rule": {
+      "type": "Selection Criterion/Rule",
+      "domain": "Simplex Method",
+      "definition": "The rule to determine the leaving basic variable by computing $\\theta^* = \\min\\left\\{\\frac{(B^{-1}b)_{i}}{(B^{-1}u)_{i}} \\mid (B^{-1}u)_{i} > 0\\right\\}$, where $u$ is the column of the entering variable in $N$.",
+      "description": "This rule ensures the step size along the edge is maximal while preserving feasibility, identifying the next vertex.",
+      "properties": {
+        "Goal": "Determine the leaving variable and step size to the next vertex.",
+        "Applications": [
+          "Step 3 of the Simplex Method"
+        ],
+        "Methods": [
+          "Compute ratios $\\frac{(B^{-1}b)_{i}}{(B^{-1}u)_{i}}$ only for $i$ where $(B^{-1}u)_{i} > 0$."
+        ],
+        "Examples": [
+          "In example (67), ratios $\\frac{8}{2}=4$ and $\\frac{9}{3}=3$; minimum is 3, so $x_{2}$ leaves."
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Critical Cone ($\\mathcal{C}(x^{*},\\lambda^{*})$)": {
+      "type": "Geometric Concept/Set",
+      "domain": "Constrained Optimization Theory",
+      "definition": "The set of directions $w\\in\\mathbb{R}^{n}$ such that $\\nabla c_{i}(x^{*})^{T}w = 0$ for all active constraints $i$ (i.e., $c_{i}(x^{*})=0$ and $\\lambda^{*}_{i}>0$), and $\\nabla c_{i}(x^{*})^{T}w \\ge 0$ for active constraints with $\\lambda^{*}_{i}=0$.",
+      "description": "Used to restrict second-order necessary/sufficient conditions at a KKT point. For the eigenvalue problem $\\min x^{T}Qx$ s.t. $\\|x\\|=1$, it is the tangent plane $\\{w \\mid x^{*T}w=0\\}$.",
+      "properties": {
+        "Goal": "Define the subspace on which the Hessian of the Lagrangian must be positive semidefinite (second-order conditions).",
+        "Applications": [
+          "Second-Order Necessary Conditions (Theorem 12.5)"
+        ],
+        "Methods": [],
+        "Examples": [
+          "For constraint $c(x) = \\|x\\|^2 - 1 = 0$, $\\mathcal{C}(x^{*},\\lambda^{*}) = \\{w \\mid x^{*T}w = 0\\}$."
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Second Order Necessary Condition (Eigenvalue Problem)": {
+      "type": "Necessary Condition/Verification",
+      "domain": "Constrained Optimization Theory",
+      "definition": "At a local minimizer $x^{*}$ of $\\min x^{T}Qx$ s.t. $\\|x\\|=1$, the restricted Hessian satisfies $w^{T}(Q - \\lambda^{*}I)w \\ge 0$ for all $w \\in \\mathcal{C}(x^{*},\\lambda^{*}) = \\{w \\mid x^{*T}w=0\\}$.",
+      "description": "Equivalent to $\\lambda^{*}$ being the smallest eigenvalue of $Q$. If $\\lambda^{*}$ is not the smallest, $x^{*}$ cannot be a local minimizer.",
+      "properties": {
+        "Goal": "Verify whether a KKT point $x^{*}$ (unit eigenvector) is a local minimizer.",
+        "Applications": [
+          "Analyzing constrained eigenvalue problems"
+        ],
+        "Methods": [
+          "Check if $\\lambda^{*}$ is the smallest eigenvalue of $Q$."
+        ],
+        "Examples": [
+          "If $\\lambda^{*}$ is the smallest eigenvalue and multiplicity one, $x^{*}$ is a local minimizer."
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Duality Theory (Convex)": {
+      "type": "Optimization Concept/Theory",
+      "domain": "Convex Optimization",
+      "definition": "A framework for analyzing the primal problem $\\min~f(x)$ s.t. $c(x)\\ge0$ via the Lagrangian and dual problem, valid under convexity assumptions on $f$ and concavity on $c_j$.",
+      "description": "Requires $f$ convex and $c_j$ concave so that the Lagrangian $\\mathcal{L}(x,\\lambda) = f(x) - \\lambda^{T}c(x)$ is convex in $x$ for fixed $\\lambda\\ge0$. Enables weak/strong duality results.",
+      "properties": {
+        "Goal": "Analyze and solve constrained convex optimization problems using dual variables.",
+        "Applications": [
+          "Linear Programming",
+          "Quadratic Programming"
+        ],
+        "Methods": [
+          "Form Lagrangian $\\mathcal{L}(x,\\lambda)=f(x)-\\lambda^{T}c(x)$"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Quadratic Function (Optimization Tool)": {
+      "type": "Concept",
+      "domain": "Optimization",
+      "definition": "A simple function structure used as a tool to model objective functions, even if the original function is not quadratic.",
+      "description": "Quadratic functions appear in many applications and are useful for analyzing algorithm behavior, such as the speed of convergence of the steepest descent method. They are employed in both unconstrained and constrained optimization contexts, often replacing the original function via Taylor approximation.",
+      "properties": {
+        "Goal": "Simplify analysis and serve as an approximation model for non-quadratic functions",
+        "Applications": [
+          "Unconstrained optimization",
+          "Constrained optimization",
+          "Analyzing Steepest Descent speed"
+        ],
+        "Methods": [
+          "Approximating original function via Taylor's theorem"
+        ],
+        "Examples": [
+          "Solving the linear system $Qx=b$ where $\\nabla^2 f(x)=Q$"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_3.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Descent Direction Condition": {
+      "type": "Metric",
+      "domain": "Unconstrained Optimization, Line Search Methods",
+      "definition": "The algebraic condition required for a direction $p_{k}$ to ensure the objective function $f$ decreases when moving from $x_{k}$ into $p_{k}$, given by $\\nabla f(x_{k})^{T}p_{k}<0$.",
+      "description": "This condition ensures that the derivative of the one-dimensional function $\\phi(\\alpha)=f(x_{k}+\\alpha p_{k})$ evaluated at $\\alpha=0$ is negative, confirming an initial decrease in $f$. It is based on the first degree Taylor's polynomial.",
+      "properties": {
+        "Goal": "Ensure progress towards a minimizer in Line Search Methods",
+        "Applications": [
+          "Choosing $p_k$ in Line Search methods"
+        ],
+        "Methods": [
+          "Using the chain rule to find $\\phi^{\\prime}(0)$"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_3.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Direction of Steepest Descent": {
+      "type": "Method",
+      "domain": "Unconstrained Optimization, Line Search Methods",
+      "definition": "The choice of descent direction $p_{k}=-\\nabla f(x_{k})$, which yields the largest decrease in $f$ locally from $x_{k}$ for small $\\alpha>0$.",
+      "description": "This is the simplest and cheapest method for choosing a descent direction, equivalent to setting $B_k=I$ in the generalized direction formula (11). Despite appearing to be the 'best choice' based on local decrease, it can suffer from slow linear convergence, especially if the objective function's condition number is large.",
+      "properties": {
+        "Goal": "Choose the fastest local rate of descent",
+        "Applications": [
+          "Steepest Descent Method"
+        ],
+        "Methods": [
+          "Setting $p_k = -\\nabla f(x_k)$"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_3.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Newton's Method (Optimization)": {
+      "type": "Method",
+      "domain": "Unconstrained Optimization",
+      "definition": "A method for finding a stationary point $x^{*}$ by applying the standard Newton's method to solve the nonlinear system $\\nabla f(x)=0$, resulting in the iterative update $x_{k+1}=x_{k}-(\\nabla^{2}f(x_{k}))^{-1}\\nabla f(x_{k})$.",
+      "description": "In the context of line search, this corresponds to using the Hessian $B_{k}=\\nabla^{2}f(x_{k})$ as the approximating matrix and setting the step length $\\alpha=1$ at every step, which is a notable advantage. It replaces the objective function $f$ with a simple quadratic function and, when close to the solution, exhibits rapid quadratic convergence.",
+      "properties": {
+        "Goal": "Find stationary points rapidly",
+        "Applications": [
+          "Small dimensional optimization problems"
+        ],
+        "Methods": [
+          "Uses $B_k = \\nabla^2 f(x_k)$",
+          "Sets $\\alpha=1$"
+        ],
+        "Examples": [
+          "$min(x_{1}-2)^{4}+(x_{1}-2x_{2})^{2}$"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_3.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Steepest Descent Method": {
+      "type": "Method",
+      "domain": "Unconstrained Optimization",
+      "definition": "An iterative Line Search Method that consistently uses the Direction of Steepest Descent ($p_k = -\\nabla f(x_k)$) for its search direction, corresponding to setting $B_{k}=I$ in the generalized direction formula (11).",
+      "description": "This method is computationally cheap because it avoids forming or inverting the Hessian. However, its convergence speed is typically linear, and if the condition number of the Hessian approximation $Q$ is large, convergence can be extremely slow.",
+      "properties": {
+        "Goal": "Iteratively minimize $f$ with minimal computational cost per step",
+        "Applications": [
+          "Used when $n$ is large and Hessian computation is too expensive"
+        ],
+        "Methods": [
+          "Using exact step length $\\alpha_{k}$ derived from quadratic model"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_3.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Condition Number (\\kappa(Q))": {
+      "type": "Metric",
+      "domain": "Numerical Analysis, Optimization",
+      "definition": "The ratio of the largest eigenvalue ($\\lambda_n$) to the smallest eigenvalue ($\\lambda_1$) of the matrix $Q$, defined as $\\kappa(Q) = \\frac{\\lambda_n}{\\lambda_1}$, used to analyze the convergence rate of iterative methods.",
+      "description": "For the Steepest Descent method applied to a quadratic function, the condition number dictates the linear convergence rate, $C=\\frac{\\kappa(Q)-1}{\\kappa(Q)+1}$. A large condition number means $C$ is close to 1, indicating very slow convergence, requiring thousands of steps to reach an approximation.",
+      "properties": {
+        "Goal": "Quantify the geometry of the function's contours and predict convergence speed",
+        "Applications": [
+          "Analysis of Steepest Descent Method"
+        ],
+        "Methods": [
+          "Calculation using eigenvalues of Q"
+        ],
+        "Examples": [
+          "If $\\kappa(Q)=800$, $C=0.9975$"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_3.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Quasi-Newton Methods": {
+      "type": "Method",
+      "domain": "Unconstrained Optimization",
+      "definition": "A family of iterative methods aimed at inexpensively producing a matrix $B_{k}$ that approximates the Hessian matrix $\\nabla^{2}f(x_{k})$, used to compute the descent direction $p_{k}=-B_{k}^{-1}\\nabla f(x_{k})$.",
+      "description": "These methods are used when forming and solving the full Hessian system (12) is too time-consuming, typically aiming for superlinear convergence ($1<p<2$)—a speed that is faster than linear but usually slower than quadratic. They rely on small rank-updates to improve the approximation iteratively.",
+      "properties": {
+        "Goal": "Achieve fast convergence without the expense of calculating the full Hessian",
+        "Applications": [
+          "Unconstrained minimization when $n$ is large"
+        ],
+        "Methods": [
+          "Rank-updating schemes ($B_{k+1}=B_{k}+F_{k}$ with $rank(F_k)\\le 2$)"
+        ],
+        "Examples": [
+          "SR1 method",
+          "BFGS method"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_3.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Secant Condition": {
+      "type": "Concept",
+      "domain": "Quasi-Newton Methods",
+      "definition": "A condition used to define the updated Hessian approximation $B_{k+1}$ in Quasi-Newton methods, derived from the first-degree Taylor approximation of $\\nabla f$ and requiring $B_{k+1}(x_{k+1}-x_{k})=\\nabla f(x_{k+1})-\\nabla f(x_{k})$.",
+      "description": "This condition dictates how the updated matrix $B_{k+1}$ must relate the change in position ($s_k = x_{k+1}-x_{k}$) to the change in gradient ($y_k = \\nabla f(x_{k+1})-\\nabla f(x_{k})$). It is a finite difference approximation of the relationship between the Hessian and the gradient changes.",
+      "properties": {
+        "Goal": "Provide a relationship to constrain the rank-update formula $F_k$",
+        "Applications": [
+          "Deriving SR1 update",
+          "Deriving BFGS method"
+        ],
+        "Methods": [
+          "Using Taylor's polynomial of $\\nabla f$"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_3.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "SR1 Update": {
+      "type": "Method",
+      "domain": "Quasi-Newton Methods",
+      "definition": "The symmetric rank-one (SR1) update formula used to incrementally modify the Hessian approximation $B_{k}$ using a rank-one matrix update to satisfy the secant condition (17).",
+      "description": "It is the simplest rank-update scheme, defined by $B_{k+1}=B_{k}+\\frac{1}{(y_{k}-B_{k}s_{k})^{T}s_{k}}(y_{k}-B_{k}s_{k})(y_{k}-B_{k}s_{k})^{T}$. This update can fail if the denominator is zero or very small, in which case the matrix $B_k$ is usually left unchanged.",
+      "properties": {
+        "Goal": "Update the Hessian approximation inexpensively while retaining symmetry",
+        "Applications": [
+          "Quasi-Newton Methods"
+        ],
+        "Methods": [
+          "Enforcing $B_{k+1}$ symmetry",
+          "Satisfying the Secant Condition"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_3.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Bisection Method (Step Length)": {
+      "type": "Method",
+      "domain": "Numerical Optimization, Line Search Methods",
+      "definition": "A basic algorithm for finding a zero of a continuous, univariate function, specifically applied here to find $\\alpha_{k}$ by locating a zero of $\\phi^{\\prime}(\\alpha)=\\nabla f(x_{k}+\\alpha p_{k})^{T}p_{k}$.",
+      "description": "The method iteratively halves an interval $[0, \\hat{\\alpha}]$ that is known to contain a zero of $\\phi^{\\prime}$ because $\\phi^{\\prime}$ changes sign across the interval. Since $\\phi^{\\prime}(0)<0$, it requires guessing a point $\\hat{\\alpha}>0$ such that $\\phi^{\\prime}(\\hat{\\alpha})>0$.",
+      "properties": {
+        "Goal": "Find an approximate optimal step length $\\alpha_{k}$ for the 1D subproblem (7)",
+        "Applications": [
+          "Univariate zero finding"
+        ],
+        "Methods": [
+          "Requires only function evaluations (no derivatives)",
+          "Halving the search interval"
+        ],
+        "Examples": [
+          "Example with $\\phi^{\\prime}(\\alpha)=\\alpha^{6}-\\alpha-1$"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_3.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Nonlinear Least Squares Problems": {
+      "type": "Concept",
+      "domain": "Optimization, Data Fitting",
+      "definition": "Structured unconstrained optimization problems that arise when minimizing the sum of squares of $m$ residual functions $r_{j}(x)$, where $r_{j}:\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$ are smooth functions, often under the assumption $m\\ge n$.",
+      "description": "These problems frequently appear when tuning a model to achieve the best fit for given data, such as in machine learning or neural network applications. Due to their structure, simplifying tricks can be applied, particularly when combined with Line Search and Quasi-Newton methods.",
+      "properties": {
+        "Goal": "Find parameters $x$ that minimize the residual errors between a model and observed data",
+        "Applications": [
+          "Machine learning",
+          "Neural network applications",
+          "Model tuning"
+        ],
+        "Methods": [
+          "Structured Quasi-Newton methods"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_3.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Trust Region Methods (TRMs)": {
+      "type": "Optimization Algorithm",
+      "domain": "Unconstrained Optimization",
+      "definition": "An iterative method for solving unconstrained optimization problems $\\min f(x)$ by solving a sequence of constrained quadratic subproblems within a trust region around the current iterate $x_k$.",
+      "description": "At each iteration, a step $p_k$ is computed by minimizing a quadratic model $m_k(p)$ of $f(x_k + p)$ subject to $\\|p\\| \\le \\Delta_k$. The radius $\\Delta_k$ is adjusted based on how well the model predicts the actual function decrease.",
+      "properties": {
+        "Goal": "Find a local minimizer of $f(x)$ with robust global convergence properties.",
+        "Applications": [
+          "Large-scale nonlinear optimization",
+          "Non-convex problems where line search may fail"
+        ],
+        "Methods": [
+          "Solve Trust Region Subproblem (52) at each $x_k$",
+          "Use KKT conditions to characterize optimal $p_k$",
+          "Update $\\Delta_k$ using comparison ratio $\\rho_k$"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Trust Region Subproblem (52)": {
+      "type": "Constrained Quadratic Program",
+      "domain": "Trust Region Methods",
+      "definition": "$\\min_{p \\in \\mathbb{R}^n} m_k(p) \\quad \\text{subject to} \\quad \\|p\\| \\le \\Delta_k$, where $m_k(p) = f_k + g_k^T p + \\frac{1}{2} p^T B_k p$.",
+      "description": "Core subproblem solved at each TRM iteration. The solution $p_k$ satisfies $(B_k + \\lambda I)p_k = -g_k$, $\\lambda \\ge 0$, $\\lambda(\\|p_k\\| - \\Delta_k) = 0$, and $B_k + \\lambda I \\succeq 0$.",
+      "properties": {
+        "Goal": "Compute a step $p_k$ that sufficiently reduces the model within the trust region.",
+        "Applications": [
+          "Step generation in TRM"
+        ],
+        "Methods": [
+          "Case 1 (interior): $\\lambda = 0$, solve $B_k p = -g_k$ if $\\|p\\| \\le \\Delta_k$",
+          "Case 2 (boundary): solve $(B_k + \\lambda I)p = -g_k$, $\\|p\\| = \\Delta_k$ via root-finding in $\\lambda$",
+          "Approximate via Krylov subspace methods"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Model Function ($m_k(p)$)": {
+      "type": "Quadratic Approximation",
+      "domain": "Trust Region Methods",
+      "definition": "Second-order Taylor expansion of $f$ around $x_k$: $m_k(p) = f(x_k) + \\nabla f(x_k)^T p + \\frac{1}{2} p^T B_k p$, where $B_k \\approx \\nabla^2 f(x_k)$.",
+      "description": "Local surrogate for $f$. When $B_k = \\nabla^2 f(x_k)$, the approximation error satisfies $|f(x_k + p) - m_k(p)| = O(\\|p\\|^3)$.",
+      "properties": {
+        "Goal": "Provide a tractable local model for minimization within the trust region.",
+        "Applications": [
+          "Defining Trust Region Subproblem (52)"
+        ],
+        "Methods": [],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Comparison Ratio ($\\rho_k$)": {
+      "type": "Performance Metric",
+      "domain": "Trust Region Methods",
+      "definition": "$\\rho_k = \\frac{f(x_k) - f(x_k + p_k)}{m_k(0) - m_k(p_k)}$ — ratio of actual to predicted reduction.",
+      "description": "Measures model quality. If $\\rho_k \\ge \\eta_1 > 0$ (e.g., 0.1), accept step and possibly increase $\\Delta_k$. If $\\rho_k < \\eta_1$, reject step and shrink $\\Delta_k$.",
+      "properties": {
+        "Goal": "Assess reliability of quadratic model $m_k$ to control trust region radius.",
+        "Applications": [
+          "Step acceptance/rejection",
+          "Adaptive radius update"
+        ],
+        "Methods": [
+          "Accept if $\\rho_k \\ge 0.1$, increase $\\Delta_k$ if $\\rho_k \\ge 0.75$",
+          "Reject and shrink $\\Delta_k$ if $\\rho_k < 0.1$"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Krylov Subspace Approximation (TR Subproblem)": {
+      "type": "Approximation Technique",
+      "domain": "Trust Region Subproblem Solving",
+      "definition": "Approximate solution of the TR subproblem by restricting $p$ to a low-dimensional Krylov subspace $\\mathcal{K}_j = \\operatorname{span}\\{g_k, B_k^{-1}g_k, \\ldots, (B_k^{-1})^{j-1}g_k\\}$.",
+      "description": "For $j=2$, reduces to 2D problem in $\\operatorname{span}\\{g_k, B_k^{-1}g_k\\}$. Fast and effective when $B_k$ is large/sparse. Equivalent to CG steps on the Newton system.",
+      "properties": {
+        "Goal": "Solve TR subproblem approximately when exact solution is costly.",
+        "Applications": [
+          "Large-scale TRMs"
+        ],
+        "Methods": [
+          "Project subproblem onto $\\mathcal{K}_j$",
+          "Solve reduced 2D TR subproblem in $(\\alpha, \\beta)$",
+          "Use Steihaug-Toint truncated CG"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Lagrangian for TR Subproblem ($\\mathcal{L}(p,\\lambda)$)": {
+      "type": "Lagrangian Function",
+      "domain": "Trust Region Methods",
+      "definition": "$\\mathcal{L}(p, \\lambda) = m_k(p) + \\lambda (\\|p\\|^2 - \\Delta_k^2)$, where constraint $g(p) = \\Delta_k^2 - \\|p\\|^2 \\ge 0$.",
+      "description": "Used to derive KKT conditions: $\\nabla_p \\mathcal{L} = g_k + B_k p + 2\\lambda p = 0$, $\\lambda \\ge 0$, $\\lambda(\\|p\\|^2 - \\Delta_k^2) = 0$, $B_k + 2\\lambda I \\succeq 0$.",
+      "properties": {
+        "Goal": "Formulate optimality conditions for the TR subproblem.",
+        "Applications": [
+          "Deriving $(B_k + \\lambda I)p = -g_k$ with $\\lambda \\ge 0$"
+        ],
+        "Methods": [
+          "Stationarity: $g_k + (B_k + 2\\lambda I)p = 0$",
+          "Complementary slackness and dual feasibility"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Krylov Subspace Approximation (TRM)": {
+      "type": "Approximation Technique",
+      "domain": "Trust Region Methods",
+      "definition": "A technique to approximately solve the Trust Region Subproblem (52) by restricting the step $$ p $$ to a low-dimensional Krylov subspace, typically $$ \\operatorname{span}\\{q, B^{-1}q\\} $$, reducing the problem to a 2D constrained optimization.",
+      "description": "Instead of solving the full $$ n $$-dimensional quadratic subproblem exactly, it solves a reduced 2D problem in coefficients $$ (\\alpha, \\beta) $$ using an orthonormal basis $$ \\{\\hat{q}, \\tilde{q}\\} $$ of the subspace (58). This is equivalent to a 2-step Krylov method for the linear system (54).",
+      "properties": {
+        "Goal": "Efficiently approximate the solution to the Trust Region Subproblem (52).",
+        "Applications": [
+          "Step computation in Trust Region Methods when $$ n $$ is large"
+        ],
+        "Methods": [
+          "Construct $$ p = [\\hat{q}, \\tilde{q}] \\begin{bmatrix} \\alpha \\\\ \\beta \\end{bmatrix} $$ with orthonormal basis of $$ \\operatorname{span}\\{q, B^{-1}q\\} $$ (58).",
+          "Minimize reduced quadratic model subject to $$ \\|[\\alpha, \\beta]^T\\| \\le \\Delta_k $$.",
+          "Extend to higher-order Krylov: $$ \\operatorname{span}\\{q, B^{-1}q, \\ldots, (B^{-1})^j q\\} $$ for small $$ j $$."
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Second Order Necessary Conditions (Constrained)": {
+      "type": "Necessary Condition/Theorem",
+      "domain": "Constrained Optimization Theory",
+      "definition": "At a local minimizer $$ x^* $$ with Lagrange multipliers $$ \\lambda^* $$, the Hessian of the Lagrangian must satisfy $$ w^T \\nabla_{xx}^2 \\mathcal{L}(x^*, \\lambda^*) w \\ge 0 $$ for all $$ w \\in \\mathcal{C}(x^*, \\lambda^*) $$ (Theorem 12.5, p. 332).",
+      "description": "This is a necessary condition for local optimality. It applies only on the critical cone — directions where the linearized constraints are satisfied and the reduced gradient vanishes.",
+      "properties": {
+        "Goal": "Verify whether a KKT point $$ x^* $$ can be a local minimizer.",
+        "Applications": [
+          "Classification of stationary points"
+        ],
+        "Methods": [
+          "Evaluate quadratic form $$ w^T \\nabla_{xx}^2 \\mathcal{L}(x^*, \\lambda^*) w $$ on $$ \\mathcal{C}(x^*, \\lambda^*) $$",
+          "For 1D active constraint: check second derivative along feasible arc"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Second Order Sufficient Conditions (Constrained)": {
+      "type": "Sufficient Condition/Theorem",
+      "domain": "Constrained Optimization Theory",
+      "definition": "If $$ x^* $$ is a KKT point and $$ w^T \\nabla_{xx}^2 \\mathcal{L}(x^*, \\lambda^*) w > 0 $$ for all $$ w \\in \\mathcal{C}(x^*, \\lambda^*) $$, $$ w \\ne 0 $$, then $$ x^* $$ is a strict local minimizer (Theorem 12.6, p. 333).",
+      "description": "Stronger than necessary conditions, this guarantees local optimality when the Lagrangian Hessian is positive definite on the critical cone.",
+      "properties": {
+        "Goal": "Confirm that a KKT point $$ x^* $$ is a strict local minimizer.",
+        "Applications": [
+          "Proving local optimality in constrained problems"
+        ],
+        "Methods": [
+          "Verify positive definiteness of $$ \\nabla_{xx}^2 \\mathcal{L} $$ on $$ \\mathcal{C}(x^*, \\lambda^*) $$",
+          "For linear constraints: check $$ \\nabla^2 f(x^*) \\succ 0 $$ on null space of active constraints"
+        ],
+        "Examples": [
+          "In example (29), point $$ (-1,-1) $$ with $$ \\lambda^* = 1/2 $$ has positive definite $$ \\nabla_{xx}^2 \\mathcal{L} $$ on critical cone → local minimizer."
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Critical Cone ($$ \\mathcal{C}(x^*, \\lambda^*) $$)": {
+      "type": "Geometric Concept/Set",
+      "domain": "Constrained Optimization Geometry",
+      "definition": "The set of directions $$ w $$ such that:\n1. $$ w $$ is in the linearized feasible cone: $$ \\nabla c_i(x^*)^T w \\ge 0 $$ for all $$ i $$ with $$ c_i(x^*)=0 $$,\n2. $$ \\nabla f(x^*)^T w = 0 $$ (critical directions).",
+      "description": "Subset of the feasible direction cone $$ \\mathcal{F}(x^*) $$ where first-order improvement is zero. Second-order conditions are checked only on this cone. For equality constraints, it is the null space of $$ \\nabla c(x^*)^T $$.",
+      "properties": {
+        "Goal": "Define the subspace for second-order optimality tests.",
+        "Applications": [
+          "Second-order necessary/sufficient conditions"
+        ],
+        "Methods": [
+          "Active inequalities with $$ \\lambda_i^* > 0 $$: $$ w \\perp \\nabla c_i(x^*) $$",
+          "Active inequalities with $$ \\lambda_i^* = 0 $$: $$ \\nabla c_i(x^*)^T w \\ge 0 $$",
+          "Equality constraints: $$ \\nabla c_i(x^*)^T w = 0 $$"
+        ],
+        "Examples": [
+          "Example 12.7 (59) at $$ (0,0) $$: $$ \\mathcal{C} = \\{(0, w_2) \\mid w_2 \\ge 0\\} $$"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Slack Variables ($$ z $$)": {
+      "type": "Auxiliary Variable",
+      "domain": "Linear Programming",
+      "definition": "Non-negative variables $$ z \\ge 0 $$ introduced to convert inequalities $$ Ax \\le b $$ into equalities $$ Ax + z = b $$.",
+      "description": "Each inequality gets one slack variable. Transforms canonical form into standard form suitable for Simplex Method.",
+      "properties": {
+        "Goal": "Enable equality-based algorithms on inequality-constrained LPs.",
+        "Applications": [
+          "Conversion from canonical to standard form"
+        ],
+        "Methods": [
+          "Augment constraint matrix: $$ [A \\ I] $$, variable vector: $$ [x; z] $$"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Continuous Optimization": {
+      "type": "Concept",
+      "domain": "Optimization",
+      "definition": "Formulating a problem mathematically such that the objective function $f: \\mathbb{R}^{n}\\rightarrow\\mathbb{R}$ and the constraints $c_{i}:\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$ are considered over the continuous space $\\mathbb{R}^{n}$",
+      "description": "The dimension $n$ and the number of constraints can be large. It contrasts with discrete optimization, where $\\mathbb{R}^{n}$ is replaced by a discrete set.",
+      "properties": {
+        "Goal": "Consider problem (1.1) on p. 3",
+        "Applications": [],
+        "Methods": [
+          "Smooth optimization (using partial derivatives and gradients)"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_1.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Objective Function ($f$)": {
+      "type": "Concept",
+      "domain": "Optimization",
+      "definition": "The function $f: \\mathbb{R}^{n}\\rightarrow\\mathbb{R}$ that results from modeling or is given in an optimization problem.",
+      "description": "The objective function is the quantity that is minimized (or maximized, by minimizing $-f$). Its gradient ($\\nabla f$) indicates the directions in which $f$ decreases.",
+      "properties": {
+        "Goal": "To be minimized or maximized",
+        "Applications": [],
+        "Methods": [],
+        "Examples": [
+          "$f(x_{1},x_{2})=x_{1}^{4}+x_{2}^{6}$"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_1.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Gradient (\\nabla f)": {
+      "type": "Concept",
+      "domain": "Optimization, Calculus",
+      "definition": "The gradient of $f$, denoted $\\nabla f$, which provides information about the local behavior of the function.",
+      "description": "It appears often in computations, especially in smooth optimization, because it tells in which directions the function $f$ decreases. At a point $x$ on a level set $L_c(f)$, $\\nabla f(x)$ is orthogonal against the tangent plane of the level set.",
+      "properties": {
+        "Goal": "Determine direction of function decrease",
+        "Applications": [
+          "Smooth optimization computations",
+          "Finding tangent planes/lines"
+        ],
+        "Methods": [
+          "Computing partial derivatives"
+        ],
+        "Examples": [
+          "$\\nabla f(x)=[4x_{1}^{3}, 6x_{2}^{5}]^T$ for $f(x_{1},x_{2})=x_{1}^{4}+x_{2}^{6}$"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_1.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Level Set ($L_c(f)$)": {
+      "type": "Concept",
+      "domain": "Optimization, Calculus",
+      "definition": "The set of points $x \\in \\mathbb{R}^n$ where the function $f$ takes a constant value $c$, defined as $L_c(f) = \\{ x \\in \\mathbb{R}^n \\mid f(x) = c \\}$.",
+      "description": "These sets are typically of dimension $n-1$. When $n=2$, they are curves and are frequently referred to as 'contours of $f$'.",
+      "properties": {
+        "Goal": "Visualize or understand the function's landscape",
+        "Applications": [
+          "Drawing pictures to illustrate mathematics when $n=2$ or 3"
+        ],
+        "Methods": [
+          "Requires computing the gradient $\\nabla f(x)$ to determine orthogonality to the tangent plane"
+        ],
+        "Examples": []
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_1.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Convexity": {
+      "type": "Concept",
+      "domain": "Optimization",
+      "definition": "A simplifying property of function $f$ in a convex set $S\\subset\\mathbb{R}^{n}$ where the line segment between any two points of its graph lies on or above the graph.",
+      "description": "If $f$ is smooth, convexity is equivalent to having a positive semi-definite Hessian matrix everywhere in $S$, meaning the graph of $f$ is 'bowl-like' everywhere. Convexity makes problem solving easier.",
+      "properties": {
+        "Goal": "Simplify optimization problem solving",
+        "Applications": [
+          "Convex Optimization"
+        ],
+        "Methods": [
+          "Checking if the Hessian matrix is positive semi-definite"
+        ],
+        "Examples": [
+          "$f(x_{1},x_{2})=x_{1}^{4}+x_{2}^{6}$ is convex"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_1.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Linear Program (LP)": {
+      "type": "Concept",
+      "domain": "Optimization",
+      "definition": "A type of optimization problem where both the objective function $f$ and the constraints functions $c_{i}$ are linear (plus possibly a constant).",
+      "description": "Linear programs started modern numerical optimization requiring electronic computers. The feasible set for an LP is always a convex polygon.",
+      "properties": {
+        "Goal": "Solve optimization problems with strictly linear structures",
+        "Applications": [
+          "Modern numerical optimization"
+        ],
+        "Methods": [
+          "Algorithms specific to LP (implied by 'LP alone is a vast area')"
+        ],
+        "Examples": [
+          "Example (1.3 a-d) on p. 4"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_1.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Newton's Method": {
+      "type": "Method",
+      "domain": "Numerical Optimization",
+      "definition": "An iterative method for solving a nonlinear system of equations $r(x)=0$. It computes the next iterate $x_{k+1}$ by solving for the zero of the tangent line approximation of $r(x)$ at $x_k$.",
+      "description": "For $n=1$, the iterate is $x_{k+1}=x_{k}-\\frac{r(x_{k})}{r^{\\prime}(x_{k})}$. For $n>2$, the derivative is replaced with the Jacobian, $x_{k+1}=x_{k}-J(x_{k})^{-1}r(x_{k})$. This method is important for devising iterative methods for solving optimization problems.",
+      "properties": {
+        "Goal": "Solve a nonlinear system of equations $r(x)=0$",
+        "Applications": [
+          "Devising iterative methods for optimization problems"
+        ],
+        "Methods": [
+          "Uses Taylor's theorem",
+          "Uses Jacobian $J(x_k)$ (if $n>2$)"
+        ],
+        "Examples": [
+          "Numerical example (11.31) on p. 281"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_1.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    },
+    "Speed of Convergence (Order p)": {
+      "type": "Metric",
+      "domain": "Numerical Optimization",
+      "definition": "A measure used for iterative methods, quantifying how quickly the iterates $x_k$ approach the solution $x$ according to the inequality $||x-x_{k+1}||\\le C||x-x_{k}||^{p}$ for some $C>0$.",
+      "description": "The order $p$ dictates the rate of convergence. If $p=1$, convergence is linear (requiring $0<C<1$); if $p=2$, convergence is quadratic and is considered fast, often sufficient for very good approximations in just 2-4 iterates.",
+      "properties": {
+        "Goal": "Measure the effectiveness and efficiency of an iterative algorithm",
+        "Applications": [
+          "Evaluating Optimization Algorithms"
+        ],
+        "Methods": [],
+        "Examples": [
+          "Linear ($p=1$), Quadratic ($p=2$), Cubic ($p=3$)"
+        ]
+      },
+      "metadata": {
+        "created_by": "system",
+        "source": "chapter_1.pdf",
+        "created_at": "2025-11-10",
+        "version": "1.0"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "Bisection Method",
+      "type": "Convergence Rate",
+      "target": "Linear, $C = \\frac{1}{2}$"
+    },
+    {
+      "source": "Bisection Method",
+      "type": "Used In",
+      "target": "Strong Wolfe Line Search"
+    },
+    {
+      "source": "Bisection Method",
+      "type": "Reference",
+      "target": "Nocedal & Wright, p. 56"
+    },
+    {
+      "source": "Least Squares Problems",
+      "type": "Objective",
+      "target": "$f(x) = \\frac{1}{2} \\| r(x) \\|^2$"
+    },
+    {
+      "source": "Least Squares Problems",
+      "type": "Gradient",
+      "target": "$\\nabla f(x) = J(x)^T r(x)$"
+    },
+    {
+      "source": "Least Squares Problems",
+      "type": "Assumes",
+      "target": "$m \\ge n$ (overdetermined)"
+    },
+    {
+      "source": "Linear Least Squares Problem (Linear Regression)",
+      "type": "Normal Equations",
+      "target": "$A^T A x = A^T b$"
+    },
+    {
+      "source": "Linear Least Squares Problem (Linear Regression)",
+      "type": "Hessian",
+      "target": "$\\nabla^2 f(x) = A^T A$"
+    },
+    {
+      "source": "Linear Least Squares Problem (Linear Regression)",
+      "type": "Stable Solve Via",
+      "target": "QR: $A = QR$, $R x = Q^T b$"
+    },
+    {
+      "source": "Gauss–Newton Method",
+      "type": "Approximates",
+      "target": "Newton’s method"
+    },
+    {
+      "source": "Gauss–Newton Method",
+      "type": "Hessian Approximation",
+      "target": "$B_k = J_k^T J_k$"
+    },
+    {
+      "source": "Gauss–Newton Method",
+      "type": "Descent Property",
+      "target": "$p_k^T \\nabla f_k = -\\| J_k p_k \\|^2 \\le 0$"
+    },
+    {
+      "source": "Residual Functions ($r_j(x)$)",
+      "type": "Forms Vector",
+      "target": "$r(x) \\in \\mathbb{R}^m$"
+    },
+    {
+      "source": "Residual Functions ($r_j(x)$)",
+      "type": "Jacobian",
+      "target": "$J(x) = \\frac{\\partial r_j}{\\partial x_i}$"
+    },
+    {
+      "source": "Levenberg–Marquardt Method",
+      "type": "Hybrid Of",
+      "target": "Gauss–Newton + Gradient Descent"
+    },
+    {
+      "source": "Levenberg–Marquardt Method",
+      "type": "Trust-Region Subproblem",
+      "target": "$\\| J_k p + r_k \\|^2$, $\\|p\\| \\le \\Delta_k$"
+    },
+    {
+      "source": "Levenberg–Marquardt Method",
+      "type": "Damping Parameter",
+      "target": "$\\mu_k \\ge 0$"
+    },
+    {
+      "source": "Duality Theory (Convex Optimization)",
+      "type": "Requires Convexity Of",
+      "target": "$f(x)$"
+    },
+    {
+      "source": "Duality Theory (Convex Optimization)",
+      "type": "Requires Concavity Of",
+      "target": "$c(x)$"
+    },
+    {
+      "source": "Dual Objective Function ($q(\\lambda)$)",
+      "type": "Is Infimum Of",
+      "target": "Lagrangian $\\mathcal{L}(x,\\lambda)$"
+    },
+    {
+      "source": "Dual Objective Function ($q(\\lambda)$)",
+      "type": "Used To Formulate",
+      "target": "Dual Problem (76)"
+    },
+    {
+      "source": "Dual Problem (76)",
+      "type": "Provides Bound For",
+      "target": "Primal Problem (73)"
+    },
+    {
+      "source": "Weak Duality",
+      "type": "Formalized In",
+      "target": "Theorem 12.11 (p. 345)"
+    },
+    {
+      "source": "Weak Duality",
+      "type": "Implies",
+      "target": "Strong Duality (if additional conditions hold and equality is achieved)"
+    },
+    {
+      "source": "Strong Duality (Theorem 12.12)",
+      "type": "Requires Fulfillment Of",
+      "target": "KKT conditions (at $x^* , \\lambda^*$)"
+    },
+    {
+      "source": "Strong Duality (Theorem 12.12)",
+      "type": "Formalized In",
+      "target": "Theorem 12.12 (p. 346)"
+    },
+    {
+      "source": "Dual Linear Program (79)",
+      "type": "Primal Is",
+      "target": "LP Problem (78)"
+    },
+    {
+      "source": "Interior Point Methods",
+      "type": "Addresses Difficulty Of",
+      "target": "Inequality constraints ($2^m$ possible active sets)"
+    },
+    {
+      "source": "Simplex Method Worst-Case Complexity",
+      "type": "Motivated Replacement By",
+      "target": "Polynomial-time LP algorithms (e.g., interior-point methods)"
+    },
+    {
+      "source": "Simplex Method Worst-Case Complexity",
+      "type": "Contrasts With Typical Performance",
+      "target": "$\\le 2m$ or $3m$ pivots"
+    },
+    {
+      "source": "Unconstrained Optimization",
+      "type": "is_simplified_by",
+      "target": "Convex Optimization"
+    },
+    {
+      "source": "Local Minimizer ($x^*$)",
+      "type": "is_prerequisite_for",
+      "target": "Global Minimizer"
+    },
+    {
+      "source": "Local Minimizer ($x^*$)",
+      "type": "is_specialized_by",
+      "target": "Strict Local Minimizer"
+    },
+    {
+      "source": "First-Order Necessary Condition (FONC)",
+      "type": "defines",
+      "target": "Stationary Point"
+    },
+    {
+      "source": "First-Order Necessary Condition (FONC)",
+      "type": "is_required_by",
+      "target": "Second-Order Sufficient Conditions (SOSC)"
+    },
+    {
+      "source": "Positive Semidefinite Matrix",
+      "type": "is_required_for",
+      "target": "Second-Order Necessary Condition"
+    },
+    {
+      "source": "Positive Semidefinite Matrix",
+      "type": "is_strict_form_of",
+      "target": "Positive Definite Matrix"
+    },
+    {
+      "source": "Second-Order Sufficient Conditions (SOSC)",
+      "type": "requires",
+      "target": "First-Order Necessary Condition (FONC)"
+    },
+    {
+      "source": "Second-Order Sufficient Conditions (SOSC)",
+      "type": "requires",
+      "target": "Positive Definite Matrix"
+    },
+    {
+      "source": "Saddle Point",
+      "type": "is_type_of",
+      "target": "Stationary Point"
+    },
+    {
+      "source": "Line Search Methods",
+      "type": "is_type_of",
+      "target": "Iterative Method"
+    },
+    {
+      "source": "Line Search Methods",
+      "type": "uses",
+      "target": "Descent Direction ($p_k$)"
+    },
+    {
+      "source": "Descent Direction ($p_k$)",
+      "type": "is_component_of",
+      "target": "Line Search Methods"
+    },
+    {
+      "source": "Constrained Optimization Problem",
+      "type": "Stationary Points Via",
+      "target": "Karush-Kuhn-Tucker (KKT) Conditions"
+    },
+    {
+      "source": "Constrained Optimization Problem",
+      "type": "Feasible Set Defined By",
+      "target": "Active Set $\\mathcal{A}(x)$"
+    },
+    {
+      "source": "Karush-Kuhn-Tucker (KKT) Conditions",
+      "type": "Derived From",
+      "target": "Lagrangian Function $\\mathcal{L}(x, \\lambda)$"
+    },
+    {
+      "source": "Karush-Kuhn-Tucker (KKT) Conditions",
+      "type": "Requires",
+      "target": "Constraint Qualification (e.g., LICQ)"
+    },
+    {
+      "source": "Karush-Kuhn-Tucker (KKT) Conditions",
+      "type": "Proven Using",
+      "target": "Farkas' Lemma"
+    },
+    {
+      "source": "Lagrangian Function ($\\mathcal{L}(x, \\lambda)$)",
+      "type": "Stationarity",
+      "target": "$\\nabla_x \\mathcal{L}(x^*, \\lambda^*) = 0$"
+    },
+    {
+      "source": "Lagrangian Function ($\\mathcal{L}(x, \\lambda)$)",
+      "type": "Defines",
+      "target": "Dual Function $q(\\lambda)$"
+    },
+    {
+      "source": "Tangent Cone ($T_\\Omega(x)$)",
+      "type": "Approximated By",
+      "target": "Linearized Feasible Cone $\\mathcal{F}(x)$"
+    },
+    {
+      "source": "Tangent Cone ($T_\\Omega(x)$)",
+      "type": "Equal Under",
+      "target": "LICQ"
+    },
+    {
+      "source": "Linear Independence Constraint Qualification (LICQ)",
+      "type": "Implies",
+      "target": "$T_\\Omega(x) = \\mathcal{F}(x)$"
+    },
+    {
+      "source": "Linear Independence Constraint Qualification (LICQ)",
+      "type": "Stronger Than",
+      "target": "MFCQ, Slater"
+    },
+    {
+      "source": "Active Set of Indices ($\\mathcal{A}(x)$)",
+      "type": "Used In",
+      "target": "LICQ, $\\mathcal{F}(x)$, KKT"
+    },
+    {
+      "source": "Farkas' Lemma",
+      "type": "Used To Prove",
+      "target": "KKT Necessity"
+    },
+    {
+      "source": "Farkas' Lemma",
+      "type": "Generalizes",
+      "target": "Gordan's Theorem"
+    },
+    {
+      "source": "Linear Program (LP) in Standard Form (64)",
+      "type": "Assumed Condition",
+      "target": "$m<n$ and $A$ has full row rank"
+    },
+    {
+      "source": "Linear Program (LP) in Standard Form (64)",
+      "type": "Solved By",
+      "target": "Simplex Method"
+    },
+    {
+      "source": "Linear Program (LP) in Canonical Form (65)",
+      "type": "Converted To",
+      "target": "Linear Program (LP) in Standard Form (64)"
+    },
+    {
+      "source": "Linear Program (LP) in Canonical Form (65)",
+      "type": "Feasible Region Visualization",
+      "target": "Polyhedron (polygon for $n=2$)"
+    },
+    {
+      "source": "Simplex Method",
+      "type": "Termination Condition (Optimal)",
+      "target": "Reduced cost vector $s\\ge0$"
+    },
+    {
+      "source": "Simplex Method",
+      "type": "Termination Condition (Unbounded)",
+      "target": "If $d = B^{-1}u \\le 0$ for the column $u$ of entering variable"
+    },
+    {
+      "source": "Simplex Method",
+      "type": "Worst Case Complexity",
+      "target": "$\\binom{m}{n}$ (but typically $\\le 3m$ pivots)"
+    },
+    {
+      "source": "Basic Feasible Solution (Vertex)",
+      "type": "Components",
+      "target": "$m$ basic variables (positive) and $n-m$ non-basic variables (zero)"
+    },
+    {
+      "source": "Basic Feasible Solution (Vertex)",
+      "type": "Condition for Feasibility",
+      "target": "$B^{-1}b \\ge 0$"
+    },
+    {
+      "source": "Minimum Ratio Rule",
+      "type": "Uses Vector $u$",
+      "target": "Column of $N$ corresponding to entering variable $x_j$"
+    },
+    {
+      "source": "Critical Cone ($\\mathcal{C}(x^{*},\\lambda^{*})$)",
+      "type": "Restricts",
+      "target": "Hessian of Lagrangian $\\nabla_{xx}^{2}\\mathcal{L}(x^{*},\\lambda^{*})$"
+    },
+    {
+      "source": "Second Order Necessary Condition (Eigenvalue Problem)",
+      "type": "Related KKT Solution",
+      "target": "Unit eigenvector $x^{*}$ with eigenvalue $\\lambda^{*}$"
+    },
+    {
+      "source": "Second Order Necessary Condition (Eigenvalue Problem)",
+      "type": "Related Lagrangian Hessian",
+      "target": "$Q - \\lambda^{*}I$"
+    },
+    {
+      "source": "Duality Theory (Convex)",
+      "type": "Requires Convexity Of",
+      "target": "$f(x)$"
+    },
+    {
+      "source": "Duality Theory (Convex)",
+      "type": "Requires Concavity Of",
+      "target": "$c_j(x)$"
+    },
+    {
+      "source": "Gauss–Newton Method",
+      "type": "extends",
+      "target": "Newton's Method (Optimization)"
+    },
+    {
+      "source": "Levenberg–Marquardt Method",
+      "type": "extends",
+      "target": "Gauss–Newton Method"
+    },
+    {
+      "source": "Trust Region Methods (TRMs)",
+      "type": "related_to",
+      "target": "Levenberg–Marquardt Method"
+    },
+    {
+      "source": "Quasi-Newton Methods",
+      "type": "generalizes",
+      "target": "BFGS method"
+    },
+    {
+      "source": "SR1 Update",
+      "type": "is_alternative_to",
+      "target": "BFGS method"
+    },
+    {
+      "source": "Trust Region Subproblem (52)",
+      "type": "solved_by",
+      "target": "Steihaug-Toint CG"
+    },
+    {
+      "source": "Newton's Method (Optimization)",
+      "type": "approximated_by",
+      "target": "Quasi-Newton Methods"
+    },
+    {
+      "source": "Unconstrained Optimization",
+      "type": "foundation_for",
+      "target": "Constrained Optimization Problem"
+    },
+    {
+      "source": "Karush-Kuhn-Tucker (KKT) Conditions",
+      "type": "imply",
+      "target": "Strong Duality (Theorem 12.12)"
+    },
+    {
+      "source": "Second Order Necessary Conditions (Constrained)",
+      "type": "applied_in",
+      "target": "Eigenvalue Optimization Problems"
+    },
+    {
+      "source": "Trust Region Methods (TRMs)",
+      "type": "connects_to",
+      "target": "Global Convergence Theorems"
+    },
+    {
+      "source": "Quadratic Function (Optimization Tool)",
+      "type": "is_approximation_basis_for",
+      "target": "Newton's Method"
+    },
+    {
+      "source": "Descent Direction Condition",
+      "type": "is_required_for",
+      "target": "Line Search Methods"
+    },
+    {
+      "source": "Direction of Steepest Descent",
+      "type": "is_special_case_of",
+      "target": "Descent Direction ($p_k$)"
+    },
+    {
+      "source": "Direction of Steepest Descent",
+      "type": "is_central_to",
+      "target": "Steepest Descent Method"
+    },
+    {
+      "source": "Newton's Method (Optimization)",
+      "type": "has_convergence_order",
+      "target": "Quadratic Convergence"
+    },
+    {
+      "source": "Newton's Method (Optimization)",
+      "type": "is_based_on",
+      "target": "Hessian Matrix"
+    },
+    {
+      "source": "Steepest Descent Method",
+      "type": "is_governed_by",
+      "target": "Condition Number (\\kappa(Q))"
+    },
+    {
+      "source": "Steepest Descent Method",
+      "type": "has_convergence_order",
+      "target": "Linear Convergence"
+    },
+    {
+      "source": "Condition Number (\\kappa(Q))",
+      "type": "determines_speed_of",
+      "target": "Steepest Descent Method"
+    },
+    {
+      "source": "Quasi-Newton Methods",
+      "type": "implements",
+      "target": "Secant Condition"
+    },
+    {
+      "source": "Quasi-Newton Methods",
+      "type": "aims_for",
+      "target": "Superlinear Convergence"
+    },
+    {
+      "source": "Secant Condition",
+      "type": "is_basis_for",
+      "target": "SR1 Update"
+    },
+    {
+      "source": "SR1 Update",
+      "type": "is_type_of",
+      "target": "Rank-One Update"
+    },
+    {
+      "source": "SR1 Update",
+      "type": "is_precursor_to",
+      "target": "BFGS method"
+    },
+    {
+      "source": "Bisection Method (Step Length)",
+      "type": "is_used_to_solve",
+      "target": "1D Subproblem (Line Search)"
+    },
+    {
+      "source": "Bisection Method (Step Length)",
+      "type": "has_convergence_order",
+      "target": "Linear Convergence (C=1/2)"
+    },
+    {
+      "source": "Nonlinear Least Squares Problems",
+      "type": "is_type_of",
+      "target": "Unconstrained Optimization"
+    },
+    {
+      "source": "Trust Region Methods (TRMs)",
+      "type": "Solves Via",
+      "target": "Trust Region Subproblem (52)"
+    },
+    {
+      "source": "Trust Region Methods (TRMs)",
+      "type": "Alternative To",
+      "target": "Line Search Methods"
+    },
+    {
+      "source": "Trust Region Methods (TRMs)",
+      "type": "Global Convergence In",
+      "target": "Nocedal & Wright, Chapter 4"
+    },
+    {
+      "source": "Trust Region Subproblem (52)",
+      "type": "Objective",
+      "target": "Model Function $m_k(p)$"
+    },
+    {
+      "source": "Trust Region Subproblem (52)",
+      "type": "Constraint",
+      "target": "Trust Region $\\|p\\| \\le \\Delta_k$"
+    },
+    {
+      "source": "Trust Region Subproblem (52)",
+      "type": "Characterized By",
+      "target": "KKT Conditions (54)–(56)"
+    },
+    {
+      "source": "Model Function ($m_k(p)$)",
+      "type": "Components",
+      "target": "$f_k = f(x_k)$, $g_k = \\nabla f(x_k)$, $B_k \\approx \\nabla^2 f(x_k)$"
+    },
+    {
+      "source": "Model Function ($m_k(p)$)",
+      "type": "Taylor Error",
+      "target": "$O(\\|p\\|^3)$ when $B_k = \\nabla^2 f(x_k)$"
+    },
+    {
+      "source": "Comparison Ratio ($\\rho_k$)",
+      "type": "Numerator",
+      "target": "Actual reduction $f(x_k) - f(x_k + p_k)$"
+    },
+    {
+      "source": "Comparison Ratio ($\\rho_k$)",
+      "type": "Denominator",
+      "target": "Predicted reduction $m_k(0) - m_k(p_k)$"
+    },
+    {
+      "source": "Krylov Subspace Approximation (TR Subproblem)",
+      "type": "Approximates",
+      "target": "Trust Region Subproblem (52)"
+    },
+    {
+      "source": "Krylov Subspace Approximation (TR Subproblem)",
+      "type": "Subspace",
+      "target": "$\\mathcal{K}_2 = \\operatorname{span}\\{g_k, B_k^{-1}g_k\\}$"
+    },
+    {
+      "source": "Krylov Subspace Approximation (TR Subproblem)",
+      "type": "Related To",
+      "target": "Conjugate Gradient Method"
+    },
+    {
+      "source": "Lagrangian for TR Subproblem ($\\mathcal{L}(p,\\lambda)$)",
+      "type": "Yields KKT System",
+      "target": "(54)–(56): $(B_k + \\lambda I)p = -g_k$, $\\|p\\| \\le \\Delta_k$, etc."
+    },
+    {
+      "source": "Lagrangian for TR Subproblem ($\\mathcal{L}(p,\\lambda)$)",
+      "type": "Constraint",
+      "target": "$\\Delta_k^2 - \\|p\\|^2 \\ge 0$"
+    },
+    {
+      "source": "Krylov Subspace Approximation (TRM)",
+      "type": "Approximates Solution Of",
+      "target": "Trust Region Subproblem (52)"
+    },
+    {
+      "source": "Krylov Subspace Approximation (TRM)",
+      "type": "Equivalent To",
+      "target": "2-step Krylov method for $$ (I + 2\\lambda B^{-1})y = -q $$"
+    },
+    {
+      "source": "Krylov Subspace Approximation (TRM)",
+      "type": "Uses Subspace",
+      "target": "$$ \\operatorname{span}\\{q, B^{-1}q\\} $$ (57)"
+    },
+    {
+      "source": "Second Order Necessary Conditions (Constrained)",
+      "type": "Formalized In",
+      "target": "Theorem 12.5 (p. 332)"
+    },
+    {
+      "source": "Second Order Necessary Conditions (Constrained)",
+      "type": "Restricted To",
+      "target": "Critical Cone $$ \\mathcal{C}(x^*, \\lambda^*) $$"
+    },
+    {
+      "source": "Second Order Sufficient Conditions (Constrained)",
+      "type": "Formalized In",
+      "target": "Theorem 12.6 (p. 333)"
+    },
+    {
+      "source": "Second Order Sufficient Conditions (Constrained)",
+      "type": "Uses",
+      "target": "Critical Cone $$ \\mathcal{C}(x^*, \\lambda^*) $$"
+    },
+    {
+      "source": "Critical Cone ($$ \\mathcal{C}(x^*, \\lambda^*) $$)",
+      "type": "Subset Of",
+      "target": "Linearized Feasible Cone $$ \\mathcal{F}(x^*) $$"
+    },
+    {
+      "source": "Critical Cone ($$ \\mathcal{C}(x^*, \\lambda^*) $$)",
+      "type": "Orthogonal To",
+      "target": "$$ \\nabla f(x^*) $$"
+    },
+    {
+      "source": "Linear Program (LP) in Standard Form (64)",
+      "type": "Converted From",
+      "target": "LP in Canonical Form (65)"
+    },
+    {
+      "source": "Linear Program (LP) in Canonical Form (65)",
+      "type": "Converted To",
+      "target": "LP in Standard Form via $$ [A \\ I] \\begin{bmatrix} x \\\\ z \\end{bmatrix} = b $$ (66)"
+    },
+    {
+      "source": "Slack Variables ($$ z $$)",
+      "type": "Transforms",
+      "target": "LP Canonical Form (65) → Standard Form (66)"
+    },
+    {
+      "source": "Simplex Method",
+      "type": "Applied To",
+      "target": "Linear Program in Standard Form (64)"
+    },
+    {
+      "source": "Simplex Method",
+      "type": "Avoids",
+      "target": "Enumerating $2^n$ KKT active-set combinations"
+    },
+    {
+      "source": "Continuous Optimization",
+      "type": "has_component",
+      "target": "Objective Function ($f$)"
+    },
+    {
+      "source": "Continuous Optimization",
+      "type": "has_component",
+      "target": "Constraints ($c_i$)"
+    },
+    {
+      "source": "Continuous Optimization",
+      "type": "contrasts_with",
+      "target": "Discrete Optimization"
+    },
+    {
+      "source": "Objective Function ($f$)",
+      "type": "has_property",
+      "target": "Convexity"
+    },
+    {
+      "source": "Objective Function ($f$)",
+      "type": "characterized_by",
+      "target": "Gradient (\\nabla f)"
+    },
+    {
+      "source": "Gradient (\\nabla f)",
+      "type": "is_orthogonal_to",
+      "target": "Tangent Plane"
+    },
+    {
+      "source": "Gradient (\\nabla f)",
+      "type": "is_central_to",
+      "target": "Smooth Optimization"
+    },
+    {
+      "source": "Level Set ($L_c(f)$)",
+      "type": "is_characterized_by",
+      "target": "Gradient (\\nabla f)"
+    },
+    {
+      "source": "Level Set ($L_c(f)$)",
+      "type": "has_synonym",
+      "target": "Contours of $f$"
+    },
+    {
+      "source": "Convexity",
+      "type": "is_property_of",
+      "target": "Objective Function ($f$)"
+    },
+    {
+      "source": "Convexity",
+      "type": "related_to",
+      "target": "Hessian Matrix"
+    },
+    {
+      "source": "Linear Program (LP)",
+      "type": "is_type_of",
+      "target": "Constrained Optimization"
+    },
+    {
+      "source": "Newton's Method",
+      "type": "has_metric",
+      "target": "Quadratic Convergence"
+    },
+    {
+      "source": "Newton's Method",
+      "type": "requires",
+      "target": "Taylor's Theorem"
+    },
+    {
+      "source": "Speed of Convergence (Order p)",
+      "type": "is_metric_for",
+      "target": "Iterative Method"
+    },
+    {
+      "source": "Speed of Convergence (Order p)",
+      "type": "has_type",
+      "target": "Quadratic Convergence"
+    },
+    {
+      "source": "Unconstrained Optimization",
+      "type": "is_a",
+      "target": "Continuous Optimization"
+    },
+    {
+      "source": "Constrained Optimization Problem",
+      "type": "is_a",
+      "target": "Continuous Optimization"
+    },
+    {
+      "source": "Linear Program (LP)",
+      "type": "is_a",
+      "target": "Constrained Optimization Problem"
+    },
+    {
+      "source": "Nonlinear Least Squares Problems",
+      "type": "is_a",
+      "target": "Unconstrained Optimization"
+    },
+    {
+      "source": "Least Squares Problems",
+      "type": "is_a",
+      "target": "Nonlinear Least Squares Problems"
+    },
+    {
+      "source": "Steepest Descent Method",
+      "type": "is_a",
+      "target": "Line Search Methods"
+    },
+    {
+      "source": "Newton's Method (Optimization)",
+      "type": "is_a",
+      "target": "Line Search Methods"
+    },
+    {
+      "source": "Quasi-Newton Methods",
+      "type": "is_a",
+      "target": "Line Search Methods"
+    },
+    {
+      "source": "Gauss–Newton Method",
+      "type": "is_a",
+      "target": "Line Search Methods"
+    },
+    {
+      "source": "Trust Region Methods (TRMs)",
+      "type": "alternative_to",
+      "target": "Line Search Methods"
+    },
+    {
+      "source": "Levenberg–Marquardt Method",
+      "type": "is_a",
+      "target": "Trust Region Methods (TRMs)"
+    },
+    {
+      "source": "Direction of Steepest Descent",
+      "type": "is_a",
+      "target": "Descent Direction ($p_k$)"
+    },
+    {
+      "source": "Newton's Method (Optimization)",
+      "type": "uses_direction",
+      "target": "Descent Direction ($p_k$)"
+    },
+    {
+      "source": "Quasi-Newton Methods",
+      "type": "computes",
+      "target": "Descent Direction ($p_k$)"
+    },
+    {
+      "source": "First-Order Necessary Condition (FONC)",
+      "type": "generalized_by",
+      "target": "Karush-Kuhn-Tucker (KKT) Conditions"
+    },
+    {
+      "source": "Second-Order Sufficient Conditions (SOSC)",
+      "type": "generalized_by",
+      "target": "Second Order Sufficient Conditions (Constrained)"
+    },
+    {
+      "source": "Second Order Necessary Conditions (Constrained)",
+      "type": "requires",
+      "target": "Critical Cone ($\\mathcal{C}(x^{*},\\lambda^{*})$)"
+    },
+    {
+      "source": "Second Order Sufficient Conditions (Constrained)",
+      "type": "requires",
+      "target": "Critical Cone ($\\mathcal{C}(x^{*},\\lambda^{*})$)"
+    },
+    {
+      "source": "Tangent Cone ($T_\\Omega(x)$)",
+      "type": "contains",
+      "target": "Critical Cone ($\\mathcal{C}(x^{*},\\lambda^{*})$)"
+    },
+    {
+      "source": "Active Set of Indices ($\\mathcal{A}(x)$)",
+      "type": "defines",
+      "target": "Critical Cone ($\\mathcal{C}(x^{*},\\lambda^{*})$)"
+    },
+    {
+      "source": "Linear Independence Constraint Qualification (LICQ)",
+      "type": "ensures",
+      "target": "Tangent Cone ($T_\\Omega(x)$) = Linearized Cone"
+    },
+    {
+      "source": "Lagrangian Function ($\\mathcal{L}(x, \\lambda)$)",
+      "type": "defines",
+      "target": "Dual Objective Function ($q(\\lambda)$)"
+    },
+    {
+      "source": "Dual Objective Function ($q(\\lambda)$)",
+      "type": "maximized_in",
+      "target": "Dual Problem (76)"
+    },
+    {
+      "source": "Weak Duality",
+      "type": "implies",
+      "target": "Dual Problem (76) ≤ Primal"
+    },
+    {
+      "source": "Strong Duality (Theorem 12.12)",
+      "type": "holds_under",
+      "target": "Slater's Condition"
+    },
+    {
+      "source": "Strong Duality (Theorem 12.12)",
+      "type": "holds_when",
+      "target": "KKT satisfied"
+    },
+    {
+      "source": "Linear Program (LP) in Canonical Form (65)",
+      "type": "converted_to",
+      "target": "Linear Program (LP) in Standard Form (64)"
+    },
+    {
+      "source": "Slack Variables ($z$)",
+      "type": "used_in",
+      "target": "Conversion to Standard Form"
+    },
+    {
+      "source": "Simplex Method",
+      "type": "operates_on",
+      "target": "Basic Feasible Solution (Vertex)"
+    },
+    {
+      "source": "Simplex Method",
+      "type": "uses",
+      "target": "Minimum Ratio Rule"
+    },
+    {
+      "source": "Simplex Method",
+      "type": "terminates_when",
+      "target": "All reduced costs ≥ 0"
+    },
+    {
+      "source": "Residual Functions ($r_j(x)$)",
+      "type": "define",
+      "target": "Least Squares Problems"
+    },
+    {
+      "source": "Jacobian J(x)",
+      "type": "computed_from",
+      "target": "Residual Functions ($r_j(x)$)"
+    },
+    {
+      "source": "Gauss–Newton Method",
+      "type": "approximates_Hessian_with",
+      "target": "J^T J"
+    },
+    {
+      "source": "Levenberg–Marquardt Method",
+      "type": "regularizes",
+      "target": "J^T J + μI"
+    },
+    {
+      "source": "Linear Least Squares Problem (Linear Regression)",
+      "type": "solved_by",
+      "target": "Normal Equations"
+    },
+    {
+      "source": "Linear Least Squares Problem (Linear Regression)",
+      "type": "solved_stably_by",
+      "target": "QR Decomposition"
+    },
+    {
+      "source": "SR1 Update",
+      "type": "is_a",
+      "target": "Quasi-Newton Methods"
+    },
+    {
+      "source": "BFGS method",
+      "type": "is_a",
+      "target": "Quasi-Newton Methods"
+    },
+    {
+      "source": "Secant Condition",
+      "type": "satisfied_by",
+      "target": "SR1 Update"
+    },
+    {
+      "source": "Secant Condition",
+      "type": "satisfied_by",
+      "target": "BFGS method"
+    },
+    {
+      "source": "Steepest Descent Method",
+      "type": "converges_with_rate",
+      "target": "Linear (C = (κ-1)/(κ+1))"
+    },
+    {
+      "source": "Newton's Method (Optimization)",
+      "type": "converges_with_rate",
+      "target": "Quadratic"
+    },
+    {
+      "source": "Quasi-Newton Methods",
+      "type": "converges_with_rate",
+      "target": "Superlinear"
+    },
+    {
+      "source": "Bisection Method (Step Length)",
+      "type": "converges_with_rate",
+      "target": "Linear (C=0.5)"
+    },
+    {
+      "source": "Condition Number (κ(Q))",
+      "type": "controls_rate_of",
+      "target": "Steepest Descent Method"
+    },
+    {
+      "source": "Trust Region Subproblem (52)",
+      "type": "uses_model",
+      "target": "Model Function ($m_k(p)$)"
+    },
+    {
+      "source": "Trust Region Subproblem (52)",
+      "type": "constrained_by",
+      "target": "Trust Region Ball"
+    },
+    {
+      "source": "Comparison Ratio ($\\rho_k$)",
+      "type": "controls",
+      "target": "Trust Region Radius Update"
+    },
+    {
+      "source": "Krylov Subspace Approximation (TR Subproblem)",
+      "type": "approximates",
+      "target": "Trust Region Subproblem (52)"
+    },
+    {
+      "source": "Steihaug-Toint CG",
+      "type": "is_implementation_of",
+      "target": "Krylov Subspace Approximation (TR Subproblem)"
+    },
+    {
+      "source": "Bisection Method (Step Length)",
+      "type": "used_in",
+      "target": "Wolfe Line Search"
+    },
+    {
+      "source": "Bisection Method (Step Length)",
+      "type": "solves",
+      "target": "φ'(α) = 0"
+    },
+    {
+      "source": "Exact Line Search",
+      "type": "ideal_for",
+      "target": "Quadratic Function (Optimization Tool)"
+    },
+    {
+      "source": "Quadratic Function (Optimization Tool)",
+      "type": "derived_from",
+      "target": "Taylor Expansion (2nd order)"
+    },
+    {
+      "source": "Model Function ($m_k(p)$)",
+      "type": "is",
+      "target": "Quadratic Function (Optimization Tool)"
+    },
+    {
+      "source": "Secant Condition",
+      "type": "approximates",
+      "target": "Hessian action via finite differences"
+    },
+    {
+      "source": "Nonlinear Least Squares Problems",
+      "type": "solved_by",
+      "target": "Gauss–Newton Method"
+    },
+    {
+      "source": "Nonlinear Least Squares Problems",
+      "type": "solved_robustly_by",
+      "target": "Levenberg–Marquardt Method"
+    },
+    {
+      "source": "Linear Least Squares Problem (Linear Regression)",
+      "type": "solved_by",
+      "target": "QR or SVD"
+    },
+    {
+      "source": "Constrained Optimization Problem",
+      "type": "solved_by",
+      "target": "Interior Point Methods"
+    },
+    {
+      "source": "Constrained Optimization Problem",
+      "type": "solved_by",
+      "target": "SQP (Sequential Quadratic Programming)"
+    },
+    {
+      "source": "Farkas' Lemma",
+      "type": "proves",
+      "target": "KKT Necessity"
+    },
+    {
+      "source": "KKT Conditions",
+      "type": "reduce_to",
+      "target": "Normal Equations in Linear LS"
+    },
+    {
+      "source": "Hessian Matrix",
+      "type": "used_in",
+      "target": "Newton's Method (Optimization)"
+    },
+    {
+      "source": "Positive Definite Matrix",
+      "type": "ensures",
+      "target": "Unique Minimizer of Quadratic"
+    },
+    {
+      "source": "Saddle Point",
+      "type": "has",
+      "target": "Indefinite Hessian"
+    }
+  ],
+  "metadata": {
+    "last_built": "2025-11-19 11:18:30",
+    "node_count": 67,
+    "edge_count": 212
+  }
+}
