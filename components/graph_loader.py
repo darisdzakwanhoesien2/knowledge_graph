@@ -2,7 +2,7 @@ import json
 import networkx as nx
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parents[2]
+BASE_DIR = Path(__file__).resolve().parents[1]
 GRAPH_FILE = BASE_DIR / "data" / "graphs" / "merged_graph.json"
 
 

@@ -6,7 +6,7 @@ from pathlib import Path
 # PATH RESOLUTION
 # =====================================================
 
-BASE_DIR = Path(__file__).resolve().parents[2]
+BASE_DIR = Path(__file__).resolve().parents[1]
 
 PRIMARY_PATH = BASE_DIR / "data" / "flashcards" / "flashcards.json"
 FALLBACK_PATH = BASE_DIR / "flashcards.json"

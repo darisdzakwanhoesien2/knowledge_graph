@@ -2,74 +2,135 @@ import streamlit as st
 import json
 from pathlib import Path
 
-# -------------------------------
-# CONFIGURATION
-# -------------------------------
+# =====================================================
+# PATH RESOLUTION
+# =====================================================
+
 BASE_DIR = Path(__file__).resolve().parents[1]
-FLASHCARDS_FILE = BASE_DIR / "flashcards.json"
 
-st.set_page_config(page_title="🧠 Flashcards", layout="wide")
-st.title("🧠 Interactive Flashcards")
+PRIMARY_PATH = BASE_DIR / "data" / "flashcards" / "flashcards.json"
+FALLBACK_PATH = BASE_DIR / "flashcards.json"
 
-# -------------------------------
-# LOAD FLASHCARDS
-# -------------------------------
-def load_flashcards():
-    if not FLASHCARDS_FILE.exists():
-        st.error(f"❌ Flashcards file not found at {FLASHCARDS_FILE}")
-        st.stop()
-    with open(FLASHCARDS_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
 
-flashcards = load_flashcards()
+def resolve_flashcards_path():
+    if PRIMARY_PATH.exists():
+        return PRIMARY_PATH
+    if FALLBACK_PATH.exists():
+        return FALLBACK_PATH
+    return None
 
-# -------------------------------
-# FLASHCARD DISPLAY
-# -------------------------------
-st.markdown("### 📚 Browse and Study Flashcards")
 
-if not flashcards:
-    st.warning("⚠️ No flashcards found.")
+FLASHCARDS_PATH = resolve_flashcards_path()
+
+# =====================================================
+# PAGE CONFIG
+# =====================================================
+
+st.set_page_config(page_title="🃏 Flashcards", layout="wide")
+st.title("🃏 Flashcards Explorer")
+
+# =====================================================
+# LOAD DATA
+# =====================================================
+
+if FLASHCARDS_PATH is None:
+    st.error(
+        "❌ Flashcards file not found.\n\n"
+        "Expected one of:\n"
+        f"- {PRIMARY_PATH}\n"
+        f"- {FALLBACK_PATH}\n\n"
+        "Run:\n"
+        "`python pipelines/generate_flashcards.py`"
+    )
     st.stop()
 
-# Layout options
-col_count = st.slider("Number of cards per row:", 1, 4, 2)
-cols = st.columns(col_count)
+try:
+    cards = json.loads(FLASHCARDS_PATH.read_text(encoding="utf-8"))
+except Exception as e:
+    st.error(f"❌ Failed to load flashcards:\n{e}")
+    st.stop()
 
-# State management for flipped cards
-if "flipped" not in st.session_state:
-    st.session_state.flipped = [False] * len(flashcards)
+if not cards:
+    st.warning("⚠️ Flashcards file is empty.")
+    st.stop()
 
-# Show flashcards
-for idx, card in enumerate(flashcards):
-    col = cols[idx % col_count]
-    with col:
+st.caption(f"Loaded **{len(cards)}** flashcards from `{FLASHCARDS_PATH.name}`")
+
+# =====================================================
+# UI CONTROLS
+# =====================================================
+
+search_query = st.text_input("🔍 Search term (entity / text):")
+
+cols = st.columns(3)
+with cols[0]:
+    sort_key = st.selectbox("Sort by", ["entity", "domain"])
+with cols[1]:
+    ascending = st.checkbox("Ascending", True)
+with cols[2]:
+    page_size = st.selectbox("Cards per page", [10, 25, 50, 100], index=1)
+
+# =====================================================
+# FILTER + SORT
+# =====================================================
+
+def match_query(card):
+    if not search_query:
+        return True
+    q = search_query.lower()
+    return (
+        q in card.get("entity", "").lower()
+        or q in card.get("front", "").lower()
+        or q in card.get("back", "").lower()
+    )
+
+
+filtered = [c for c in cards if match_query(c)]
+
+filtered.sort(
+    key=lambda c: c.get(sort_key, "").lower(),
+    reverse=not ascending
+)
+
+# =====================================================
+# PAGINATION
+# =====================================================
+
+total = len(filtered)
+if total == 0:
+    st.warning("No flashcards match the filter.")
+    st.stop()
+
+pages = max(1, (total + page_size - 1) // page_size)
+page = st.number_input(
+    "Page",
+    min_value=1,
+    max_value=pages,
+    value=1
+)
+
+start = (page - 1) * page_size
+end = start + page_size
+visible = filtered[start:end]
+
+st.markdown(f"Showing **{start+1}–{min(end,total)}** of **{total}** cards")
+
+# =====================================================
+# DISPLAY
+# =====================================================
+
+for c in visible:
+    title = c.get("entity", "Unnamed Concept")
+    subjects = ", ".join(c.get("subjects", [])) or "—"
+    domain = c.get("domain", "—")
+
+    with st.expander(f"🧩 {title}", expanded=False):
+        st.markdown(f"**Domain:** {domain}")
+        st.markdown(f"**Subjects:** {subjects}")
         st.markdown("---")
-        if st.session_state.flipped[idx]:
-            st.markdown(
-                f"""
-                <div style='background-color:#f0f2f6; padding:20px; border-radius:15px; min-height:300px;'>
-                    <h4>🪄 Back</h4>
-                    <p style='font-size:0.95em;'>{card['back']}</p>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-        else:
-            st.markdown(
-                f"""
-                <div style='background-color:#e8f0fe; padding:20px; border-radius:15px; min-height:300px;'>
-                    <h4>📘 Front</h4>
-                    <p style='font-size:1.05em; font-weight:bold;'>{card['front']}</p>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
+        st.markdown(c.get("front", ""))
+        st.markdown("---")
+        st.markdown(c.get("back", ""))
 
-        # Toggle button
-        if st.button("🔁 Flip", key=f"flip_{idx}"):
-            st.session_state.flipped[idx] = not st.session_state.flipped[idx]
-            st.rerun()  # ✅ updated from st.experimental_rerun()
-
-st.markdown("---")
-st.info("💡 Tip: Adjust the slider above to view multiple flashcards side-by-side.")
+st.divider()
+st.caption("Tip: Use search + pagination for large knowledge bases.")
