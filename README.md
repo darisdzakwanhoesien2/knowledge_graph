@@ -336,3 +336,448 @@ Next I can:
 ✅ Add curriculum sequencing
 
 Just tell me which piece you want to implement first.
+
+Perfect 👍
+Let’s implement this **end-to-end properly** so that:
+
+✅ Your data lives in
+
+```
+json_nodes/<subject_name>/*.json
+```
+
+✅ Subjects are automatically inferred from folder names
+✅ Provenance is preserved
+✅ Graph builds cleanly
+✅ Flashcards are generated with subject metadata
+✅ Streamlit keeps working without hacks
+✅ Scales to unlimited subjects
+
+You’ll be able to just drop new folders and everything updates automatically.
+
+---
+
+# 🧱 Target Directory (Minimal Working Version)
+
+Create these folders (if not yet):
+
+```
+education/knowledge_graph/
+├── json_nodes/
+│   ├── introduction_to_optimization/
+│   │   └── 01_data.json
+│   └── machine_vision/
+│       └── 01_data.json
+│
+├── pipelines/
+│   ├── merge_graph.py
+│   └── generate_flashcards.py
+│
+├── data/
+│   ├── graphs/
+│   └── flashcards/
+│
+└── app/
+    └── app_streamlit.py   (your existing app can stay)
+```
+
+---
+
+---
+
+# 🚜 PIPELINE 1 — Recursive Graph Merge with Subjects
+
+Create file:
+
+```
+pipelines/merge_graph.py
+```
+
+---
+
+## ✅ Full Code — `pipelines/merge_graph.py`
+
+```python
+import json
+from pathlib import Path
+from datetime import datetime
+
+# ======================================================
+# PATH CONFIG
+# ======================================================
+
+BASE_DIR = Path(__file__).resolve().parents[1]
+
+JSON_NODES_DIR = BASE_DIR / "json_nodes"
+OUTPUT_GRAPH = BASE_DIR / "data" / "graphs" / "merged_graph.json"
+
+OUTPUT_GRAPH.parent.mkdir(parents=True, exist_ok=True)
+
+
+# ======================================================
+# UTILITIES
+# ======================================================
+
+def display_name_from_slug(slug: str) -> str:
+    """Convert snake_case → Title Case."""
+    return slug.replace("_", " ").title()
+
+
+def iter_subject_files():
+    """
+    Yield:
+        subject_id, subject_name, json_file_path
+    """
+    for subject_dir in JSON_NODES_DIR.iterdir():
+        if not subject_dir.is_dir():
+            continue
+
+        subject_id = subject_dir.name
+        subject_name = display_name_from_slug(subject_id)
+
+        for json_file in subject_dir.glob("*.json"):
+            if json_file.name.lower() == "metadata.json":
+                continue
+            yield subject_id, subject_name, json_file
+
+
+def load_json(path: Path):
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+# ======================================================
+# MERGE LOGIC
+# ======================================================
+
+def merge_graph():
+    graph = {
+        "nodes": {},
+        "edges": [],
+        "metadata": {
+            "built_at": datetime.utcnow().isoformat(),
+            "subjects": {}
+        }
+    }
+
+    print("🔍 Scanning subject folders...")
+
+    for subject_id, subject_name, json_path in iter_subject_files():
+        print(f"   • {subject_name:<35} ← {json_path.name}")
+
+        payload = load_json(json_path)
+
+        # Register subject globally
+        graph["metadata"]["subjects"].setdefault(subject_id, {
+            "subject_id": subject_id,
+            "display_name": subject_name,
+            "files": []
+        })
+        graph["metadata"]["subjects"][subject_id]["files"].append(json_path.name)
+
+        # ----------------------------------------
+        # Case 1 — Graph JSON
+        # ----------------------------------------
+        if isinstance(payload, dict) and "nodes" in payload and "edges" in payload:
+
+            for node_name, node_data in payload["nodes"].items():
+                node = graph["nodes"].setdefault(node_name, node_data)
+
+                meta = node.setdefault("metadata", {})
+                meta.setdefault("subjects", set()).add(subject_id)
+                meta.setdefault("source_files", set()).add(json_path.name)
+
+            for edge in payload["edges"]:
+                if edge not in graph["edges"]:
+                    graph["edges"].append(edge)
+
+        # ----------------------------------------
+        # Case 2 — Entity JSON
+        # ----------------------------------------
+        elif isinstance(payload, dict) and "entity" in payload:
+            entity = payload["entity"]
+
+            node = graph["nodes"].setdefault(entity, {
+                "type": payload.get("type", "Concept"),
+                "domain": payload.get("domain", ""),
+                "definition": payload.get("definition", ""),
+                "description": payload.get("description", ""),
+                "properties": payload.get("properties", {}),
+                "metadata": {}
+            })
+
+            meta = node.setdefault("metadata", {})
+            meta.setdefault("subjects", set()).add(subject_id)
+            meta.setdefault("source_files", set()).add(json_path.name)
+
+            for rel in payload.get("relations", []):
+                edge = {
+                    "source": entity,
+                    "type": rel.get("type", "related_to"),
+                    "target": rel.get("target")
+                }
+                if edge not in graph["edges"]:
+                    graph["edges"].append(edge)
+
+        # ----------------------------------------
+        # Case 3 — List of entities
+        # ----------------------------------------
+        elif isinstance(payload, list):
+            for item in payload:
+                if not isinstance(item, dict) or "entity" not in item:
+                    continue
+
+                entity = item["entity"]
+
+                node = graph["nodes"].setdefault(entity, {
+                    "type": item.get("type", "Concept"),
+                    "domain": item.get("domain", ""),
+                    "definition": item.get("definition", ""),
+                    "description": item.get("description", ""),
+                    "properties": item.get("properties", {}),
+                    "metadata": {}
+                })
+
+                meta = node.setdefault("metadata", {})
+                meta.setdefault("subjects", set()).add(subject_id)
+                meta.setdefault("source_files", set()).add(json_path.name)
+
+                for rel in item.get("relations", []):
+                    edge = {
+                        "source": entity,
+                        "type": rel.get("type", "related_to"),
+                        "target": rel.get("target")
+                    }
+                    if edge not in graph["edges"]:
+                        graph["edges"].append(edge)
+
+        else:
+            print(f"⚠️ Skipped unsupported JSON format: {json_path}")
+
+    # ----------------------------------------
+    # Normalize metadata sets → lists
+    # ----------------------------------------
+    for node in graph["nodes"].values():
+        meta = node.get("metadata", {})
+        meta["subjects"] = sorted(list(meta.get("subjects", [])))
+        meta["source_files"] = sorted(list(meta.get("source_files", [])))
+
+    print("\n✅ Merge completed")
+    print(f"   Nodes : {len(graph['nodes'])}")
+    print(f"   Edges : {len(graph['edges'])}")
+    print(f"   Subjects : {len(graph['metadata']['subjects'])}")
+
+    return graph
+
+
+# ======================================================
+# SAVE
+# ======================================================
+
+def save_graph(graph):
+    OUTPUT_GRAPH.parent.mkdir(parents=True, exist_ok=True)
+    with open(OUTPUT_GRAPH, "w", encoding="utf-8") as f:
+        json.dump(graph, f, indent=2, ensure_ascii=False)
+
+    print(f"\n💾 Graph saved to: {OUTPUT_GRAPH}")
+
+
+# ======================================================
+# MAIN
+# ======================================================
+
+if __name__ == "__main__":
+    graph = merge_graph()
+    save_graph(graph)
+```
+
+---
+
+---
+
+# 🃏 PIPELINE 2 — Subject-Aware Flashcard Generator
+
+Create file:
+
+```
+pipelines/generate_flashcards.py
+```
+
+---
+
+## ✅ Full Code — `pipelines/generate_flashcards.py`
+
+```python
+import json
+from pathlib import Path
+
+# ======================================================
+# PATH CONFIG
+# ======================================================
+
+BASE_DIR = Path(__file__).resolve().parents[1]
+
+GRAPH_FILE = BASE_DIR / "data" / "graphs" / "merged_graph.json"
+FLASHCARD_FILE = BASE_DIR / "data" / "flashcards" / "flashcards.json"
+
+FLASHCARD_FILE.parent.mkdir(parents=True, exist_ok=True)
+
+
+# ======================================================
+# GENERATION
+# ======================================================
+
+def generate_flashcards():
+    if not GRAPH_FILE.exists():
+        raise FileNotFoundError(f"Graph not found: {GRAPH_FILE}")
+
+    with open(GRAPH_FILE, "r", encoding="utf-8") as f:
+        graph = json.load(f)
+
+    flashcards = []
+
+    for entity, props in graph["nodes"].items():
+
+        # Skip empty placeholder nodes
+        if not any([
+            props.get("definition"),
+            props.get("description"),
+            props.get("properties")
+        ]):
+            continue
+
+        meta = props.get("metadata", {})
+
+        subjects = meta.get("subjects", [])
+        sources = meta.get("source_files", [])
+
+        domain = props.get("domain", "General")
+        definition = props.get("definition", "No definition available.")
+        description = props.get("description", "")
+        properties = props.get("properties", {})
+
+        facts = []
+        for k, v in properties.items():
+            if isinstance(v, list):
+                v = ", ".join(map(str, v))
+            facts.append(f"**{k}:** {v}")
+
+        flashcards.append({
+            "entity": entity,
+            "domain": domain,
+            "subjects": subjects,
+            "sources": sources,
+            "front": f"🧩 {entity}\n📘 Domain: {domain}\n📚 Subjects: {', '.join(subjects)}",
+            "back": (
+                f"**Definition:** {definition}\n\n"
+                f"**Description:** {description}\n\n"
+                + "\n".join(facts)
+            ).strip()
+        })
+
+    with open(FLASHCARD_FILE, "w", encoding="utf-8") as f:
+        json.dump(flashcards, f, indent=2, ensure_ascii=False)
+
+    print(f"✅ Generated {len(flashcards)} flashcards")
+    print(f"💾 Saved to {FLASHCARD_FILE}")
+
+
+# ======================================================
+# MAIN
+# ======================================================
+
+if __name__ == "__main__":
+    generate_flashcards()
+```
+
+---
+
+---
+
+# 🖥 STEP 3 — Update Flashcard UI Filter
+
+Modify:
+
+```
+pages/5_Flashcard_per_subject.py
+```
+
+---
+
+### 🔁 Replace your filtering section with:
+
+```python
+# -------------------------------
+# SUBJECT FILTERING
+# -------------------------------
+
+all_subjects = sorted({
+    s for card in flashcards
+    for s in card.get("subjects", [])
+})
+
+selected_subjects = st.multiselect(
+    "Choose one or more subjects:",
+    options=all_subjects,
+    default=all_subjects
+)
+
+filtered_cards = [
+    c for c in flashcards
+    if any(s in selected_subjects for s in c.get("subjects", []))
+]
+```
+
+Everything else can remain unchanged.
+
+---
+
+---
+
+# ▶️ How To Run
+
+From project root:
+
+```bash
+python pipelines/merge_graph.py
+python pipelines/generate_flashcards.py
+streamlit run app/app_streamlit.py
+```
+
+---
+
+---
+
+# ✅ What You Now Have
+
+✔ Recursive subject ingestion
+✔ Unlimited subjects
+✔ Provenance preserved
+✔ Flashcards filtered by subject
+✔ No brittle filename parsing
+✔ Future-proof structure
+
+Drop a new folder:
+
+```
+json_nodes/deep_learning/01_data.json
+```
+
+Re-run pipelines → instantly available everywhere.
+
+---
+
+---
+
+# 🚀 If You Want Next
+
+I can also give you:
+
+✅ Subject → Chapter auto-mapping
+✅ Subject coverage dashboard
+✅ Missing concept detector
+✅ Curriculum sequencing
+✅ Export to Anki
+✅ Knowledge gap analytics
+
+Just tell me 👍
