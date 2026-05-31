@@ -16,9 +16,15 @@ def load_graph():
     G = nx.DiGraph()
 
     for node, props in data.get("nodes", {}).items():
-        G.add_node(node, **props)
+        if not isinstance(node, str) or not node.strip():
+            continue
+        if not isinstance(props, dict):
+            props = {}
+        G.add_node(node.strip(), **props)
 
     for edge in data.get("edges", []):
+        if not isinstance(edge, dict):
+            continue
         G.add_edge(
             edge.get("source"),
             edge.get("target"),

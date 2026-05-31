@@ -1,6 +1,7 @@
 import json
+import copy
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 # ======================================================
@@ -86,7 +87,8 @@ def merge_graph():
         "nodes": {},
         "edges": [],
         "metadata": {
-            "built_at": datetime.utcnow().isoformat(),
+            # Use a timezone-aware UTC timestamp to avoid deprecated `utcnow()`.
+            "built_at": datetime.now(timezone.utc).isoformat(),
             "subjects": {}
         }
     }
@@ -122,7 +124,8 @@ def merge_graph():
         if isinstance(payload, dict) and "nodes" in payload and "edges" in payload:
 
             for node_name, node_data in payload.get("nodes", {}).items():
-                node = graph["nodes"].setdefault(node_name, node_data)
+                # Copy to avoid mutating the source payload dict when we attach metadata below.
+                node = graph["nodes"].setdefault(node_name, copy.deepcopy(node_data))
 
                 meta = node.setdefault("metadata", {})
                 meta.setdefault("subjects", set()).add(subject_id)
@@ -138,6 +141,11 @@ def merge_graph():
         elif isinstance(payload, dict) and "entity" in payload:
             entity = payload["entity"]
 
+            # Some sources can include leading/trailing whitespace; normalize to prevent
+            # accidental duplicate nodes like "SVD" vs "SVD ".
+            if isinstance(entity, str):
+                entity = entity.strip()
+
             node = graph["nodes"].setdefault(entity, {
                 "type": payload.get("type", "Concept"),
                 "domain": payload.get("domain", ""),
@@ -152,6 +160,10 @@ def merge_graph():
             meta.setdefault("source_files", set()).add(json_path.name)
 
             for rel in payload.get("relations", []):
+                # Relations can sometimes be malformed; skip invalid records instead of
+                # producing edges with missing endpoints.
+                if not isinstance(rel, dict):
+                    continue
                 edge = {
                     "source": entity,
                     "type": rel.get("type", "related_to"),
@@ -170,6 +182,9 @@ def merge_graph():
 
                 entity = item["entity"]
 
+                if isinstance(entity, str):
+                    entity = entity.strip()
+
                 node = graph["nodes"].setdefault(entity, {
                     "type": item.get("type", "Concept"),
                     "domain": item.get("domain", ""),
@@ -184,6 +199,8 @@ def merge_graph():
                 meta.setdefault("source_files", set()).add(json_path.name)
 
                 for rel in item.get("relations", []):
+                    if not isinstance(rel, dict):
+                        continue
                     edge = {
                         "source": entity,
                         "type": rel.get("type", "related_to"),

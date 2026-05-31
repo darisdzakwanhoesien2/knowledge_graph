@@ -14,5 +14,9 @@ if st.button("Find Path"):
     try:
         path = nx.shortest_path(G, src, dst)
         st.success(" → ".join(path))
-    except:
+    except nx.NetworkXNoPath:
         st.error("No path found.")
+    except nx.NodeNotFound:
+        st.error("Node not found (graph may have changed).")
+    except Exception as e:
+        st.error(f"Unexpected error: {e}")
