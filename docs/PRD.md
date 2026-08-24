@@ -158,11 +158,28 @@ Published content cannot be edited in place. A change creates a new draft and ev
 - Persist timestamp, package version, answers, scores, matched criteria, and subject/package identifiers.
 - Provide result tables, expanded per-question review, and CSV export.
 
+#### Result history and review workflow
+
+Every submitted test creates one immutable result record. A result must retain:
+
+- learner identity (or anonymous/local identity), subject, package, and exact package version;
+- start time, submission time, and completion status;
+- every submitted MCQ/essay answer, including unanswered questions;
+- score and maximum score per response and for MCQ, essay, and final sections;
+- the correct MCQ option, matched essay keywords, rubric criteria, weights, and evidence;
+- the question's linked knowledge-graph concepts.
+
+Learners can open a result after submission and review each response. The review must distinguish correct, partially correct, and incorrect responses, show the relevant grading evidence, and provide links to study the concepts connected to missed questions. Curators can load result history, filter by learner, subject, package, version, and date, inspect the same per-question evidence, and export the filtered records as CSV. A submitted result is never silently recalculated against a newer package version.
+
 ### Graph-learning integration
 
 - Allow questions to reference one or more graph nodes or learning objectives.
 - From a missed question, link to related node definitions, neighbors, and flashcards.
 - Show provenance for both the question and its linked concepts.
+- Preserve the many-to-many relationship between questions and concepts through explicit question-concept links.
+- Preserve concept relationships through typed graph edges so remediation can move from a missed concept to related concepts.
+- Use response correctness and score to prioritize linked concepts for study suggestions, without changing the graph itself.
+- Let a learner move from a result response to a concept detail, its neighbors, and related flashcards without losing result context.
 
 ### Interfaces
 
@@ -170,6 +187,8 @@ The frontend has two deliberately separate workspaces:
 
 - **Learner:** continue learning, weak areas, concepts, flashcards, assessments, history, and graph exploration.
 - **Curator:** sources, concepts, graph, flashcards, packages, questions, rubrics, versions, validation, provenance, submissions, and exports.
+
+Assessment history belongs in the learner workspace as a list of submitted attempts and in the curator workspace as a filterable review table. Both views use the same persisted result record, while exposing different levels of identity and administration detail.
 
 The learner home prioritizes continuation, weak concepts, and recommended remediation. The graph is accessible from that flow but is not the entire homepage. Question authoring provides structured fields and an Edit/Preview mode rather than requiring raw JSON.
 
@@ -193,9 +212,11 @@ PDF ingestion is a service workflow. The MVP may run extraction synchronously, b
 | FR-8 | Deliver assessments | Must | A learner can complete available MCQs and essays and submit once per attempt. |
 | FR-9 | Grade transparently | Must | Results expose score components, correct MCQ answers, and essay criteria matches. |
 | FR-10 | Review and export results | Must | Curators can filter submissions and download a CSV comparison. |
-| FR-11 | Link assessment to graph | Should | A missed question exposes related concepts and flashcards. |
+| FR-11 | Link assessment to graph | Should | A missed question exposes related concepts, graph neighbors, and flashcards. |
 | FR-12 | Version content | Should | Attempts retain the exact package version used, even after later edits. |
 | FR-13 | Detect quality issues | Should | Missing definitions, invalid references, and malformed question records are reported. |
+| FR-14 | Review test history | Must | Learners and curators can load submitted attempts and inspect per-question grading evidence. |
+| FR-15 | Prioritize remediation | Should | Incorrect or low-scoring responses identify linked concepts and related graph paths for study. |
 
 ## Non-functional Requirements
 

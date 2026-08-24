@@ -146,6 +146,9 @@ erDiagram
         text essay_text
         decimal score
         decimal max_score
+        boolean correct
+        json matched_keywords
+        json node_links
     }
     RESPONSE_CRITERION {
         uuid response_id FK
@@ -189,8 +192,10 @@ erDiagram
 | Essay question/rubric | `essay[]` entries with `prompt`, `expected_keywords`, and `rubric.criteria[]` |
 | User | Currently implicit; submission filenames identify no stable user account |
 | Assessment attempt | JSON in `results/user_submissions/` with answers and aggregate scores |
-| Response | `user_answers` and `user_essay_answers` maps inside a submission |
-| Criterion evidence | `matched_keywords`; detailed evidence is not currently persisted |
+| Response | `responses[]` entries inside a submission, one per question |
+| Criterion evidence | `matched_criteria[]` with `matched`, `weight`, and `evidence`; essay `matched_keywords[]` |
+| Question-concept link | Question `node_links[]`, resolved through `core/learning_links.py` |
+| Result review | `GET /results/{attempt_id}`, `GET /results`, Streamlit review/export page, and React result review |
 | Graph build/snapshot | Graph `metadata.built_at`; historical builds are not retained |
 
 ## Integrity and Migration Rules
@@ -202,8 +207,12 @@ erDiagram
 - Essay rubric weights must be non-negative and have an explicit total-point interpretation.
 - A response belongs to one attempt and one question; duplicate responses for the same attempt/question are prohibited.
 - `RESPONSE_CRITERION` stores matched criteria and evidence so essay scores are auditable.
+- Each submitted attempt stores one response for every delivered question, including unanswered questions, so result review is complete.
+- Result summaries are derived from persisted response records; they must not replace the full attempt record needed for audit and review.
 - Graph edges require valid source and target nodes and are unique by `(source, target, relation_type, graph_build)`.
-- Questions may link to multiple nodes; missing links must not block standalone assessment delivery.
+- `QUESTION_NODE` is many-to-many: a question may link to multiple concepts and a concept may support multiple questions.
+- A response inherits the question's concept links for remediation; incorrect/low-scoring responses expose those concepts, their typed graph neighbors, and related flashcards.
+- Missing concept links must not block standalone assessment delivery, but published questions should report missing or invalid links as quality issues.
 - Source uploads and generated drafts must retain content hashes and review status before publication.
 
 ## Recommended Migration Order
