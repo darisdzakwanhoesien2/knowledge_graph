@@ -42,6 +42,31 @@ class Concept(BaseModel):
     neighbors: List[str] = Field(default_factory=list)
 
 
+class PackageSummary(BaseModel):
+    package_key: str
+    subject: str
+    package_id: str
+    title: str
+    level: Optional[str] = None
+    description: Optional[str] = None
+    status: str
+    version: int
+    published_at: Optional[datetime] = None
+    mcq_count: int = 0
+    essay_count: int = 0
+
+
+class AssessmentStart(BaseModel):
+    attempt_id: str
+    user_id: str
+    subject_id: str
+    package_id: str
+    package_version: int
+    content_hash: str
+    started_at: datetime
+    snapshot: Dict[str, Any]
+
+
 class ConceptRelation(BaseModel):
     source_concept_id: str
     target_concept_id: str

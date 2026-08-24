@@ -18,7 +18,7 @@ def start_attempt(user: dict) -> str:
 
 def submit_attempt(*, user: dict, pkg_snapshot: dict, answers_mcq: dict,
                    answers_essay: dict, started_at: str = None,
-                   attempts_dir: Path = None) -> dict:
+                   attempts_dir: Path = None, attempt_id: str = None) -> dict:
     """Grade and persist an attempt against an immutable package snapshot.
 
     answers_mcq: {question_id: selected_option_letter}
@@ -40,7 +40,7 @@ def submit_attempt(*, user: dict, pkg_snapshot: dict, answers_mcq: dict,
                               "node_links": list(q.get("node_links", []))})
 
     record = {
-        "attempt_id": new_id("att"),
+        "attempt_id": attempt_id or new_id("att"),
         "user": {"external_key": user.get("external_key", "local_user"),
                  "display_name": user.get("display_name", "")},
         "subject": pkg_snapshot.get("subject"),
