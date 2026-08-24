@@ -24,7 +24,11 @@ async def list_concepts(subject_id: str = "") -> List[Concept]:
             subject_id=node_subjects[0] if node_subjects else "",
             name=node_data.get("label", node_id),
             definition=node_data.get("definition"),
-            neighbors=[n for n in graph.get("edges", []) if n.get("source") == node_id or n.get("target") == node_id]
+            neighbors=[
+                edge.get("target") if edge.get("source") == node_id else edge.get("source")
+                for edge in graph.get("edges", [])
+                if edge.get("source") == node_id or edge.get("target") == node_id
+            ],
         ))
     return result
 

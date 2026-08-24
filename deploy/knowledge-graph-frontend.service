@@ -1,0 +1,15 @@
+[Unit]
+Description=Knowledge Graph Learning Studio frontend
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/apps/fixing_repo/new/knowledge_graph/frontend
+ExecStart=/home/ubuntu/apps/fixing_repo/new/knowledge_graph/frontend/node_modules/.bin/vite preview --host 0.0.0.0 --port 5175 --strictPort
+Restart=always
+RestartSec=5
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target

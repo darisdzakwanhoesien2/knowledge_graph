@@ -40,6 +40,7 @@ def slugify(text: str, fallback: str = "untitled") -> str:
 
 
 def load_json(path: Path, default=None):
+    path = Path(path)
     if not path.exists():
         return default
     with open(path, "r", encoding="utf-8") as f:

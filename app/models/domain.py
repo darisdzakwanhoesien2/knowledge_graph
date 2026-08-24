@@ -38,7 +38,7 @@ class Concept(BaseModel):
     subject_id: str
     name: str
     definition: Optional[str] = None
-    provenance: Provenance
+    provenance: Optional[Provenance] = None
     neighbors: List[str] = Field(default_factory=list)
 
 

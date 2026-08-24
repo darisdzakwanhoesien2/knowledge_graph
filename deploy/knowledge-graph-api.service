@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 User=ubuntu
 WorkingDirectory=/home/ubuntu/apps/fixing_repo/new/knowledge_graph
-ExecStart=/home/ubuntu/apps/fixing_repo/new/knowledge_graph/.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000
+ExecStart=/home/ubuntu/apps/fixing_repo/new/knowledge_graph/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
 Restart=always
 RestartSec=5
 Environment=PYTHONUNBUFFERED=1

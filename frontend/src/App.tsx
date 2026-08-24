@@ -4,7 +4,7 @@ import './App.css'
 type Subject = { id: string; name: string }
 type Concept = { id: string; subject_id: string; name: string; definition?: string }
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const API_URL = import.meta.env.VITE_API_URL || 'http://43.157.212.74:8000'
 
 function App() {
   const [subjects, setSubjects] = useState<Subject[]>([])
