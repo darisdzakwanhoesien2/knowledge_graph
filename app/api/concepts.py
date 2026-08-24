@@ -13,15 +13,15 @@ router = APIRouter(prefix="/concepts", tags=["concepts"])
 async def list_concepts(subject_id: str = "") -> List[Concept]:
     """List concepts, optionally filtered by subject."""
     graph = load_json("data/graphs/merged_graph.json", {})
-    subjects_meta = _graph_subjects()
     concepts = graph.get("nodes", {})
     result = []
     for node_id, node_data in concepts.items():
-        if subject_id and subjects_meta.get(node_id, {}).get("subject_id") != subject_id:
+        node_subjects = node_data.get("metadata", {}).get("subjects", [])
+        if subject_id and subject_id not in node_subjects:
             continue
         result.append(Concept(
             id=node_id,
-            subject_id=subjects_meta.get(node_id, {}).get("subject_id", ""),
+            subject_id=node_subjects[0] if node_subjects else "",
             name=node_data.get("label", node_id),
             definition=node_data.get("definition"),
             neighbors=[n for n in graph.get("edges", []) if n.get("source") == node_id or n.get("target") == node_id]
@@ -37,10 +37,10 @@ async def get_concept(concept_id: str) -> Concept:
     if concept_id not in graph.get("nodes", {}):
         raise HTTPException(status_code=404, detail=f"Concept {concept_id} not found")
     node_data = graph["nodes"][concept_id]
-    subjects_meta = _graph_subjects()
+    node_subjects = node_data.get("metadata", {}).get("subjects", [])
     return Concept(
         id=concept_id,
-        subject_id=subjects_meta.get(concept_id, {}).get("subject_id", ""),
+        subject_id=node_subjects[0] if node_subjects else "",
         name=node_data.get("label", concept_id),
         definition=node_data.get("definition"),
     )
@@ -60,11 +60,12 @@ async def get_concept_neighbors(concept_id: str) -> List[Concept]:
         else:
             continue
         if neighbor_id in graph.get("nodes", {}):
-            subjects_meta = _graph_subjects()
+            neighbor_node = graph["nodes"][neighbor_id]
+            neighbor_subjects = neighbor_node.get("metadata", {}).get("subjects", [])
             neighbors.append(Concept(
                 id=neighbor_id,
-                subject_id=subjects_meta.get(neighbor_id, {}).get("subject_id", ""),
-                name=graph["nodes"][neighbor_id].get("label", neighbor_id),
-                definition=graph["nodes"][neighbor_id].get("definition"),
+                subject_id=neighbor_subjects[0] if neighbor_subjects else "",
+                name=neighbor_node.get("label", neighbor_id),
+                definition=neighbor_node.get("definition"),
             ))
     return neighbors

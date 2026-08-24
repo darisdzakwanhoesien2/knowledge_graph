@@ -18,7 +18,7 @@ async def validate_content(
     packages = list_packages()
     pkg_info = None
     for p in packages:
-        if p["subject"] == subject_id and p["package_id"] == package_version_id.split("/")[-1] if "/" in package_version_id else p["package_id"] == package_version_id:
+        if p["subject"] == subject_id and p["package_id"] == (package_version_id.split("/")[-1] if "/" in package_version_id else package_version_id):
             pkg_info = p
             break
     if not pkg_info:

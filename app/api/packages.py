@@ -34,7 +34,8 @@ async def list_package_versions(package_id: str) -> List[PackageVersion]:
         from fastapi import HTTPException
         raise HTTPException(status_code=404, detail=f"Package {package_id} not found")
     pkg = match[0]
-    return load_package(pkg["subject"], pkg["package_id"])
+    package_data = load_package(pkg["subject"], pkg["package_id"])
+    return package_data.get("versions", [])
 
 
 @router.get("/{package_id}/versions/{version_id}", response_model=PackageVersion)
@@ -45,6 +46,7 @@ async def get_package_version(package_id: str, version_id: str) -> PackageVersio
     if not match:
         from fastapi import HTTPException
         raise HTTPException(status_code=404, detail=f"Package {package_id} not found")
+    pkg = match[0]
     pkg = load_package(pkg["subject"], pkg["package_id"])
     versions = pkg.get("versions", [])
     v_match = [v for v in versions if str(v.get("version")) == version_id]
