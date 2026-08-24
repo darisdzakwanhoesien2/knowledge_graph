@@ -2,113 +2,150 @@
 
 ## Product
 
-**Knowledge Graph Learning Studio** is a local-first learning tool that turns subject-scoped JSON notes into a navigable knowledge graph and retrieval-practice flashcards.
+**Knowledge Graph Learning Studio** is a local-first learning and assessment tool. It turns subject-scoped notes and PDFs into a navigable knowledge graph, flashcards, and versioned question packages, then delivers tests with transparent grading and review.
 
 ## Problem
 
-Learners have concepts spread across files and subjects, but lack a reliable way to see relationships, find a path between ideas, identify incomplete notes, and review knowledge. Manual curation is slow and generated learning material is difficult to trace back to its source.
+Learning material is distributed across notes and documents. Learners need both conceptual context and practice, while curators need to know where every concept and question came from. Existing workflows separate graph exploration, flashcard review, question authoring, testing, and results analysis, making it hard to move from a knowledge gap to targeted practice.
+
+## Product Principles
+
+- **Traceable:** concepts, questions, and results retain source and subject provenance.
+- **Learning-first:** graph exploration, retrieval practice, assessment, and feedback form one loop.
+- **Transparent:** correct answers, rubric criteria, matched keywords, and per-question diagnostics are visible.
+- **Human-governed:** generation can draft content, but publication requires validation and review.
+- **Local-first:** JSON/filesystem workflows remain the MVP and data is portable.
 
 ## Goals
 
-- Make a learner's knowledge base searchable and graph-navigable.
-- Show how concepts connect, including shortest paths and local neighborhoods.
-- Preserve subject and source-file provenance for every node and edge.
-- Turn defined concepts into browsable flashcards.
-- Surface incomplete or low-quality nodes before they affect learning.
-- Keep the MVP local-first, reproducible, and usable without a hosted backend.
+- Search and explore concepts, relationships, and learning paths.
+- Generate or author flashcards and MCQ/essay question packages from learning material.
+- Deliver interactive tests with difficulty and learning-objective metadata.
+- Grade MCQs deterministically and essays using explicit rubric/keyword criteria.
+- Persist attempts and make results reviewable, comparable, and exportable.
+- Connect questions and feedback to graph concepts so weak areas lead to relevant study material.
 
 ## Non-goals
 
-- Replacing a general-purpose note-taking application.
-- Real-time multi-user collaboration or permissions in the MVP.
-- Automatic factual validation of source material.
-- Rendering the entire graph as the primary learning workflow at very large scale.
-- A public REST API or production database in the current release.
+- Replacing a full LMS, note-taking app, or high-stakes proctoring system.
+- Automatic factual validation or unsupervised publication of generated content.
+- Real-time collaboration, tenancy, SSO, or permissions in the MVP.
+- Adaptive testing, spaced-repetition scheduling, or mastery analytics in the first release.
+- A hosted REST/API backend in the current file-based release.
 
 ## Users and Use Cases
 
-### Independent learner
+### Learner
 
-- Explore a subject and its central concepts.
-- Open a node to read its definition, description, properties, subjects, and neighbors.
-- Find a shortest connection between two concepts.
+- Browse a subject's central concepts and relationships.
+- Open a concept to read its definition, provenance, and neighbors.
+- Find a path between two concepts.
 - Review flashcards by search or subject.
+- Select a question package, answer MCQs and essays, submit, and see scores.
+- Review each response, the correct answer, rubric matches, and related concepts.
 
-### Knowledge-base curator
+### Curator or instructor
 
-- Add JSON files under `json_nodes/<subject_id>/`.
-- Validate and normalize source data.
-- Rebuild graph, flashcard, and subject-index artifacts.
-- Find nodes missing metadata or definitions and clean them up.
+- Add JSON notes or upload a PDF as source material.
+- Create a question package with subject, level, source, and package ID.
+- Add/parse MCQs and specify options, correct answer, difficulty, learning objective, and slide references.
+- Define essay prompts, expected keywords, rubric criteria, weights, and grading notes.
+- Validate, preview, publish, and version content.
+- Inspect submissions, compare answers, and export result tables as CSV.
+- Find incomplete graph nodes or malformed questions before publication.
+
+## Unified Learning Loop
+
+1. Ingest JSON notes and source documents.
+2. Normalize and validate content.
+3. Build graph nodes, typed edges, provenance, flashcards, and question packages.
+4. Curator reviews and publishes a package version.
+5. Learner studies concepts/flashcards or takes an assessment.
+6. System grades and stores the attempt.
+7. Results identify weak questions/concepts and link back to targeted graph learning.
 
 ## MVP Scope
 
-### Ingestion and build
+### Content ingestion and graph
 
-- Support full graph payloads, single-entity payloads, and lists of entities.
+- Support full graph JSON, single entities, and entity lists.
 - Normalize entity names and relation records.
-- Merge duplicate nodes and edges deterministically.
-- Attach subject IDs and source filenames as provenance.
-- Write generated artifacts to `data/`.
+- Merge duplicate nodes and typed directed edges deterministically.
+- Track subject IDs and contributing source files.
+- Build graph, flashcard, and subject-index artifacts under `data/`.
 
-### Exploration
+### Question authoring and generation
 
-- Interactive graph overview with filtering.
-- Global narrative showing central concepts and suggested structure.
-- Node detail view with metadata and neighboring concepts.
-- Shortest-path lookup between two valid nodes.
+- Store packages at `database/<subject>/<package_id>/package.json` during migration.
+- Support PDF text extraction as an input to generation; generated content must be marked draft until reviewed.
+- Author MCQs manually or by parsing pasted question blocks.
+- Support up to five labeled options, one correct option, difficulty, learning objective, and slide references.
+- Support essay prompts with expected keywords and weighted rubric criteria.
+- Validate IDs, required fields, option keys, score weights, and package metadata.
 
-### Learning
+### Delivery, grading, and review
 
-- Generate flashcards from node content.
-- Search and paginate flashcards.
-- Filter flashcards by subject.
+- Let learners select subject and package and answer MCQ and essay questions.
+- Grade MCQs by exact correct-option match.
+- Grade essays using explicit case-insensitive keyword/rubric matching in the MVP.
+- Calculate MCQ, essay, and final scores without dividing by zero when a section is empty.
+- Persist timestamp, package version, answers, scores, matched criteria, and subject/package identifiers.
+- Provide result tables, expanded per-question review, and CSV export.
 
-### Quality
+### Graph-learning integration
 
-- Validate graph metadata and supported input shapes.
-- List incomplete nodes and provide enough context to correct their source files.
-- Ignore malformed records safely and report actionable failures where appropriate.
+- Allow questions to reference one or more graph nodes or learning objectives.
+- From a missed question, link to related node definitions, neighbors, and flashcards.
+- Show provenance for both the question and its linked concepts.
 
 ## Functional Requirements
 
 | ID | Requirement | Priority | Acceptance criterion |
 | --- | --- | --- | --- |
-| FR-1 | Merge supported JSON inputs | Must | A build produces one graph containing valid nodes and typed edges from all subject folders. |
-| FR-2 | Preserve provenance | Must | Each node identifies contributing subjects and source files. |
-| FR-3 | Explore graph | Must | A user can inspect the graph and filter the displayed content. |
-| FR-4 | Inspect a node | Must | A user can view definition, description, properties, subjects, and neighbors. |
-| FR-5 | Find connections | Must | A user can select two nodes and see a shortest path or a clear no-path result. |
-| FR-6 | Generate and browse flashcards | Must | Defined nodes can be reviewed as searchable flashcards and grouped by subject. |
-| FR-7 | Detect incomplete nodes | Should | The UI identifies nodes missing definitions or required metadata. |
-| FR-8 | Reproducible builds | Should | Identical sorted inputs produce equivalent graph content and a build timestamp/metadata record. |
+| FR-1 | Ingest supported source formats | Must | Valid JSON inputs and PDF metadata can enter a draft content workflow. |
+| FR-2 | Build the knowledge graph | Must | A build produces valid nodes and typed directed edges from subject folders. |
+| FR-3 | Preserve provenance | Must | Nodes, questions, and packages identify subjects and source files/documents. |
+| FR-4 | Explore concepts | Must | A learner can filter the graph, inspect a node, and view neighbors. |
+| FR-5 | Find connections | Must | A learner can select two nodes and see a shortest path or no-path result. |
+| FR-6 | Generate/browse flashcards | Must | Defined nodes can become searchable, subject-filterable flashcards. |
+| FR-7 | Author question packages | Must | A curator can create valid MCQ and essay content and export/package it. |
+| FR-8 | Deliver assessments | Must | A learner can complete available MCQs and essays and submit once per attempt. |
+| FR-9 | Grade transparently | Must | Results expose score components, correct MCQ answers, and essay criteria matches. |
+| FR-10 | Review and export results | Must | Curators can filter submissions and download a CSV comparison. |
+| FR-11 | Link assessment to graph | Should | A missed question exposes related concepts and flashcards. |
+| FR-12 | Version content | Should | Attempts retain the exact package version used, even after later edits. |
+| FR-13 | Detect quality issues | Should | Missing definitions, invalid references, and malformed question records are reported. |
 
 ## Non-functional Requirements
 
-- Python 3.10+ and UTF-8 JSON support.
-- No network connection required for the local MVP.
-- Invalid input records must not silently corrupt valid graph data.
-- UI must remain usable on desktop and narrow screens through Streamlit's responsive layout.
-- Pipeline output paths and schemas must be documented and stable.
-- Graph loading should be cached or optimized before the corpus becomes large enough to cause repeated-session latency.
+- Python 3.10+ and explicit UTF-8 handling.
+- Local MVP requires no network connection; API keys are optional and never required for manual authoring.
+- Uploaded PDFs and temporary files must be closed and cleaned up reliably.
+- Invalid records must not silently corrupt valid graph or assessment data.
+- Published packages are immutable; edits create a new version.
+- UI works on desktop and narrow screens; large graph/result views are paginated or filtered.
+- Result and source data must be kept private when the product is deployed beyond localhost.
 
 ## Success Metrics
 
-- A new subject can be added and made available after the documented build commands complete successfully.
-- At least 95% of defined source entities appear in the merged graph and flashcard artifact, excluding intentionally invalid records.
-- A learner can go from a subject to a node, a related node, and a flashcard in under three interactions.
-- Every displayed node can be traced to at least one subject and source file.
-- Validation failures identify the affected record or node.
+- A new subject can be built, reviewed, and made available using documented commands.
+- Every published question has a valid package, source, subject, and stable question ID.
+- Every displayed node/question can be traced to at least one source.
+- A learner can move from a missed question to a related concept or flashcard in three interactions or fewer.
+- Curators can diagnose a submission without opening raw JSON.
+- No published package contains invalid option keys, missing answers, or rubric weights that cannot be explained.
 
-## Risks and Open Decisions
+## Risks and Decisions
 
-- Free-text entity names can create false duplicates; a canonical ID strategy may be needed.
-- JSON artifacts are sufficient for the MVP but are not ideal for concurrent writes or multi-hop queries at scale.
-- Generated flashcards currently provide retrieval prompts, not scheduling or mastery tracking.
-- Future ingestion from PDFs/LLMs requires human review and provenance before publication.
+- Free-text entity names and package IDs can create false duplicates; introduce canonical IDs and explicit package versions.
+- The current package directory ID can differ from the `package_id` inside `package.json`; migration must define one canonical identifier.
+- Keyword essay grading is explainable but not equivalent to semantic evaluation; retain rubric evidence and label it as assistive.
+- PDF generation is currently scaffolded/placeholder-based; generated drafts need a review state and source text provenance.
+- JSON files do not provide safe concurrent writes or efficient analytics at scale.
 
 ## Roadmap
 
-1. MVP: current JSON pipelines, Streamlit exploration, flashcards, and cleanup.
-2. MVP+: schema files, build history, graph diffs, cached loading, and flashcard export.
-3. Growth: persistent Postgres or graph storage, API endpoints, authentication, spaced repetition, and human-reviewed assisted ingestion.
+1. **MVP:** unify existing graph, flashcard, question delivery, grading, and result-review workflows.
+2. **Content quality:** formal schemas, draft/review/published states, stable IDs, package versions, and graph-question links.
+3. **Learning loop:** remediation links, mastery history, spaced repetition, and objective-level analytics.
+4. **Production:** Postgres/object storage, API and workers, authentication/tenancy, caching, audit logs, and asynchronous generation.
