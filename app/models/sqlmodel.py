@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from sqlmodel import SQLModel, Field, Relationship
-from typing import Optional, List
+from sqlmodel import SQLModel, Field
+from typing import Optional
 from datetime import datetime
 
 
@@ -20,7 +20,6 @@ class Concept(SQLModel, table=True):
     subject_id: str = Field(default=None, foreign_key="subject.id", index=True)
     name: str = Field(index=True)
     definition: Optional[str] = None
-    subject: Optional["Subject"] = Relationship(back_populates="concepts")
 
 
 class ConceptRelation(SQLModel, table=True):
@@ -41,7 +40,6 @@ class PackageVersion(SQLModel, table=True):
     version: int = Field(default=None, index=True)
     status: str = Field(default="draft", index=True)  # draft, review, published
     created_at: datetime = Field(default_factory=datetime.utcnow)
-    subject: Optional["Subject"] = Relationship(back_populates="package_versions")
 
 
 class Question(SQLModel, table=True):
@@ -57,7 +55,6 @@ class Question(SQLModel, table=True):
     correct_answer_key: Optional[str] = None  # for mcq: option key like "A"
     essay_keywords: Optional[str] = None  # JSON string
     essay_rubric: Optional[str] = None  # JSON string
-    package_version: Optional["PackageVersion"] = Relationship(back_populates="questions")
 
 
 class Attempt(SQLModel, table=True):
@@ -74,7 +71,6 @@ class Attempt(SQLModel, table=True):
     total_score: int = Field(default=0)
     max_possible: int = Field(default=0)
     completed: bool = Field(default=False)
-    package_version: Optional["PackageVersion"] = Relationship(back_populates="attempts")
 
 
 class ValidationIssue(SQLModel, table=True):
