@@ -1,0 +1,589 @@
+{
+  "built_at": "2026-08-24T13:51:26.858692+00:00",
+  "subjects": {
+    "introduction_to_optimization": {
+      "subject_id": "introduction_to_optimization",
+      "display_name": "Introduction To Optimization",
+      "files": [
+        "01_data.json",
+        "02_data.json",
+        "03_data.json",
+        "04_data.json",
+        "05_data.json",
+        "06_data.json",
+        "07_data.json",
+        "08_data.json",
+        "09_data.json",
+        "optimization.json",
+        "optimization_2.json"
+      ],
+      "source_documents": [
+        {
+          "filename": "01_data.json",
+          "media_type": "application/json",
+          "content_hash": "690246d46b5770e6f1717c1a9a8f3267f4bd7ae54847b6e61764cd30f2184f39",
+          "bytes": 8622,
+          "imported_at": "2026-08-24T13:51:26.855952+00:00"
+        },
+        {
+          "filename": "02_data.json",
+          "media_type": "application/json",
+          "content_hash": "911809c7463cd1871f51552835b5288b242d518320cb7d79ba29a1a2278d912d",
+          "bytes": 9141,
+          "imported_at": "2026-08-24T13:51:26.856005+00:00"
+        },
+        {
+          "filename": "03_data.json",
+          "media_type": "application/json",
+          "content_hash": "edf0465f0a60e9bf9d59f4592feb8022d5d2d127383bdaedba5347b61292d630",
+          "bytes": 13518,
+          "imported_at": "2026-08-24T13:51:26.856037+00:00"
+        },
+        {
+          "filename": "04_data.json",
+          "media_type": "application/json",
+          "content_hash": "a070ab9a1ff27e2626db975d1bbd64ad73b4a46b63e94696c412274a0aa4302c",
+          "bytes": 8784,
+          "imported_at": "2026-08-24T13:51:26.856062+00:00"
+        },
+        {
+          "filename": "05_data.json",
+          "media_type": "application/json",
+          "content_hash": "17d536dab1618a6c44cf17dcd945e76175b32aac35b7a7e39a007d67c388bf24",
+          "bytes": 9698,
+          "imported_at": "2026-08-24T13:51:26.856090+00:00"
+        },
+        {
+          "filename": "06_data.json",
+          "media_type": "application/json",
+          "content_hash": "0945c12dc66637b61cd584b1d7ea05bfde7efda8a0a5c231feb4e60929cee8a6",
+          "bytes": 8087,
+          "imported_at": "2026-08-24T13:51:26.856114+00:00"
+        },
+        {
+          "filename": "07_data.json",
+          "media_type": "application/json",
+          "content_hash": "dee7b39b6e1cb20106e491c02d72b01c788e6f4d3d04037f8d752117244ef5c8",
+          "bytes": 11055,
+          "imported_at": "2026-08-24T13:51:26.856141+00:00"
+        },
+        {
+          "filename": "08_data.json",
+          "media_type": "application/json",
+          "content_hash": "b748d7f06da1721e7f653ed6d23a4cf602f6ea24090dba3dd1101051260a77ad",
+          "bytes": 10590,
+          "imported_at": "2026-08-24T13:51:26.856166+00:00"
+        },
+        {
+          "filename": "09_data.json",
+          "media_type": "application/json",
+          "content_hash": "bbe190b717f4e066bace369e4ea4a954c86ab5eab71856dd6b50eb68112e2ae6",
+          "bytes": 10397,
+          "imported_at": "2026-08-24T13:51:26.856191+00:00"
+        },
+        {
+          "filename": "optimization.json",
+          "media_type": "application/json",
+          "content_hash": "24fd026aa7959d07dbc852af4d80325bc11e708f8ac98fea5f427835acd7fcd8",
+          "bytes": 7598,
+          "imported_at": "2026-08-24T13:51:26.856215+00:00"
+        },
+        {
+          "filename": "optimization_2.json",
+          "media_type": "application/json",
+          "content_hash": "5a18f8e2e4e2d1f89fe8e5f8b224a92d9d748009d7286c5c143be9f84cecef68",
+          "bytes": 1662,
+          "imported_at": "2026-08-24T13:51:26.856233+00:00"
+        }
+      ]
+    },
+    "machine_vision": {
+      "subject_id": "machine_vision",
+      "display_name": "Machine Vision",
+      "files": [
+        "00_01_core_concept.json",
+        "00_02_01_feature_extraction_detection_methods.json",
+        "00_02_02_learning_segmentation_hybrid_algorithms.json",
+        "00_extra_01.json",
+        "00_extra_02.json",
+        "01_data.json",
+        "02_data.json",
+        "03_data.json",
+        "04_data.json",
+        "05_data.json",
+        "06_data.json",
+        "07_data.json",
+        "08_data.json",
+        "09_data.json",
+        "10_data.json",
+        "11_data.json"
+      ],
+      "source_documents": [
+        {
+          "filename": "00_01_core_concept.json",
+          "media_type": "application/json",
+          "content_hash": "6a6f38403882f502e23435a202cdc6f5b1ef049f3371bbbb57b26d78a629abba",
+          "bytes": 10020,
+          "imported_at": "2026-08-24T13:51:26.856448+00:00"
+        },
+        {
+          "filename": "00_02_01_feature_extraction_detection_methods.json",
+          "media_type": "application/json",
+          "content_hash": "938205b096056cd141816941399f2fc3611550feb34404118a06b9b3e30327f7",
+          "bytes": 11994,
+          "imported_at": "2026-08-24T13:51:26.856479+00:00"
+        },
+        {
+          "filename": "00_02_02_learning_segmentation_hybrid_algorithms.json",
+          "media_type": "application/json",
+          "content_hash": "6a4142c3b317e5d4dfb0857239b2cd41b674a454a1106f5e5391bea5e17f0ae7",
+          "bytes": 13724,
+          "imported_at": "2026-08-24T13:51:26.856510+00:00"
+        },
+        {
+          "filename": "00_extra_01.json",
+          "media_type": "application/json",
+          "content_hash": "0ddd1844413f3a9a9b859a82db90f98d47a2620b54377f24f076352dcf754df7",
+          "bytes": 6480,
+          "imported_at": "2026-08-24T13:51:26.856534+00:00"
+        },
+        {
+          "filename": "00_extra_02.json",
+          "media_type": "application/json",
+          "content_hash": "e625069396bd048a346688decf10ec9f5e3c5a0900b1d340f80ad107eb706731",
+          "bytes": 9183,
+          "imported_at": "2026-08-24T13:51:26.856559+00:00"
+        },
+        {
+          "filename": "01_data.json",
+          "media_type": "application/json",
+          "content_hash": "ba752f050e2d349b764aaf182f6002e3bbb619f2a8a51c278bb6134f5ff1710a",
+          "bytes": 8412,
+          "imported_at": "2026-08-24T13:51:26.856583+00:00"
+        },
+        {
+          "filename": "02_data.json",
+          "media_type": "application/json",
+          "content_hash": "ed9c2664d3cc4301378c20f89769fdbacf946ef015713693ebae8c46042c9e8e",
+          "bytes": 8303,
+          "imported_at": "2026-08-24T13:51:26.856605+00:00"
+        },
+        {
+          "filename": "03_data.json",
+          "media_type": "application/json",
+          "content_hash": "be21e9bbee0ef5b9d4cade5eab489c51dfde1aec1e28535497625b4d7056f666",
+          "bytes": 13102,
+          "imported_at": "2026-08-24T13:51:26.856631+00:00"
+        },
+        {
+          "filename": "04_data.json",
+          "media_type": "application/json",
+          "content_hash": "f8d9c20207a3a33e3894f1df3b36ddac58fbcd30b8f76be3fc1331652d0423ca",
+          "bytes": 11139,
+          "imported_at": "2026-08-24T13:51:26.856673+00:00"
+        },
+        {
+          "filename": "05_data.json",
+          "media_type": "application/json",
+          "content_hash": "60fd2121ea664d89196cd85d5fad89e25922073a415d9bf6b535ab640157e845",
+          "bytes": 10069,
+          "imported_at": "2026-08-24T13:51:26.856698+00:00"
+        },
+        {
+          "filename": "06_data.json",
+          "media_type": "application/json",
+          "content_hash": "e8be9a69a63d4e03c00130700bbf12280d9e7dc3aca5c7402bd15f9b6b8f0d1f",
+          "bytes": 8921,
+          "imported_at": "2026-08-24T13:51:26.856719+00:00"
+        },
+        {
+          "filename": "07_data.json",
+          "media_type": "application/json",
+          "content_hash": "cc43dc994edba92092abac698208bd587374386b7389fad807a67d0344879d6b",
+          "bytes": 10018,
+          "imported_at": "2026-08-24T13:51:26.856742+00:00"
+        },
+        {
+          "filename": "08_data.json",
+          "media_type": "application/json",
+          "content_hash": "8900d90b271f1f1c9b5339511f6064825fd3b0d4dbf984d8f4ad04035f71bccb",
+          "bytes": 10258,
+          "imported_at": "2026-08-24T13:51:26.856765+00:00"
+        },
+        {
+          "filename": "09_data.json",
+          "media_type": "application/json",
+          "content_hash": "2ecbcdb9e8b20941cd37e21955e07b70d6dec538e4a00871316f889f2736d78f",
+          "bytes": 10576,
+          "imported_at": "2026-08-24T13:51:26.856788+00:00"
+        },
+        {
+          "filename": "10_data.json",
+          "media_type": "application/json",
+          "content_hash": "a585b0c533d7e0327dc90884fceea487109ce5ead1d92024fb90f0cec583d630",
+          "bytes": 10420,
+          "imported_at": "2026-08-24T13:51:26.856810+00:00"
+        },
+        {
+          "filename": "11_data.json",
+          "media_type": "application/json",
+          "content_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "imported_at": "2026-08-24T13:51:26.856827+00:00"
+        }
+      ]
+    },
+    "machine_vision_v1": {
+      "subject_id": "machine_vision_v1",
+      "display_name": "Machine Vision V1",
+      "files": [
+        "00_01_core_concept.json",
+        "00_02_01_feature_extraction_detection_methods.json",
+        "00_02_02_learning_segmentation_hybrid_algorithms.json",
+        "initial.json"
+      ],
+      "source_documents": [
+        {
+          "filename": "00_01_core_concept.json",
+          "media_type": "application/json",
+          "content_hash": "6a6f38403882f502e23435a202cdc6f5b1ef049f3371bbbb57b26d78a629abba",
+          "bytes": 10020,
+          "imported_at": "2026-08-24T13:51:26.856939+00:00"
+        },
+        {
+          "filename": "00_02_01_feature_extraction_detection_methods.json",
+          "media_type": "application/json",
+          "content_hash": "938205b096056cd141816941399f2fc3611550feb34404118a06b9b3e30327f7",
+          "bytes": 11994,
+          "imported_at": "2026-08-24T13:51:26.856969+00:00"
+        },
+        {
+          "filename": "00_02_02_learning_segmentation_hybrid_algorithms.json",
+          "media_type": "application/json",
+          "content_hash": "6a4142c3b317e5d4dfb0857239b2cd41b674a454a1106f5e5391bea5e17f0ae7",
+          "bytes": 13724,
+          "imported_at": "2026-08-24T13:51:26.856998+00:00"
+        },
+        {
+          "filename": "initial.json",
+          "media_type": "application/json",
+          "content_hash": "333c614f7ea7c7875b165198299657981b9770f00db6ded4d8ffe13552caafe0",
+          "bytes": 6008,
+          "imported_at": "2026-08-24T13:51:26.857022+00:00"
+        }
+      ]
+    },
+    "numerical_matrix": {
+      "subject_id": "numerical_matrix",
+      "display_name": "Numerical Matrix",
+      "files": [
+        "00_extra_01.json",
+        "01_introduction.json",
+        "02_product_of_matrix_subspaces_in_factoring_matrices.json",
+        "03_the_singular_value_decomposition.json",
+        "04_matrix_subspaces_for_factoring_matrices.json",
+        "05_factoring_algorithmically.json",
+        "06_computing_the_LU_factorization_with_partial_pivoting.json",
+        "07_using_the_structure_in_computations_Cholesky_factorization_Sylvester_equation_and_FFT.json",
+        "08_iterative_methods_for_linear_systems.json",
+        "09_preconditioning.json",
+        "10_eigenvalue_problems_and_functions_of_matrices.json",
+        "11_Iterative methods_for_eigenvalue_problems.json",
+        "extra_00_01.json",
+        "extra_00_02.json",
+        "extra_00_03.json",
+        "extra_00_04.json",
+        "extra_00_05.json",
+        "extra_00_06.json",
+        "extra_00_07.json",
+        "extra_01.json"
+      ],
+      "source_documents": [
+        {
+          "filename": "00_extra_01.json",
+          "media_type": "application/json",
+          "content_hash": "050939805ac2a2e2e53982e5238ed3ed9a753de0e7a9a8c0b15c5587a2bf29f5",
+          "bytes": 8675,
+          "imported_at": "2026-08-24T13:51:26.857235+00:00"
+        },
+        {
+          "filename": "01_introduction.json",
+          "media_type": "application/json",
+          "content_hash": "ba90e7bfa48fa745e7087de66c1d1e3b6da7169cbd4eba4b340f239b3eb445ad",
+          "bytes": 4171,
+          "imported_at": "2026-08-24T13:51:26.857255+00:00"
+        },
+        {
+          "filename": "02_product_of_matrix_subspaces_in_factoring_matrices.json",
+          "media_type": "application/json",
+          "content_hash": "694f9752e1b87bd81c47005da38e9a93d7e818ecaf19ed136bb09b58b9641770",
+          "bytes": 10573,
+          "imported_at": "2026-08-24T13:51:26.857279+00:00"
+        },
+        {
+          "filename": "03_the_singular_value_decomposition.json",
+          "media_type": "application/json",
+          "content_hash": "d8be86594df0d800dab52d76b4bf639117f71063d458054b68b40efbb8b10810",
+          "bytes": 8729,
+          "imported_at": "2026-08-24T13:51:26.857301+00:00"
+        },
+        {
+          "filename": "04_matrix_subspaces_for_factoring_matrices.json",
+          "media_type": "application/json",
+          "content_hash": "77e5748adb3d42d5f15f18d40c85dfa16beb5ddb14fc2cd032e53d229e27c7ff",
+          "bytes": 9761,
+          "imported_at": "2026-08-24T13:51:26.857324+00:00"
+        },
+        {
+          "filename": "05_factoring_algorithmically.json",
+          "media_type": "application/json",
+          "content_hash": "6c4076c1dca445d0fce8116c6313a85660f8e3e7cd732f4483aed4c6afc1ff79",
+          "bytes": 9074,
+          "imported_at": "2026-08-24T13:51:26.857348+00:00"
+        },
+        {
+          "filename": "06_computing_the_LU_factorization_with_partial_pivoting.json",
+          "media_type": "application/json",
+          "content_hash": "ea24077680aea6352c6c10392af0ea6d6ba33505eba60e2f28a45d5df883f546",
+          "bytes": 9104,
+          "imported_at": "2026-08-24T13:51:26.857371+00:00"
+        },
+        {
+          "filename": "07_using_the_structure_in_computations_Cholesky_factorization_Sylvester_equation_and_FFT.json",
+          "media_type": "application/json",
+          "content_hash": "b4c6694bee1499493db4f4b17b66ab17b25d03be74a608421b658a47741a22d9",
+          "bytes": 8667,
+          "imported_at": "2026-08-24T13:51:26.857394+00:00"
+        },
+        {
+          "filename": "08_iterative_methods_for_linear_systems.json",
+          "media_type": "application/json",
+          "content_hash": "47dccc5b1c669199a0ed89837c67e84794643836588f836a6b0eac253e6deaa6",
+          "bytes": 12987,
+          "imported_at": "2026-08-24T13:51:26.857420+00:00"
+        },
+        {
+          "filename": "09_preconditioning.json",
+          "media_type": "application/json",
+          "content_hash": "cfe06b789be0116d575fc1320344772f3c1ef7d5cb78a9dcc23455bcd06ef6a5",
+          "bytes": 10448,
+          "imported_at": "2026-08-24T13:51:26.857445+00:00"
+        },
+        {
+          "filename": "10_eigenvalue_problems_and_functions_of_matrices.json",
+          "media_type": "application/json",
+          "content_hash": "bd19857d63a11b59b9ff7b632af96d3793a99e479e3c889554a41add96a0f1df",
+          "bytes": 10418,
+          "imported_at": "2026-08-24T13:51:26.857470+00:00"
+        },
+        {
+          "filename": "11_Iterative methods_for_eigenvalue_problems.json",
+          "media_type": "application/json",
+          "content_hash": "c69be002e82b61950263e453f0f2ef44ab178555763895950d110c792cc90f31",
+          "bytes": 7983,
+          "imported_at": "2026-08-24T13:51:26.857494+00:00"
+        },
+        {
+          "filename": "extra_00_01.json",
+          "media_type": "application/json",
+          "content_hash": "2691083b2bb1b41fcb82ac79db9e0a005fead68c33525c09718c8cb629c37be3",
+          "bytes": 10092,
+          "imported_at": "2026-08-24T13:51:26.857520+00:00"
+        },
+        {
+          "filename": "extra_00_02.json",
+          "media_type": "application/json",
+          "content_hash": "6f361e9ea23b9022ed6b1d00119254f92158926f3bcf56eba7f6e9352cbffe79",
+          "bytes": 5795,
+          "imported_at": "2026-08-24T13:51:26.857542+00:00"
+        },
+        {
+          "filename": "extra_00_03.json",
+          "media_type": "application/json",
+          "content_hash": "5c451a348f239bd4786bd277f9005ab74b81090e6f3cfaa9cf384dff3c55b4a0",
+          "bytes": 10089,
+          "imported_at": "2026-08-24T13:51:26.857566+00:00"
+        },
+        {
+          "filename": "extra_00_04.json",
+          "media_type": "application/json",
+          "content_hash": "820792802f87a75783d13edea7dfa6a29064bc6135b153c4fd0b0965a9a3bac3",
+          "bytes": 11904,
+          "imported_at": "2026-08-24T13:51:26.857593+00:00"
+        },
+        {
+          "filename": "extra_00_05.json",
+          "media_type": "application/json",
+          "content_hash": "df80ad6fc4358256f5c78844d2490b5e13b78b2137d9ecd444e7cfbdbc3cdb3a",
+          "bytes": 11595,
+          "imported_at": "2026-08-24T13:51:26.857618+00:00"
+        },
+        {
+          "filename": "extra_00_06.json",
+          "media_type": "application/json",
+          "content_hash": "5ca54916c89f4dd8bfafa53dbceffebcfbe6014d1cb172f99d52caf894dba24c",
+          "bytes": 13802,
+          "imported_at": "2026-08-24T13:51:26.857669+00:00"
+        },
+        {
+          "filename": "extra_00_07.json",
+          "media_type": "application/json",
+          "content_hash": "fd9295046f4c9113124a81032c8ff077724c4b442d28b7f18b0add4beab110dc",
+          "bytes": 14166,
+          "imported_at": "2026-08-24T13:51:26.857700+00:00"
+        },
+        {
+          "filename": "extra_01.json",
+          "media_type": "application/json",
+          "content_hash": "4b44b9ba509209873bd39d28403d0c1afce93a043ac335592484ecc6eff510eb",
+          "bytes": 7110,
+          "imported_at": "2026-08-24T13:51:26.857724+00:00"
+        }
+      ]
+    },
+    "towards_data_mining": {
+      "subject_id": "towards_data_mining",
+      "display_name": "Towards Data Mining",
+      "files": [
+        "0_extra_00.json",
+        "0_extra_01.json",
+        "0_extra_02.json",
+        "0_extra_03.json",
+        "0_extra_04.json",
+        "0_extra_05.json",
+        "0_extra_06.json",
+        "0_extra_07.json",
+        "0_extra_08.json",
+        "1_data.json",
+        "2_data.json",
+        "3_data.json",
+        "4_data.json",
+        "5_data.json",
+        "6_data.json",
+        "7_data.json",
+        "8_data.json"
+      ],
+      "source_documents": [
+        {
+          "filename": "0_extra_00.json",
+          "media_type": "application/json",
+          "content_hash": "9e41bd2a57d298475cf6d894699d43f81e5131c6be1473f294e56cf5b0f5d19e",
+          "bytes": 8408,
+          "imported_at": "2026-08-24T13:51:26.858209+00:00"
+        },
+        {
+          "filename": "0_extra_01.json",
+          "media_type": "application/json",
+          "content_hash": "268fffb275f6dfb66b2ca0bd256060aeb006fd5f746b497ebc7b26d685985d00",
+          "bytes": 7644,
+          "imported_at": "2026-08-24T13:51:26.858238+00:00"
+        },
+        {
+          "filename": "0_extra_02.json",
+          "media_type": "application/json",
+          "content_hash": "470cfbe39ba0fe3f8cbce108152aa904710ad39229c4d5b7f61f7072dcf68403",
+          "bytes": 10608,
+          "imported_at": "2026-08-24T13:51:26.858265+00:00"
+        },
+        {
+          "filename": "0_extra_03.json",
+          "media_type": "application/json",
+          "content_hash": "fd8a160599a6b28210ebb670f63517214b089f7f0778e725712f0c53ebdb5a65",
+          "bytes": 11215,
+          "imported_at": "2026-08-24T13:51:26.858291+00:00"
+        },
+        {
+          "filename": "0_extra_04.json",
+          "media_type": "application/json",
+          "content_hash": "90682a9662debae89ae8c3abe1658f421cb9171734c8141aea6168895534b5de",
+          "bytes": 8875,
+          "imported_at": "2026-08-24T13:51:26.858316+00:00"
+        },
+        {
+          "filename": "0_extra_05.json",
+          "media_type": "application/json",
+          "content_hash": "2f137145e74fc2fddb14e654be8952b7551bd5eeb33042c66676b7904450af68",
+          "bytes": 20115,
+          "imported_at": "2026-08-24T13:51:26.858350+00:00"
+        },
+        {
+          "filename": "0_extra_06.json",
+          "media_type": "application/json",
+          "content_hash": "9b1de119158f222682fe6bab72fb629f38feec4f2c5594e1b14d624c4fb030f3",
+          "bytes": 13938,
+          "imported_at": "2026-08-24T13:51:26.858379+00:00"
+        },
+        {
+          "filename": "0_extra_07.json",
+          "media_type": "application/json",
+          "content_hash": "a39cec7243881d7fb8760a1b9aa131586573ab372620f8c37bec98b192ea9b39",
+          "bytes": 20537,
+          "imported_at": "2026-08-24T13:51:26.858413+00:00"
+        },
+        {
+          "filename": "0_extra_08.json",
+          "media_type": "application/json",
+          "content_hash": "a6c389ca2f4890a5b00b3879df42d6db74730e9d1fb04760b955b2fcea8ff2e8",
+          "bytes": 24594,
+          "imported_at": "2026-08-24T13:51:26.858451+00:00"
+        },
+        {
+          "filename": "1_data.json",
+          "media_type": "application/json",
+          "content_hash": "1d0f7c0a1c3b88891b72ad08bba601750a4bed1e4dc46fb820be10bf8cde95da",
+          "bytes": 9167,
+          "imported_at": "2026-08-24T13:51:26.858475+00:00"
+        },
+        {
+          "filename": "2_data.json",
+          "media_type": "application/json",
+          "content_hash": "5ac91c17a16cea613f671708ab918a188498b41f963e6111998e0987457df7d3",
+          "bytes": 10691,
+          "imported_at": "2026-08-24T13:51:26.858502+00:00"
+        },
+        {
+          "filename": "3_data.json",
+          "media_type": "application/json",
+          "content_hash": "2f822c507f95e7f9e2fefb8e3358e5d51b53abab70234b8077306e7e5f3ecad2",
+          "bytes": 9811,
+          "imported_at": "2026-08-24T13:51:26.858527+00:00"
+        },
+        {
+          "filename": "4_data.json",
+          "media_type": "application/json",
+          "content_hash": "75313f94899b00221c589f6d1b7856bbb037de3761645a479bd6353d0c1f7d90",
+          "bytes": 11067,
+          "imported_at": "2026-08-24T13:51:26.858553+00:00"
+        },
+        {
+          "filename": "5_data.json",
+          "media_type": "application/json",
+          "content_hash": "ba4174a635b4ce3b5c3268392d5282e917b27e87eec651034adb45df51085d9f",
+          "bytes": 12283,
+          "imported_at": "2026-08-24T13:51:26.858580+00:00"
+        },
+        {
+          "filename": "6_data.json",
+          "media_type": "application/json",
+          "content_hash": "a62b134fdfc0ef561a0d2a0c5f30f77afda6b00c3e4222898da4842d46aec383",
+          "bytes": 11245,
+          "imported_at": "2026-08-24T13:51:26.858607+00:00"
+        },
+        {
+          "filename": "7_data.json",
+          "media_type": "application/json",
+          "content_hash": "0b8142feb1be7f3170bcbaa2c752c650f1561f3f9c24450d7e517c22c168d39f",
+          "bytes": 11553,
+          "imported_at": "2026-08-24T13:51:26.858634+00:00"
+        },
+        {
+          "filename": "8_data.json",
+          "media_type": "application/json",
+          "content_hash": "e74871eedc1a8474ad1ca70dbde93b7d0c16c86d9d3250fb546f686f8de5b1d7",
+          "bytes": 10144,
+          "imported_at": "2026-08-24T13:51:26.858677+00:00"
+        }
+      ]
+    }
+  }
+}

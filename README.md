@@ -1,6 +1,6 @@
-# Knowledge Graph
+# Knowledge Graph Learning Studio
 
-Streamlit app + pipelines for building and exploring a directed knowledge graph from subject-scoped JSON files.
+Local-first learning and assessment tool: subject-scoped notes/PDFs become a navigable knowledge graph, flashcards, and versioned question packages with transparent grading and review. See `docs/PRD.md` (product) and `docs/ERD.md` (data model).
 
 ## Quick start
 
@@ -13,9 +13,43 @@ Streamlit app + pipelines for building and exploring a directed knowledge graph 
 - `python3 pipelines/merge_graph.py`
 - `python3 pipelines/generate_flashcards.py`
 - `python3 pipelines/extract_subject_index.py`
+- `python3 pipelines/build_registry.py`
+- `python3 pipelines/check_quality.py`
 
 3) Run the Streamlit app:
 - `streamlit run app_streamlit.py`
+
+4) Run tests:
+- `python3 -m pytest tests/ -q`
+
+## The learning loop (pages)
+
+| Page | Who | What |
+| --- | --- | --- |
+| Home (`app_streamlit.py`) | all | Loop stats + links to every stage |
+| 0–2 Global / Narrative / Find Connection | learner | Filter the graph, inspect nodes, find shortest paths |
+| 3 Learn From Node | learner | Definition, provenance, neighbors of a concept |
+| 4–5 Flashcards | learner | Searchable, subject-filterable flashcards |
+| 6 Node Cleanup | curator | Missing definitions / provenance issues |
+| **7 Author Packages** ✍️ | curator | Create packages, add MCQs (manual or pasted blocks), essays with weighted rubrics, validate → publish immutable versions |
+| **8 PDF Drafts** 📄 | curator | Upload a PDF → extract text → scaffolded draft questions marked draft until review |
+| **9 Take a Test** 🎯 | learner | Pick subject + published package, answer MCQs/essays, submit once, see transparent scores + concept remediation |
+| **10 Review Results** 📊 | curator | Submission table with filters, per-question grading evidence, CSV export |
+
+## Assessment data model (JSON-backed ERD)
+
+- Question packages: `database/<subject>/<package_id>/package.json` (working copy; status `draft` → `review` → `published`)
+- Immutable published versions: `database/<subject>/<package_id>/versions/v<N>.json` — attempts always store the exact `package_version` + `content_hash` used (FR-12)
+- Canonical package key: `<subject>/<package_id>`; publishing identical content is idempotent, edited content always creates the next version
+- Submissions: `results/user_submissions/<attempt_id>.json` with answers, MCQ results, essay rubric matches + evidence snippets, and score components
+- Subject/source registry: `data/registry/registry.json` (SUBJECT + SOURCE_DOCUMENT with content hashes)
+- Quality report: `data/reports/quality_report.json` from `pipelines/check_quality.py` (missing definitions, dangling/duplicate edges, malformed questions, invalid rubric weights)
+
+## Grading rules (transparent by design)
+
+- MCQ: exact correct-option match, case-insensitive.
+- Essays: explicit case-insensitive keyword/rubric matching. Each criterion records `matched` plus an evidence snippet; scores are auditable and labeled assistive.
+- Score math never divides by zero: empty sections are excluded, and a fully empty test scores 0.
 
 ## Data layout
 
@@ -29,6 +63,14 @@ Generated artifacts are written under `data/`:
 - `data/graphs/merged_graph.json` (pipeline output)
 - `data/flashcards/flashcards.json`
 - `data/indexes/subject_index.json`
+- `data/registry/registry.json` (subjects + source documents)
+- `data/reports/quality_report.json`
+
+Assessment content lives outside `data/`:
+- `database/<subject>/<package_id>/package.json` (+ immutable `versions/v<N>.json`)
+- `results/user_submissions/<attempt_id>.json`
+
+To try the assessment flow immediately: `python3 pipelines/seed_example_package.py` creates and publishes a small example package, then open **🎯 Take a Test**.
 
 ## What was audited (bugs / errors / broken logic)
 

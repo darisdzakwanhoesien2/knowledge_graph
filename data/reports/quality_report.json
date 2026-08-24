@@ -1,0 +1,3084 @@
+{
+  "built_at": "2026-08-24T13:51:26.913536+00:00",
+  "issues": [
+    {
+      "severity": "error",
+      "location": "edge[1]",
+      "message": "target 'Constraints ($c_i$)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[2]",
+      "message": "target 'Discrete Optimization' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[5]",
+      "message": "target 'Tangent Plane' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[6]",
+      "message": "target 'Smooth Optimization' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[8]",
+      "message": "target 'Contours of $f$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[10]",
+      "message": "target 'Hessian Matrix' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[11]",
+      "message": "target 'Constrained Optimization' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[12]",
+      "message": "target 'Quadratic Convergence' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[13]",
+      "message": "target 'Taylor's Theorem' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[14]",
+      "message": "target 'Iterative Method' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[15]",
+      "message": "target 'Quadratic Convergence' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[16]",
+      "message": "target 'Convex Optimization' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[17]",
+      "message": "target 'Global Minimizer' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[18]",
+      "message": "target 'Strict Local Minimizer' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[19]",
+      "message": "target 'Stationary Point' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[21]",
+      "message": "target 'Second-Order Necessary Condition' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[25]",
+      "message": "target 'Stationary Point' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[26]",
+      "message": "target 'Iterative Method' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[33]",
+      "message": "target 'Quadratic Convergence' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[34]",
+      "message": "target 'Hessian Matrix' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[36]",
+      "message": "target 'Linear Convergence' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[39]",
+      "message": "target 'Superlinear Convergence' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[41]",
+      "message": "target 'Rank-One Update' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[42]",
+      "message": "target 'BFGS method' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[43]",
+      "message": "target '1D Subproblem (Line Search)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[44]",
+      "message": "target 'Linear Convergence (C=1/2)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[46]",
+      "message": "target 'Linear, $C = \\frac{1}{2}$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[47]",
+      "message": "target 'Strong Wolfe Line Search' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[48]",
+      "message": "target 'Nocedal & Wright, p. 56' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[49]",
+      "message": "target '$f(x) = \\frac{1}{2} \\| r(x) \\|^2$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[50]",
+      "message": "target '$\\nabla f(x) = J(x)^T r(x)$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[51]",
+      "message": "target '$m \\ge n$ (overdetermined)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[52]",
+      "message": "target '$A^T A x = A^T b$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[53]",
+      "message": "target '$\\nabla^2 f(x) = A^T A$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[54]",
+      "message": "target 'QR: $A = QR$, $R x = Q^T b$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[55]",
+      "message": "target 'Newton’s method' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[56]",
+      "message": "target '$B_k = J_k^T J_k$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[57]",
+      "message": "target '$p_k^T \\nabla f_k = -\\| J_k p_k \\|^2 \\le 0$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[58]",
+      "message": "target '$r(x) \\in \\mathbb{R}^m$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[59]",
+      "message": "target '$J(x) = \\frac{\\partial r_j}{\\partial x_i}$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[60]",
+      "message": "target 'Gauss–Newton + Gradient Descent' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[61]",
+      "message": "target '$\\| J_k p + r_k \\|^2$, $\\|p\\| \\le \\Delta_k$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[62]",
+      "message": "target '$\\mu_k \\ge 0$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[64]",
+      "message": "target 'Active Set $\\mathcal{A}(x)$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[65]",
+      "message": "target 'Lagrangian Function $\\mathcal{L}(x, \\lambda)$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[66]",
+      "message": "target 'Constraint Qualification (e.g., LICQ)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[68]",
+      "message": "target '$\\nabla_x \\mathcal{L}(x^*, \\lambda^*) = 0$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[69]",
+      "message": "target 'Dual Function $q(\\lambda)$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[70]",
+      "message": "target 'Linearized Feasible Cone $\\mathcal{F}(x)$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[71]",
+      "message": "target 'LICQ' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[72]",
+      "message": "target '$T_\\Omega(x) = \\mathcal{F}(x)$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[73]",
+      "message": "target 'MFCQ, Slater' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[74]",
+      "message": "target 'LICQ, $\\mathcal{F}(x)$, KKT' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[75]",
+      "message": "target 'KKT Necessity' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[76]",
+      "message": "target 'Gordan's Theorem' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[79]",
+      "message": "target 'Nocedal & Wright, Chapter 4' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[80]",
+      "message": "target 'Model Function $m_k(p)$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[81]",
+      "message": "target 'Trust Region $\\|p\\| \\le \\Delta_k$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[82]",
+      "message": "target 'KKT Conditions (54)–(56)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[83]",
+      "message": "target '$f_k = f(x_k)$, $g_k = \\nabla f(x_k)$, $B_k \\approx \\nabla^2 f(x_k)$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[84]",
+      "message": "target '$O(\\|p\\|^3)$ when $B_k = \\nabla^2 f(x_k)$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[85]",
+      "message": "target 'Actual reduction $f(x_k) - f(x_k + p_k)$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[86]",
+      "message": "target 'Predicted reduction $m_k(0) - m_k(p_k)$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[88]",
+      "message": "target '$\\mathcal{K}_2 = \\operatorname{span}\\{g_k, B_k^{-1}g_k\\}$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[90]",
+      "message": "target '(54)–(56): $(B_k + \\lambda I)p = -g_k$, $\\|p\\| \\le \\Delta_k$, etc.' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[91]",
+      "message": "target '$\\Delta_k^2 - \\|p\\|^2 \\ge 0$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[93]",
+      "message": "target '2-step Krylov method for $$ (I + 2\\lambda B^{-1})y = -q $$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[94]",
+      "message": "target '$$ \\operatorname{span}\\{q, B^{-1}q\\} $$ (57)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[95]",
+      "message": "target 'Theorem 12.5 (p. 332)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[96]",
+      "message": "target 'Critical Cone $$ \\mathcal{C}(x^*, \\lambda^*) $$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[97]",
+      "message": "target 'Theorem 12.6 (p. 333)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[98]",
+      "message": "target 'Critical Cone $$ \\mathcal{C}(x^*, \\lambda^*) $$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[99]",
+      "message": "target 'Linearized Feasible Cone $$ \\mathcal{F}(x^*) $$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[100]",
+      "message": "target '$$ \\nabla f(x^*) $$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[101]",
+      "message": "target 'LP in Canonical Form (65)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[103]",
+      "message": "target 'LP in Standard Form via $$ [A \\ I] \\begin{bmatrix} x \\\\ z \\end{bmatrix} = b $$ (66)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[104]",
+      "message": "target 'LP Canonical Form (65) → Standard Form (66)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[105]",
+      "message": "target 'Linear Program in Standard Form (64)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[106]",
+      "message": "target 'Enumerating $2^n$ KKT active-set combinations' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[107]",
+      "message": "target '$m<n$ and $A$ has full row rank' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[109]",
+      "message": "target 'Polyhedron (polygon for $n=2$)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[110]",
+      "message": "target 'Reduced cost vector $s\\ge0$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[111]",
+      "message": "target 'If $d = B^{-1}u \\le 0$ for the column $u$ of entering variable' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[112]",
+      "message": "target '$\\binom{m}{n}$ (but typically $\\le 3m$ pivots)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[113]",
+      "message": "target '$m$ basic variables (positive) and $n-m$ non-basic variables (zero)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[114]",
+      "message": "target '$B^{-1}b \\ge 0$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[115]",
+      "message": "target 'Column of $N$ corresponding to entering variable $x_j$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[116]",
+      "message": "target 'Hessian of Lagrangian $\\nabla_{xx}^{2}\\mathcal{L}(x^{*},\\lambda^{*})$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[117]",
+      "message": "target 'Unit eigenvector $x^{*}$ with eigenvalue $\\lambda^{*}$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[118]",
+      "message": "target '$Q - \\lambda^{*}I$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[119]",
+      "message": "target '$f(x)$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[120]",
+      "message": "target '$c_j(x)$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[121]",
+      "message": "target '$f(x)$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[122]",
+      "message": "target '$c(x)$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[123]",
+      "message": "target 'Lagrangian $\\mathcal{L}(x,\\lambda)$' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[125]",
+      "message": "target 'Primal Problem (73)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[126]",
+      "message": "target 'Theorem 12.11 (p. 345)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[127]",
+      "message": "target 'Strong Duality (if additional conditions hold and equality is achieved)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[128]",
+      "message": "target 'KKT conditions (at $x^* , \\lambda^*$)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[129]",
+      "message": "target 'Theorem 12.12 (p. 346)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[130]",
+      "message": "target 'LP Problem (78)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[131]",
+      "message": "target 'Inequality constraints ($2^m$ possible active sets)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[132]",
+      "message": "target 'Polynomial-time LP algorithms (e.g., interior-point methods)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[133]",
+      "message": "target '$\\le 2m$ or $3m$ pivots' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[154]",
+      "message": "target 'Tangent Cone ($T_\\Omega(x)$) = Linearized Cone' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[157]",
+      "message": "target 'Dual Problem (76) ≤ Primal' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[158]",
+      "message": "target 'Slater's Condition' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[159]",
+      "message": "target 'KKT satisfied' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[161]",
+      "message": "source 'Slack Variables ($z$)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[161]",
+      "message": "target 'Conversion to Standard Form' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[164]",
+      "message": "target 'All reduced costs ≥ 0' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[166]",
+      "message": "source 'Jacobian J(x)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[167]",
+      "message": "target 'J^T J' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[168]",
+      "message": "target 'J^T J + μI' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[169]",
+      "message": "target 'Normal Equations' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[170]",
+      "message": "target 'QR Decomposition' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[172]",
+      "message": "source 'BFGS method' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[174]",
+      "message": "target 'BFGS method' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[175]",
+      "message": "target 'Linear (C = (κ-1)/(κ+1))' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[176]",
+      "message": "target 'Quadratic' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[177]",
+      "message": "target 'Superlinear' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[178]",
+      "message": "target 'Linear (C=0.5)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[179]",
+      "message": "source 'Condition Number (κ(Q))' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[181]",
+      "message": "target 'Trust Region Ball' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[182]",
+      "message": "target 'Trust Region Radius Update' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[184]",
+      "message": "source 'Steihaug-Toint CG' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[185]",
+      "message": "target 'Wolfe Line Search' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[186]",
+      "message": "target 'φ'(α) = 0' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[187]",
+      "message": "source 'Exact Line Search' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[188]",
+      "message": "target 'Taylor Expansion (2nd order)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[190]",
+      "message": "target 'Hessian action via finite differences' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[193]",
+      "message": "target 'QR or SVD' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[195]",
+      "message": "target 'SQP (Sequential Quadratic Programming)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[196]",
+      "message": "target 'KKT Necessity' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[197]",
+      "message": "source 'KKT Conditions' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[197]",
+      "message": "target 'Normal Equations in Linear LS' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[198]",
+      "message": "source 'Hessian Matrix' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[199]",
+      "message": "target 'Unique Minimizer of Quadratic' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[200]",
+      "message": "target 'Indefinite Hessian' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[204]",
+      "message": "target 'BFGS method' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[205]",
+      "message": "target 'BFGS method' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[206]",
+      "message": "target 'Steihaug-Toint CG' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[210]",
+      "message": "target 'Eigenvalue Optimization Problems' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[211]",
+      "message": "target 'Global Convergence Theorems' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[212]",
+      "message": "target 'Camera extrinsics' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[214]",
+      "message": "target 'Epipolar constraint' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[215]",
+      "message": "target 'Perspective-3-point (P3P) problem' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[217]",
+      "message": "target 'Camera calibration' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[218]",
+      "message": "target 'Triangulation accuracy' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[220]",
+      "message": "target 'RGB color space' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[221]",
+      "message": "target 'Texture analysis' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[222]",
+      "message": "target 'Aperture problem' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[223]",
+      "message": "target 'Structure-from-Motion' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[224]",
+      "message": "target 'Depth estimation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[227]",
+      "message": "target 'Stereo matching' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[228]",
+      "message": "target 'Projection matrices' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[229]",
+      "message": "target 'Optical flow' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[230]",
+      "message": "target 'Lucas–Kanade method' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[233]",
+      "message": "target 'Chromatic aberration' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[234]",
+      "message": "target 'Color constancy models' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[236]",
+      "message": "target 'Color calibration' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[237]",
+      "message": "target 'Image quality assessment' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[240]",
+      "message": "target 'Structure-from-Motion' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[244]",
+      "message": "target 'Structure-from-Motion' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[246]",
+      "message": "target 'Optical flow' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[247]",
+      "message": "target 'K-means clustering' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[248]",
+      "message": "target 'Precision-Recall' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[251]",
+      "message": "target 'Shape recognition' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[252]",
+      "message": "target 'Edge detection' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[253]",
+      "message": "target 'Least squares estimation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[256]",
+      "message": "target 'Affine transformation estimation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[257]",
+      "message": "target 'Texture analysis' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[258]",
+      "message": "target 'Euclidean distance' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[259]",
+      "message": "target 'Filter bank methods' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[260]",
+      "message": "target 'Seashell classification' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[263]",
+      "message": "target 'Unsupervised learning' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[264]",
+      "message": "target 'Confusion matrix' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[265]",
+      "message": "target 'Background subtraction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[270]",
+      "message": "target 'Structure-from-Motion' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[271]",
+      "message": "target 'Surface reconstruction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[272]",
+      "message": "target 'Diffuse reflection' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[273]",
+      "message": "target 'Structure-from-Motion' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[281]",
+      "message": "target 'Spatial pyramid matching' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[285]",
+      "message": "target 'Object detection' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[288]",
+      "message": "target 'Optical flow' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[289]",
+      "message": "target 'Motion estimation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[293]",
+      "message": "target 'Texture classification' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[294]",
+      "message": "target 'Optical flow' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[296]",
+      "message": "target 'Stereo matching' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[297]",
+      "message": "target 'Structure-from-Motion' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[303]",
+      "message": "target 'Texture Classification' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[304]",
+      "message": "target 'Color features' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[305]",
+      "message": "target 'Mahalanobis distance' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[307]",
+      "message": "target 'Texture Classification' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[308]",
+      "message": "target 'Euclidean distance' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[316]",
+      "message": "target 'Object detection' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[317]",
+      "message": "target 'Confusion matrix' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[318]",
+      "message": "target 'Euclidean Distance' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[319]",
+      "message": "target 'k-Nearest Neighbor Classification' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[320]",
+      "message": "target 'Gaussian Mixture Models' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[321]",
+      "message": "target 'Covariance Matrix' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[322]",
+      "message": "target 'Feature Normalization' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[324]",
+      "message": "target 'Euclidean Distance' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[325]",
+      "message": "target 'Chi-Square Distance' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[327]",
+      "message": "target 'Support Vector Machine' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[328]",
+      "message": "target 'Feature Extraction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[329]",
+      "message": "target 'Human Visual System' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[332]",
+      "message": "target 'Filter Banks' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[334]",
+      "message": "target 'Wavelet Transform' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[335]",
+      "message": "target 'Texture Classification' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[337]",
+      "message": "target 'Support Vector Machine' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[339]",
+      "message": "target 'Haralick Features' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[340]",
+      "message": "target 'Image Quantization' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[342]",
+      "message": "target 'Morphological Operations' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[344]",
+      "message": "target 'Region of Interest (ROI) Analysis' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[346]",
+      "message": "target 'Morphological Operations' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[347]",
+      "message": "target 'Structuring Element' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[350]",
+      "message": "target 'Binary Image Preprocessing' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[352]",
+      "message": "target 'Morphological Operations' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[353]",
+      "message": "target 'Structuring Element' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[356]",
+      "message": "target 'Binary Image Enhancement' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[360]",
+      "message": "target 'Morphological Operations' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[361]",
+      "message": "target 'Image Segmentation Pipeline' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[363]",
+      "message": "target 'Median Filtering' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[366]",
+      "message": "target 'Morphological Operations' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[367]",
+      "message": "target 'Image Segmentation Pipeline' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[369]",
+      "message": "target 'Region Integrity' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[373]",
+      "message": "target 'Per-Object Feature Extraction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[375]",
+      "message": "target 'Object Detection Pipeline' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[376]",
+      "message": "target 'Artificial Intelligence' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[390]",
+      "message": "target 'Human Visual System' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[391]",
+      "message": "target 'Perceptual Cues' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[397]",
+      "message": "target 'Camera' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[398]",
+      "message": "target 'Camera Calibration' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[405]",
+      "message": "target 'Photographic Camera' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[408]",
+      "message": "target 'Lens Distortion' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[409]",
+      "message": "target 'Viewpoint Normalization' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[411]",
+      "message": "target 'Field of View' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[414]",
+      "message": "target 'Sensor Plane' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[415]",
+      "message": "target 'Projected Rays' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[416]",
+      "message": "target 'Geometric Model' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[417]",
+      "message": "target 'Optical Model' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[418]",
+      "message": "target 'Sensor Model' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[419]",
+      "message": "target 'Camera Calibration' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[421]",
+      "message": "target 'Bidirectional Reflectance Distribution Function' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[422]",
+      "message": "target 'Phong Reflection Model' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[423]",
+      "message": "target 'Fresnel Equations' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[425]",
+      "message": "target 'Bidirectional Reflectance Distribution Function' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[426]",
+      "message": "target 'Lambertian Reflectance' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[428]",
+      "message": "target 'Wavelength' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[432]",
+      "message": "target 'Color' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[433]",
+      "message": "target 'Electromagnetic Spectrum' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[434]",
+      "message": "target 'Human Visual System' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[435]",
+      "message": "target 'RGB Sensor' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[436]",
+      "message": "target 'Color' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[440]",
+      "message": "target 'Scene Illumination' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[444]",
+      "message": "target 'Surface Material' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[446]",
+      "message": "target 'RGB Color Model' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[449]",
+      "message": "target 'CMYK Color Model' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[455]",
+      "message": "target 'Surface Properties' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[458]",
+      "message": "target 'Refraction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[459]",
+      "message": "target 'Optical Model' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[462]",
+      "message": "target 'Perceived Color' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[463]",
+      "message": "target 'Spectral Absorption Curve' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[465]",
+      "message": "target 'Morphological Operations' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[467]",
+      "message": "target 'Shape Analysis' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[470]",
+      "message": "target 'Morphological Processing' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[475]",
+      "message": "target 'Image Filtering' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[482]",
+      "message": "target 'Morphological Operations' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[486]",
+      "message": "target 'Connected Components' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[487]",
+      "message": "target 'Geometric Features' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[490]",
+      "message": "target 'Connected Components' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[491]",
+      "message": "target 'Object Measurement' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[493]",
+      "message": "target 'Geometric Features' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[495]",
+      "message": "target 'Semantic Labels' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[502]",
+      "message": "target 'Classical Computer Vision' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[503]",
+      "message": "target 'Color' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[506]",
+      "message": "target 'Shape' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[507]",
+      "message": "target 'Surface Material' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[511]",
+      "message": "target 'Mid-level Vision' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[513]",
+      "message": "target 'Feature Extraction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[514]",
+      "message": "target 'Texture Classification' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[517]",
+      "message": "target 'Illumination Changes' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[518]",
+      "message": "target 'Texture Classification' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[519]",
+      "message": "target 'Multi-scale LBP' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[522]",
+      "message": "target 'Texture Classification' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[525]",
+      "message": "target 'Haralick Features' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[526]",
+      "message": "target 'Spatial Dependency' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[529]",
+      "message": "target 'Human Visual Cortex' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[533]",
+      "message": "target 'Textons' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[534]",
+      "message": "target 'Regular Textures' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[535]",
+      "message": "target 'Texture Synthesis' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[537]",
+      "message": "target '3D Reconstruction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[544]",
+      "message": "target 'Translation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[545]",
+      "message": "target 'Scale Changes' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[548]",
+      "message": "target 'Descriptor Extraction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[553]",
+      "message": "target 'Orientation Normalization' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[556]",
+      "message": "target 'Descriptor Distance' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[561]",
+      "message": "target 'Edge' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[564]",
+      "message": "target 'Corner Classification' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[565]",
+      "message": "target 'Autocorrelation Function' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[567]",
+      "message": "target 'Artificial Intelligence' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[568]",
+      "message": "target 'Feature Extraction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[573]",
+      "message": "target 'Machine Learning Classifiers' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[576]",
+      "message": "target 'Symbolic Representation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[578]",
+      "message": "target 'Hierarchical Patterns' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[580]",
+      "message": "target 'Feature Extraction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[582]",
+      "message": "target 'PCA' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[585]",
+      "message": "target 'Training Data' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[586]",
+      "message": "target 'Class Label' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[588]",
+      "message": "target 'Template' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[589]",
+      "message": "target 'Geometric Variations' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[590]",
+      "message": "target 'Deformable Templates' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[592]",
+      "message": "target 'Probabilistic Classification' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[593]",
+      "message": "target 'Prior Probability' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[594]",
+      "message": "target 'Likelihood Model' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[596]",
+      "message": "target 'Feature Extraction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[598]",
+      "message": "target 'Deep Learning' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[601]",
+      "message": "target '3D Reconstruction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[602]",
+      "message": "target 'Temporal Analysis' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[603]",
+      "message": "target 'Relative Movement' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[604]",
+      "message": "target 'Motion Estimation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[605]",
+      "message": "target 'Brightness Constancy' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[607]",
+      "message": "target 'Deep Optical Flow' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[609]",
+      "message": "target 'Differential Optical Flow' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[610]",
+      "message": "target 'Specular Highlights' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[611]",
+      "message": "target 'Occlusion' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[612]",
+      "message": "target 'Smoothness Constraint' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[613]",
+      "message": "target 'Local Motion Estimation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[614]",
+      "message": "target 'Global Optimization' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[615]",
+      "message": "target 'Corner Features' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[616]",
+      "message": "target 'Optical Flow Constraint' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[617]",
+      "message": "target 'Sparse Optical Flow' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[618]",
+      "message": "target 'Local Smoothness' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[620]",
+      "message": "target 'Small Motions' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[621]",
+      "message": "target 'Pyramidal Lucas-Kanade' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[622]",
+      "message": "target 'Dense Optical Flow' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[623]",
+      "message": "target 'Global Smoothness' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[625]",
+      "message": "target 'Variational Flow Methods' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[627]",
+      "message": "target 'Object Tracking' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[628]",
+      "message": "target 'Video Analysis' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[629]",
+      "message": "target 'Layered Representation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[630]",
+      "message": "target 'Dense Optical Flow' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[633]",
+      "message": "target 'KLT Tracker' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[634]",
+      "message": "target '3D Reconstruction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[636]",
+      "message": "target 'Dense Matching' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[638]",
+      "message": "target 'Geometric Transformation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[642]",
+      "message": "target 'Wide Baseline Matching' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[643]",
+      "message": "target 'Baseline' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[645]",
+      "message": "target 'Point Correspondences' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[648]",
+      "message": "target 'Camera Matrices' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[650]",
+      "message": "target 'Camera Calibration' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[651]",
+      "message": "target 'Rotation Matrix' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[652]",
+      "message": "target 'Translation Direction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[653]",
+      "message": "target 'Relative Pose Estimation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[654]",
+      "message": "target 'Fundamental Matrix Estimation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[655]",
+      "message": "target 'Homography Estimation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[657]",
+      "message": "target 'LO-RANSAC' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[658]",
+      "message": "target 'Robust Fitting' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[661]",
+      "message": "target 'Disparity Map' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[662]",
+      "message": "target 'Depth Estimation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[663]",
+      "message": "target 'Passive 3D Vision' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[666]",
+      "message": "target 'Rectified Images' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[667]",
+      "message": "target 'Correspondence Search' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[668]",
+      "message": "target 'Projective Transformation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[669]",
+      "message": "target 'Planar Correspondences' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[670]",
+      "message": "target 'Image Stitching' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[672]",
+      "message": "target 'Planar Scene' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[673]",
+      "message": "target 'Scene Understanding' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[675]",
+      "message": "target 'Depth Estimation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[676]",
+      "message": "target '3D Reconstruction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[677]",
+      "message": "target '2D Vision' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[678]",
+      "message": "target 'Passive 3D Perception' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[679]",
+      "message": "target 'Camera Calibration' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[681]",
+      "message": "target 'Depth Map' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[682]",
+      "message": "target 'Baseline Length' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[683]",
+      "message": "target 'Multi-view 3D Reconstruction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[687]",
+      "message": "target 'Dense Reconstruction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[688]",
+      "message": "target 'Single Image 3D' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[689]",
+      "message": "target 'Occlusion' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[690]",
+      "message": "target 'Perspective' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[691]",
+      "message": "target 'Shading' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[692]",
+      "message": "target 'Binocular Cues' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[694]",
+      "message": "target 'Lambertian Reflectance' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[695]",
+      "message": "target 'Known Light Source' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[697]",
+      "message": "target 'Surface Normals' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[699]",
+      "message": "target 'Multiple Known Lights' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[700]",
+      "message": "target 'Unknown Albedo' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[701]",
+      "message": "target 'Surface Integration' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[702]",
+      "message": "target 'Cast Shadows (with care)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[705]",
+      "message": "target 'Photo-consistency' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[706]",
+      "message": "target 'Dense Point Cloud' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[707]",
+      "message": "target 'Mesh Generation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[708]",
+      "message": "target 'Stereo Vision' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[710]",
+      "message": "target 'Camera Calibration' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[711]",
+      "message": "target 'Point Correspondences' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[712]",
+      "message": "target '3D Point' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[713]",
+      "message": "target 'Artificial Intelligence' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[717]",
+      "message": "target 'Large Datasets (e.g., ImageNet)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[719]",
+      "message": "target 'Scale Ambiguity' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[720]",
+      "message": "target 'Surface Reconstruction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[741]",
+      "message": "target 'Matrix Approximation Problem' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[742]",
+      "message": "target 'Numerical Analysis' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[743]",
+      "message": "target 'Scientific Computing' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[744]",
+      "message": "target 'Linear Algebra' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[745]",
+      "message": "target 'Partial Differential Equations' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[747]",
+      "message": "target 'Dot Product' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[748]",
+      "message": "target 'Gram-Schmidt Process' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[749]",
+      "message": "target 'Norm' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[750]",
+      "message": "target 'Orthogonality' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[751]",
+      "message": "target 'Matrix Multiplication' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[759]",
+      "message": "target 'Linear System Solving' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[769]",
+      "message": "target 'Partial Differential Equations' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[774]",
+      "message": "target 'QR Factorization' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[777]",
+      "message": "target 'Orthogonal Matrices' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[782]",
+      "message": "target 'Symmetric Matrix (real case)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[789]",
+      "message": "target 'Principal Component Analysis' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[790]",
+      "message": "target 'Matrix Approximation Problem' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[792]",
+      "message": "target 'Eigenvalue' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[796]",
+      "message": "target 'Euclidean Norm' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[797]",
+      "message": "target 'QR Decomposition' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[798]",
+      "message": "target 'Orthogonal Matrix' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[801]",
+      "message": "target 'Principal Component Analysis' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[802]",
+      "message": "target 'Reconstruction Error' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[804]",
+      "message": "target 'Euclidean Norm' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[805]",
+      "message": "target 'Singular Value Squared' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[807]",
+      "message": "target 'Largest Singular Value' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[809]",
+      "message": "target 'Linear Transformation Stretch' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[817]",
+      "message": "target 'GL(n,ℂ)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[830]",
+      "message": "target 'Scalar Polynomial' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[831]",
+      "message": "target 'Cayley-Hamilton Theorem' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[834]",
+      "message": "target 'Idempotent Operator' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[836]",
+      "message": "target 'I−P' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[837]",
+      "message": "target 'Oblique Projection' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[838]",
+      "message": "target 'Matrix Powers' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[841]",
+      "message": "target 'j' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[844]",
+      "message": "target 'Subspaces V1 V2' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[846]",
+      "message": "target 'Idempotency P^2 = P' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[847]",
+      "message": "target 'Range R(P)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[848]",
+      "message": "target 'I - P' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[851]",
+      "message": "target 'R(I - P)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[852]",
+      "message": "target 'Direct Sum Decomposition' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[853]",
+      "message": "target 'Kernel of I - P' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[854]",
+      "message": "target 'Orthogonal Projection' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[856]",
+      "message": "target 'Inner Product Space' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[857]",
+      "message": "target 'Subspace Factoring' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[860]",
+      "message": "target 'Direct Factorization' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[864]",
+      "message": "target 'Matrix Factoring' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[865]",
+      "message": "target 'Eigenvectors' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[875]",
+      "message": "target 'Backward Stable Solver' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[877]",
+      "message": "target 'Round-off Error' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[881]",
+      "message": "target 'Euclidean Norm' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[882]",
+      "message": "target 'Itself' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[883]",
+      "message": "target 'Row Permutation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[888]",
+      "message": "target 'Ratio of Extreme Singular Values' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[889]",
+      "message": "target 'Solution Accuracy' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[896]",
+      "message": "target 'LDL* Decomposition' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[897]",
+      "message": "target 'Positive Semidefinite' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[901]",
+      "message": "target 'Lyapunov Equation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[905]",
+      "message": "target 'Fast Fourier Transform' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[907]",
+      "message": "target 'Fₙ*/√n' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[909]",
+      "message": "target 'Discrete Fourier Transform' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[910]",
+      "message": "target 'O(n²) to O(n log n)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[911]",
+      "message": "target 'Twiddle Factors' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[912]",
+      "message": "target 'Butterfly Diagram' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[917]",
+      "message": "target 'Direct Methods' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[922]",
+      "message": "target 'M^{-1} A x = M^{-1} b' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[923]",
+      "message": "target 'r = b - A x' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[924]",
+      "message": "target 'Polynomial Minimization' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[925]",
+      "message": "target 'Matrix Powers' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[928]",
+      "message": "target 'A' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[932]",
+      "message": "target 'Lanczos Algorithm' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[935]",
+      "message": "target 'Nonsymmetric Matrices' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[937]",
+      "message": "target 'Lanczos Algorithm (for SPD)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[942]",
+      "message": "target 'A⁻¹' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[943]",
+      "message": "target 'PCG' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[951]",
+      "message": "target 'SPD Matrices' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[953]",
+      "message": "target 'Krylov Methods Convergence' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[954]",
+      "message": "target 'Eigenvalue Spectrum' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[955]",
+      "message": "target 'Preconditioning (clustering eigenvalues)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[958]",
+      "message": "target 'GMRES Least Squares' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[959]",
+      "message": "target 'Tridiagonal Matrix (symmetric case)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[960]",
+      "message": "target 'QR Factorisation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[963]",
+      "message": "target 'Approximate Inverse' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[965]",
+      "message": "target 'Eigenvalues' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[967]",
+      "message": "target 'Diagonal Preconditioner' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[969]",
+      "message": "target 'Jacobi Iteration' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[970]",
+      "message": "target 'Gauss-Seidel Preconditioner' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[972]",
+      "message": "target 'Preconditioner' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[975]",
+      "message": "target 'Matrix Inverse' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[977]",
+      "message": "target 'Incomplete LU' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[980]",
+      "message": "target 'Solution Vector' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[985]",
+      "message": "target 'Extra Solve' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[987]",
+      "message": "target 'Jacobi Method' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[988]",
+      "message": "target 'Gauss-Seidel Method' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[989]",
+      "message": "target 'Richardson Iteration' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[993]",
+      "message": "target 'Matrix Functions' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[995]",
+      "message": "target 'Spectrum' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[997]",
+      "message": "target 'Initial Eigenvalue Estimation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1000]",
+      "message": "target 'Rayleigh Quotient Iteration' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1007]",
+      "message": "target 'Schur Form' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1012]",
+      "message": "target 'Standard Eigenvalue Problem' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1015]",
+      "message": "target 'Schur Decomposition' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1019]",
+      "message": "target 'Spectrum' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1023]",
+      "message": "target 'Newton's Iteration' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1025]",
+      "message": "target 'Eigenvalue Problems' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1029]",
+      "message": "target 'Positive Definite A (for principal)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1033]",
+      "message": "target 'Matrix Inversion' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1034]",
+      "message": "target 'sqrt(A)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1037]",
+      "message": "target 'Λ(A)' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1038]",
+      "message": "target 'Singular Value Problem' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1042]",
+      "message": "target 'Approximate μ' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1044]",
+      "message": "target 'Positive Definiteness' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1045]",
+      "message": "target 'Conjugate Gradient' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1046]",
+      "message": "target 'Eigenvalue Estimate ˆμ' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1050]",
+      "message": "target 'Jordan Form' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1066]",
+      "message": "target 'QR Factorization' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1069]",
+      "message": "target 'Schur Decomposition' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1076]",
+      "message": "target 'Schur Decomposition' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1078]",
+      "message": "target 'Orthogonal Projection' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1079]",
+      "message": "target 'Oblique Projection' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1081]",
+      "message": "target 'Factorization Algorithms' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1097]",
+      "message": "target 'Lyapunov Equation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1098]",
+      "message": "target 'Lyapunov Equation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1107]",
+      "message": "target 'Spectral Decomposition' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1116]",
+      "message": "target 'QR Factorization' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1125]",
+      "message": "target 'Matrix Multiplication' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1127]",
+      "message": "target 'Oblique Projection' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1131]",
+      "message": "target 'Rayleigh Quotient Iteration' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1135]",
+      "message": "target 'Matrix Multiplication' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1157]",
+      "message": "target 'Orthogonal Matrix' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1160]",
+      "message": "target 'Block Matrix' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1175]",
+      "message": "target 'Matrix Multiplication' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1181]",
+      "message": "target 'Lyapunov Equation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1190]",
+      "message": "target 'Lanczos Algorithm' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1191]",
+      "message": "target 'SPD Matrices' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1209]",
+      "message": "target 'Clustering' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1210]",
+      "message": "target 'Histograms' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1211]",
+      "message": "target 'Dimensionality Reduction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1213]",
+      "message": "target 'Imbalanced Data' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1214]",
+      "message": "target 'Model Evaluation Metrics' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1215]",
+      "message": "target 'Data Partitioning' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1219]",
+      "message": "target 'SMOTE' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1220]",
+      "message": "target 'Imbalanced Data' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1223]",
+      "message": "target 'Noise Injection' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1224]",
+      "message": "target 'SMOTE' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1234]",
+      "message": "target 'Design Relational Database schemas' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1240]",
+      "message": "target 'Activity Monitoring Schema' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1251]",
+      "message": "target 'Z-Score' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1283]",
+      "message": "target 'Imbalanced Data' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1304]",
+      "message": "target 'Maximum Likelihood Estimation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1306]",
+      "message": "target 'Maximum Likelihood Estimation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1316]",
+      "message": "target 'Noisy Data' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1340]",
+      "message": "target 'Clustering Algorithms' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1350]",
+      "message": "target 'Time-Series Outlier Detection' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1372]",
+      "message": "target 'Categorical Data' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1384]",
+      "message": "target 'Model Evaluation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1393]",
+      "message": "target 'Model Simplicity' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1400]",
+      "message": "target 'Data Partitioning' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1401]",
+      "message": "target 'Data Partitioning' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1402]",
+      "message": "target 'Data Partitioning' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1408]",
+      "message": "target 'Data Partitioning' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1439]",
+      "message": "target 'Model Evaluation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1446]",
+      "message": "target 'Parameterized Models' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1506]",
+      "message": "target 'Raw Data' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1514]",
+      "message": "target 'Decision Making' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1524]",
+      "message": "target 'GDPR' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1527]",
+      "message": "target 'GDPR' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1533]",
+      "message": "target 'Confidentiality' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1536]",
+      "message": "target 'GDPR' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1540]",
+      "message": "target 'Scientific Research' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1541]",
+      "message": "target 'Open Knowledge Foundation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1546]",
+      "message": "target 'Database Management' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1560]",
+      "message": "target 'Human-Centered Data Collection' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1564]",
+      "message": "target 'Randomized Controlled Trial' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1571]",
+      "message": "target 'Open Science' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1575]",
+      "message": "target 'Data Integration' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1583]",
+      "message": "target 'SRSWR' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1584]",
+      "message": "target 'SRSWOR' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1587]",
+      "message": "target 'SRSWR' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1589]",
+      "message": "target 'SRSWOR' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1591]",
+      "message": "target 'Imbalanced Data Handling' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1593]",
+      "message": "target 'Imbalanced Data Handling' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1598]",
+      "message": "target 'F1-score' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1601]",
+      "message": "target 'Missing Completely at Random' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1602]",
+      "message": "target 'Missing at Random' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1603]",
+      "message": "target 'Missing Not at Random' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1606]",
+      "message": "target 'Maximum Likelihood Estimation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1611]",
+      "message": "target 'Maximum Likelihood Estimation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1628]",
+      "message": "target 'MAR Assumption' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1629]",
+      "message": "target 'Maximum Likelihood Estimation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1643]",
+      "message": "target 'Data Preprocessing' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1656]",
+      "message": "target 'Anomaly Detection Methods' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1657]",
+      "message": "target 'Novelty Detection' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1658]",
+      "message": "target 'Anomaly Detection' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1662]",
+      "message": "target 'Clustering Methods' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1664]",
+      "message": "target 'Distance Measures' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1674]",
+      "message": "target 'Outlier Detection' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1675]",
+      "message": "target 'Standard Deviation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1678]",
+      "message": "target 'Data Classification' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1679]",
+      "message": "target 'Continuous Variable Modeling' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1680]",
+      "message": "target 'Concept Hierarchy' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1682]",
+      "message": "target 'Categorical Variables' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1683]",
+      "message": "target 'Feature Engineering' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1684]",
+      "message": "target 'Principal Component Analysis' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1685]",
+      "message": "target 'Discrete Wavelet Transform' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1688]",
+      "message": "target 'Feature Extraction' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1690]",
+      "message": "target 'Principal Component Analysis' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1692]",
+      "message": "target 'Data Normalization' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1694]",
+      "message": "target 'Model Complexity' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1700]",
+      "message": "target 'Exploratory Data Analysis' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1702]",
+      "message": "target 'Statistical Inference' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1717]",
+      "message": "target 'Training and Testing' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1718]",
+      "message": "target 'Model Evaluation' is not a known node"
+    },
+    {
+      "severity": "error",
+      "location": "edge[1720]",
+      "message": "target 'Data Partitioning' is not a known node"
+    }
+  ],
+  "counts": {
+    "error": 615,
+    "warning": 0
+  }
+}

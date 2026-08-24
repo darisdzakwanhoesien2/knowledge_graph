@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "package_key": "introduction_to_optimization/optimization_basics_quiz",
+  "package_id": "optimization_basics_quiz",
+  "subject": "introduction_to_optimization",
+  "title": "Optimization Basics Quiz",
+  "level": "Undergraduate",
+  "description": "Seed example covering core definitions from the Introduction to Optimization notes.",
+  "source": {},
+  "status": "published",
+  "version": 1,
+  "created_at": "2026-08-24T13:43:59.021385+00:00",
+  "updated_at": "2026-08-24T13:43:59.022958+00:00",
+  "published_at": "2026-08-24T13:43:59.024262+00:00",
+  "mcqs": [
+    {
+      "id": "mcq_bd5aca7150a5",
+      "kind": "mcq",
+      "question": "Which statement best describes an objective function f in continuous optimization?",
+      "options": {
+        "A": "A scalar function to minimize or maximize over the feasible set",
+        "B": "A function that must always be convex",
+        "C": "A discrete lookup table of feasible points",
+        "D": "Any matrix with full rank"
+      },
+      "correct_option": "A",
+      "difficulty": "easy",
+      "learning_objective": "Define the components of an optimization problem",
+      "slide_refs": [
+        "01_data.json"
+      ],
+      "node_links": [
+        "Objective Function ($f$)",
+        "Continuous Optimization"
+      ]
+    },
+    {
+      "id": "mcq_7ebab0e9f401",
+      "kind": "mcq",
+      "question": "What does the first-order necessary condition (FONC) require at a local minimizer x*?",
+      "options": {
+        "A": "The Hessian must be positive definite",
+        "B": "The gradient of the objective vanishes along feasible directions",
+        "C": "The point must be a global minimum",
+        "D": "All constraints must be inactive"
+      },
+      "correct_option": "B",
+      "difficulty": "medium",
+      "learning_objective": "Explain optimality conditions",
+      "slide_refs": [],
+      "node_links": [
+        "First-Order Necessary Condition (FONC)",
+        "Local Minimizer ($x^*$)"
+      ]
+    }
+  ],
+  "essay": [
+    {
+      "id": "ess_b42ab913d3aa",
+      "kind": "essay",
+      "prompt": "Explain what convexity of an optimization problem implies about local and global minima.",
+      "expected_keywords": [
+        "convex",
+        "local minimum",
+        "global minimum"
+      ],
+      "rubric": {
+        "total_points": 5,
+        "grading_notes": "Assistive keyword grading; review evidence before finalizing.",
+        "criteria": [
+          {
+            "keyword": "convex",
+            "weight": 2,
+            "description": "Mentions convexity"
+          },
+          {
+            "keyword": "local",
+            "weight": 1,
+            "description": "Refers to local minima"
+          },
+          {
+            "keyword": "global",
+            "weight": 2,
+            "description": "Connects local to global optimality"
+          }
+        ]
+      },
+      "difficulty": "medium",
+      "learning_objective": "Relate convexity to optimality guarantees",
+      "slide_refs": [],
+      "node_links": [
+        "Convexity"
+      ]
+    }
+  ]
+}

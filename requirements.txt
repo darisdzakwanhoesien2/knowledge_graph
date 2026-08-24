@@ -6,3 +6,7 @@ matplotlib
 plotly
 pyvis
 python-louvain
+pypdfium2
+
+# dev / testing
+pytest
