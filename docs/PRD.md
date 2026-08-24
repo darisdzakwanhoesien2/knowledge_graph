@@ -14,7 +14,73 @@ Learning material is distributed across notes and documents. Learners need both 
 - **Learning-first:** graph exploration, retrieval practice, assessment, and feedback form one loop.
 - **Transparent:** correct answers, rubric criteria, matched keywords, and per-question diagnostics are visible.
 - **Human-governed:** generation can draft content, but publication requires validation and review.
-- **Local-first:** JSON/filesystem workflows remain the MVP and data is portable.
+- **Local-first:** the application runs on a local machine, keeps data portable, and does not require hosted infrastructure.
+
+## Product Positioning
+
+Knowledge Graph Learning Studio is a local-first knowledge graph and assessment platform, not a data-science dashboard. Its differentiating loop is:
+
+```text
+Sources -> Knowledge Graph -> Learning -> Assessment -> Diagnosis -> Targeted remediation
+```
+
+The graph is a learning instrument: the primary outcome is helping a learner understand a weak area, not merely displaying graph data.
+
+## Architecture
+
+```text
+React + TypeScript (learner, curator, assessment interfaces)
+                         |
+                    FastAPI API
+                         |
+              Domain and application services
+                 /                       \
+        SQLite (application state)   Filesystem (artifacts)
+```
+
+The frontend must not directly manipulate persisted files. All mutations pass through typed API contracts and application services, so domain logic remains usable without a web UI and independently testable.
+
+### Technology baseline
+
+| Layer | Technology |
+| --- | --- |
+| Frontend/build | React, TypeScript, Vite |
+| UI/state | Tailwind CSS, shadcn/ui, TanStack Query or Zustand |
+| Graph | React Flow, Cytoscape.js, or Sigma.js after scale testing |
+| Backend | FastAPI, Pydantic |
+| Persistence | SQLite, SQLAlchemy or SQLModel, Alembic |
+| Processing | PyMuPDF, NetworkX |
+| Testing | Pytest, Vitest |
+
+Postgres, Redis, Celery, authentication, Docker, and microservices are explicitly deferred. They are not required for the local MVP.
+
+### Storage boundary
+
+Use the filesystem for original PDFs, source JSON, generated drafts, exports, and package snapshots. Use SQLite for subjects, concepts, relations, questions, package versions, provenance, validation issues, attempts, answers, and scores. This preserves portable artifacts without using mutable JSON files as the application database.
+
+### Core domain model
+
+```text
+Subject -> Source -> Provenance
+Subject -> Concept -> ConceptRelation -> Concept
+Concept -> Flashcard
+Subject -> QuestionPackage -> PackageVersion -> Question
+Question -> MCQOption / RubricCriterion / QuestionConcept
+PackageVersion -> Attempt -> Answer
+```
+
+`PackageVersion` is immutable once published. Each attempt records the exact package version used, making historical results reproducible after later edits.
+
+### Content lifecycle
+
+```text
+DRAFT -> REVIEW -> PUBLISHED
+            ^          |
+            |          v
+            +------ NEW DRAFT
+```
+
+Published content cannot be edited in place. A change creates a new draft and eventually a new package version. Generation and ingestion failures must leave the existing published version untouched.
 
 ## Goals
 
@@ -31,7 +97,7 @@ Learning material is distributed across notes and documents. Learners need both 
 - Automatic factual validation or unsupervised publication of generated content.
 - Real-time collaboration, tenancy, SSO, or permissions in the MVP.
 - Adaptive testing, spaced-repetition scheduling, or mastery analytics in the first release.
-- A hosted REST/API backend in the current file-based release.
+- A hosted deployment, multi-user collaboration, or production infrastructure in the MVP.
 
 ## Users and Use Cases
 
@@ -72,11 +138,11 @@ Learning material is distributed across notes and documents. Learners need both 
 - Normalize entity names and relation records.
 - Merge duplicate nodes and typed directed edges deterministically.
 - Track subject IDs and contributing source files.
-- Build graph, flashcard, and subject-index artifacts under `data/`.
+- Build graph, flashcard, and subject-index artifacts under `data/`; persist indexed application state in SQLite.
 
 ### Question authoring and generation
 
-- Store packages at `database/<subject>/<package_id>/package.json` during migration.
+- During migration, read packages from `database/<subject>/<package_id>/package.json`; the target system stores package metadata and versions in SQLite while retaining package snapshots on the filesystem.
 - Support PDF text extraction as an input to generation; generated content must be marked draft until reviewed.
 - Author MCQs manually or by parsing pasted question blocks.
 - Support up to five labeled options, one correct option, difficulty, learning objective, and slide references.
@@ -97,6 +163,21 @@ Learning material is distributed across notes and documents. Learners need both 
 - Allow questions to reference one or more graph nodes or learning objectives.
 - From a missed question, link to related node definitions, neighbors, and flashcards.
 - Show provenance for both the question and its linked concepts.
+
+### Interfaces
+
+The frontend has two deliberately separate workspaces:
+
+- **Learner:** continue learning, weak areas, concepts, flashcards, assessments, history, and graph exploration.
+- **Curator:** sources, concepts, graph, flashcards, packages, questions, rubrics, versions, validation, provenance, submissions, and exports.
+
+The learner home prioritizes continuation, weak concepts, and recommended remediation. The graph is accessible from that flow but is not the entire homepage. Question authoring provides structured fields and an Edit/Preview mode rather than requiring raw JSON.
+
+### API and processing boundaries
+
+The initial API should cover `subjects`, `concepts`, `concepts/{id}/neighbors`, `graph`, `graph/path`, `flashcards`, `packages`, `packages/{id}/questions`, `questions/{id}`, `assessments`, `assessments/{id}/submit`, `attempts/{id}`, `results`, and `validation`. Assessment navigation should load a package or attempt efficiently rather than requiring a server round-trip for every question.
+
+PDF ingestion is a service workflow. The MVP may run extraction synchronously, but the service boundary must support a later job pipeline: upload, extract, chunk, extract concepts/relations, generate questions, and create a draft package without blocking the UI.
 
 ## Functional Requirements
 
@@ -120,6 +201,9 @@ Learning material is distributed across notes and documents. Learners need both 
 
 - Python 3.10+ and explicit UTF-8 handling.
 - Local MVP requires no network connection; API keys are optional and never required for manual authoring.
+- Frontend and backend are independently testable; API request and response schemas are typed.
+- Initial UI load is under two seconds for normal datasets; search feels immediate for typical subject datasets.
+- Graph views remain interactive for at least several thousand nodes through filtering or progressive rendering.
 - Uploaded PDFs and temporary files must be closed and cleaned up reliably.
 - Invalid records must not silently corrupt valid graph or assessment data.
 - Published packages are immutable; edits create a new version.
@@ -143,9 +227,13 @@ Learning material is distributed across notes and documents. Learners need both 
 - PDF generation is currently scaffolded/placeholder-based; generated drafts need a review state and source text provenance.
 - JSON files do not provide safe concurrent writes or efficient analytics at scale.
 
-## Roadmap
+## Migration Strategy and Roadmap
 
-1. **MVP:** unify existing graph, flashcard, question delivery, grading, and result-review workflows.
-2. **Content quality:** formal schemas, draft/review/published states, stable IDs, package versions, and graph-question links.
-3. **Learning loop:** remediation links, mastery history, spaced repetition, and objective-level analytics.
-4. **Production:** Postgres/object storage, API and workers, authentication/tenancy, caching, audit logs, and asynchronous generation.
+1. **Extract core logic:** separate graph building, parsing, validation, grading, and persistence from Streamlit into framework-independent Python services.
+2. **Introduce FastAPI:** expose the domain through typed endpoints while Streamlit remains a temporary client.
+3. **Build React alongside Streamlit:** implement learner and curator workspaces against the API, starting with the core learning loop.
+4. **Move state to SQLite:** retain PDFs, source JSON, generated drafts, exports, and snapshots under `data/`; migrate structured records and package versions to `knowledge.db`.
+5. **Retire Streamlit:** remove the temporary client after feature parity and end-to-end validation.
+6. **Content quality:** formal schemas, stable IDs, lifecycle states, provenance, immutable versions, and graph-question links.
+7. **Learning loop:** remediation links, mastery history, spaced repetition, and objective-level analytics.
+8. **Production, later:** Postgres/object storage, workers, authentication/tenancy, caching, audit logs, and hosted deployment.
