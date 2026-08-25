@@ -53,3 +53,19 @@
 .note { margin-top: 10px; font-style: italic; }
 .study-list { columns: 2; margin: 0; padding-left: 20px; color: #c9ccc2; line-height: 2; }
 @media (max-width: 720px) { .nav-tabs button { padding: 8px 12px; } .test-layout { display: block; } .test-layout .sidebar { margin-bottom: 45px; } .metrics { grid-template-columns: repeat(2, 1fr); } .results .metrics { grid-template-columns: 1fr; } .submit-row { flex-direction: column-reverse; align-items: stretch; } .primary-action.wide { max-width: none; } .study-list { columns: 1; } }
+.banner-back { margin-bottom: 14px; padding: 0; color: #111210; background: none; border: 0; border-bottom: 1px solid #111210; font: 500 12px 'DM Mono'; cursor: pointer; }
+.mark.ok { background: #a7cd45; color: #111210; }
+.mark.bad { background: #2c3029; color: #e8e4dc; }
+.concept-link { padding: 1px 8px; color: #a7cd45; background: none; border: 1px solid #2c3029; border-radius: 999px; font-size: 12px; cursor: pointer; transition: border-color .15s, color .15s; }
+.concept-link:hover, .concept-link.open { border-color: #a7cd45; color: #d6f36a; }
+.history-list { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; list-style: none; padding: 0; }
+.history-row { display: flex; align-items: center; gap: 18px; width: 100%; padding: 16px 18px; text-align: left; color: #e8e4dc; background: #1a1c18; border: 1px solid #2c3029; cursor: pointer; transition: border-color .15s; }
+.history-row:hover:not(:disabled) { border-color: #a7cd45; }
+.score-pill { display: grid; place-items: center; min-width: 58px; height: 40px; color: #111210; background: #d6f36a; border-radius: 8px; font: 600 15px 'DM Mono'; }
+.row-main { flex: 1; display: flex; flex-direction: column; gap: 5px; } .row-main strong { font-size: 15px; } .row-main small { color: #92968c; font-size: 12px; }
+.row-meta { color: #85897e; font-size: 12px; }
+.concept-panel { margin-top: 26px; padding: 22px; background: #14160f; border: 1px solid #6b7a3a; }
+.panel-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; } .panel-head strong { color: #d6f36a; font-size: 16px; }
+.neighbor-list { margin: 0; padding-left: 4px; list-style: none; line-height: 1.9; color: #c9ccc2; }
+.neighbor-list .rel { color: #73776e; font: 11px 'DM Mono'; }
+@media (max-width: 720px) { .history-row { align-items: start; flex-wrap: wrap; } .row-meta { width: 100%; } }

@@ -1,12 +1,31 @@
 import { useState } from 'react'
 import BrowseView from './components/BrowseView'
+import HistoryView from './components/HistoryView'
 import TestFlow from './components/TestFlow'
 import './App.css'
 
-type View = 'browse' | 'test'
+type View = 'browse' | 'test' | 'history'
 
 function App() {
   const [view, setView] = useState<View>('browse')
+
+  const introCopy: Record<View, { eyebrow: string; accent: string; lede: string }> = {
+    browse: {
+      eyebrow: 'Explore the graph',
+      accent: 'one connection at a time.',
+      lede: 'Browse curated subjects and the concepts that shape them.',
+    },
+    test: {
+      eyebrow: 'Assessment',
+      accent: 'prove what you know.',
+      lede: 'Take a published test and get transparent scoring with study suggestions.',
+    },
+    history: {
+      eyebrow: 'Assessment history',
+      accent: 'learn from every attempt.',
+      lede: 'Reopen submitted tests, review grading evidence, and study linked concepts.',
+    },
+  }
 
   return (
     <main className="app-shell">
@@ -22,22 +41,23 @@ function App() {
           <button className={view === 'test' ? 'active' : ''} onClick={() => setView('test')}>
             Take a test
           </button>
+          <button className={view === 'history' ? 'active' : ''} onClick={() => setView('history')}>
+            History
+          </button>
         </nav>
       </header>
       <section className="intro">
-        <p className="eyebrow">{view === 'browse' ? 'Explore the graph' : 'Assessment'}</p>
+        <p className="eyebrow">{introCopy[view].eyebrow}</p>
         <h1>
           Build understanding,
           <br />
-          <em>{view === 'browse' ? 'one connection at a time.' : 'prove what you know.'}</em>
+          <em>{introCopy[view].accent}</em>
         </h1>
-        <p className="lede">
-          {view === 'browse'
-            ? 'Browse curated subjects and the concepts that shape them.'
-            : 'Take a published test and get transparent scoring with study suggestions.'}
-        </p>
+        <p className="lede">{introCopy[view].lede}</p>
       </section>
-      {view === 'browse' ? <BrowseView onErrorPrefix="Unable to load data. " /> : <TestFlow />}
+      {view === 'browse' && <BrowseView onErrorPrefix="Unable to load data. " />}
+      {view === 'test' && <TestFlow />}
+      {view === 'history' && <HistoryView />}
     </main>
   )
 }

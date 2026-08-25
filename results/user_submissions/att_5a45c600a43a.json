@@ -1,0 +1,96 @@
+{
+  "attempt_id": "att_5a45c600a43a",
+  "user": {
+    "external_key": "local_user",
+    "display_name": "e2e_check"
+  },
+  "subject": "introduction_to_optimization",
+  "package_id": "optimization_basics_quiz",
+  "package_key": "introduction_to_optimization/optimization_basics_quiz",
+  "package_version": 1,
+  "package_content_hash": "6b36ca6b82770bef727dc1cc96c4ff0c2508955cae5a75fbee870874bd918da9",
+  "started_at": "2026-08-24T18:04:45.206166+00:00",
+  "submitted_at": "2026-08-24T18:04:45.751047+00:00",
+  "responses": [
+    {
+      "question_id": "mcq_bd5aca7150a5",
+      "question_kind": "mcq",
+      "selected_option": "A",
+      "correct": true,
+      "score": 1.0,
+      "max_score": 1.0,
+      "question": "Which statement best describes an objective function f in continuous optimization?",
+      "correct_option": "A",
+      "node_links": [
+        "Objective Function ($f$)",
+        "Continuous Optimization"
+      ]
+    },
+    {
+      "question_id": "mcq_7ebab0e9f401",
+      "question_kind": "mcq",
+      "selected_option": "B",
+      "correct": true,
+      "score": 1.0,
+      "max_score": 1.0,
+      "question": "What does the first-order necessary condition (FONC) require at a local minimizer x*?",
+      "correct_option": "B",
+      "node_links": [
+        "First-Order Necessary Condition (FONC)",
+        "Local Minimizer ($x^*$)"
+      ]
+    },
+    {
+      "question_id": "ess_b42ab913d3aa",
+      "question_kind": "essay",
+      "essay_text": "A convex problem has every local minimum also being a global minimum, so local and global optimality coincide.",
+      "score": 5.0,
+      "max_score": 5.0,
+      "pct": 1.0,
+      "matched_keywords": [
+        "convex",
+        "local minimum",
+        "global minimum"
+      ],
+      "matched_criteria": [
+        {
+          "keyword": "convex",
+          "matched": true,
+          "weight": 2.0,
+          "evidence": "A convex problem has every local minimum also be..."
+        },
+        {
+          "keyword": "local",
+          "matched": true,
+          "weight": 1.0,
+          "evidence": "A convex problem has every local minimum also being a global minimum, so..."
+        },
+        {
+          "keyword": "global",
+          "matched": true,
+          "weight": 2.0,
+          "evidence": "...em has every local minimum also being a global minimum, so local and global optimality..."
+        }
+      ],
+      "prompt": "Explain what convexity of an optimization problem implies about local and global minima.",
+      "expected_keywords": [
+        "convex",
+        "local minimum",
+        "global minimum"
+      ],
+      "grading_notes": "Assistive keyword grading; review evidence before finalizing.",
+      "node_links": [
+        "Convexity"
+      ]
+    }
+  ],
+  "scores": {
+    "mcq_score": 2.0,
+    "mcq_max": 2.0,
+    "mcq_pct": 1.0,
+    "essay_score": 5.0,
+    "essay_max": 5.0,
+    "essay_pct": 1.0,
+    "final_score": 1.0
+  }
+}

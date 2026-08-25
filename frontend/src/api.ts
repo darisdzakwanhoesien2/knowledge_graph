@@ -1,8 +1,10 @@
 import type {
   AssessmentStart,
   Concept,
+  ConceptContext,
   GradingResult,
   PackageSummary,
+  ResultSummaryRow,
   Subject,
 } from './types'
 
@@ -69,4 +71,12 @@ export function submitAssessment(
 
 export function fetchResult(attemptId: string): Promise<GradingResult> {
   return request<GradingResult>(`/results/${encodeURIComponent(attemptId)}`)
+}
+
+export function fetchResults(): Promise<ResultSummaryRow[]> {
+  return request<ResultSummaryRow[]>('/results')
+}
+
+export function fetchConceptContext(conceptId: string): Promise<ConceptContext> {
+  return request<ConceptContext>(`/concepts/${encodeURIComponent(conceptId)}/context`)
 }

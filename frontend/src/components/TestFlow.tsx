@@ -5,19 +5,11 @@ import type {
   GradingResult,
   McqQuestion,
   PackageSummary,
-  ResponseRecord,
   Subject,
 } from '../types'
+import ResultsView from './ResultsView'
 
 type Stage = 'catalogue' | 'running' | 'results'
-
-function formatPercent(value: number): string {
-  return `${Math.round(value * 100)}%`
-}
-
-function isResponseCorrect(resp: ResponseRecord): boolean {
-  return resp.correct === true || (!!resp.max_score && (resp.score || 0) / resp.max_score >= 0.999)
-}
 
 function Catalogue({
   onStarted,
@@ -238,102 +230,6 @@ function Runner({ session, submitting, error, onSubmit, onCancel }: RunnerProps)
   )
 }
 
-function Results({ result, onRestart }: { result: GradingResult; onRestart: () => void }) {
-  const { scores, responses } = result
-  const studySuggestions = Array.from(
-    new Set(responses.filter((r) => !isResponseCorrect(r)).flatMap((r) => r.node_links || [])),
-  )
-
-  return (
-    <div className="runner results">
-      <div className="result-banner">
-        <p className="eyebrow">Attempt {result.attempt_id}</p>
-        <h2>
-          Final score <em>{formatPercent(scores.final_score)}</em>
-        </h2>
-        <p className="muted">Submitted {new Date(result.submitted_at).toLocaleString()}</p>
-      </div>
-      <div className="metrics">
-        <div className="metric">
-          <span>MCQ</span>
-          <strong>
-            {scores.mcq_score}/{scores.mcq_max}
-          </strong>
-          {scores.mcq_pct !== null && <small>{formatPercent(scores.mcq_pct)}</small>}
-        </div>
-        <div className="metric">
-          <span>Essay</span>
-          <strong>
-            {scores.essay_score}/{scores.essay_max}
-          </strong>
-          {scores.essay_pct !== null && <small>{formatPercent(scores.essay_pct)}</small>}
-        </div>
-        <div className="metric">
-          <span>Final</span>
-          <strong>{formatPercent(scores.final_score)}</strong>
-        </div>
-      </div>
-      <h3 className="section-title">Question review</h3>
-      <div className="response-list">
-        {responses.map((resp, index) => {
-          const correct = isResponseCorrect(resp)
-          const title = resp.question || resp.prompt || resp.question_id
-          return (
-            <details className="response-item" key={`${resp.question_kind}-${resp.question_id}-${index}`}>
-              <summary>
-                <span className="mark">{correct ? '✓' : '✗'}</span> {title.slice(0, 120)}
-              </summary>
-              <div className="response-body">
-                {resp.question_kind === 'mcq' ? (
-                  <p>
-                    Your answer: <code>{resp.selected_option || '—'}</code> · Correct:{' '}
-                    <code>{resp.correct_option}</code>
-                  </p>
-                ) : (
-                  <>
-                    <p className="answer-text">{resp.essay_text || '(empty answer)'}</p>
-                    {!!resp.matched_keywords?.length && (
-                      <p className="muted">Matched keywords: {resp.matched_keywords.join(', ')}</p>
-                    )}
-                    {!!resp.matched_criteria?.length && (
-                      <ul className="criteria">
-                        {resp.matched_criteria.map((c) => (
-                          <li key={c.keyword}>
-                            <span className={c.matched ? 'hit' : 'miss'}>{c.matched ? '●' : '○'}</span>{' '}
-                            <code>{c.keyword}</code>
-                            {c.weight !== undefined && <> (+{c.weight})</>}
-                            {c.evidence && <em> — “...{c.evidence}...”</em>}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </>
-                )}
-                {resp.grading_notes && <p className="muted note">Grading note: {resp.grading_notes}</p>}
-              </div>
-            </details>
-          )
-        })}
-      </div>
-      {studySuggestions.length > 0 && (
-        <>
-          <h3 className="section-title">Study suggestions from your misses</h3>
-          <ul className="study-list">
-            {studySuggestions.map((name) => (
-              <li key={name}>{name}</li>
-            ))}
-          </ul>
-        </>
-      )}
-      <div className="submit-row">
-        <button className="primary-action wide" onClick={onRestart}>
-          Take another test
-        </button>
-      </div>
-    </div>
-  )
-}
-
 export default function TestFlow() {
   const [stage, setStage] = useState<Stage>('catalogue')
   const [session, setSession] = useState<AssessmentStart | null>(null)
@@ -373,7 +269,7 @@ export default function TestFlow() {
     )
   }
   if (stage === 'results' && result) {
-    return <Results result={result} onRestart={reset} />
+    return <ResultsView result={result} onRestart={reset} />
   }
   return (
     <Catalogue

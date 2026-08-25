@@ -50,6 +50,18 @@ async def get_concept(concept_id: str) -> Concept:
     )
 
 
+@router.get("/{concept_id}/context")
+async def get_concept_context(concept_id: str) -> dict:
+    """Remediation context for one concept: definition, neighbors, flashcard.
+
+    Missing links never raise; the payload carries exists=false so standalone
+    assessment delivery keeps working (FR-11).
+    """
+    from core.learning_links import learning_context
+
+    return learning_context(concept_id)
+
+
 @router.get("/{concept_id}/neighbors", response_model=List[Concept])
 async def get_concept_neighbors(concept_id: str) -> List[Concept]:
     """Get neighbor concepts of a given concept."""

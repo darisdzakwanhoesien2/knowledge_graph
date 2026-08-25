@@ -95,3 +95,32 @@ export type GradingResult = {
   scores: Scores
   responses: ResponseRecord[]
 }
+
+export type ResultSummaryRow = {
+  attempt_id: string
+  package_version_id: string
+  subject_id: string
+  learner?: string | null
+  mcq_score: number
+  essay_score: number
+  total_score: number
+  max_possible: number
+  percentage: number
+  answered_at?: string | null
+  incorrectly_missed: string[]
+  related_concepts: string[]
+}
+
+export type ConceptNeighborPair = [string, string, string]
+
+export type ConceptContext = {
+  node: string
+  exists: boolean
+  definition?: string
+  description?: string
+  domain?: string
+  subjects?: string[]
+  source_files?: string[]
+  neighbors?: ConceptNeighborPair[]
+  flashcard?: { front?: string; back?: string } | null
+}

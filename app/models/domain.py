@@ -150,6 +150,7 @@ class ResultSummary(BaseModel):
     attempt_id: str
     package_version_id: str
     subject_id: str
+    learner: Optional[str] = None
     mcq_score: int
     essay_score: int
     total_score: int
