@@ -12,6 +12,8 @@ erDiagram
     NODE ||--o{ GRAPH_EDGE : source
     NODE ||--o{ GRAPH_EDGE : target
     NODE ||--o{ FLASHCARD : generates
+    FLASHCARD ||--o{ FLASHCARD_TAG : tagged_with
+    TAG ||--o{ FLASHCARD_TAG : applied_to
     NODE ||--o{ QUESTION_NODE : assesses
     QUESTION ||--o{ QUESTION_NODE : covers
     SUBJECT ||--o{ QUESTION_PACKAGE : organizes
@@ -71,6 +73,16 @@ erDiagram
         text back
         string status
         datetime generated_at
+    }
+    TAG {
+        uuid id PK
+        string tag_key UK
+        string label
+        string category
+    }
+    FLASHCARD_TAG {
+        uuid flashcard_id FK
+        uuid tag_id FK
     }
     QUESTION_PACKAGE {
         uuid id PK
@@ -178,6 +190,8 @@ erDiagram
     }
 ```
 
+`TAG` is deliberately generic rather than flashcard-specific: `category` distinguishes kinds of grouping (e.g. `topic`, `exam`, `difficulty`) so the same taxonomy can extend to questions/packages later (a `QUESTION_TAG` join table, same many-to-many pattern as `FLASHCARD_TAG`) without a new entity. This lets a curator assemble an exam by topic across subjects instead of only from one package's source subject.
+
 ## Current JSON Mapping
 
 | Logical entity | Current representation |
@@ -187,6 +201,7 @@ erDiagram
 | Node | `data/graphs/merged_graph.json.nodes[entity]` |
 | Graph edge | `data/graphs/merged_graph.json.edges[]` with `source`, `target`, `type` |
 | Flashcard | Entry in `data/flashcards/flashcards.json` |
+| Flashcard tag | Not yet represented; a flashcard entry currently carries a `subjects[]` list (implicit membership from graph ingestion) but no independent, curator-defined tag |
 | Question package/version | `database/<subject>/<package_id>/package.json`; version currently implicit |
 | MCQ question/option | `mcqs[]` entries with `question`, `options`, and `correct_option` |
 | Essay question/rubric | `essay[]` entries with `prompt`, `expected_keywords`, and `rubric.criteria[]` |
@@ -214,6 +229,8 @@ erDiagram
 - A response inherits the question's concept links for remediation; incorrect/low-scoring responses expose those concepts, their typed graph neighbors, and related flashcards.
 - Missing concept links must not block standalone assessment delivery, but published questions should report missing or invalid links as quality issues.
 - Source uploads and generated drafts must retain content hashes and review status before publication.
+- `FLASHCARD_TAG` is many-to-many: a flashcard may carry multiple tags, and a tag may apply to many flashcards, so the same flashcard is not duplicated per grouping.
+- Tags are curator-managed and open-ended: creating a new tag (e.g. an exam topic) must not require a schema or code change, and a tag is expected to be reused across many flashcards.
 
 ## Recommended Migration Order
 
@@ -222,3 +239,4 @@ erDiagram
 3. Convert question and submission JSON into package, question, option, attempt, and response records.
 4. Add `QUESTION_NODE` links and remediation UI.
 5. Move large source files and immutable artifacts to object storage while keeping metadata/query data relational.
+6. Introduce the `TAG`/`FLASHCARD_TAG` taxonomy for flashcards; extend the same pattern to questions/packages (`QUESTION_TAG`) when topic-based exam assembly is needed.

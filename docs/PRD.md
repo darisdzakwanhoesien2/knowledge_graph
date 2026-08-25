@@ -86,6 +86,7 @@ Published content cannot be edited in place. A change creates a new draft and ev
 
 - Search and explore concepts, relationships, and learning paths.
 - Generate or author flashcards and MCQ/essay question packages from learning material.
+- Tag flashcards with multiple, curator-defined topics so the same card can support several exams or study groups without duplication.
 - Deliver interactive tests with difficulty and learning-objective metadata.
 - Grade MCQs deterministically and essays using explicit rubric/keyword criteria.
 - Persist attempts and make results reviewable, comparable, and exportable.
@@ -139,6 +140,13 @@ Published content cannot be edited in place. A change creates a new draft and ev
 - Merge duplicate nodes and typed directed edges deterministically.
 - Track subject IDs and contributing source files.
 - Build graph, flashcard, and subject-index artifacts under `data/`; persist indexed application state in SQLite.
+
+### Flashcard tagging and scalability
+
+- A flashcard can carry multiple curator-defined tags in addition to the subject(s) it was generated from, so the same flashcard can belong to more than one study group or exam topic (many-to-many, not the single `domain`/subject a flashcard has today).
+- New tags can be introduced at any time without a schema or code change; tags are an open-ended taxonomy, independent of the subject folders used for graph ingestion.
+- Tags are reusable across content types: the same tag (e.g. a topic like "midterm-2" or "gradient-methods") can later be attached to questions/packages so a curator can assemble an exam by topic, pulling from multiple subjects, rather than being limited to one package's source subject.
+- Learners and curators can filter/browse flashcards by one or more tags, in addition to the existing subject and search filters.
 
 ### Question authoring and generation
 
@@ -217,6 +225,7 @@ PDF ingestion is a service workflow. The MVP may run extraction synchronously, b
 | FR-13 | Detect quality issues | Should | Missing definitions, invalid references, and malformed question records are reported. |
 | FR-14 | Review test history | Must | Learners and curators can load submitted attempts and inspect per-question grading evidence. |
 | FR-15 | Prioritize remediation | Should | Incorrect or low-scoring responses identify linked concepts and related graph paths for study. |
+| FR-16 | Tag and group flashcards | Should | A flashcard can carry multiple tags; flashcards can be filtered by tag, and a new tag can be created without a schema or code change. |
 
 ## Non-functional Requirements
 
@@ -247,6 +256,7 @@ PDF ingestion is a service workflow. The MVP may run extraction synchronously, b
 - Keyword essay grading is explainable but not equivalent to semantic evaluation; retain rubric evidence and label it as assistive.
 - PDF generation is currently scaffolded/placeholder-based; generated drafts need a review state and source text provenance.
 - JSON files do not provide safe concurrent writes or efficient analytics at scale.
+- A flashcard tied to a single subject/domain limits reuse across exam topics and study groups; a many-to-many tag model avoids re-authoring or duplicating flashcards per grouping.
 
 ## Migration Strategy and Roadmap
 
