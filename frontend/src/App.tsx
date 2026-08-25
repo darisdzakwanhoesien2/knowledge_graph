@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { NavLink, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import BrowseView from './components/BrowseView'
 import FlashcardsView from './components/FlashcardsView'
 import HistoryView from './components/HistoryView'
@@ -7,31 +7,44 @@ import './App.css'
 
 type View = 'browse' | 'flashcards' | 'test' | 'history'
 
-function App() {
-  const [view, setView] = useState<View>('browse')
+const INTRO_COPY: Record<View, { eyebrow: string; accent: string; lede: string }> = {
+  browse: {
+    eyebrow: 'Explore the graph',
+    accent: 'one connection at a time.',
+    lede: 'Browse curated subjects and the concepts that shape them.',
+  },
+  flashcards: {
+    eyebrow: 'Study & organize',
+    accent: 'tag your way to mastery.',
+    lede: 'Browse flashcards, group them by topic or exam, and filter by tag.',
+  },
+  test: {
+    eyebrow: 'Assessment',
+    accent: 'prove what you know.',
+    lede: 'Take a published test and get transparent scoring with study suggestions.',
+  },
+  history: {
+    eyebrow: 'Assessment history',
+    accent: 'learn from every attempt.',
+    lede: 'Reopen submitted tests, review grading evidence, and study linked concepts.',
+  },
+}
 
-  const introCopy: Record<View, { eyebrow: string; accent: string; lede: string }> = {
-    browse: {
-      eyebrow: 'Explore the graph',
-      accent: 'one connection at a time.',
-      lede: 'Browse curated subjects and the concepts that shape them.',
-    },
-    flashcards: {
-      eyebrow: 'Study & organize',
-      accent: 'tag your way to mastery.',
-      lede: 'Browse flashcards, group them by topic or exam, and filter by tag.',
-    },
-    test: {
-      eyebrow: 'Assessment',
-      accent: 'prove what you know.',
-      lede: 'Take a published test and get transparent scoring with study suggestions.',
-    },
-    history: {
-      eyebrow: 'Assessment history',
-      accent: 'learn from every attempt.',
-      lede: 'Reopen submitted tests, review grading evidence, and study linked concepts.',
-    },
-  }
+const VIEW_BY_PATH: Record<string, View> = {
+  '/': 'browse',
+  '/flashcards': 'flashcards',
+  '/test': 'test',
+  '/history': 'history',
+}
+
+function navLinkClass({ isActive }: { isActive: boolean }): string {
+  return isActive ? 'active' : ''
+}
+
+function App() {
+  const location = useLocation()
+  const view = VIEW_BY_PATH[location.pathname] ?? 'browse'
+  const copy = INTRO_COPY[view]
 
   return (
     <main className="app-shell">
@@ -41,33 +54,39 @@ function App() {
           <span>Knowledge Studio</span>
         </div>
         <nav className="nav-tabs" aria-label="Main navigation">
-          <button className={view === 'browse' ? 'active' : ''} onClick={() => setView('browse')}>
+          <NavLink to="/" end className={navLinkClass}>
             Browse
-          </button>
-          <button className={view === 'flashcards' ? 'active' : ''} onClick={() => setView('flashcards')}>
+          </NavLink>
+          <NavLink to="/flashcards" className={navLinkClass}>
             Flashcards
-          </button>
-          <button className={view === 'test' ? 'active' : ''} onClick={() => setView('test')}>
+          </NavLink>
+          <NavLink to="/test" className={navLinkClass}>
             Take a test
-          </button>
-          <button className={view === 'history' ? 'active' : ''} onClick={() => setView('history')}>
+          </NavLink>
+          <NavLink to="/history" className={navLinkClass}>
             History
-          </button>
+          </NavLink>
         </nav>
       </header>
       <section className="intro">
-        <p className="eyebrow">{introCopy[view].eyebrow}</p>
+        <p className="eyebrow">{copy.eyebrow}</p>
         <h1>
           Build understanding,
           <br />
-          <em>{introCopy[view].accent}</em>
+          <em>{copy.accent}</em>
         </h1>
-        <p className="lede">{introCopy[view].lede}</p>
+        <p className="lede">{copy.lede}</p>
       </section>
-      {view === 'browse' && <BrowseView onErrorPrefix="Unable to load data. " />}
-      {view === 'flashcards' && <FlashcardsView onErrorPrefix="Unable to load flashcards. " />}
-      {view === 'test' && <TestFlow />}
-      {view === 'history' && <HistoryView />}
+      <Routes>
+        <Route path="/" element={<BrowseView onErrorPrefix="Unable to load data. " />} />
+        <Route
+          path="/flashcards"
+          element={<FlashcardsView onErrorPrefix="Unable to load flashcards. " />}
+        />
+        <Route path="/test" element={<TestFlow />} />
+        <Route path="/history" element={<HistoryView />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     </main>
   )
 }
