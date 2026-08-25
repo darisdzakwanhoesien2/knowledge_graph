@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from sqlmodel import SQLModel, Field
+from sqlmodel import SQLModel, Field, UniqueConstraint
 from typing import Optional
 from datetime import datetime
 
@@ -83,3 +83,31 @@ class ValidationIssue(SQLModel, table=True):
     location: Optional[str] = None  # e.g., "package.json -> questions[3]"
     entity_id: Optional[str] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)
+
+
+class Tag(SQLModel, table=True):
+    """Curator-defined grouping (topic, exam, difficulty, ...).
+
+    Open-ended taxonomy: creating a new tag never requires a schema or code
+    change. tag_key is the stable slug used in filters and joins.
+    """
+    __tablename__ = "tag"
+    id: str = Field(default=None, primary_key=True)
+    tag_key: str = Field(index=True, unique=True)
+    label: str = Field(index=True)
+    category: str = Field(default="topic", index=True)  # topic, exam, difficulty, ...
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+
+class FlashcardTag(SQLModel, table=True):
+    """Many-to-many link between a flashcard and a tag.
+
+    flashcard_id holds the stable entity key of the card entry in
+    data/flashcards/flashcards.json. It is a plain indexed string rather than a
+    foreign key until flashcards themselves migrate into the database.
+    """
+    __tablename__ = "flashcard_tag"
+    __table_args__ = (UniqueConstraint("flashcard_id", "tag_id"),)
+    id: Optional[int] = Field(default=None, primary_key=True)
+    flashcard_id: str = Field(index=True)
+    tag_id: str = Field(default=None, foreign_key="tag.id", index=True)

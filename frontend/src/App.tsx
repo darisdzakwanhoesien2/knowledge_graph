@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import BrowseView from './components/BrowseView'
+import FlashcardsView from './components/FlashcardsView'
 import HistoryView from './components/HistoryView'
 import TestFlow from './components/TestFlow'
 import './App.css'
 
-type View = 'browse' | 'test' | 'history'
+type View = 'browse' | 'flashcards' | 'test' | 'history'
 
 function App() {
   const [view, setView] = useState<View>('browse')
@@ -14,6 +15,11 @@ function App() {
       eyebrow: 'Explore the graph',
       accent: 'one connection at a time.',
       lede: 'Browse curated subjects and the concepts that shape them.',
+    },
+    flashcards: {
+      eyebrow: 'Study & organize',
+      accent: 'tag your way to mastery.',
+      lede: 'Browse flashcards, group them by topic or exam, and filter by tag.',
     },
     test: {
       eyebrow: 'Assessment',
@@ -38,6 +44,9 @@ function App() {
           <button className={view === 'browse' ? 'active' : ''} onClick={() => setView('browse')}>
             Browse
           </button>
+          <button className={view === 'flashcards' ? 'active' : ''} onClick={() => setView('flashcards')}>
+            Flashcards
+          </button>
           <button className={view === 'test' ? 'active' : ''} onClick={() => setView('test')}>
             Take a test
           </button>
@@ -56,6 +65,7 @@ function App() {
         <p className="lede">{introCopy[view].lede}</p>
       </section>
       {view === 'browse' && <BrowseView onErrorPrefix="Unable to load data. " />}
+      {view === 'flashcards' && <FlashcardsView onErrorPrefix="Unable to load flashcards. " />}
       {view === 'test' && <TestFlow />}
       {view === 'history' && <HistoryView />}
     </main>

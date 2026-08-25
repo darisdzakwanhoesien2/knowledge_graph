@@ -8,6 +8,11 @@ from sqlmodel import SQLModel
 from alembic import context
 
 config = context.config
+# Keep alembic pointed at the same DB the app uses (app/db.py default).
+config.set_main_option(
+    "sqlalchemy.url",
+    os.environ.get("KG_DATABASE_URL", "sqlite:///database/knowledge.db"),
+)
 target_metadata = SQLModel.metadata
 
 
@@ -35,5 +40,7 @@ def run_migrations_online() -> None:
             context.run_migrations()
 
 
-if __name__ == "__main__":  # pragma: no cover
+if context.is_offline_mode():
+    run_migrations_offline()
+else:
     run_migrations_online()

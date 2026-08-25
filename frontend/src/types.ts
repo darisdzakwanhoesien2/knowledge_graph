@@ -124,3 +124,20 @@ export type ConceptContext = {
   neighbors?: ConceptNeighborPair[]
   flashcard?: { front?: string; back?: string } | null
 }
+
+export type Tag = {
+  id: string
+  tag_key: string
+  label: string
+  category: string
+  flashcard_count: number
+}
+
+export type Flashcard = {
+  id: string
+  domain: string
+  subjects: string[]
+  front: string
+  back: string
+  tags: Tag[]
+}

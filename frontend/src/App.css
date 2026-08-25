@@ -69,3 +69,22 @@
 .neighbor-list { margin: 0; padding-left: 4px; list-style: none; line-height: 1.9; color: #c9ccc2; }
 .neighbor-list .rel { color: #73776e; font: 11px 'DM Mono'; }
 @media (max-width: 720px) { .history-row { align-items: start; flex-wrap: wrap; } .row-meta { width: 100%; } }
+.sidebar-label { display: block; margin: 22px 0 8px; color: #85897e; font: 11px 'DM Mono'; text-transform: uppercase; letter-spacing: 1px; }
+.tag-filter { border-top: 1px solid #30332d; margin-top: 18px; }
+.tag-group { margin-bottom: 4px; }
+.tag-category { display: block; color: #73776e; font: 11px 'DM Mono'; text-transform: uppercase; letter-spacing: 1px; }
+.tag-chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.tag-chip { padding: 3px 10px; color: #979a91; background: transparent; border: 1px solid #2c3029; border-radius: 999px; font-size: 12px; cursor: pointer; transition: color .15s, border-color .15s, background .15s; }
+.tag-chip small { color: #73776e; font: 10px 'DM Mono'; }
+.tag-chip:hover { border-color: #a7cd45; color: #e8e4dc; }
+.tag-chip.active { color: #111210; background: #d6f36a; border-color: #d6f36a; } .tag-chip.active small { color: #53651f; }
+.untagged-toggle { display: flex; align-items: center; gap: 8px; margin: 14px 0 0; color: #979a91; font-size: 12px; cursor: pointer; } .untagged-toggle input { accent-color: #a7cd45; }
+.tag-create { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.tag-create input, .tag-create select { width: 100%; padding: 9px 8px; color: #e8e4dc; background: transparent; border: 0; border-bottom: 1px solid #454940; outline: 0; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; } .card-tags em { font-style: normal; padding: 2px 8px; color: #a7cd45; border: 1px solid #454940; border-radius: 999px; font-size: 11px; }
+.detail-dark { background: #14160f; color: #e8e4dc; border: 1px solid #6b7a3a; } .detail-dark .eyebrow { color: #a7cd45; }
+.tag-editor { margin-top: 20px; padding-top: 16px; border-top: 1px solid #2c3029; display: flex; flex-direction: column; gap: 12px; }
+.tag-chip.removable:hover { border-color: #e3a990; color: #e3a990; background: transparent; }
+.tag-attach-row { display: flex; gap: 10px; align-items: center; }
+.tag-attach-row select { flex: 1; max-width: 280px; padding: 10px 8px; color: #e8e4dc; background: transparent; border: 0; border-bottom: 1px solid #454940; outline: 0; }
+.tag-attach-row .primary-action { margin-top: 0; padding: 9px 18px; }

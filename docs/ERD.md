@@ -200,8 +200,8 @@ erDiagram
 | Source document | Current graph `metadata.source_files[]`; question-bank PDF `source` field |
 | Node | `data/graphs/merged_graph.json.nodes[entity]` |
 | Graph edge | `data/graphs/merged_graph.json.edges[]` with `source`, `target`, `type` |
-| Flashcard | Entry in `data/flashcards/flashcards.json` |
-| Flashcard tag | Not yet represented; a flashcard entry currently carries a `subjects[]` list (implicit membership from graph ingestion) but no independent, curator-defined tag |
+| Flashcard | Entry in `data/flashcards/flashcards.json`, identified by its unique `entity` key |
+| Flashcard tag | SQLite `tag` and `flashcard_tag` tables via `app/api/tags.py`; a card carries curator-defined tags in addition to its implicit `subjects[]` list. `flashcard_tag.flashcard_id` stores the JSON card's stable `entity` key (plain string, no FK) until flashcards migrate into the database |
 | Question package/version | `database/<subject>/<package_id>/package.json`; version currently implicit |
 | MCQ question/option | `mcqs[]` entries with `question`, `options`, and `correct_option` |
 | Essay question/rubric | `essay[]` entries with `prompt`, `expected_keywords`, and `rubric.criteria[]` |
@@ -212,6 +212,7 @@ erDiagram
 | Question-concept link | Question `node_links[]`, resolved through `core/learning_links.py` |
 | Result review | `GET /results/{attempt_id}`, `GET /results`, Streamlit review/export page, and React result review |
 | Graph build/snapshot | Graph `metadata.built_at`; historical builds are not retained |
+| Tagging | `GET/POST /tags`, `GET /flashcards?tags=&subject_id=&q=`, attach/detach via `/flashcards/{id}/tags`; React "Flashcards" tab for browsing, filtering, and tag management |
 
 ## Integrity and Migration Rules
 

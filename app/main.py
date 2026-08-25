@@ -8,7 +8,8 @@ from app.api.questions import router as questions_router
 from app.api.assessments import router as assessments_router
 from app.api.results import router as results_router
 from app.api.validation import router as validation_router
-from app.models.sqlmodel import SQLModel, Subject, Concept, ConceptRelation, PackageVersion, Question, Attempt, ValidationIssue
+from app.api.tags import router as tags_router
+from app.models.sqlmodel import SQLModel, Subject, Concept, ConceptRelation, PackageVersion, Question, Attempt, ValidationIssue, Tag, FlashcardTag
 
 app = FastAPI(
     title="Knowledge Graph Learning Studio API",
@@ -34,11 +35,13 @@ app.include_router(questions_router)
 app.include_router(assessments_router)
 app.include_router(results_router)
 app.include_router(validation_router)
+app.include_router(tags_router)
 
 
 @app.on_event("startup")
 async def on_startup():
-    SQLModel.metadata.create_all(bind=__import__("sqlmodel").create_engine("sqlite:///database/knowledge.db"))
+    from app.db import engine
+    SQLModel.metadata.create_all(bind=engine)
 
 
 @app.get("/")
