@@ -92,3 +92,34 @@ Steps **1** and **2** are implemented:
 Tests: `tests/test_api_uploads.py` (13 cases) run both flows hermetically against temp dirs with the chain replaced by a recording fake.
 
 Step **3** (React curator upload panels) remains open.
+
+---
+
+# Math/Markdown Rendering Plan
+
+Unrelated to the upload system above — appended here per request rather than a new file. Tracks fixing rendered content: `json_nodes/*.json` `definition`/`description`/`properties` fields routinely contain LaTeX (`$f: \mathbb{R}^{n}\rightarrow\mathbb{R}$`, `\nabla f`, `\mathbb{R}^{n} \mid f(x) = c$`) and `pipelines/generate_flashcards.py` additionally bakes Markdown (`**Definition:**`, `**Description:**`) into a flashcard's `back` field. None of it renders today — confirmed by reading the frontend, not guessing: `grep -rn "katex\|mathjax\|marked\|remark\|dangerouslySetInnerHTML" frontend/src/` returns nothing. Every call site interpolates the raw string straight into JSX, which React escapes as plain text.
+
+## Affected call sites (grep-confirmed, not assumed)
+
+| File | Field(s) |
+| --- | --- |
+| `frontend/src/components/FlashcardsView.tsx` | `card.back` (list preview via regex-stripped `**Definition:**`, and the full text in the detail view) |
+| `frontend/src/components/BrowseView.tsx` | `concept.definition` (list + detail) |
+| `frontend/src/components/ResultsView.tsx` | `context.definition`, `context.flashcard.front`, `context.flashcard.back` (concept remediation panel) |
+| `frontend/src/components/TestFlow.tsx` | `q.question` (MCQ prompt), MCQ `options` text, `q.prompt` (essay prompt) |
+
+All four components independently interpolate `{text}` — there's no shared rendering component to patch once; that's the actual fix, not four separate patches.
+
+## Plan
+
+1. **Add rendering libraries** to `frontend/`: `react-markdown` (Markdown → React elements, no `dangerouslySetInnerHTML`), `remark-math` (extract `$...$` / `$$...$$` into math nodes), `rehype-katex` + `katex` (render those nodes). Import `katex`'s CSS once, in `main.tsx`.
+2. **One shared component**, `frontend/src/components/RichText.tsx`: wraps `react-markdown` configured with `remark-math`/`rehype-katex`, takes `{ text: string }`. This is the single thing that gets tested/fixed, instead of four ad hoc renderers drifting apart.
+3. **Replace the 4 call sites above** with `<RichText text={...} />`, deleting `FlashcardsView.tsx`'s regex-based `cardPreview()` in favor of passing the raw `back` straight through (Markdown handles the `**Definition:**` bold marker natively — no regex needed once it's actually rendered as Markdown).
+4. **Explicitly do not add `rehypeRaw`** (the plugin that would let Markdown contain literal HTML). Content ultimately originates from uploaded `json_nodes/*.json` (see `UPLOAD_SYSTEM_PLAN.md` above) — allowing raw HTML through the renderer would turn a curator-content upload into a stored-XSS path. `react-markdown` without `rehypeRaw` already refuses to render embedded HTML, which is the safe default here, not an oversight to "fix" later.
+5. **No backend/API change needed** — the content shape is unchanged; this is purely how the frontend renders strings it already receives.
+6. **Verification**: no frontend test harness exists yet (no vitest/jest configured in `frontend/package.json`), so this is a manual check — reuse the routes added in the routing work: `/flashcards` (many real LaTeX examples already in the data, e.g. "Continuous Optimization"), `/` (Browse concept detail), `/test` (any package with LaTeX in a prompt/option), `/history` → a result's concept remediation panel.
+
+## Non-goals
+
+- Not fixing the LaTeX/Markdown *at the source* (`json_nodes/*.json`) — the content is valid, it's the renderer that's missing.
+- Not adding a Markdown/math preview to the curator authoring flow (Streamlit `Author Packages`, or the not-yet-built upload UI from the plan above) — same underlying `RichText` component could serve that later, but it's a separate follow-up, not part of this fix.
