@@ -11,6 +11,8 @@ Two layers now work together:
 
 The two layers share data through `core/learning_links.py` (resolves a question's `node_links` back to graph node definitions/neighbors/flashcards) and `core/registry.py` (builds `data/registry/registry.json` from both `json_nodes/` and the graph's subject metadata, so package authoring reuses the same subject list as the graph).
 
+The API also has the project's only write path (see [`UPLOAD_SYSTEM_PLAN.md`](UPLOAD_SYSTEM_PLAN.md)): `POST /subjects`, multipart subject-content upload that runs the ADDING_DATA.md pipeline chain via [`core/pipelines.py`](../core/pipelines.py), and package create/upload/publish endpoints reusing `core/packages.py`. Write endpoints honor an optional shared token (`KG_CURATOR_TOKEN` → `X-Curator-Token` header, see `app/security.py`).
+
 ## ERD entity → code mapping
 
 | ERD entity | Status | Where | Gap vs. ERD |
@@ -58,7 +60,7 @@ The two layers share data through `core/learning_links.py` (resolves a question'
 - **Atomic writes / no silent corruption**: `core/store.py.write_json()` does tmp-file + `os.replace`. Legacy pipelines (`normalize_graph.py`, `extract_subject_index.py`) still write directly with `Path.write_text()`, no atomicity — narrower blast radius since they're simple overwrites, but inconsistent with the NFR.
 - **Published packages immutable**: implemented and exercised by the seed package at `database/introduction_to_optimization/optimization_basics_quiz/`.
 - **PDF cleanup**: `core/pdf_extract.py.open_pdf()` closes the document in a `finally` block; now actually invoked from `pages/8_PDF_Drafts.py`.
-- **Automated tests**: `tests/` covers `attempts`, `grading`, `mcq_parser`, `packages`, `pdf_extract`, and the API surface (`assessments`, results review, flashcard tagging) — 30 tests, all passing.
+- **Automated tests**: `tests/` covers `attempts`, `grading`, `mcq_parser`, `packages`, `pdf_extract`, and the API surface (`assessments`, results review, flashcard tagging, upload system) — 43 tests, all passing.
 
 ## Remaining gaps
 

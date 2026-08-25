@@ -78,3 +78,17 @@ POST /packages/{package_id}/publish             existing action, exposed via API
 2. `POST /subjects/{subject_id}/content` — needs the pipeline-chain wrapper (step 5 above); start synchronous.
 3. Curator UI panels for both, replacing "SSH in and drop a file" / the Streamlit-only package editor with an upload widget that surfaces the validation report before commit.
 4. Move the graph-content pipeline chain to a background job once subject folders are large enough that synchronous upload requests become slow (no endpoint contract change needed if step 2 is built with that in mind).
+
+## Status (updated after implementation)
+
+Steps **1** and **2** are implemented:
+
+- `app/api/packages.py` — `POST /packages`, `POST /packages/{package_id}/content`, `POST /packages/{package_id}/publish`.
+- `app/api/subjects.py` — `POST /subjects`, `GET /subjects/{id}/content`, `POST /subjects/{id}/content` (multipart).
+- `core/pipelines.py` — synchronous chain runner (`run_pipeline_chain()`), each step a subprocess using the API's interpreter; swap for a queued job later without changing endpoints (step 4).
+- `core/graph_content.py` — shape validation + duplicate-entity / unresolved-target warnings; orphaned flashcard tags are detected post-chain and returned as `detached_tags`.
+- `app/security.py` — optional shared-token gate: set `KG_CURATOR_TOKEN` and all write endpoints require a matching `X-Curator-Token` header (unset = open, matching the read API's local-first posture).
+
+Tests: `tests/test_api_uploads.py` (13 cases) run both flows hermetically against temp dirs with the chain replaced by a recording fake.
+
+Step **3** (React curator upload panels) remains open.

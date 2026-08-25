@@ -19,6 +19,8 @@ DATABASE_DIR = BASE_DIR / "database"
 RESULTS_DIR = BASE_DIR / "results" / "user_submissions"
 REGISTRY_DIR = BASE_DIR / "data" / "registry"
 REPORTS_DIR = BASE_DIR / "data" / "reports"
+JSON_NODES_DIR = BASE_DIR / "json_nodes"
+GRAPHS_DIR = BASE_DIR / "data" / "graphs"
 
 VALID_DIFFICULTIES = ("easy", "medium", "hard")
 VALID_STATUSES = ("draft", "review", "published")

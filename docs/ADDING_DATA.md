@@ -5,7 +5,9 @@ There are two independent kinds of "new data" in this project, and they live in 
 1. **Graph/subject content** — notes that become knowledge-graph nodes, edges, and flashcards. Source of truth: `json_nodes/<subject_id>/*.json`.
 2. **Exam content** — MCQ/essay questions delivered as a test. Source of truth: `database/<subject>/<package_id>/package.json`.
 
-A third kind, **flashcard tags** (letting one flashcard belong to multiple exam topics/groups), is defined in [`ERD.md`](ERD.md) (`TAG` / `FLASHCARD_TAG`) and [`PRD.md`](PRD.md) (`FR-16`) but **not implemented yet** — see the note at the end of this doc.
+A third kind, **flashcard tags** (letting one flashcard belong to multiple exam topics/groups), is implemented in SQLite (`TAG` / `FLASHCARD_TAG`, see `app/api/tags.py` and the React Flashcards tab) — see [`ERD.md`](ERD.md) (`FR-16` in `PRD.md`).
+
+Instead of hand-placing files, both data kinds can also be uploaded through the API — see [`UPLOAD_SYSTEM_PLAN.md`](UPLOAD_SYSTEM_PLAN.md) (`POST /subjects/{subject_id}/content`, `POST /packages/{package_id}/content`).
 
 ## 1. Graph/subject content
 
@@ -146,6 +148,6 @@ database/<subject>/<package_id>/package.json
 
 A package starts as `status: "draft"`. Validate it (`core.packages.validate_package`, or the "Validate & publish" button in Author Packages) before publishing — publishing snapshots the package to `versions/v<N>.json` and makes it immutable; any further edit auto-starts the next draft version rather than mutating the published one.
 
-## 3. Flashcard tags (not yet implemented)
+## 3. Flashcard tags
 
-The design for letting one flashcard belong to multiple exam topics/groups (e.g. tagging a card `midterm-2` and `gradient-methods` simultaneously) is written up in `ERD.md` (`TAG` / `FLASHCARD_TAG`, a many-to-many join) and `PRD.md` (`FR-16`). There is no `tags` field on a flashcard or package today — adding one means implementing that model first, not editing a JSON file.
+Flashcards can carry multiple curator-defined tags (e.g. tag a card `midterm-2` and `gradient-methods` simultaneously) via the `TAG` / `FLASHCARD_TAG` many-to-many model in SQLite. Tags are managed through the React **Flashcards** tab or the API (`GET/POST /tags`, attach/detach under `/flashcards/{id}/tags`). Tags key on a card's stable `entity` string, so re-running the pipeline above never detaches them — but renaming an entity does; the upload endpoint reports such losses as `detached_tags` in its response.
